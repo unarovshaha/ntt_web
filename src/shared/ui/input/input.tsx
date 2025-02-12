@@ -34,6 +34,8 @@ export interface InputProps extends HTMLInputProps {
     error?: ErrorType,
     canChange?: boolean
     extraType?: string
+    extraTitle?: string,
+    checked?: boolean
 }
 
 export const Input: React.FC<InputProps> = (props) => {
@@ -53,7 +55,9 @@ export const Input: React.FC<InputProps> = (props) => {
         onChangeState,
         value,
         canChange= true,
-        extraType
+        extraType,
+        extraTitle,
+        checked,
 
     } = props
 
@@ -67,14 +71,27 @@ export const Input: React.FC<InputProps> = (props) => {
         <label className={classNames(cls.label, extraLabelClass)}>
             {title && <span className={cls.label__title}>{title}</span>}
             {
-                extraType ? <PhoneInput
+                extraType === "phone" ? <PhoneInput
                     inputClass={classNames(cls.label__input, extraClass)}
                     specialLabel={'Telefon raqami'}
                     country={'uz'}
                     disableDropdown={true}
                     enableSearch={true}
                     showDropdown={true}
-                /> :
+                /> : extraType === "checkbox" ?
+                    <label className={cls.customCheckbox}>
+                        <label className={classNames(cls.label_checked, {[cls.active] : checked === true})}>{extraTitle}</label>
+                        <input
+                            type="checkbox"
+                            checked={checked}
+                            //@ts-ignore
+                            onChange={onChange}
+                            className={cls.checkboxInput}
+                        />
+
+
+                        <span className={cls.checkMark}></span>
+                    </label> :
                     <input
                         {...textField}
                         required={required}
