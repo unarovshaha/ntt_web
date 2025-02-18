@@ -1,0 +1,102 @@
+@import "app/styles/abstracts/variables"
+
+.container
+  width: 100%
+  height: 100dvh
+  display: flex
+  align-items: end
+  flex-direction: column
+  justify-content: end
+  background: $color-main
+  &__content
+    width: 100%
+    height: 90%
+    background: #FFFFFF
+    border-top-left-radius: 40px
+    border-top-right-radius: 40px
+    display: flex
+    align-items: center
+    flex-direction: column
+    justify-content: center
+    //text-align: center
+    &__box
+      width: 100%
+      height: 30%
+      display: flex
+      align-items: center
+      justify-content: space-between
+      flex-direction: column
+      gap: 4rem
+      h2
+        font-size: 31px
+        text-align: center
+        color: $color-secondary-fonts
+      p
+        font-size: 19px
+        color: #545454
+        font-weight: 700
+        margin-top: 10px
+        font-family: Inter
+        text-align: center
+      &__handlerBox
+        width: 100%
+        padding: 3rem
+        display: flex
+        align-items: center
+        justify-content: space-between
+        position: absolute
+        bottom: 170px
+        &__navigationBox
+          display: flex
+          align-items: center
+          height: 100%
+          width: 40%
+        button
+          width: 60px
+          height: 60px
+          border-radius: 50%
+          background: $color-main
+          border: none
+          color: white
+          font-size: 3rem
+          display: flex
+          align-items: center
+          justify-content: center
+          font-weight: bold
+    &__login
+      width: 100%
+      height: 100%
+      //background: red
+      display: flex
+      align-items: center
+      gap: 3rem
+      flex-direction: column
+      padding: 3rem
+      padding-top: 5rem
+      h2
+        font-size: 3rem
+      p
+        font-size: 1.6rem
+        color: #545454
+
+        font-weight: bold
+        text-align: center
+      &__form
+        padding-top: 2rem
+        display: flex
+        //align-items: center
+        width: 100%
+        flex-direction: column
+        gap: 3rem
+        &__input
+          //width: 140% !important
+        &__button
+          width: 100% !important
+          background: $color-main
+          font-size: 1.4rem
+          color: white
+          font-weight: 600
+          padding: 1.4rem
+      h3
+        font-size: 1.3rem
+        text-decoration: underline

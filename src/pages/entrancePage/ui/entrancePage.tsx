@@ -25,8 +25,9 @@ export const EntrancePage = () => {
                 {/*           checked={checked}/>*/}
 
                 {/*}/>*/}
+                <Input name={"name"} title={"ssss"}/>
+                {/*<MttFilter/>*/}
 
-                <MttFilter/>
 
             </div>
 
