@@ -1,5 +1,6 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import classNames from 'classnames';
+
 import cls from './accordion.module.sass';
 
 interface AccordionItem {
@@ -10,12 +11,25 @@ interface AccordionItem {
 interface AccordionProps {
     title: string;
     items: AccordionItem[];
-    onClick: (arg: number) => void;
+    onClick: (arg: number[]) => void;
 }
 
 export const Accordion: React.FC<AccordionProps> = ({title, items, onClick}) => {
     const [isOpen, setIsOpen] = useState(false);
+    const [selectedItems, setSelectedItems] = useState<number[]>([])
     const contentRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        onClick(selectedItems)
+    }, [selectedItems])
+
+    const onHandleItem = (id: number) => {
+        setSelectedItems(prevState =>
+            prevState.includes(id)
+                ? prevState.filter(item => item !== id)
+                : [...prevState, id]
+        )
+    }
 
     const toggleOpen = () => {
         setIsOpen(!isOpen);
@@ -41,7 +55,13 @@ export const Accordion: React.FC<AccordionProps> = ({title, items, onClick}) => 
             >
                 <div className={cls.grid}>
                     {items.map((item, index) => (
-                        <span onClick={() => onClick(item.id)} key={index} className={cls.tag}>
+                        <span
+                            onClick={() => onHandleItem(item.id)}
+                            key={index}
+                            className={classNames(cls.tag, {
+                                [cls.active]: selectedItems.includes(item.id)
+                            })}
+                        >
                             {item.name}
                         </span>
                     ))}

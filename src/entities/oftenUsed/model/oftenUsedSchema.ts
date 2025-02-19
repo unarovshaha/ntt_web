@@ -1,5 +1,5 @@
 
-export interface IStudyType {
+export interface IList {
     id: number,
     name: string,
 }
@@ -7,7 +7,10 @@ export interface IStudyType {
 
 
 export interface IOftenUsedSchema {
-    directions: IStudyType[]
+    directions: IList[],
+    locations: IList[],
+    studyTypes: IList[],
+    languages: IList[],
     loading: boolean,
     error?: "error"
 }
