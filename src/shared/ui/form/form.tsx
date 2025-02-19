@@ -5,7 +5,7 @@ import cls from "./form.module.sass";
 
 interface formProps {
     id?: string,
-    children: JSX.Element | JSX.Element[],
+    children: JSX.Element | JSX.Element[] | any,
     onSubmit?: (arg: any) => void,
     extraClass?: string,
 }

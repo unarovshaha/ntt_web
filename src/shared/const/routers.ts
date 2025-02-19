@@ -8,3 +8,4 @@ export const getOnboardingRoute = () => `onboard`
 
 export const getRegisterRoute = () => `register`
 export const getIdentificationRoute = () => `identification`
+export const getIdentifyRoute = () => `identify`

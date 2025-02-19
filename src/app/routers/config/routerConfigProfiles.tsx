@@ -1,7 +1,7 @@
 import React, {JSX} from 'react';
 import {EntrancePage} from "pages/entrancePage";
 import {
-    getEntranceRoute, getIdentificationRoute,
+    getEntranceRoute, getIdentificationRoute, getIdentifyRoute,
     getLoginRoute,
     getMttFilterRoute,
     getOnboardingRoute,
@@ -12,6 +12,7 @@ import {MttFilter, OtmFilter} from "features/filter";
 import {Onboarding} from "entities/login";
 import {IdentificationReg, Register} from "entities/register";
 import {RegisterPage} from "pages/registerPage";
+import {IdentifyPage} from "pages/identifyPage";
 
 
 interface IRouterConfigProfiles {
@@ -55,6 +56,11 @@ export const routerConfigProfiles: IRouterConfigProfiles[] = [
         name: "identification",
         element: <IdentificationReg/>,
         path: getIdentificationRoute()
+    },
+    {
+        name: "identify",
+        element: <IdentifyPage/>,
+        path: getIdentifyRoute()
     }
 ]
 
