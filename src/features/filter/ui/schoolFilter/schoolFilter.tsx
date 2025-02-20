@@ -10,7 +10,7 @@ import {fetchMttFilter} from "../../model/filterThunk";
 
 import cls from "../mttFilter.module.sass";
 
-export const MttFilter = () => {
+export const SchoolFilter = () => {
 
     const dispatch = useAppDispatch()
     const directions = useSelector(getDirectionsData)
