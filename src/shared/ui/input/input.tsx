@@ -73,11 +73,8 @@ export const Input: React.FC<InputProps> = (props) => {
             {
                 extraType === "phone" ? <PhoneInput
                     inputClass={classNames(cls.label__input, extraClass)}
-                    specialLabel={'Telefon raqami'}
+                    specialLabel={''}
                     country={'uz'}
-                    disableDropdown={true}
-                    enableSearch={true}
-                    showDropdown={true}
                 /> : extraType === "checkbox" ?
                     <label className={cls.customCheckbox}>
                         <label className={classNames(cls.label_checked, {[cls.active] : checked === true})}>{extraTitle}</label>

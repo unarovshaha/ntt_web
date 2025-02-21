@@ -3,8 +3,10 @@ import {createRoutesFromElements, Route, RouterProvider} from "react-router";
 import {createBrowserRouter, Navigate} from "react-router-dom";
 import {routerConfigProfiles} from "../config/routerConfigProfiles";
 import {Layout} from "app/layout";
-import {Button} from "shared/ui/button";
 import {LoginPage} from "pages/loginPage";
+import {Onboarding} from "entities/login";
+import {RegisterPage} from "pages/registerPage";
+import {IdentificationReg} from "entities/register";
 
 export const AppRouter = () => {
     const router = createBrowserRouter(
@@ -13,6 +15,18 @@ export const AppRouter = () => {
                 <Route
                     path={"login"}
                     element={<LoginPage/>}
+                />
+                <Route
+                    path={"onboard"}
+                    element={<Onboarding/>}
+                />
+                <Route
+                    path={"register"}
+                    element={<RegisterPage/>}
+                />
+                <Route
+                    path={"identification"}
+                    element={<IdentificationReg/>}
                 />
                 {/*<Route element={<RequireAuth/>}>*/}
                     <Route element={<Layout/>} path={"platform"}>
