@@ -5,7 +5,7 @@ import {
     getLoginRoute,
     getMttFilterRoute,
     getOnboardingRoute,
-    getOtmFilterRoute, getRegisterRoute
+    getOtmFilterRoute, getRegisterRoute, getSchoolPageRoute
 } from "shared/const/routers";
 import {LoginPage} from "pages/loginPage";
 import {MttFilter, OtmFilter} from "features/filter";
@@ -13,6 +13,7 @@ import {Onboarding} from "entities/login";
 import {IdentificationReg, Register} from "entities/register";
 import {RegisterPage} from "pages/registerPage";
 import {IdentifyPage} from "pages/identifyPage";
+import {SchoolPage} from "../../../pages/schoolPage";
 
 
 interface IRouterConfigProfiles {
@@ -61,6 +62,11 @@ export const routerConfigProfiles: IRouterConfigProfiles[] = [
         name: "identify",
         element: <IdentifyPage/>,
         path: getIdentifyRoute()
+    },
+    {
+        name: "school",
+        element: <SchoolPage/>,
+        path: getSchoolPageRoute()
     }
 ]
 
