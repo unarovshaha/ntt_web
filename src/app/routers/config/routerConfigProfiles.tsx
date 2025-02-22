@@ -5,14 +5,14 @@ import {
     getIdentificationRoute,
     getIdentifyRoute,
     getLoginRoute,
-    getMttFilterRoute,
+    getMttFilterRoute, getNotificationPageRoute,
     getOnboardingRoute,
     getOtmFilterRoute,
     getProfilePageRoute,
     getRegisterRoute,
     getSchoolPageRoute,
     getUserApplicationsPageRoute,
-    getUserEducationPageRoute
+    getUserEducationPageRoute, getUserNotificationsPageRoute
 } from "shared/const/routers";
 import {LoginPage} from "pages/loginPage";
 import {MttFilter, OtmFilter} from "features/filter";
@@ -20,8 +20,9 @@ import {Onboarding} from "entities/login";
 import {IdentificationReg} from "entities/register";
 import {RegisterPage} from "pages/registerPage";
 import {IdentifyPage} from "pages/identifyPage";
-import {SchoolPage} from "../../../pages/schoolPage";
-import {ProfilePage, UserApplicationsPage, UserEducationPage} from "pages/profilePage";
+import {SchoolPage} from "pages/schoolPage";
+import {ProfilePage, UserApplicationsPage, UserEducationPage, UserNotificationsPage} from "pages/profilePage";
+import {NotificationProfile} from "entities/profile";
 
 
 interface IRouterConfigProfiles {
@@ -90,6 +91,16 @@ export const routerConfigProfiles: IRouterConfigProfiles[] = [
         name: "userApplications",
         element: <UserApplicationsPage/>,
         path: getUserApplicationsPageRoute()
+    },
+    {
+        name: "userNotifications",
+        element: <UserNotificationsPage/>,
+        path: getUserNotificationsPageRoute()
+    },
+    {
+        name: "userNotifications/notification",
+        element: <NotificationProfile/>,
+        path: getNotificationPageRoute()
     }
 ]
 

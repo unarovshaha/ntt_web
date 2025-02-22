@@ -39,7 +39,8 @@ const list = [
         image: notifIcon,
         backColor: "#ADA400B2",
         title: "Bildirishnomalar",
-        btnIcon: rightIcon
+        btnIcon: rightIcon,
+        navigateTo: "userNotifications"
     }
 ];
 
