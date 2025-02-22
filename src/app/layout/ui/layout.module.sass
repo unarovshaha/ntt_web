@@ -5,6 +5,7 @@
   height: 100dvh
   display: flex
   background: $color-main
+
   &__content
     width: 100%
     height: 100%
@@ -13,12 +14,17 @@
     flex-direction: column
     background-repeat: no-repeat
     background-position: center
+
   &__route
     padding: 2rem
     width: 100%
     height: 100%
-    border-top-left-radius: 40px
-    border-top-right-radius: 40px
     background: #FFFFFF
+
+@media (max-width: 430px)
+  .layout
+    &__route
+      border-top-left-radius: 40px
+      border-top-right-radius: 40px
 
 

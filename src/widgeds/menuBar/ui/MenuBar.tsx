@@ -25,7 +25,7 @@ export const MenuBar = () => {
                     }
                     to={item.to}
                 >
-
+                    {item.icon}
                     <h1>{item.label}</h1>
 
                 </NavLink>

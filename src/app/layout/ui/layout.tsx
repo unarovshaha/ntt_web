@@ -11,7 +11,7 @@ export const Layout = () => {
     return (
         <div className={cls.layout}>
 
-            {/*<MenuBar/>*/}
+            <MenuBar/>
 
             <main className={cls.layout__content} style={{backgroundImage: `url(${image})`}}>
 
