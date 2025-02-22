@@ -1,13 +1,16 @@
 import React from 'react';
 
-import {Card} from "shared/lib/components/card/card";
+import {SchoolList} from "entities/school";
 
 import cls from "./schoolPage.module.sass";
 
 export const SchoolPage = () => {
     return (
-        <div>
-            <Card/>
+        <div className={cls.school}>
+            <div></div>
+            <div className={cls.school__content}>
+                <SchoolList/>
+            </div>
         </div>
     );
 }
