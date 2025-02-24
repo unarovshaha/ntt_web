@@ -1,14 +1,28 @@
 @import "app/styles/abstracts/variables"
 
 .advantage
+  margin-top: 5rem
   display: flex
   gap: 7rem
   &__content
     display: flex
     flex-direction: column
+    justify-content: center
     gap: 4rem
     .btn
+      width: fit-content
       border-radius: 5rem
       background: $color-main
       padding: 1.4rem 4rem
       font-size: 2.4rem
+      color: white
+    .info
+      display: flex
+      flex-direction: column
+      gap: 3rem
+      &__title
+        color: #514B4B
+        font-size: 3.6rem
+      &__text
+        color: #898989
+        font-size: 2.4rem
