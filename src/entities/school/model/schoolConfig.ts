@@ -20,6 +20,11 @@ export const schoolRoutesConfig = [
         name: ""
     },
     {
+        to: "grant",
+        label: "Grantlar",
+        name: ""
+    },
+    {
         to: "direction",
         label: "Yo’nalish",
         name: ""
