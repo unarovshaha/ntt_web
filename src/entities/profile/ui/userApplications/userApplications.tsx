@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import cls from './userApplications.module.sass'
 import {Box} from "shared/ui/box";
 import univerIcon from 'shared/assets/images/ubs.png'
 import locationIcon from 'shared/assets/icons/location.png'
 import expectedIcon from 'shared/assets/icons/pending.png'
 import {Button} from "shared/ui/button";
+import {useWindowSize} from "@react-hook/window-size";
 
 const tabs = [
     {id: 1, title: "Ko'rib chiqilmoqda"},
@@ -26,7 +27,43 @@ const list = {
             statusSymbol: <i className="fa-solid fa-check"></i>,
             status: "Qabul qilingan",
             color: "#34C759"
-        }
+        },{
+            id: 1,
+            image: univerIcon,
+            name: "University of Business and Science",
+            location: "Namangan viloyati",
+            degree: "Bakalavriat",
+            type: "Kunduzgi",
+            language: "O'zbek tili",
+            price: "12 090 000",
+            statusSymbol: <i className="fa-solid fa-check"></i>,
+            status: "Qabul qilingan",
+            color: "#34C759"
+        },{
+            id: 1,
+            image: univerIcon,
+            name: "University of Business and Science",
+            location: "Namangan viloyati",
+            degree: "Bakalavriat",
+            type: "Kunduzgi",
+            language: "O'zbek tili",
+            price: "12 090 000",
+            statusSymbol: <i className="fa-solid fa-check"></i>,
+            status: "Qabul qilingan",
+            color: "#34C759"
+        },{
+            id: 1,
+            image: univerIcon,
+            name: "University of Business and Science",
+            location: "Namangan viloyati",
+            degree: "Bakalavriat",
+            type: "Kunduzgi",
+            language: "O'zbek tili",
+            price: "12 090 000",
+            statusSymbol: <i className="fa-solid fa-check"></i>,
+            status: "Qabul qilingan",
+            color: "#34C759"
+        },
     ],
     rejected: [
         {
@@ -62,8 +99,17 @@ const list = {
 
 export const UserApplications = () => {
 
-    const [activeTab, setActiveTab] = useState(3); // Dastlab "Qabul qilindi" aktiv
-    const activeIndex = tabs.findIndex(tab => tab.id === activeTab); // Indexni topish
+    const [activeTab, setActiveTab] = useState(3);
+    const activeIndex = tabs.findIndex(tab => tab.id === activeTab);
+    const [layout, setLayout] = useState<boolean>(false)
+    const size = useWindowSize()
+
+    useEffect(() => {
+        if ((size[0] > 480 && !layout) || (size[0] <= 480 && layout)) {
+            setLayout(size[0] > 480);
+        }
+    }, [size, layout])
+
     return (
         <div className={cls.container}>
             <h1>Arizalarim</h1>
@@ -83,145 +129,289 @@ export const UserApplications = () => {
                 <div className={cls.activeIndicator} style={{left: `${activeIndex * 33.33}%`}}/>
 
             </div>
-            <div className={cls.container__dataBox}>
-                {
-                    activeTab === 3 ? list.accepted.map(item => (
-                        <Box extraClass={cls.container__dataBox__box}>
-                            <div className={cls.container__dataBox__box__firstLayer}>
-                                <div className={cls.container__dataBox__box__firstLayer__imgBox}>
-                                    <img src={item.image} alt=""/>
-                                </div>
-                                <div className={cls.container__dataBox__box__firstLayer__content}>
-                                    <h2>{item.name}</h2>
-                                    <div className={cls.container__dataBox__box__firstLayer__imgBox__content__locBox}>
-                                        <img src={locationIcon} alt=""/>
-                                        <h3>{item.location}</h3>
+            {
+                layout ?
+                    <div className={cls.container__dataBoxs}>
+                        {
+                            activeTab === 3 ? list.accepted.map(item => (
+                                <Box extraClass={cls.container__dataBoxs__boxs}>
+                                    <div className={cls.container__dataBoxs__boxs__firstLayer}>
+                                        <div className={cls.container__dataBoxs__boxs__firstLayer__imgBox}>
+                                            <img src={item.image} alt=""/>
+                                        </div>
+                                        <div className={cls.container__dataBoxs__boxs__firstLayer__content}>
+                                            <h2>{item.name}</h2>
+                                            <div className={cls.container__dataBoxs__boxs__firstLayer__imgBox__content__locBox}>
+                                                <img src={locationIcon} alt=""/>
+                                                <h3>{item.location}</h3>
+                                            </div>
+
+                                        </div>
                                     </div>
-
-                                </div>
-                            </div>
-                            <div className={cls.container__dataBox__box__secondLayer}>
-                                <div className={cls.container__dataBox__box__secondLayer__content}>
-                                    <h2>Daraja</h2>
-                                    <h3>{item.degree}</h3>
-                                </div>
-                                <div className={cls.container__dataBox__box__secondLayer__content}>
-                                    <h2>Ta’lim turi</h2>
-                                    <h3>{item.type}</h3>
-                                </div>
-                                <div className={cls.container__dataBox__box__secondLayer__content}>
-                                    <h2>Ta’lim tili</h2>
-                                    <h3>{item.language}</h3>
-                                </div>
-                                <div className={cls.container__dataBox__box__secondLayer__content}>
-                                    <h2>Ta’lim narxi</h2>
-                                    <h3>{item.price}</h3>
-                                </div>
-                                <div className={cls.container__dataBox__box__secondLayer__content}>
-                                    <h2>Manzil</h2>
-                                    <h3>{item.location}</h3>
-                                </div>
-                            </div>
-                            <div className={cls.container__dataBox__box__thirdLayer}>
-                                <Button
-                                    extraClass={cls.container__dataBox__box__thirdLayer__btn}
-                                    children={<span style={{color: item.color}}>{item.statusSymbol} {item.status}</span>}
-                                />
-                            </div>
-                        </Box>
-                    )) : activeTab === 2 ? list.rejected.map(item => (
-                        <Box extraClass={cls.container__dataBox__box}>
-                            <div className={cls.container__dataBox__box__firstLayer}>
-                                <div className={cls.container__dataBox__box__firstLayer__imgBox}>
-                                    <img src={item.image} alt=""/>
-                                </div>
-                                <div className={cls.container__dataBox__box__firstLayer__content}>
-                                    <h2>{item.name}</h2>
-                                    <div className={cls.container__dataBox__box__firstLayer__imgBox__content__locBox}>
-                                        <img src={locationIcon} alt=""/>
-                                        <h3>{item.location}</h3>
+                                    <div className={cls.container__dataBoxs__boxs__secondLayer}>
+                                        <div className={cls.container__dataBoxs__boxs__secondLayer__content}>
+                                            <h2>Daraja</h2>
+                                            <h3>{item.degree}</h3>
+                                        </div>
+                                        <div className={cls.container__dataBoxs__boxs__secondLayer__content}>
+                                            <h2>Ta’lim turi</h2>
+                                            <h3>{item.type}</h3>
+                                        </div>
+                                        <div className={cls.container__dataBoxs__boxs__secondLayer__content}>
+                                            <h2>Ta’lim tili</h2>
+                                            <h3>{item.language}</h3>
+                                        </div>
+                                        <div className={cls.container__dataBoxs__boxs__secondLayer__content}>
+                                            <h2>Ta’lim narxi</h2>
+                                            <h3>{item.price}</h3>
+                                        </div>
+                                        <div className={cls.container__dataBoxs__boxs__secondLayer__content}>
+                                            <h2>Manzil</h2>
+                                            <h3>{item.location}</h3>
+                                        </div>
                                     </div>
-
-                                </div>
-                            </div>
-                            <div className={cls.container__dataBox__box__secondLayer}>
-                                <div className={cls.container__dataBox__box__secondLayer__content}>
-                                    <h2>Daraja</h2>
-                                    <h3>{item.degree}</h3>
-                                </div>
-                                <div className={cls.container__dataBox__box__secondLayer__content}>
-                                    <h2>Ta’lim turi</h2>
-                                    <h3>{item.type}</h3>
-                                </div>
-                                <div className={cls.container__dataBox__box__secondLayer__content}>
-                                    <h2>Ta’lim tili</h2>
-                                    <h3>{item.language}</h3>
-                                </div>
-                                <div className={cls.container__dataBox__box__secondLayer__content}>
-                                    <h2>Ta’lim narxi</h2>
-                                    <h3>{item.price}</h3>
-                                </div>
-                                <div className={cls.container__dataBox__box__secondLayer__content}>
-                                    <h2>Manzil</h2>
-                                    <h3>{item.location}</h3>
-                                </div>
-                            </div>
-                            <div className={cls.container__dataBox__box__thirdLayer}>
-                                <Button
-                                    extraClass={cls.container__dataBox__box__thirdLayer__btn}
-                                    children={<span style={{color: item.color}}>{item.statusSymbol} {item.status}</span>}
-                                />
-                            </div>
-                        </Box>
-                    )) : activeTab === 1 ? list.expected.map(item => (
-                        <Box extraClass={cls.container__dataBox__box}>
-                            <div className={cls.container__dataBox__box__firstLayer}>
-                                <div className={cls.container__dataBox__box__firstLayer__imgBox}>
-                                    <img src={item.image} alt=""/>
-                                </div>
-                                <div className={cls.container__dataBox__box__firstLayer__content}>
-                                    <h2>{item.name}</h2>
-                                    <div className={cls.container__dataBox__box__firstLayer__imgBox__content__locBox}>
-                                        <img src={locationIcon} alt=""/>
-                                        <h3>{item.location}</h3>
+                                    <div className={cls.container__dataBoxs__boxs__thirdLayer}>
+                                        <Button
+                                            extraClass={cls.container__dataBoxs__boxs__thirdLayer__btn}
+                                            children={<span style={{color: item.color}}>{item.statusSymbol} {item.status}</span>}
+                                        />
                                     </div>
+                                </Box>
+                            )) : activeTab === 2 ? list.rejected.map(item => (
+                                <Box extraClass={cls.container__dataBoxs__boxs}>
+                                    <div className={cls.container__dataBoxs__boxs__firstLayer}>
+                                        <div className={cls.container__dataBoxs__boxs__firstLayer__imgBox}>
+                                            <img src={item.image} alt=""/>
+                                        </div>
+                                        <div className={cls.container__dataBoxs__boxs__firstLayer__content}>
+                                            <h2>{item.name}</h2>
+                                            <div className={cls.container__dataBoxs__boxs__firstLayer__imgBox__content__locBox}>
+                                                <img src={locationIcon} alt=""/>
+                                                <h3>{item.location}</h3>
+                                            </div>
 
-                                </div>
-                            </div>
-                            <div className={cls.container__dataBox__box__secondLayer}>
-                                <div className={cls.container__dataBox__box__secondLayer__content}>
-                                    <h2>Daraja</h2>
-                                    <h3>{item.degree}</h3>
-                                </div>
-                                <div className={cls.container__dataBox__box__secondLayer__content}>
-                                    <h2>Ta’lim turi</h2>
-                                    <h3>{item.type}</h3>
-                                </div>
-                                <div className={cls.container__dataBox__box__secondLayer__content}>
-                                    <h2>Ta’lim tili</h2>
-                                    <h3>{item.language}</h3>
-                                </div>
-                                <div className={cls.container__dataBox__box__secondLayer__content}>
-                                    <h2>Ta’lim narxi</h2>
-                                    <h3>{item.price}</h3>
-                                </div>
-                                <div className={cls.container__dataBox__box__secondLayer__content}>
-                                    <h2>Manzil</h2>
-                                    <h3>{item.location}</h3>
-                                </div>
-                            </div>
-                            <div className={cls.container__dataBox__box__thirdLayer}>
-                                <Button
-                                    extraClass={cls.container__dataBox__box__thirdLayer__btn}
-                                    children={<span style={{color: item.color}}><img src={item.statusSymbol} alt=""/> {item.status}</span>}
-                                />
-                            </div>
-                        </Box>
-                    )) : null
-                }
+                                        </div>
+                                    </div>
+                                    <div className={cls.container__dataBoxs__boxs__secondLayer}>
+                                        <div className={cls.container__dataBoxs__boxs__secondLayer__content}>
+                                            <h2>Daraja</h2>
+                                            <h3>{item.degree}</h3>
+                                        </div>
+                                        <div className={cls.container__dataBoxs__boxs__secondLayer__content}>
+                                            <h2>Ta’lim turi</h2>
+                                            <h3>{item.type}</h3>
+                                        </div>
+                                        <div className={cls.container__dataBoxs__boxs__secondLayer__content}>
+                                            <h2>Ta’lim tili</h2>
+                                            <h3>{item.language}</h3>
+                                        </div>
+                                        <div className={cls.container__dataBoxs__boxs__secondLayer__content}>
+                                            <h2>Ta’lim narxi</h2>
+                                            <h3>{item.price}</h3>
+                                        </div>
+                                        <div className={cls.container__dataBoxs__boxs__secondLayer__content}>
+                                            <h2>Manzil</h2>
+                                            <h3>{item.location}</h3>
+                                        </div>
+                                    </div>
+                                    <div className={cls.container__dataBoxs__boxs__thirdLayer}>
+                                        <Button
+                                            extraClass={cls.container__dataBoxs__boxs__thirdLayer__btn}
+                                            children={<span style={{color: item.color}}>{item.statusSymbol} {item.status}</span>}
+                                        />
+                                    </div>
+                                </Box>
+                            )) : activeTab === 1 ? list.expected.map(item => (
+                                <Box extraClass={cls.container__dataBoxs__boxs}>
+                                    <div className={cls.container__dataBoxs__boxs__firstLayer}>
+                                        <div className={cls.container__dataBoxs__boxs__firstLayer__imgBox}>
+                                            <img src={item.image} alt=""/>
+                                        </div>
+                                        <div className={cls.container__dataBoxs__boxs__firstLayer__content}>
+                                            <h2>{item.name}</h2>
+                                            <div className={cls.container__dataBoxs__boxs__firstLayer__imgBox__content__locBox}>
+                                                <img src={locationIcon} alt=""/>
+                                                <h3>{item.location}</h3>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div className={cls.container__dataBoxs__boxs__secondLayer}>
+                                        <div className={cls.container__dataBoxs__boxs__secondLayer__content}>
+                                            <h2>Daraja</h2>
+                                            <h3>{item.degree}</h3>
+                                        </div>
+                                        <div className={cls.container__dataBoxs__boxs__secondLayer__content}>
+                                            <h2>Ta’lim turi</h2>
+                                            <h3>{item.type}</h3>
+                                        </div>
+                                        <div className={cls.container__dataBoxs__boxs__secondLayer__content}>
+                                            <h2>Ta’lim tili</h2>
+                                            <h3>{item.language}</h3>
+                                        </div>
+                                        <div className={cls.container__dataBoxs__boxs__secondLayer__content}>
+                                            <h2>Ta’lim narxi</h2>
+                                            <h3>{item.price}</h3>
+                                        </div>
+                                        <div className={cls.container__dataBoxs__boxs__secondLayer__content}>
+                                            <h2>Manzil</h2>
+                                            <h3>{item.location}</h3>
+                                        </div>
+                                    </div>
+                                    <div className={cls.container__dataBoxs__boxs__thirdLayer}>
+                                        <Button
+                                            extraClass={cls.container__dataBoxs__boxs__thirdLayer__btn}
+                                            children={<span style={{color: item.color}}><img src={item.statusSymbol} alt=""/> {item.status}</span>}
+                                        />
+                                    </div>
+                                </Box>
+                            )) : null
+                        }
 
 
-            </div>
+                    </div>
+                    :
+                    <div className={cls.container__dataBox}>
+                        {
+                            activeTab === 3 ? list.accepted.map(item => (
+                                <Box extraClass={cls.container__dataBox__box}>
+                                    <div className={cls.container__dataBox__box__firstLayer}>
+                                        <div className={cls.container__dataBox__box__firstLayer__imgBox}>
+                                            <img src={item.image} alt=""/>
+                                        </div>
+                                        <div className={cls.container__dataBox__box__firstLayer__content}>
+                                            <h2>{item.name}</h2>
+                                            <div className={cls.container__dataBox__box__firstLayer__imgBox__content__locBox}>
+                                                <img src={locationIcon} alt=""/>
+                                                <h3>{item.location}</h3>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div className={cls.container__dataBox__box__secondLayer}>
+                                        <div className={cls.container__dataBox__box__secondLayer__content}>
+                                            <h2>Daraja</h2>
+                                            <h3>{item.degree}</h3>
+                                        </div>
+                                        <div className={cls.container__dataBox__box__secondLayer__content}>
+                                            <h2>Ta’lim turi</h2>
+                                            <h3>{item.type}</h3>
+                                        </div>
+                                        <div className={cls.container__dataBox__box__secondLayer__content}>
+                                            <h2>Ta’lim tili</h2>
+                                            <h3>{item.language}</h3>
+                                        </div>
+                                        <div className={cls.container__dataBox__box__secondLayer__content}>
+                                            <h2>Ta’lim narxi</h2>
+                                            <h3>{item.price}</h3>
+                                        </div>
+                                        <div className={cls.container__dataBox__box__secondLayer__content}>
+                                            <h2>Manzil</h2>
+                                            <h3>{item.location}</h3>
+                                        </div>
+                                    </div>
+                                    <div className={cls.container__dataBox__box__thirdLayer}>
+                                        <Button
+                                            extraClass={cls.container__dataBox__box__thirdLayer__btn}
+                                            children={<span style={{color: item.color}}>{item.statusSymbol} {item.status}</span>}
+                                        />
+                                    </div>
+                                </Box>
+                            )) : activeTab === 2 ? list.rejected.map(item => (
+                                <Box extraClass={cls.container__dataBox__box}>
+                                    <div className={cls.container__dataBox__box__firstLayer}>
+                                        <div className={cls.container__dataBox__box__firstLayer__imgBox}>
+                                            <img src={item.image} alt=""/>
+                                        </div>
+                                        <div className={cls.container__dataBox__box__firstLayer__content}>
+                                            <h2>{item.name}</h2>
+                                            <div className={cls.container__dataBox__box__firstLayer__imgBox__content__locBox}>
+                                                <img src={locationIcon} alt=""/>
+                                                <h3>{item.location}</h3>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div className={cls.container__dataBox__box__secondLayer}>
+                                        <div className={cls.container__dataBox__box__secondLayer__content}>
+                                            <h2>Daraja</h2>
+                                            <h3>{item.degree}</h3>
+                                        </div>
+                                        <div className={cls.container__dataBox__box__secondLayer__content}>
+                                            <h2>Ta’lim turi</h2>
+                                            <h3>{item.type}</h3>
+                                        </div>
+                                        <div className={cls.container__dataBox__box__secondLayer__content}>
+                                            <h2>Ta’lim tili</h2>
+                                            <h3>{item.language}</h3>
+                                        </div>
+                                        <div className={cls.container__dataBox__box__secondLayer__content}>
+                                            <h2>Ta’lim narxi</h2>
+                                            <h3>{item.price}</h3>
+                                        </div>
+                                        <div className={cls.container__dataBox__box__secondLayer__content}>
+                                            <h2>Manzil</h2>
+                                            <h3>{item.location}</h3>
+                                        </div>
+                                    </div>
+                                    <div className={cls.container__dataBox__box__thirdLayer}>
+                                        <Button
+                                            extraClass={cls.container__dataBox__box__thirdLayer__btn}
+                                            children={<span style={{color: item.color}}>{item.statusSymbol} {item.status}</span>}
+                                        />
+                                    </div>
+                                </Box>
+                            )) : activeTab === 1 ? list.expected.map(item => (
+                                <Box extraClass={cls.container__dataBox__box}>
+                                    <div className={cls.container__dataBox__box__firstLayer}>
+                                        <div className={cls.container__dataBox__box__firstLayer__imgBox}>
+                                            <img src={item.image} alt=""/>
+                                        </div>
+                                        <div className={cls.container__dataBox__box__firstLayer__content}>
+                                            <h2>{item.name}</h2>
+                                            <div className={cls.container__dataBox__box__firstLayer__imgBox__content__locBox}>
+                                                <img src={locationIcon} alt=""/>
+                                                <h3>{item.location}</h3>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div className={cls.container__dataBox__box__secondLayer}>
+                                        <div className={cls.container__dataBox__box__secondLayer__content}>
+                                            <h2>Daraja</h2>
+                                            <h3>{item.degree}</h3>
+                                        </div>
+                                        <div className={cls.container__dataBox__box__secondLayer__content}>
+                                            <h2>Ta’lim turi</h2>
+                                            <h3>{item.type}</h3>
+                                        </div>
+                                        <div className={cls.container__dataBox__box__secondLayer__content}>
+                                            <h2>Ta’lim tili</h2>
+                                            <h3>{item.language}</h3>
+                                        </div>
+                                        <div className={cls.container__dataBox__box__secondLayer__content}>
+                                            <h2>Ta’lim narxi</h2>
+                                            <h3>{item.price}</h3>
+                                        </div>
+                                        <div className={cls.container__dataBox__box__secondLayer__content}>
+                                            <h2>Manzil</h2>
+                                            <h3>{item.location}</h3>
+                                        </div>
+                                    </div>
+                                    <div className={cls.container__dataBox__box__thirdLayer}>
+                                        <Button
+                                            extraClass={cls.container__dataBox__box__thirdLayer__btn}
+                                            children={<span style={{color: item.color}}><img src={item.statusSymbol} alt=""/> {item.status}</span>}
+                                        />
+                                    </div>
+                                </Box>
+                            )) : null
+                        }
+
+
+                    </div>
+            }
+
 
 
         </div>
