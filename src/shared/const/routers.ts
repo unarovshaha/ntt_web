@@ -8,6 +8,8 @@ export const getRegisterRoute = () => `register`
 export const getIdentificationRoute = () => `identification`
 export const getIdentifyRoute = () => `identify`
 export const getSchoolPageRoute = () => `schoolPage/*`
+export const getMttPageRoute = () => `mttPage/*`
+export const getOtmPageRoute = () => `otmPage/*`
 export const getProfilePageRoute = () => `profile`
 export const getUserEducationPageRoute = () => `education`
 export const getUserApplicationsPageRoute = () => `userApplications`

@@ -2,9 +2,9 @@ import React from 'react';
 
 import {Card} from "shared/lib/components/card/card";
 
-import cls from "./schoolList.module.sass";
+import cls from "./mttList.module.sass";
 
-export const SchoolList = () => {
+export const MttList = () => {
 
     const renderList = () => {
         return [1, 2, 3, 4, 5, 6, 7].map((item, index) => {
@@ -15,7 +15,7 @@ export const SchoolList = () => {
     }
 
     return (
-        <div className={cls.schoolList}>
+        <div className={cls.mttList}>
             {renderList()}
         </div>
     );

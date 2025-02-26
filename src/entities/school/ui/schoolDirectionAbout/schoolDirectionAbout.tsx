@@ -3,9 +3,9 @@ import React from 'react';
 import {DirectionCard} from "shared/lib/components/directionCard/directionCard";
 import {Button} from "shared/ui/button";
 
-import cls from "./directionAbout.module.sass";
+import cls from "./schoolDirectionAbout.module.sass";
 
-export const DirectionAbout = () => {
+export const SchoolDirectionAbout = () => {
     return (
         <div className={cls.profile}>
             <DirectionCard/>

@@ -5,9 +5,9 @@ import {
     getIdentificationRoute,
     getIdentifyRoute,
     getLoginRoute,
-    getMttFilterRoute, getNotificationPageRoute,
+    getMttFilterRoute, getMttPageRoute, getNotificationPageRoute,
     getOnboardingRoute,
-    getOtmFilterRoute,
+    getOtmFilterRoute, getOtmPageRoute,
     getProfilePageRoute,
     getRegisterRoute,
     getSchoolPageRoute,
@@ -21,8 +21,15 @@ import {IdentificationReg} from "entities/register";
 import {RegisterPage} from "pages/registerPage";
 import {IdentifyPage} from "pages/identifyPage";
 import {SchoolPage} from "pages/schoolPage";
-import {ProfilePage, UserApplicationsPage, UserEducationPage, UserNotificationsPage} from "pages/profilePage";
+import {
+    ProfilePage,
+    UserApplicationsPage,
+    UserEducationPage,
+    UserNotificationsPage
+} from "pages/profilePage";
 import {NotificationProfile} from "entities/profile";
+import {MttPage} from "pages/mttPage";
+import {OtmPage} from "pages/otmPage";
 
 
 interface IRouterConfigProfiles {
@@ -76,6 +83,14 @@ export const routerConfigProfiles: IRouterConfigProfiles[] = [
         name: "school",
         element: <SchoolPage/>,
         path: getSchoolPageRoute()
+    },{
+        name: "mtt",
+        element: <MttPage/>,
+        path: getMttPageRoute()
+    },{
+        name: "otm",
+        element: <OtmPage/>,
+        path: getOtmPageRoute()
     },
     {
         name: "profile",

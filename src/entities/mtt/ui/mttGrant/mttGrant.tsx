@@ -2,10 +2,10 @@ import React from 'react';
 
 import {Button} from "shared/ui/button";
 
-import cls from "./schoolGrant.module.sass";
+import cls from "./mttGrant.module.sass";
 import image from "shared/assets/images/Grant 1.png";
 
-export const SchoolGrant = () => {
+export const MttGrant = () => {
     return (
         <div className={cls.grant}>
             <div className={cls.item}>

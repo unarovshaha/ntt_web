@@ -4,7 +4,7 @@ import {Outlet, Route, Routes} from "react-router";
 import {
     SchoolAdvantage,
     SchoolDirection,
-    DirectionAbout,
+    SchoolDirectionAbout,
     SchoolGallery,
     SchoolHeader,
     SchoolGrant,
@@ -26,7 +26,7 @@ export const SchoolPage = () => {
                     <Route path={"gallery"} element={<SchoolGallery/>}/>
                     <Route path={"grant"} element={<SchoolGrant/>}/>
                     <Route path={"direction"} element={<SchoolDirection/>}/>
-                    <Route path={"aboutDirection"} element={<DirectionAbout/>}/>
+                    <Route path={"aboutDirection"} element={<SchoolDirectionAbout/>}/>
                     <Route path={"aboutSchool"} element={<SchoolAbout/>}/>
                 </Routes>
             </div>
