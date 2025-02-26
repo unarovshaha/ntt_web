@@ -40,9 +40,7 @@ export const MenuBar = () => {
                     <h2>Menu</h2>
                 </div>
                 <div className={cls.options}>
-                    {
-                        renderMenuList()
-                    }
+                    {renderMenuList()}
                 </div>
 
             </div>
