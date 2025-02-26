@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import cls from './profile.module.sass'
 import {Input} from "shared/ui/input";
+import {useWindowSize} from "@react-hook/window-size";
 
 
 const list = [
@@ -39,16 +40,37 @@ const list = [
 
 ]
 export const Profile = () => {
+
+    const [layout, setLayout] = useState<boolean>(false)
+    const size = useWindowSize()
+
+    useEffect(() => {
+        if ((size[0] > 480 && !layout) || (size[0] <= 480 && layout)) {
+            setLayout(size[0] > 480);
+        }
+    }, [size, layout])
     return (
         <div className={cls.container}>
             <h1>Shaxsiy ma'lumotlarim</h1>
-            <div className={cls.container__box}>
-                {
-                    list.map(item => (
-                        <Input name={"name"} title={item.title} value={item.value}/>
-                    ))
-                }
-            </div>
+            {
+                layout ?
+                    <div className={cls.container__arounder}>
+                        {
+                            list.map(item => (
+                                <Input extraClass={cls.container__arounder__input} name={"name"} title={item.title} value={item.value}/>
+                            ))
+                        }
+                    </div>
+                    :
+                    <div className={cls.container__box}>
+                        {
+                            list.map(item => (
+                                <Input name={"name"} title={item.title} value={item.value}/>
+                            ))
+                        }
+                    </div>
+            }
+
 
         </div>
     );
