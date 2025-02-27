@@ -8,7 +8,8 @@ import {
     MttGallery,
     MttGrant,
     MttDirection,
-    MttDirectionAbout
+    MttDirectionAbout,
+    MttAbout
 } from "entities/mtt";
 
 import cls from "./mttPage.module.sass";
@@ -26,7 +27,7 @@ export const MttPage = () => {
                     <Route path={"grant"} element={<MttGrant/>}/>
                     <Route path={"direction"} element={<MttDirection/>}/>
                     <Route path={"aboutDirection"} element={<MttDirectionAbout/>}/>
-                    <Route path={"aboutMtt"} element={null}/>
+                    <Route path={"aboutMtt"} element={<MttAbout/>}/>
                 </Routes>
             </div>
         </div>

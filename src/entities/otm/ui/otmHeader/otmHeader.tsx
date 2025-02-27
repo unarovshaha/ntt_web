@@ -2,20 +2,20 @@ import React from 'react';
 import classNames from "classnames";
 import {NavLink} from "react-router-dom";
 
-import {schoolRoutesConfig} from "../../model/schoolConfig";
+import {otmRouteConfig} from "../../model/otmConfig";
 
-import cls from "./schoolHeader.module.sass";
+import cls from "./otmHeader.module.sass";
 
-export const SchoolHeader = () => {
+export const OtmHeader = () => {
 
     const renderLinks = () => {
-        return schoolRoutesConfig.map(item => {
+        return otmRouteConfig.map(item => {
             return (
                 <NavLink
                     className={({isActive}) =>
                         isActive ? classNames(cls.header__item, cls.active) : cls.header__item
                     }
-                    to={`/platform/schoolPage/${item.to}`}
+                    to={`/platform/otmPage/${item.to}`}
                 >
                     {item.label}
                 </NavLink>
