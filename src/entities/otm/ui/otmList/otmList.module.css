@@ -1,0 +1,7 @@
+.schoolList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem 3rem;
+}
+
+/*# sourceMappingURL=otmList.module.css.map */

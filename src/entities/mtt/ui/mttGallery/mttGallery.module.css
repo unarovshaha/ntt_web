@@ -1,0 +1,11 @@
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+}
+.gallery__item {
+  width: 36rem;
+  height: 29.6rem;
+}
+
+/*# sourceMappingURL=mttGallery.module.css.map */

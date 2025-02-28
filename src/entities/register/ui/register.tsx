@@ -12,6 +12,11 @@ import registerImg from 'shared/assets/images/register.png'
 import blueLogo from 'shared/assets/logo/blue_logo.png'
 import IDImg from 'shared/assets/images/id.png'
 import {Identify} from "../../identify";
+import {
+    DynamicModuleLoader,
+    ReducersList
+} from "../../../shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
+import {registerReducer} from "../model/registerSlice";
 
 interface IdentificationRegProps {
     index?: number | any;
@@ -27,8 +32,11 @@ const slideVariants = {
     exit: {opacity: 0, x: -100, transition: {duration: 0.5}}
 };
 
-export const Register = () => {
+const reducers: ReducersList = {
+    registerSlice: registerReducer
+}
 
+export const Register = () => {
 
     const navigate = useNavigate();
     const size = useWindowSize();
@@ -67,50 +75,53 @@ export const Register = () => {
 
 
     return (
-        <div className={cls.main}>
-            {
-                layout ? (
-                    <div className={cls.pcContainer}>
-                        <div className={cls.pcContainer__section}>
-                            <StepProgress currentStep={index} totalSteps={totalSteps} />
-                            <AnimatePresence mode="wait">
-                                <motion.div
-                                    key={pages[index].id}
-                                    variants={slideVariants}
-                                    initial="initial"
-                                    animate="animate"
-                                    exit="exit"
-                                    style={{marginTop: "5%", width: "100%", maxWidth: "100rem", display: 'flex', alignItems: 'start'}}
-                                >
-                                    <Box extraClass={cls.pcContainer__section__box}>{pages[index].name}</Box>
-                                </motion.div>
-                            </AnimatePresence>
-                        </div>
-                    </div>
-                ) : (
-                    <div className={cls.container}>
-                        <div className={cls.container__content}>
-                            <div className={cls.container__content__login}>
-                                <h2>Ro'yxatdan o'tish</h2>
-                                <p>Ro’yhatdan o’tish uchun ma’lumotlaringizni kiriting</p>
-                                <Form extraClass={cls.container__content__login__form}>
-                                    <Input
-                                        extraType={"phone"}
-                                        extraClass={cls.container__content__login__form__input}
-                                        title={"Telefon raqami"}
-                                        name={"email"}
-                                    />
-                                    <Input extraClass={cls.container__content__login__form__input} title={"Parol"} placeholder={"Parol"} name={"password"} type={"password"} />
-                                    <Button onClick={onHandle} extraClass={cls.container__content__login__form__button}>
-                                        Kirish
-                                    </Button>
-                                </Form>
+        <DynamicModuleLoader reducers={reducers}>
+            <div className={cls.main}>
+                {
+                    layout ? (
+                        <div className={cls.pcContainer}>
+                            <div className={cls.pcContainer__section}>
+                                <StepProgress currentStep={index} totalSteps={totalSteps} />
+                                <AnimatePresence mode="wait">
+                                    <motion.div
+                                        key={pages[index].id}
+                                        variants={slideVariants}
+                                        initial="initial"
+                                        animate="animate"
+                                        exit="exit"
+                                        style={{marginTop: "5%", width: "100%", maxWidth: "100rem", display: 'flex', alignItems: 'start'}}
+                                    >
+                                        <Box extraClass={cls.pcContainer__section__box}>{pages[index].name}</Box>
+                                    </motion.div>
+                                </AnimatePresence>
                             </div>
                         </div>
-                    </div>
-                )
-            }
-        </div>
+                    ) : (
+                        <div className={cls.container}>
+                            <div className={cls.container__content}>
+                                <div className={cls.container__content__login}>
+                                    <h2>Ro'yxatdan o'tish</h2>
+                                    <p>Ro’yhatdan o’tish uchun ma’lumotlaringizni kiriting</p>
+                                    <Form extraClass={cls.container__content__login__form}>
+                                        <Input
+                                            extraType={"phone"}
+                                            extraClass={cls.container__content__login__form__input}
+                                            title={"Telefon raqami"}
+                                            name={"email"}
+                                        />
+                                        <Input extraClass={cls.container__content__login__form__input} title={"Parol"} placeholder={"Parol"} name={"password"} type={"password"} />
+                                        <Button onClick={onHandle} extraClass={cls.container__content__login__form__button}>
+                                            Kirish
+                                        </Button>
+                                    </Form>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                }
+            </div>
+
+        </DynamicModuleLoader>
     );
 };
 
