@@ -18,5 +18,11 @@ export const menuConfig = [
         icon: <i className="fa-solid fa-school-flag"/>,
         // roles: [ROLES.admin , ROLES.organization_admin]
     },
+    {
+        to: "study",
+        label: "Talim",
+        icon: <i className="fa-solid fa-school-flag"/>,
+        // roles: [ROLES.admin , ROLES.organization_admin]
+    },
 
 ]

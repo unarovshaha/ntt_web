@@ -8,7 +8,7 @@ import {Radio} from "shared/ui/radio";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import {fetchMttFilter} from "../../model/filterThunk";
 
-import cls from "../mttFilter.module.sass";
+import cls from "../filter.module.sass";
 
 export const MttFilter = () => {
 

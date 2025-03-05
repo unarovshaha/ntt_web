@@ -10,7 +10,7 @@ import {
     getOtmFilterRoute, getOtmPageRoute,
     getProfilePageRoute,
     getRegisterRoute,
-    getSchoolPageRoute,
+    getSchoolPageRoute, getStudyPageRoute,
     getUserApplicationsPageRoute,
     getUserEducationPageRoute, getUserNotificationsPageRoute
 } from "shared/const/routers";
@@ -30,6 +30,7 @@ import {
 import {NotificationProfile} from "entities/profile";
 import {MttPage} from "pages/mttPage";
 import {OtmPage} from "pages/otmPage";
+import {StudyPage} from "pages/studyPage/ui/studyPage";
 
 
 interface IRouterConfigProfiles {
@@ -116,6 +117,11 @@ export const routerConfigProfiles: IRouterConfigProfiles[] = [
         name: "userNotifications/notification",
         element: <NotificationProfile/>,
         path: getNotificationPageRoute()
+    },
+    {
+        name: "study",
+        element: <StudyPage/>,
+        path: getStudyPageRoute()
     }
 ]
 
