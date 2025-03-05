@@ -4,6 +4,7 @@ import {oftenUsedReducer} from "entities/oftenUsed";
 import {useHttp} from "shared/api/base";
 import { StateSchema, ThunkExtraArg } from './stateSchema';
 import { createReducerManager } from './reducerManager';
+import {registerReducer} from "../../../../entities/register/model/registerSlice";
 
 
 
@@ -19,6 +20,7 @@ export function createReduxStore(
     const rootReducers: ReducersMapObject<StateSchema> = {
         ...asyncReducers,
         oftenUsedSlice: oftenUsedReducer,
+        registerSlice: registerReducer
 
 
         // workTable:

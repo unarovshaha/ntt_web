@@ -1,0 +1,7 @@
+.mttList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem 3rem;
+}
+
+/*# sourceMappingURL=mttList.module.css.map */

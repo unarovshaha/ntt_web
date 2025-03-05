@@ -1,9 +1,11 @@
 import {EnhancedStore, Reducer, ReducersMapObject} from "@reduxjs/toolkit";
 import {IOftenUsedSchema} from "entities/oftenUsed";
+import {IRegisterSchema} from "entities/register/model/registerSchema";
 
 export interface StateSchema {
 
     oftenUsedSlice: IOftenUsedSchema;
+    registerSlice: IRegisterSchema;
 
 }
 
