@@ -11,7 +11,7 @@ import {Accordion} from "shared/ui/accordion";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import {fetchMttFilter} from "../../model/filterThunk";
 
-import cls from "../mttFilter.module.sass";
+import cls from "../filter.module.sass";
 
 export const OtmFilter = () => {
 

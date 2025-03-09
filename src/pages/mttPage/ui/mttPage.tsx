@@ -1,9 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Outlet, Routes, Route} from "react-router";
 
 import {
     MttHeader,
-    MttList,
     MttAdvantage,
     MttGallery,
     MttGrant,
@@ -13,15 +12,19 @@ import {
 } from "entities/mtt";
 
 import cls from "./mttPage.module.sass";
+import {MttFilterModal} from "features/filter";
 
 export const MttPage = () => {
+
+    const [active, setActive] = useState<boolean>(true)
+
     return (
         <div className={cls.mtt}>
             <MttHeader/>
             <div className={cls.mtt__content}>
                 <Outlet/>
                 <Routes>
-                    <Route path={"main"} element={<MttList/>}/>
+                    {/*<Route path={"main"} element={<MttList/>}/>*/}
                     <Route path={"advantages"} element={<MttAdvantage/>}/>
                     <Route path={"gallery"} element={<MttGallery/>}/>
                     <Route path={"grant"} element={<MttGrant/>}/>
@@ -30,6 +33,7 @@ export const MttPage = () => {
                     <Route path={"aboutMtt"} element={<MttAbout/>}/>
                 </Routes>
             </div>
+            <MttFilterModal active={active} setActive={setActive}/>
         </div>
     );
 }

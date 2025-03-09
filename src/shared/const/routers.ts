@@ -15,3 +15,4 @@ export const getUserEducationPageRoute = () => `education`
 export const getUserApplicationsPageRoute = () => `userApplications`
 export const getUserNotificationsPageRoute = () => `userNotifications`
 export const getNotificationPageRoute = (id?: number) => `userNotifications/notification`
+export const getStudyPageRoute = (id?: number) => `study/*`
