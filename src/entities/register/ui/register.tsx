@@ -4,10 +4,10 @@ import {Form} from "shared/ui/form";
 import {Input} from "shared/ui/input";
 import {Button} from "shared/ui/button";
 import {useNavigate} from "react-router-dom";
-import {StepProgress} from "../../../shared/ui/stepProgress";
+import {StepProgress} from "shared/ui/stepProgress";
 import {useWindowSize} from "@react-hook/window-size";
 import {AnimatePresence, motion} from "framer-motion";
-import {Box} from "../../../shared/ui/box";
+import {Box} from "shared/ui/box";
 import registerImg from 'shared/assets/images/register.png'
 import blueLogo from 'shared/assets/logo/blue_logo.png'
 import IDImg from 'shared/assets/images/id.png'
@@ -15,8 +15,12 @@ import {Identify} from "../../identify";
 import {
     DynamicModuleLoader,
     ReducersList
-} from "../../../shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
+} from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
 import {registerReducer} from "../model/registerSlice";
+import {registerThunk} from "../model/registerThunk";
+import {SubmitHandler, useForm} from "react-hook-form";
+import {IRegister} from "entities/register/model/registerSchema";
+import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 
 interface IdentificationRegProps {
     index?: number | any;
@@ -37,12 +41,13 @@ const reducers: ReducersList = {
 }
 
 export const Register = () => {
-
+    const {register, handleSubmit, control} = useForm<IRegister>()
     const navigate = useNavigate();
     const size = useWindowSize();
     const [layout, setLayout] = useState<boolean>(false);
     const [index, setIndex] = useState(1);
     const totalSteps = 3;
+    const dispatch = useAppDispatch()
 
     const pages = [
         {
@@ -69,8 +74,9 @@ export const Register = () => {
         }
     }, [size, layout]);
 
-    const onHandle = () => {
-        navigate('/identification');
+    const onHandle: SubmitHandler<IRegister> = (data) => {
+        dispatch(registerThunk(data))
+        navigate('/login');
     };
 
 
@@ -102,15 +108,16 @@ export const Register = () => {
                                 <div className={cls.container__content__login}>
                                     <h2>Ro'yxatdan o'tish</h2>
                                     <p>Ro’yhatdan o’tish uchun ma’lumotlaringizni kiriting</p>
-                                    <Form extraClass={cls.container__content__login__form}>
+                                    <Form onSubmit={handleSubmit(onHandle)} extraClass={cls.container__content__login__form}>
                                         <Input
                                             extraType={"phone"}
                                             extraClass={cls.container__content__login__form__input}
                                             title={"Telefon raqami"}
-                                            name={"email"}
+                                            name={"phone"}
+                                            control={control}
                                         />
-                                        <Input extraClass={cls.container__content__login__form__input} title={"Parol"} placeholder={"Parol"} name={"password"} type={"password"} />
-                                        <Button onClick={onHandle} extraClass={cls.container__content__login__form__button}>
+                                        <Input register={register} extraClass={cls.container__content__login__form__input} title={"Parol"} placeholder={"Parol"} name={"password"} type={"password"} />
+                                        <Button extraClass={cls.container__content__login__form__button}>
                                             Kirish
                                         </Button>
                                     </Form>

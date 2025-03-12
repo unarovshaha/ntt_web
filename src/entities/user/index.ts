@@ -1,0 +1,1 @@
+export {fetchRefresh} from './model/userThunk'

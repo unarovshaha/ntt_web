@@ -1,11 +1,15 @@
 import {EnhancedStore, Reducer, ReducersMapObject} from "@reduxjs/toolkit";
 import {IOftenUsedSchema} from "entities/oftenUsed";
 import {IRegisterSchema} from "entities/register/model/registerSchema";
+import {IUserProfileSchema} from "entities/profile/model/userProfile/userProfileSchema";
+import {UserSchema} from "entities/user/model/userSlice";
 
 export interface StateSchema {
 
     oftenUsedSlice: IOftenUsedSchema;
     registerSlice: IRegisterSchema;
+    userProfileSlice: IUserProfileSchema;
+    user: UserSchema
 
 }
 

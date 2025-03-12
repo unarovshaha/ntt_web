@@ -8,6 +8,10 @@ import {Button} from "shared/ui/button";
 import {useWindowSize} from "@react-hook/window-size";
 import logo from "shared/assets/logo/blue_logo.png"
 import loginImg from "shared/assets/images/login.png"
+import {SubmitHandler, useForm} from "react-hook-form";
+import {ILogin} from "entities/login/model/loginSchema";
+import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
+import {loginThunk} from "entities/login/model/loginThunk";
 
 
 const slides = [
@@ -100,6 +104,9 @@ export const Login = () => {
     const [layout, setLayout] = useState<boolean>(false)
     const navigate = useNavigate()
     const size = useWindowSize()
+    const dispatch = useAppDispatch()
+    const {register, handleSubmit, control} = useForm<ILogin>()
+
 
     useEffect(() => {
         if ((size[0] > 480 && !layout) || (size[0] <= 480 && layout)) {
@@ -107,8 +114,9 @@ export const Login = () => {
         }
     }, [size, layout]);
 
-    const onRedirect = () => {
-        navigate("/register")
+    const onRedirect: SubmitHandler<ILogin> = (data) => {
+        dispatch(loginThunk(data))
+        navigate("/identify")
     }
     return (
         <div className={cls.main}>
@@ -129,7 +137,7 @@ export const Login = () => {
                                 <Input name={"checkbox"} extraType={"checkbox"} extraTitle={"Remember Me"}/>
                                 <Button extraClass={cls.pcContainer__content__form__button}
                                         children={"Tizimga kirish"}/>
-                                <h3 onClick={onRedirect}>Ro'yxatdan o'tish</h3>
+                                {/*<h3 onClick={onRedirect}>Ro'yxatdan o'tish</h3>*/}
                             </Form>
 
                         </div>
@@ -145,16 +153,21 @@ export const Login = () => {
                             >
                                 <h2>Ishni boshlash!</h2>
                                 <p>Davom etish uchun hisobingizga kiring</p>
-                                <Form extraClass={cls.container__content__login__form}>
-                                    <Input extraClass={cls.container__content__login__form__input} title={"Email"}
-                                           placeholder={"Email"} name={"email"}/>
-                                    <Input extraClass={cls.container__content__login__form__input} title={"Parol"}
+                                <Form onSubmit={handleSubmit(onRedirect)} extraClass={cls.container__content__login__form}>
+                                    <Input
+                                        extraType={"phone"}
+                                        extraClass={cls.container__content__login__form__input}
+                                        title={"Telefon raqami"}
+                                        name={"phone"}
+                                        control={control}
+                                    />
+                                    <Input register={register} extraClass={cls.container__content__login__form__input} title={"Parol"}
                                            placeholder={"Parol"} name={"password"} type={"password"}/>
                                     <Input name={"checkbox"} extraType={"checkbox"} extraTitle={"Remember Me"}/>
                                     <Button extraClass={cls.container__content__login__form__button}
                                             children={"Tizimga kirish"}/>
                                 </Form>
-                                <h3 onClick={onRedirect}>Ro'yxatdan o'tish</h3>
+                                <h3>Ro'yxatdan o'tish</h3>
                             </motion.div>
                         </div>
 
