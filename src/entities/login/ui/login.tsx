@@ -129,10 +129,15 @@ export const Login = () => {
                         <div className={cls.pcContainer__content}>
                             <img src={logo} alt=""/>
                             <h1>Ishni boshlash!</h1>
-                            <Form extraClass={cls.pcContainer__content__form}>
-                                <Input extraClass={cls.pcContainer__content__form__input} title={"Email"}
-                                       placeholder={"Email"} name={"email"}/>
-                                <Input extraClass={cls.pcContainer__content__form__input} title={"Parol"}
+                            <Form onSubmit={handleSubmit(onRedirect)} extraClass={cls.pcContainer__content__form}>
+                                <Input
+                                    extraType={"phone"}
+                                    extraClass={cls.container__content__login__form__input}
+                                    title={"Telefon raqami"}
+                                    name={"phone"}
+                                    control={control}
+                                />
+                                <Input register={register} extraClass={cls.pcContainer__content__form__input} title={"Parol"}
                                        placeholder={"Parol"} name={"password"} type={"password"}/>
                                 <Input name={"checkbox"} extraType={"checkbox"} extraTitle={"Remember Me"}/>
                                 <Button extraClass={cls.pcContainer__content__form__button}

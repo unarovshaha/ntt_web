@@ -133,11 +133,14 @@ export const Register = () => {
 };
 
 const PCRegister = (props: IdentificationRegProps) => {
+    const {register, handleSubmit, control} = useForm<IRegister>()
+    const dispatch = useAppDispatch()
+    const navigate = useNavigate()
     const {index, totalSteps, setIndex} = props
 
-    const nextStep = (e: React.FormEvent) => {
-        e.preventDefault()
-        if (index < totalSteps) setIndex(index + 1);
+    const onHandle: SubmitHandler<IRegister> = (data) => {
+        dispatch(registerThunk(data))
+        navigate('/login');
     };
 
     return(
@@ -148,15 +151,16 @@ const PCRegister = (props: IdentificationRegProps) => {
             <div className={cls.register__arounder}>
                 <img src={blueLogo} alt=""/>
                 <h1>Ro'yxatdan o'tish</h1>
-                <Form extraClass={cls.register__arounder__form}>
+                <Form onSubmit={handleSubmit(onHandle)} extraClass={cls.register__arounder__form}>
                     <Input
                         extraType={"phone"}
-                        extraClass={cls.register__arounder__form__input}
+                        extraClass={cls.container__content__login__form__input}
                         title={"Telefon raqami"}
-                        name={"email"}
+                        name={"phone"}
+                        control={control}
                     />
-                    <Input extraClass={cls.register__arounder__form__input} title={"Parol"} placeholder={"Parol"} name={"password"} type={"password"} />
-                    <Button onClick={nextStep} extraClass={cls.register__arounder__form__button}>
+                    <Input register={register} extraClass={cls.register__arounder__form__input} title={"Parol"} placeholder={"Parol"} name={"password"} type={"password"} />
+                    <Button  extraClass={cls.register__arounder__form__button}>
                         Kirish
                     </Button>
                 </Form>
