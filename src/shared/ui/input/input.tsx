@@ -1,8 +1,7 @@
-import React, { ChangeEvent, ChangeEventHandler, Dispatch, InputHTMLAttributes, SetStateAction, useState } from 'react';
-import { UseFormRegister, RegisterOptions } from "react-hook-form";
+import React, { ChangeEvent, Dispatch, InputHTMLAttributes, SetStateAction, useState } from 'react';
+import { UseFormRegister, RegisterOptions, Controller } from "react-hook-form";
 import classNames from "classnames";
-import PhoneInput, {CountryData} from "react-phone-input-2";
-
+import PhoneInput, { CountryData } from "react-phone-input-2";
 import cls from "./input.module.sass";
 
 type HTMLInputProps = Omit<
@@ -26,6 +25,7 @@ export interface InputProps extends HTMLInputProps {
     onChange?: (value: string) => void;
     name: string;
     register?: UseFormRegister<any>;
+    control?: any; // Controller uchun qo'shildi
     rules?: RegisterOptions;
     required?: boolean;
     error?: ErrorType;
@@ -45,6 +45,7 @@ export const Input: React.FC<InputProps> = (props) => {
         onChange,
         name,
         register,
+        control, // Controller uchun qo'shildi
         rules,
         required,
         error,
@@ -58,7 +59,6 @@ export const Input: React.FC<InputProps> = (props) => {
     } = props;
 
     const textField = register ? register(name, rules) : undefined;
-
     const [passwordActive, setPasswordActive] = useState<boolean>(false);
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -74,33 +74,30 @@ export const Input: React.FC<InputProps> = (props) => {
         textField?.onChange(e);
     };
 
-    const handlePhoneChange = (
-        value: string,
-        data: {} | CountryData,
-        event: React.ChangeEvent<HTMLInputElement>,
-        formattedValue: string
-    ) => {
-        if (canChange) {
-            if (onChange) {
-                onChange(value);
-            }
-            if (onChangeState) {
-                onChangeState(value);
-            }
-        }
-        textField?.onChange(event);
-    }
-
     return (
         <label className={classNames(cls.label, extraLabelClass)}>
             {title && <span className={cls.label__title}>{title}</span>}
-            {extraType === "phone" ? (
-                <PhoneInput
-                    inputClass={classNames(cls.label__input, extraClass)}
-                    specialLabel={''}
-                    country={'uz'}
-                    onChange={handlePhoneChange}
-                    {...restProps}
+            {extraType === "phone" && control ? (
+                <Controller
+                    name={name}
+                    control={control}
+                    rules={rules}
+                    render={({ field }) => (
+                        <PhoneInput
+                            inputClass={classNames(cls.label__input, extraClass)}
+                            specialLabel={''}
+                            country={'uz'}
+                            value={field.value}
+                            onChange={(value) => {
+                                if (canChange) {
+                                    field.onChange(value);
+                                    if (onChange) onChange(value);
+                                    if (onChangeState) onChangeState(value);
+                                }
+                            }}
+                            {...restProps}
+                        />
+                    )}
                 />
             ) : extraType === "checkbox" ? (
                 <label className={cls.customCheckbox}>
@@ -119,7 +116,6 @@ export const Input: React.FC<InputProps> = (props) => {
                                     onChangeState(e.target.checked.toString());
                                 }
                             }
-                            // Для checkbox можно также вызвать textField.onChange, если нужно
                             textField?.onChange(e);
                         }}
                         className={cls.checkboxInput}
@@ -157,9 +153,7 @@ export const Input: React.FC<InputProps> = (props) => {
                     className={classNames(
                         `fa-solid ${passwordActive ? "fa-eye" : "fa-eye-slash"}`,
                         cls.label__icon,
-                        {
-                            [cls.title]: title,
-                        }
+                        { [cls.title]: title }
                     )}
                 />
             )}

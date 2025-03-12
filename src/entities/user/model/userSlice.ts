@@ -1,0 +1,60 @@
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {fetchRefresh} from "./userThunk";
+import {IUserProfile} from "entities/profile/model/userProfile/userProfileSchema";
+
+export interface UserSchema {
+    name: string,
+    sex: string,
+    surname: string
+    born_date: string,
+    email: string,
+    isLoading: boolean
+    error: undefined | string
+}
+
+const initialState: UserSchema = {
+    name: "",
+    surname: "",
+    sex: "",
+    born_date: "",
+    email: "",
+    isLoading: false,
+    error: undefined
+
+
+}
+
+const userSlice = createSlice({
+    name: "userSlice",
+    initialState,
+    reducers: {
+
+        setAuthData: (state, action: PayloadAction<IUserProfile>) => {
+            state.sex = action.payload.sex
+            state.name = action.payload.name
+            state.surname = action.payload.surname
+            state.born_date = action.payload.born_date
+            state.email = action.payload.email
+        }
+
+
+    },
+    extraReducers: builder =>
+        builder
+            .addCase(fetchRefresh.pending, (state) => {
+                state.error = undefined;
+                state.isLoading = true;
+            })
+            .addCase(fetchRefresh.fulfilled, (state) => {
+                state.isLoading = false;
+                state.error = undefined
+            })
+            .addCase(fetchRefresh.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.payload;
+            })
+
+})
+
+export const {actions: userActions} = userSlice;
+export const {reducer: userReducer} = userSlice;

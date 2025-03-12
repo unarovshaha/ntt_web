@@ -6,12 +6,29 @@ import { Button } from "shared/ui/button";
 import { Form } from "shared/ui/form";
 import {useWindowSize} from "@react-hook/window-size";
 import {useNavigate} from "react-router-dom";
+import {SubmitHandler, useForm} from "react-hook-form";
+import {useHttp} from "shared/api/base";
+import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
+import {userProfileUpdateThunk} from "entities/profile/model/userProfile/userProfileThunk";
 
 interface IdentificationRegProps {
     index?: number | any;
     setIndex?: React.Dispatch<React.SetStateAction<number>> | any;
     totalSteps?: number | any;
 }
+
+export interface IdentifyProps {
+    name: string,
+    surname: string,
+    passport_seria: string,
+    sex: string,
+    born_date: string,
+    born_address: string,
+    indefikatsiya_pin: string,
+    phone_extra: string,
+    email: string,
+}
+
 
 const data = {
     id: 1,
@@ -28,11 +45,14 @@ const data = {
 
 export const Identify = (props: IdentificationRegProps) => {
     const {index, totalSteps, setIndex} = props
+    const {register, handleSubmit} = useForm<IdentifyProps>()
     const navigate = useNavigate()
     const [step, setStep] = useState(1);
     const [email, setEmail] = useState(data.email);
     const [layout, setLayout] = useState<boolean>(false)
     const size = useWindowSize()
+    const dispatch = useAppDispatch()
+    const userId: any = localStorage.getItem("user_id")
 
     useEffect(() => {
         if ((size[0] > 480 && !layout) || (size[0] <= 480 && layout)) {
@@ -46,11 +66,10 @@ export const Identify = (props: IdentificationRegProps) => {
         setEmail(value);
     };
 
-    const nextStep = (e: React.FormEvent) => {
-        e.preventDefault()
-        navigate("/")
-
-
+    const nextStep: SubmitHandler<IdentifyProps> = async (data) => {
+        console.log(data)
+        dispatch(userProfileUpdateThunk({id: userId, data: data}))
+        navigate("/platform/profile")
 
     };
 
@@ -61,7 +80,7 @@ export const Identify = (props: IdentificationRegProps) => {
     };
 
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmits = (e: React.FormEvent) => {
         e.preventDefault();
         console.log("Form submitted with email:", email);
     };
@@ -72,61 +91,55 @@ export const Identify = (props: IdentificationRegProps) => {
                 layout ?
                     <div className={cls.arounder}>
                     <h1>SHaxsiy ma'lumotlar</h1>
-                    <Form extraClass={cls.arounder__box}>
+                    <Form onSubmit={handleSubmit(nextStep)} extraClass={cls.arounder__box}>
                         <Input
                             type="text"
                             name="name"
-                            value={data.name}
-                            onChange={() => {}}
-                            title={data.title}
+                            register={register}
+                            title={"Ism-familya"}
                         />
                         <Input
                             type="text"
-                            name="passport_num"
-                            value={data.passport_num}
-                            onChange={() => {}}
+                            name="passport_seria"
+                            register={register}
                             title="Passport Number"
                         />
                         <Input
                             type="text"
-                            name="passport_jr"
-                            value={data.passport_jr}
-                            onChange={() => {}}
+                            name="indefikatsiya_pin"
+                            register={register}
                             title="Passport Jr."
                         />
                         <Input
                             type="text"
                             name="sex"
-                            value={data.sex}
-                            onChange={() => {}}
+                            register={register}
                             title="Sex"
                         />
                         <Input
-                            type="text"
-                            name="birth"
-                            value={data.birth}
-                            onChange={() => {}}
+                            name="born_date"
+                            register={register}
+                            type={"date"}
                             title="Birth Date"
                         />
                         <Input
                             type="text"
-                            name="birth_loc"
-                            value={data.birth_loc}
-                            onChange={() => {}}
+                            name="born_address"
+                            register={register}
                             title="Birth Location"
                         />
                         <Input
                             type="email"
                             name="email"
                             value={email}
-                            onChange={handleEmailChange}
+                            register={register}
+                            onChange={handleEmailChange} // emailni yangilash
                             title="Email"
                         />
                         <Input
                             type="text"
-                            name="phone"
-                            value={data.phone}
-                            onChange={() => {}}
+                            name="phone_extra"
+                            register={register}
                             title="Phone"
                         />
 
@@ -158,7 +171,7 @@ export const Identify = (props: IdentificationRegProps) => {
                             <h1>Shaxsiy ma’lumotlar 👤</h1>
 
                             <AnimatePresence mode="wait">
-                                <Form onSubmit={handleSubmit}>
+                                <Form onSubmit={handleSubmit(nextStep)}>
                                     {step === 1 && (
                                         <motion.div
                                             key="step1"
@@ -171,29 +184,25 @@ export const Identify = (props: IdentificationRegProps) => {
                                             <Input
                                                 type="text"
                                                 name="name"
-                                                value={data.name}
-                                                onChange={() => {}}
-                                                title={data.title}
+                                                register={register}
+                                                title={"Ism-familya"}
                                             />
                                             <Input
                                                 type="text"
-                                                name="passport_num"
-                                                value={data.passport_num}
-                                                onChange={() => {}}
+                                                name="passport_seria"
+                                                register={register}
                                                 title="Passport Number"
                                             />
                                             <Input
                                                 type="text"
-                                                name="passport_jr"
-                                                value={data.passport_jr}
-                                                onChange={() => {}}
+                                                name="indefikatsiya_pin"
+                                                register={register}
                                                 title="Passport Jr."
                                             />
                                             <Input
                                                 type="text"
                                                 name="sex"
-                                                value={data.sex}
-                                                onChange={() => {}}
+                                                register={register}
                                                 title="Sex"
                                             />
                                         </motion.div>
@@ -209,31 +218,31 @@ export const Identify = (props: IdentificationRegProps) => {
                                             className={cls.identify__handler__container}
                                         >
                                             <Input
-                                                type="text"
-                                                name="birth"
-                                                value={data.birth}
-                                                onChange={() => {}}
+                                                name="born_date"
+                                                register={register}
+                                                type={"date"}
                                                 title="Birth Date"
                                             />
                                             <Input
                                                 type="text"
-                                                name="birth_loc"
-                                                value={data.birth_loc}
-                                                onChange={() => {}}
+                                                name="born_address"
+                                                register={register}
+
                                                 title="Birth Location"
                                             />
                                             <Input
                                                 type="email"
                                                 name="email"
                                                 value={email}
+                                                register={register}
                                                 onChange={handleEmailChange} // emailni yangilash
                                                 title="Email"
                                             />
                                             <Input
                                                 type="text"
-                                                name="phone"
-                                                value={data.phone}
-                                                onChange={() => {}}
+                                                name="phone_extra"
+                                                register={register}
+
                                                 title="Phone"
                                             />
                                         </motion.div>

@@ -6,12 +6,12 @@
   gap: 3rem;
 }
 .container__arounder {
-  width: 100%;
+  width: 40%;
   display: flex;
   flex-wrap: wrap;
   gap: 5rem;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 }
 .container__arounder__input {
   width: 60rem;

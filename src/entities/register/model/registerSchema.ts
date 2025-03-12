@@ -1,6 +1,6 @@
 export interface IRegister {
-    phone_number: number,
-    password: number
+    phone: number,
+    password: string
 }
 
 export interface IRegisterSchema {

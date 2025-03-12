@@ -1,6 +1,8 @@
 import {EnhancedStore, Reducer, ReducersMapObject} from "@reduxjs/toolkit";
 import {IOftenUsedSchema} from "entities/oftenUsed";
 import {IRegisterSchema} from "entities/register/model/registerSchema";
+import {IUserProfileSchema} from "entities/profile/model/userProfile/userProfileSchema";
+import {UserSchema} from "entities/user/model/userSlice";
 import {IStudySchema} from "entities/study";
 import {IFilterSchema} from "features/filter";
 import {IStudyProfileSchema} from "entities/studyProfile";
@@ -8,7 +10,9 @@ import {IStudyProfileSchema} from "entities/studyProfile";
 export interface StateSchema {
 
     oftenUsedSlice: IOftenUsedSchema;
-    registerSlice?: IRegisterSchema;
+    registerSlice: IRegisterSchema;
+    userProfileSlice: IUserProfileSchema;
+    user: UserSchema;
     studySlice?: IStudySchema;
     filterSlice?: IFilterSchema;
     studyProfileSlice?: IStudyProfileSchema;

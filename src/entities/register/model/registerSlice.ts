@@ -1,5 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {IRegisterSchema} from "./registerSchema";
+import {registerThunk} from "entities/register/model/registerThunk";
 
 const initialState: IRegisterSchema = {
     data: [],
@@ -10,7 +11,22 @@ const initialState: IRegisterSchema = {
 const registerSlice  = createSlice({
     name: "registerSlice",
     initialState,
-    reducers: {}
+    reducers: {},
+    extraReducers: builder => {
+        builder
+            .addCase(registerThunk.pending, (state) => {
+                state.loading = true
+                state.error = undefined
+            })
+            .addCase(registerThunk.fulfilled, (state) => {
+                state.loading = false
+                state.error = "error"
+            })
+            .addCase(registerThunk.rejected, (state) => {
+                state.loading = false
+                state.error = "error"
+            })
+    }
 })
 
 export const {reducer: registerReducer} = registerSlice

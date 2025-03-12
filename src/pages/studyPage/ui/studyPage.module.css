@@ -1,0 +1,14 @@
+.study {
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.study__content {
+  padding: 1rem 3rem;
+  overflow: auto;
+  height: 85%;
+}
+
+/*# sourceMappingURL=studyPage.module.css.map */
