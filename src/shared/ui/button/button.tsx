@@ -1,6 +1,3 @@
-
-
-
 import React, {JSX, SetStateAction} from 'react';
 
 
@@ -9,11 +6,11 @@ import classNames from "classnames";
 
 
 interface buttonProps {
-    children: string | JSX.Element,
+    children: string | JSX.Element | (string | JSX.Element)[],
     id?: string,
     extraClass?: string,
     onClick?: SetStateAction<any> | React.MouseEventHandler<HTMLButtonElement>
-    type?: "simple" | "success" | "danger" | "warning" ,
+    type?: "simple" | "success" | "danger" | "warning",
     disabled?: boolean
 }
 
@@ -34,7 +31,7 @@ export const Button = (props: buttonProps) => {
             onClick={onClick}
             id={id}
             disabled={disabled}
-            className={classNames(cls.button, extraClass , cls[type])}
+            className={classNames(cls.button, extraClass, cls[type])}
         >
             {children}
         </button>

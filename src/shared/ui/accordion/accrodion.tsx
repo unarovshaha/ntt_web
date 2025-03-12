@@ -12,12 +12,19 @@ interface AccordionProps {
     title: string;
     items: AccordionItem[];
     onClick: (arg: number[]) => void;
+    defaultChecked?: number[];
 }
 
-export const Accordion: React.FC<AccordionProps> = ({title, items, onClick}) => {
+export const Accordion: React.FC<AccordionProps> = ({title, items, onClick, defaultChecked}) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedItems, setSelectedItems] = useState<number[]>([])
     const contentRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (defaultChecked){
+            setSelectedItems(defaultChecked)
+        }
+    }, [defaultChecked])
 
     useEffect(() => {
         onClick(selectedItems)
@@ -34,6 +41,8 @@ export const Accordion: React.FC<AccordionProps> = ({title, items, onClick}) => 
     const toggleOpen = () => {
         setIsOpen(!isOpen);
     };
+
+    console.log(items, "items")
 
     return (
         <div className={cls.accordion}>
@@ -54,7 +63,7 @@ export const Accordion: React.FC<AccordionProps> = ({title, items, onClick}) => 
                 ref={contentRef}
             >
                 <div className={cls.grid}>
-                    {items.map((item, index) => (
+                    {items?.map((item, index) => (
                         <span
                             onClick={() => onHandleItem(item.id)}
                             key={index}

@@ -1,6 +1,6 @@
-// export const API_URL_DOC = `http://26.12.122.72:8000/`
+export const API_URL_DOC = `http://26.253.30.50:8000/`
 // export const API_URL_DOC = `http://176.221.28.164/`
-export const API_URL_DOC = `http://176.221.28.164/`
+// export const API_URL_DOC = `http://26.12.122.72/`
 export const API_URL: string = `${API_URL_DOC}api/`
 
 
@@ -86,7 +86,7 @@ export const useHttp: () => { request: (props: UseHttpProps) => Promise<any> } =
     return {request}
 
 }
-export const ParamUrl = (params: Record<string, string | number | boolean | undefined>): string => {
+export const ParamUrl = (params: Record<string, string | number | number[] | boolean | undefined>): string => {
     const paramsList = Object.keys(params);
     let res = '';
 

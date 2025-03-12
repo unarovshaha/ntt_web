@@ -6,7 +6,8 @@ export {
     fetchDirectionsData,
     fetchLocationsData,
     fetchLanguagesData,
-    fetchStudyTypesData
+    fetchStudyTypesData,
+    fetchOrganizationTypesData
 } from "./model/oftenUsedThunk";
 
 export {
@@ -14,6 +15,7 @@ export {
     getLocationsData,
     getLanguagesData,
     getStudyTypesData,
+    getOrganizationTypes,
     getOftenUsedLoading,
     getOftenUsedError
 } from "./model/oftenUsedSelector";

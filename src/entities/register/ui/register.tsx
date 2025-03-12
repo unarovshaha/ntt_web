@@ -15,7 +15,7 @@ import {Identify} from "../../identify";
 import {
     DynamicModuleLoader,
     ReducersList
-} from "../../../shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
+} from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
 import {registerReducer} from "../model/registerSlice";
 
 interface IdentificationRegProps {

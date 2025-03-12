@@ -8,6 +8,8 @@ export const getStudyTypesData = (state: StateSchema) =>
     state.oftenUsedSlice.studyTypes
 export const getLanguagesData = (state: StateSchema) =>
     state.oftenUsedSlice.languages
+export const getOrganizationTypes = (state: StateSchema) =>
+    state.oftenUsedSlice.organizationTypes
 export const getOftenUsedLoading = (state: StateSchema) =>
     state.oftenUsedSlice.loading
 export const getOftenUsedError = (state: StateSchema) =>

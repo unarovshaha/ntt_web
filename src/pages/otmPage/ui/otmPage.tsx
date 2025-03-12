@@ -9,7 +9,6 @@ import {
     OtmDirectionAbout,
     OtmGallery,
     OtmGrant,
-    OtmList
 } from "entities/otm";
 
 import cls from "./otmPage.module.sass";
@@ -21,7 +20,6 @@ export const OtmPage = () => {
             <div className={cls.otm__content}>
                 <Outlet/>
                 <Routes>
-                    <Route path={"main"} element={<OtmList/>}/>
                     <Route path={"advantages"} element={<OtmAdvantage/>}/>
                     <Route path={"gallery"} element={<OtmGallery/>}/>
                     <Route path={"grant"} element={<OtmGrant/>}/>

@@ -11,7 +11,7 @@ export const fetchDirectionsData = createAsyncThunk<
     const {extra, dispatch, rejectWithValue} = thunkApi;
     try {
         const response = await extra.api({
-            url: ``,
+            url: `shift/get/list/1/`,
             method: "GET",
             body: null,
             headers: headers()
@@ -20,7 +20,7 @@ export const fetchDirectionsData = createAsyncThunk<
             throw new Error()
         }
 
-        return response.info;
+        return response.results;
     } catch (e) {
         console.log(e);
         return rejectWithValue('error')
@@ -35,7 +35,7 @@ export const fetchLocationsData = createAsyncThunk<
     const {extra, dispatch, rejectWithValue} = thunkApi;
     try {
         const response = await extra.api({
-            url: ``,
+            url: `region/get`,
             method: "GET",
             body: null,
             headers: headers()
@@ -44,7 +44,7 @@ export const fetchLocationsData = createAsyncThunk<
             throw new Error()
         }
 
-        return response.info;
+        return response.results;
     } catch (e) {
         console.log(e);
         return rejectWithValue('error')
@@ -58,7 +58,7 @@ export const fetchLanguagesData = createAsyncThunk<
     const {extra, dispatch, rejectWithValue} = thunkApi;
     try {
         const response = await extra.api({
-            url: ``,
+            url: `education_language/get/`,
             method: "GET",
             body: null,
             headers: headers()
@@ -67,7 +67,7 @@ export const fetchLanguagesData = createAsyncThunk<
             throw new Error()
         }
 
-        return response.info;
+        return response.results;
     } catch (e) {
         console.log(e);
         return rejectWithValue('error')
@@ -90,7 +90,31 @@ export const fetchStudyTypesData = createAsyncThunk<
             throw new Error()
         }
 
-        return response.info;
+        return response.results;
+    } catch (e) {
+        console.log(e);
+        return rejectWithValue('error')
+    }
+})
+
+export const fetchOrganizationTypesData = createAsyncThunk<
+    IList[],
+    void,
+    ThunkConfig<string>
+>('oftenUsedSlice/fetchOrganizationTypesData', async (_, thunkApi) => {
+    const {extra, dispatch, rejectWithValue} = thunkApi;
+    try {
+        const response = await extra.api({
+            url: `organizations/organization_type/get/list/`,
+            method: "GET",
+            body: null,
+            headers: headers()
+        })
+        if (!response) {
+            throw new Error()
+        }
+
+        return response.results;
     } catch (e) {
         console.log(e);
         return rejectWithValue('error')

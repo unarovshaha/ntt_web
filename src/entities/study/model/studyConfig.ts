@@ -22,5 +22,9 @@ export const studyRouteConfig = [
     {
         to: "gallery",
         label: "Galeriya"
+    },
+    {
+        to: "advantages",
+        label: "Afzalliklar"
     }
 ]

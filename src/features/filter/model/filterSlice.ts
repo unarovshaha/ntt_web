@@ -14,7 +14,23 @@ const initialState: IFilterSchema = {
 const filterSlice = createSlice({
     name: "filterSlice",
     initialState,
-    reducers: {}
+    reducers: {
+        fetchMinSalary: (state, action) => {
+            state.minSalary = action.payload
+        },
+        fetchMaxSalary: (state, action) => {
+            state.maxSalary = action.payload
+        },
+        fetchLocations: (state, action) => {
+            state.locations = action.payload
+        },
+        fetchLanguages: (state, action) => {
+            state.languages = action.payload
+        },
+        fetchDirection: (state, action) => {
+            state.direction = action.payload
+        }
+    }
 })
 
 export const {reducer: filterReducer} = filterSlice

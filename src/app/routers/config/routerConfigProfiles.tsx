@@ -1,16 +1,17 @@
 import React, {JSX} from 'react';
 import {EntrancePage} from "pages/entrancePage";
 import {
+    getApplicationPageRoute, getApplicationProfilePageRoute,
     getEntranceRoute,
     getIdentificationRoute,
     getIdentifyRoute,
     getLoginRoute,
     getMttFilterRoute, getMttPageRoute, getNotificationPageRoute,
     getOnboardingRoute,
-    getOtmFilterRoute, getOtmPageRoute,
+    getOtmFilterRoute,
     getProfilePageRoute,
     getRegisterRoute,
-    getSchoolPageRoute, getStudyPageRoute,
+    getSchoolPageRoute, getStudyPageRoute, getStudyProfilePageRoute,
     getUserApplicationsPageRoute,
     getUserEducationPageRoute, getUserNotificationsPageRoute
 } from "shared/const/routers";
@@ -31,6 +32,10 @@ import {NotificationProfile} from "entities/profile";
 import {MttPage} from "pages/mttPage";
 import {OtmPage} from "pages/otmPage";
 import {StudyPage} from "pages/studyPage/ui/studyPage";
+import {ApplicationPage} from "pages/applicationPage";
+import {ApplicationProfile} from "pages/applicationProfile";
+import {SchoolDirectionAbout} from "entities/school";
+import {StudyProfilePage} from "pages/studyProfilePage";
 
 
 interface IRouterConfigProfiles {
@@ -89,9 +94,13 @@ export const routerConfigProfiles: IRouterConfigProfiles[] = [
         element: <MttPage/>,
         path: getMttPageRoute()
     },{
-        name: "otm",
-        element: <OtmPage/>,
-        path: getOtmPageRoute()
+        name: "application",
+        element: <ApplicationPage/>,
+        path: getApplicationPageRoute()
+    },{
+        name: "applicationProfile",
+        element: <ApplicationProfile/>,
+        path: getApplicationProfilePageRoute(":id")
     },
     {
         name: "profile",
@@ -121,7 +130,12 @@ export const routerConfigProfiles: IRouterConfigProfiles[] = [
     {
         name: "study",
         element: <StudyPage/>,
-        path: getStudyPageRoute()
+        path: getStudyPageRoute(":id")
+    },
+    {
+        name: "studyProfile",
+        element: <StudyProfilePage/>,
+        path: getStudyProfilePageRoute(":id")
     }
 ]
 

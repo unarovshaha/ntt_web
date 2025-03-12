@@ -7,7 +7,7 @@ import {LoginPage} from "pages/loginPage";
 import {Onboarding} from "entities/login";
 import {RegisterPage} from "pages/registerPage";
 import {IdentificationReg} from "entities/register";
-import {IdentifyPage} from "../../../pages/identifyPage";
+import {IdentifyPage} from "pages/identifyPage";
 
 export const AppRouter = () => {
     const router = createBrowserRouter(
