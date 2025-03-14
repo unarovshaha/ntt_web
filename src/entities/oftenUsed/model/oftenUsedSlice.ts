@@ -3,7 +3,7 @@ import {IOftenUsedSchema} from "./oftenUsedSchema";
 import {
     fetchDirectionsData,
     fetchLanguagesData,
-    fetchLocationsData,
+    fetchLocationsData, fetchOrganizationTypesData,
     fetchStudyTypesData
 } from "./oftenUsedThunk";
 
@@ -28,6 +28,7 @@ const initialState: IOftenUsedSchema = {
         {id: 2, name: "Obed"},
         {id: 3, name: "Kechki"},
     ],
+    organizationTypes: [],
     loading: false,
     error: undefined
 }
@@ -87,6 +88,19 @@ const oftenUsedSlice = createSlice({
                 state.error = undefined
             })
             .addCase(fetchStudyTypesData.rejected, (state) => {
+                state.loading = false
+                state.error = "error"
+            })
+            .addCase(fetchOrganizationTypesData.pending, (state) => {
+                state.loading = true
+                state.error = undefined
+            })
+            .addCase(fetchOrganizationTypesData.fulfilled, (state, action) => {
+                state.organizationTypes = action.payload
+                state.loading = false
+                state.error = undefined
+            })
+            .addCase(fetchOrganizationTypesData.rejected, (state) => {
                 state.loading = false
                 state.error = "error"
             })

@@ -2,6 +2,7 @@ import {createAsyncThunk} from "@reduxjs/toolkit";
 import {ThunkConfig} from "app/providers/storeProvider";
 import {headers} from "shared/api/base";
 import {USER_LOCALSTORAGE_REFRESH_TOKEN, USER_LOCALSTORAGE_TOKEN} from "shared/const/localstorage";
+import {userActions} from "entities/user/model/userSlice";
 
 interface RefreshProps {
     refresh: string | null;
@@ -31,6 +32,8 @@ export const fetchRefresh = createAsyncThunk<
             USER_LOCALSTORAGE_REFRESH_TOKEN,
             response.refresh,
         );
+        dispatch(userActions.setAuthData(response))
+
         return response
 
     } catch (e) {

@@ -4,8 +4,26 @@ import {DirectionCard} from "shared/lib/components/directionCard/directionCard";
 import {Button} from "shared/ui/button";
 
 import cls from "./schoolDirectionAbout.module.sass";
+import {useHttp} from "shared/api/base";
+import {useParams} from "react-router";
 
 export const SchoolDirectionAbout = () => {
+
+    const {id} = useParams()
+    const {request} = useHttp()
+
+    // organizations/organization/get/home/landing/13/
+
+    const onCreate = () => {
+        request({
+            url: `students/student_requests/create/`,
+            method: "POST",
+            body: JSON.stringify({landing: id, user: undefined})
+        })
+            .then(res => console.log(res))
+    }
+
+
     return (
         <div className={cls.profile}>
             <DirectionCard/>
@@ -65,7 +83,7 @@ export const SchoolDirectionAbout = () => {
                     imtihonlari yakunlanganidan so‘ng
                     rasmiy sahifalarda e’lon qilinadi.
                 </p>
-                <Button extraClass={cls.profile__btn}>Hujjat topshirish</Button>
+                <Button onClick={onCreate} extraClass={cls.profile__btn}>Hujjat topshirish</Button>
             </div>
         </div>
     );

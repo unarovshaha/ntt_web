@@ -5,19 +5,26 @@ import {NavLink} from "react-router-dom";
 import {studyRouteConfig} from "../../model/studyConfig";
 
 import cls from "./studyHeader.module.sass";
+import {useSelector} from "react-redux";
+import {getOrganizationTypes} from "entities/oftenUsed";
 
 export const StudyHeader = () => {
 
+    const organizationTypes = useSelector(getOrganizationTypes)
+
     const renderLinks = () => {
-        return studyRouteConfig.map(item => {
+        console.log(organizationTypes, "organizationTypes")
+        return organizationTypes?.map(item => {
             return (
                 <NavLink
                     className={({isActive}) =>
-                        isActive ? classNames(cls.header__item, cls.active) : cls.header__item
+                        classNames(cls.header__item, {
+                            [cls.active] : isActive
+                        })
                     }
-                    to={`/platform/study/${item.to}`}
+                    to={`/platform/study/${item.id}`}
                 >
-                    {item.label}
+                    {item.name}
                 </NavLink>
             )
         })

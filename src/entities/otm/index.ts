@@ -5,4 +5,3 @@ export {OtmDirection} from "./ui/otmDirection/otmDirection";
 export {OtmDirectionAbout} from "./ui/otmDirectionAbout/otmDirectionAbout";
 export {OtmGallery} from "./ui/otmGallery/otmGallery";
 export {OtmGrant} from "./ui/otmGrant/otmGrant";
-export {OtmList} from "./ui/otmList/otmList";

@@ -7,7 +7,7 @@ import {LoginPage} from "pages/loginPage";
 import {Onboarding} from "entities/login";
 import {RegisterPage} from "pages/registerPage";
 import {IdentificationReg} from "entities/register";
-import {IdentifyPage} from "../../../pages/identifyPage";
+import {IdentifyPage} from "pages/identifyPage";
 import {RequireAuth} from "app/routers/ui/RequireAuth";
 
 export const AppRouter = () => {
@@ -34,7 +34,7 @@ export const AppRouter = () => {
                     path={"identify"}
                     element={<IdentifyPage/>}
                     />
-                <Route element={<RequireAuth/>}>
+                {/*<Route element={<RequireAuth/>}>*/}
                     <Route element={<Layout/>} path={"platform"}>
 
                         {
@@ -51,7 +51,7 @@ export const AppRouter = () => {
                     </Route>
 
 
-                </Route>
+                {/*</Route>*/}
 
 
                 <Route

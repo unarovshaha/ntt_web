@@ -11,6 +11,7 @@ export interface IOftenUsedSchema {
     locations: IList[],
     studyTypes: IList[],
     languages: IList[],
+    organizationTypes: IList[],
     loading: boolean,
     error?: "error"
 }

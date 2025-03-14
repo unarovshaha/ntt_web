@@ -11,7 +11,10 @@ export const Layout = () => {
     return (
         <div className={cls.layout}>
             <MenuBar/>
-            <main className={cls.layout__content} style={{backgroundImage: `url(${image})`}}>
+            <main
+                className={cls.layout__content}
+                style={window.innerWidth <= 430 ? {} : {backgroundImage: `url(${image})`}}
+            >
                 <Header/>
                 <div className={cls.layout__route}>
                     <Outlet/>

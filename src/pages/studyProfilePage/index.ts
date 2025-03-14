@@ -1,0 +1,1 @@
+export {StudyProfilePage} from "./ui/studyProfilePage";
