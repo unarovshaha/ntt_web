@@ -56,7 +56,7 @@ export const AppRouter = () => {
 
                 <Route
                     index
-                    element={<Navigate to={"login"}/>}
+                    element={<Navigate to={"platform"}/>}
                 />
             </>
         )

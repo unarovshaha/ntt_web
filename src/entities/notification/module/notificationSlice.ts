@@ -3,7 +3,12 @@ import {INotificationSchema} from "./notificationSchema";
 import {fetchNotificationData} from "./notificationThunk";
 
 const initialState: INotificationSchema = {
-    data: [],
+    data: [
+        {id: 1 , name: "university" , descr: "aszfsdkfjasdfjd asfdsjfjlads fjdf"},
+        {id: 2 , name: "university" , descr: "aszfsdkfjasdfjd asfdsjfjlads fjdf"},
+        {id: 3 , name: "university" , descr: "aszfsdkfjasdfjd asfdsjfjlads fjdf"},
+
+    ],
     loading: false,
     error: undefined
 }

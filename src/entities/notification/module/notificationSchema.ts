@@ -3,8 +3,7 @@
 export interface INotification {
     id: number,
     name: string,
-    desc: string,
-    date: string
+    descr: string,
 }
 
 export interface INotificationSchema {

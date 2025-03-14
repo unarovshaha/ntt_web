@@ -6,12 +6,12 @@ export const menuConfig = [
         icon: <i className="fa-solid fa-user-large"/>,
         // roles: [ROLES.admin , ROLES.organization_admin]
     },
-    {
-        to: "perApplication",
-        label: `Mening arizalarim`,
-        icon: <i className="fa-solid fa-file-signature"/>,
-        // roles: [ROLES.admin , ROLES.organization_admin]
-    },
+    // {
+    //     to: "perApplication",
+    //     label: `Mening arizalarim`,
+    //     icon: <i className="fa-solid fa-file-signature"/>,
+    //     // roles: [ROLES.admin , ROLES.organization_admin]
+    // },
     {
         to: "study/1",
         label: `Ta’lim ma’lumotlari`,

@@ -8,7 +8,7 @@ import {useSelector} from "react-redux";
 import {getUserData} from "entities/profile/model/userProfile/userProfileSelector";
 import {DynamicModuleLoader, ReducersList} from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
 import {userProfileReducer} from "entities/profile/model/userProfile/userProfileSlice";
-
+import {Button} from "shared/ui/button";
 
 
 const reducers: ReducersList = {
@@ -33,45 +33,53 @@ export const Profile = () => {
     console.log(getData, 'ef')
     return (
         <DynamicModuleLoader reducers={reducers}>
-        <div className={cls.container}>
-            <h1>Shaxsiy ma'lumotlarim</h1>
-            {
-                layout ?
-                    <div className={cls.container__arounder}>
-                        {
-                            <>
+            <div className={cls.container}>
+                {
+                    layout ?
+                        <div className={cls.container__arounder}>
+
+                            <div>
                                 <Input name={"name"} title={"Ism familiya"} value={getData?.name}/>
-                                <Input name={"passport_seria"} title={"Passport seriya"} value={getData?.passport_seria}/>
+                                <Input name={"passport_seria"} title={"Passport seriya"}
+                                       value={getData?.passport_seria}/>
                                 <Input name={"indefikatsiya_pin"} title={"JSHSHR"} value={getData?.indefikatsiya_pin}/>
                                 <Input name={"sex"} title={"Jinsi"} value={getData?.sex}/>
-                                <Input name={"phone_extra"} title={"Qo'shimcha telefon raqami"} value={getData?.phone_extra}/>
-                                <Input name={"born_date"} title={"Tug'ilgan sanasi"} type={"date"} value={getData?.born_date}/>
-                                <Input name={"born_address"} title={"Tug'ilgan joyi"}  value={getData?.born_address}/>
-                                <Input name={"email"} title={"Email"}  value={getData?.email}/>
-                            </>
-                        }
-                    </div>
-                    :
-                    <div className={cls.container__box}>
-                        {
+                                <Input name={"phone_extra"} title={"Qo'shimcha telefon raqami"}
+                                       value={getData?.phone_extra}/>
+                                <Input name={"born_date"} title={"Tug'ilgan sanasi"} type={"date"}
+                                       value={getData?.born_date}/>
+                                <Input name={"born_address"} title={"Tug'ilgan joyi"} value={getData?.born_address}/>
+                                <Input name={"email"} title={"Email"} value={getData?.email}/>
+                            </div>
+
+                            <Button type={"success"}>Bajarildi</Button>
+                        </div>
+                        :
+                        <div className={cls.container__box}>
+                            {
                                 <>
                                     <Input name={"name"} title={"Ism familiya"} value={getData?.name}/>
-                                    <Input name={"passport_seria"} title={"Passport seriya"} value={getData?.passport_seria}/>
-                                    <Input name={"indefikatsiya_pin"} title={"JSHSHR"} value={getData?.indefikatsiya_pin}/>
+                                    <Input name={"passport_seria"} title={"Passport seriya"}
+                                           value={getData?.passport_seria}/>
+                                    <Input name={"indefikatsiya_pin"} title={"JSHSHR"}
+                                           value={getData?.indefikatsiya_pin}/>
                                     <Input name={"sex"} title={"Jinsi"} value={getData?.sex}/>
-                                    <Input name={"phone_extra"} title={"Qo'shimcha telefon raqami"} value={getData?.phone_extra}/>
-                                    <Input name={"born_date"} title={"Tug'ilgan sanasi"} type={"date"} value={getData?.born_date}/>
-                                    <Input name={"born_address"} title={"Tug'ilgan joyi"}  value={getData?.born_address}/>
-                                    <Input name={"email"} title={"Email"}  value={getData?.email}/>
+                                    <Input name={"phone_extra"} title={"Qo'shimcha telefon raqami"}
+                                           value={getData?.phone_extra}/>
+                                    <Input name={"born_date"} title={"Tug'ilgan sanasi"} type={"date"}
+                                           value={getData?.born_date}/>
+                                    <Input name={"born_address"} title={"Tug'ilgan joyi"}
+                                           value={getData?.born_address}/>
+                                    <Input name={"email"} title={"Email"} value={getData?.email}/>
                                 </>
 
 
-                        }
-                    </div>
-            }
+                            }
+                        </div>
+                }
 
 
-        </div>
+            </div>
         </DynamicModuleLoader>
     );
 };
