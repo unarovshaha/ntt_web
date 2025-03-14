@@ -39,7 +39,6 @@ export const userProfileUpdateThunk = createAsyncThunk<
             url: `users/user/crud/${authData.id}/`,
             method: "PATCH",
             body: JSON.stringify(authData.data),
-            headers: headers()
         })
         return response
     }catch (e) {

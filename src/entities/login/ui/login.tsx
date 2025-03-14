@@ -8,6 +8,7 @@ import {Button} from "shared/ui/button";
 import {useWindowSize} from "@react-hook/window-size";
 import logo from "shared/assets/logo/blue_logo.png"
 import loginImg from "shared/assets/images/login.png"
+import bg from 'shared/assets/icons/bg.png'
 import {SubmitHandler, useForm} from "react-hook-form";
 import {ILogin} from "entities/login/model/loginSchema";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
@@ -114,9 +115,9 @@ export const Login = () => {
         }
     }, [size, layout]);
 
-    const onRedirect: SubmitHandler<ILogin> = (data) => {
-        dispatch(loginThunk(data))
-        navigate("/identify")
+    const onRedirect: SubmitHandler<ILogin> = async (data) => {
+        await dispatch(loginThunk(data))
+        navigate("/platform/personal/profile")
     }
     return (
         <div className={cls.main}>
@@ -124,29 +125,34 @@ export const Login = () => {
                 layout ?
                     <div className={cls.pcContainer}>
                         <div className={cls.pcContainer__img}>
-                        <img src={loginImg} alt=""/>
+                            <img src={loginImg} alt=""/>
+                            <img className={cls.pcContainer__img_posImg} src={bg} alt=""/>
                         </div>
-                        <div className={cls.pcContainer__content}>
-                            <img src={logo} alt=""/>
-                            <h1>Ishni boshlash!</h1>
-                            <Form onSubmit={handleSubmit(onRedirect)} extraClass={cls.pcContainer__content__form}>
-                                <Input
-                                    extraType={"phone"}
-                                    extraClass={cls.container__content__login__form__input}
-                                    title={"Telefon raqami"}
-                                    name={"phone"}
-                                    control={control}
-                                />
-                                <Input register={register} extraClass={cls.pcContainer__content__form__input} title={"Parol"}
-                                       placeholder={"Parol"} name={"password"} type={"password"}/>
-                                <Input name={"checkbox"} extraType={"checkbox"} extraTitle={"Remember Me"}/>
-                                <Button extraClass={cls.pcContainer__content__form__button}
-                                        children={"Tizimga kirish"}/>
-                                {/*<h3 onClick={onRedirect}>Ro'yxatdan o'tish</h3>*/}
-                            </Form>
 
+                        <div style={{display: "flex", justifyContent: "center", width: "50%"}}>
+                            <div className={cls.pcContainer__content}>
+                                <img src={logo} alt=""/>
+                                <h1>Tizimga kirish!</h1>
+                                <Form>
+                                    <Input
+                                        extraType={"phone"}
+                                        extraClass={cls.container__content__login__form__input}
+                                        title={"Telefon raqami"}
+                                        name={"phone"}
+                                        control={control}
+                                        required
+                                    />
+                                    <Input required style={{width: "50rem"}} extraClass={cls.pcContainer__content__form__input}
+                                           title={"Parol"} register={register}
+                                           placeholder={"Parol"} name={"password"} type={"password"}/>
+                                    <Button onClick={handleSubmit(onRedirect)}>Login</Button>
+
+                                </Form>
+
+                            </div>
                         </div>
                     </div>
+
                     : <div className={cls.container}>
                         <div className={cls.container__content}>
                             <motion.div
@@ -172,7 +178,7 @@ export const Login = () => {
                                     <Button extraClass={cls.container__content__login__form__button}
                                             children={"Tizimga kirish"}/>
                                 </Form>
-                                <h3>Ro'yxatdan o'tish</h3>
+                                <h3 onClick={() => navigate("/register")}>Ro'yxatdan o'tish</h3>
                             </motion.div>
                         </div>
 

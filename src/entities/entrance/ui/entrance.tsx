@@ -52,19 +52,19 @@ export const Entrance = () => {
             <h1 className={cls.container__article}>Mening profilim</h1>
             <div className={cls.container__arounder}>
                 {list.map((item) => (
-                    <Box key={item.id} extraClass={cls.container__arounder__box} style={{ background: item.backColor }}>
+                    <Box onClick={() => navigate(`${item.navigateTo}`)} key={item.id} extraClass={cls.container__arounder__box} style={{ background: item.backColor }}>
                         <div className={cls.container__arounder__box__iconBox}>
                             <img src={item.image} alt="" />
                         </div>
                         <h1>{item.title}</h1>
                         <div className={cls.container__arounder__box__navigator}>
 
-                                <Button
-                                    onClick={() => navigate(`${item.navigateTo}`)}
-                                    extraClass={cls.container__arounder__box__navigator__btn}
-                                >
-                                    <img src={item.btnIcon} alt="" />
-                                </Button>
+                                {/*<Button*/}
+                                {/*    onClick={() => navigate(`${item.navigateTo}`)}*/}
+                                {/*    extraClass={cls.container__arounder__box__navigator__btn}*/}
+                                {/*>*/}
+                                {/*    <img src={item.btnIcon} alt="" />*/}
+                                {/*</Button>*/}
 
                         </div>
                     </Box>
