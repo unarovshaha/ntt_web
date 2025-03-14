@@ -118,7 +118,7 @@ export const Register = () => {
                                         />
                                         <Input register={register} extraClass={cls.container__content__login__form__input} title={"Parol"} placeholder={"Parol"} name={"password"} type={"password"} />
                                         <Button extraClass={cls.container__content__login__form__button}>
-                                            Kirish
+                                            Ro'yxatdan o'tish
                                         </Button>
                                     </Form>
                                 </div>
@@ -161,7 +161,7 @@ const PCRegister = (props: IdentificationRegProps) => {
                     />
                     <Input register={register} extraClass={cls.register__arounder__form__input} title={"Parol"} placeholder={"Parol"} name={"password"} type={"password"} />
                     <Button  extraClass={cls.register__arounder__form__button}>
-                        Kirish
+                        Ro'yxatdan o'tish
                     </Button>
                 </Form>
             </div>
