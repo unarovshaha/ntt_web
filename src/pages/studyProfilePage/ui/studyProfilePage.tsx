@@ -6,9 +6,13 @@ import {DirectionCard} from "shared/lib/components/directionCard/directionCard";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import {DynamicModuleLoader, ReducersList} from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
 import {Button} from "shared/ui/button";
-import {useHttp} from "shared/api/base";
+import {headers, useHttp} from "shared/api/base";
 
 import cls from "./studyProfilePage.module.sass";
+import {Loader} from "shared/ui/loader";
+import {useSelector} from "react-redux";
+import {getStudyProfileLoading} from "entities/studyProfile/model/studyProfileSelector";
+import {getUserId} from "entities/user";
 
 const reducers: ReducersList = {
     studyProfileSlice: studyProfileReducer
@@ -16,6 +20,8 @@ const reducers: ReducersList = {
 
 export const StudyProfilePage = () => {
 
+    const userId = useSelector(getUserId)
+    const loading = useSelector(getStudyProfileLoading)
     const dispatch = useAppDispatch()
     const {id} = useParams()
     const {request} = useHttp()
@@ -29,11 +35,13 @@ export const StudyProfilePage = () => {
         request({
             url: `students/student_requests/create/`,
             method: "POST",
-            body: JSON.stringify({landing: id, user: undefined})
+            body: JSON.stringify({landing: id, user: userId}),
+            headers: headers()
         })
             .then(res => console.log(res))
     }
 
+    if (loading) return <Loader/>
 
     return (
         <DynamicModuleLoader reducers={reducers}>

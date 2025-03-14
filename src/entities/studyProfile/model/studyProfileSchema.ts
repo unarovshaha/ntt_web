@@ -6,6 +6,7 @@ export interface IStudyProfile {
     price?: number,
     shift?: string,
     region?: string,
+    name?: string
 }
 
 export interface IStudyProfileSchema extends IStudyProfile{

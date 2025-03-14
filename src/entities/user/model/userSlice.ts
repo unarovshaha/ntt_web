@@ -3,6 +3,7 @@ import {fetchRefresh} from "./userThunk";
 import {IUserProfile} from "entities/profile/model/userProfile/userProfileSchema";
 
 export interface UserSchema {
+    id?: number | string,
     name: string,
     sex: string,
     surname: string
@@ -13,6 +14,7 @@ export interface UserSchema {
 }
 
 const initialState: UserSchema = {
+    id: undefined,
     name: "",
     surname: "",
     sex: "",
@@ -30,6 +32,7 @@ const userSlice = createSlice({
     reducers: {
 
         setAuthData: (state, action: PayloadAction<IUserProfile>) => {
+            state.id = action.payload.id
             state.sex = action.payload.sex
             state.name = action.payload.name
             state.surname = action.payload.surname

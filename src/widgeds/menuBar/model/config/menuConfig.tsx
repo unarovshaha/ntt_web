@@ -7,7 +7,7 @@ export const menuConfig = [
         // roles: [ROLES.admin , ROLES.organization_admin]
     },
     {
-        to: "mttPage",
+        to: "perApplication",
         label: `Mening arizalarim`,
         icon: <i className="fa-solid fa-file-signature"/>,
         // roles: [ROLES.admin , ROLES.organization_admin]
@@ -19,7 +19,7 @@ export const menuConfig = [
         // roles: [ROLES.admin , ROLES.organization_admin]
     },
     {
-        to: "application",
+        to: "notification",
         label: "Bildirishnomalar",
         icon: <i className="fa-solid fa-envelope"/>,
         // roles: [ROLES.admin , ROLES.organization_admin]

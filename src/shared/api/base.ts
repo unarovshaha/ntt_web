@@ -1,4 +1,4 @@
-export const API_URL_DOC = `http://26.253.30.50:8000/`
+export const API_URL_DOC = `http://26.12.122.72:8000/`
 // export const API_URL_DOC = `http://176.221.28.164/`
 // export const API_URL_DOC = `http://26.12.122.72/`
 export const API_URL: string = `${API_URL_DOC}api/`
@@ -10,9 +10,9 @@ export const API_URL: string = `${API_URL_DOC}api/`
 // export const API_URL: string = `${API_URL_DOC}api/`
 
 export const headers = () => {
-    // const token = sessionStorage.getItem("token")
+    const token = sessionStorage.getItem("token")
     return {
-        // "Authorization": "JWT " + token,
+        "Authorization": "JWT " + token,
         'Content-Type': 'application/json'
     }
 }

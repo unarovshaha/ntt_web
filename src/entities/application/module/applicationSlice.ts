@@ -1,6 +1,8 @@
 import {createSlice} from "@reduxjs/toolkit";
+import {IApplicationSchema} from "./applicationSchema";
+import {fetchApplication} from "./applicationThunk";
 
-const initialState = {
+const initialState: IApplicationSchema = {
     data: [],
     loading: false,
     error: undefined
@@ -9,7 +11,22 @@ const initialState = {
 const applicationSlice = createSlice({
     name: "applicationSlice",
     initialState,
-    reducers: {}
+    reducers: {},
+    extraReducers: builder =>
+        builder
+            .addCase(fetchApplication.pending, (state) => {
+                state.loading = true
+                state.error = undefined
+            })
+            .addCase(fetchApplication.fulfilled, (state, action) => {
+                state.data = action.payload
+                state.loading = false
+                state.error = undefined
+            })
+            .addCase(fetchApplication.rejected, (state) => {
+                state.loading = false
+                state.error = "error"
+            })
 })
 
 export const {reducer: applicationReducer} = applicationSlice

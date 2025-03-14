@@ -1,6 +1,6 @@
 import React, {useCallback, useState} from 'react';
 import classNames from "classnames";
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import {createPortal} from "react-dom";
 
 import {menuConfig} from "../model/config/menuConfig";
@@ -10,6 +10,7 @@ import cls from "./MenuBar.module.sass"
 
 export const MenuBar = () => {
 
+    const navigate = useNavigate()
     const [activeMultiLink, setActiveMultiLink] = useState(false)
     const [activeMenu, setActiveMenu] = useState(false)
 
@@ -98,6 +99,11 @@ export const MenuBar = () => {
                             </div>
                             <Button
                                 extraClass={cls.btn}
+                                onClick={() => {
+                                    navigate("/login")
+                                    localStorage.clear()
+                                    sessionStorage.clear()
+                                }}
                             >
                                 <i className="fa-solid fa-right-from-bracket"/>
                                 Chiqish

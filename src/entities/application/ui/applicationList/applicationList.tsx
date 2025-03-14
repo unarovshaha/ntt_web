@@ -4,21 +4,34 @@ import {useNavigate} from "react-router-dom";
 import {Table} from "shared/ui/table";
 
 import cls from "./applicationList.module.sass";
+import {useSelector} from "react-redux";
+import {getApplicationData} from "entities/application/module/applicationSelector";
 
 export const ApplicationList = () => {
 
     const navigate = useNavigate()
+    const data = useSelector(getApplicationData)
 
     const renderList = () => {
-        return [1,2,3,4,5,6,7,8,9,0].map((item, index) => {
+        return data?.map((item, index) => {
             return (
                 <tr>
-                    <td>{index+1}</td>
-                    <td>Sobirjonova Shahzoda</td>
-                    <td>900032880</td>
+                    <td>{index + 1}</td>
+                    {
+                        window.innerWidth <= 430 ? <td>
+                                <div className={cls.list__item}>
+                                    <p>{item.name}</p>
+                                    <p>900032880</p>
+                                </div>
+                            </td> :
+                            <>
+                                <td>{item.name}</td>
+                                <td>900032880</td>
+                            </>
+                    }
                     <td>
                         <div
-                            onClick={() => navigate(`profile/${index}`)}
+                            onClick={() => navigate(`profile/${item.id}`)}
                             className={cls.list__more}
                         >
                             Batafsil
@@ -33,14 +46,18 @@ export const ApplicationList = () => {
     return (
         <div className={cls.list}>
             <Table>
-                <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Ism Sharif</th>
-                    <th>Tel raqam</th>
-                    <th>Batafsil</th>
-                </tr>
-                </thead>
+                {
+                    window.innerWidth <= 430 ? <></>
+                        :
+                        <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Ism Sharif</th>
+                            <th>Tel raqam</th>
+                            <th>Batafsil</th>
+                        </tr>
+                        </thead>
+                }
                 <tbody>
                 {renderList()}
                 </tbody>

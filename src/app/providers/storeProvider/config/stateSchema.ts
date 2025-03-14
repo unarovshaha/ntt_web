@@ -6,6 +6,8 @@ import {UserSchema} from "entities/user/model/userSlice";
 import {IStudySchema} from "entities/study";
 import {IFilterSchema} from "features/filter";
 import {IStudyProfileSchema} from "entities/studyProfile";
+import {IApplicationSchema} from "entities/application";
+import {INotificationSchema} from "entities/notification";
 
 export interface StateSchema {
 
@@ -16,7 +18,8 @@ export interface StateSchema {
     studySlice?: IStudySchema;
     filterSlice?: IFilterSchema;
     studyProfileSlice?: IStudyProfileSchema;
-
+    applicationSlice?: IApplicationSchema;
+    notificationSlice?: INotificationSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

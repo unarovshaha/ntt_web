@@ -1,18 +1,16 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {ThunkConfig} from "app/providers/storeProvider";
 import {headers} from "shared/api/base";
-import {IApplication} from "entities/application/module/applicationSchema";
 
-
-export const fetchApplication = createAsyncThunk<
-    IApplication[],
-    {id:number|string},
+export const fetchNotificationData = createAsyncThunk<
+    [],
+    void,
     ThunkConfig<string>
->('applicationSlice/fetchApplication', async ({id}, thunkApi) => {
+>('notificationSlice/fetchNotificationData', async (_, thunkApi) => {
     const {extra, dispatch, rejectWithValue} = thunkApi;
     try {
         const response = await extra.api({
-            url: `students/student_requests/student_request2/${id}/`,
+            url: ``,
             method: "GET",
             body: null,
             headers: headers()

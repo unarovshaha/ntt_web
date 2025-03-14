@@ -1,11 +1,23 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import {Button} from "shared/ui/button";
 
 import cls from "./applicationProfile.module.sass";
 import image from "shared/assets/images/Grant 1.png";
+import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
+import {fetchApplicationProfile} from "entities/applicationProfile/model/applicationProfileThunk";
+import {useParams} from "react-router";
 
 export const ApplicationProfile = () => {
+
+    const {id} = useParams()
+    const dispatch = useAppDispatch()
+
+    useEffect(() => {
+        if (id)
+            dispatch(fetchApplicationProfile({id}))
+    }, [id])
+
     return (
         <div className={cls.profile}>
             <div className={cls.profile__container}>

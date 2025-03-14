@@ -6,9 +6,9 @@ import {
     getIdentificationRoute,
     getIdentifyRoute,
     getLoginRoute,
-    getMttFilterRoute, getMttPageRoute, getNotificationPageRoute,
+    getMttFilterRoute, getMttPageRoute, getNotificationListPageRoute, getNotificationPageRoute,
     getOnboardingRoute,
-    getOtmFilterRoute,
+    getOtmFilterRoute, getPersonalApplicationPageRoute,
     getProfilePageRoute,
     getRegisterRoute,
     getSchoolPageRoute, getStudyPageRoute, getStudyProfilePageRoute,
@@ -36,6 +36,7 @@ import {ApplicationPage} from "pages/applicationPage";
 import {ApplicationProfile} from "pages/applicationProfile";
 import {SchoolDirectionAbout} from "entities/school";
 import {StudyProfilePage} from "pages/studyProfilePage";
+import {NotificationPage} from "pages/notificationPage";
 
 
 interface IRouterConfigProfiles {
@@ -96,7 +97,7 @@ export const routerConfigProfiles: IRouterConfigProfiles[] = [
     },{
         name: "application",
         element: <ApplicationPage/>,
-        path: getApplicationPageRoute()
+        path: getPersonalApplicationPageRoute()
     },{
         name: "applicationProfile",
         element: <ApplicationProfile/>,
@@ -136,6 +137,11 @@ export const routerConfigProfiles: IRouterConfigProfiles[] = [
         name: "studyProfile",
         element: <StudyProfilePage/>,
         path: getStudyProfilePageRoute(":id")
+    },
+    {
+        name: "notification",
+        element: <NotificationPage/>,
+        path: getNotificationListPageRoute()
     }
 ]
 

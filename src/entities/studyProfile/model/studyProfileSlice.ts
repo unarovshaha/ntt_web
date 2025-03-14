@@ -4,6 +4,7 @@ import {fetchStudyProfileData} from "./studyProfileThunk";
 
 const initialState: IStudyProfileSchema = {
     id: undefined,
+    name: undefined,
     desc: undefined,
     education_language: undefined,
     region: undefined,
@@ -24,6 +25,7 @@ const studyProfileSlice = createSlice({
                 state.error = undefined
             })
             .addCase(fetchStudyProfileData.fulfilled, (state, action) => {
+                state.name = action.payload.name
                 state.id = action.payload.id
                 state.education_language = action.payload.education_language
                 state.region = action.payload.region

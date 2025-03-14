@@ -1,6 +1,6 @@
 .profile
   width: 100%
-  height: 100%
+  height: fit-content
   display: flex
   align-items: center
   justify-content: center
@@ -42,6 +42,7 @@
           img
             width: 100%
             height: 100%
+            border-radius: 50%
             object-fit: cover
         &__info
           display: flex
@@ -77,3 +78,39 @@
         color: #242220
         span
           color: #6C6C6C
+
+@media (max-width: 430px)
+  .profile
+    align-items: normal
+    height: fit-content
+    padding-bottom: 1rem
+    &__container
+      width: 100%
+      height: fit-content
+      flex-direction: column
+      padding: 1.5rem 0
+      gap: 2rem
+    &__info
+      width: 100%
+      border: none
+      padding: 0 1.5rem
+      .wrapper
+        gap: 2rem
+        &__container
+          font-size: 1.4rem
+        .user
+          &__name
+            font-size: 1.6rem
+          &__status
+            font-size: 1.2rem
+      .btn
+        display: none
+    &__personal
+      width: 100%
+      gap: 2rem
+      padding: 0 1.5rem
+      .list
+        &__title
+          font-size: 1.6rem
+        &__container
+          font-size: 1.4rem
