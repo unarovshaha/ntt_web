@@ -18,14 +18,14 @@ const list = [
         btnIcon: rightIcon,
         navigateTo: "profile"
     },
-    {
-        id: 2,
-        image: boardIcon,
-        backColor: "#5900ADB2",
-        title: "Mening arizalarim",
-        btnIcon: rightIcon,
-        navigateTo: "userApplications"
-    },
+    // {
+    //     id: 2,
+    //     image: boardIcon,
+    //     backColor: "#5900ADB2",
+    //     title: "Mening arizalarim",
+    //     btnIcon: rightIcon,
+    //     navigateTo: "userApplications"
+    // },
     {
         id: 3,
         image: bookIcon,

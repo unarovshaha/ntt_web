@@ -20,7 +20,7 @@ export const ApplicationPage = () => {
 
     useEffect(() => {
         if (userId)
-            dispatch(fetchApplication({id: userId}))
+            dispatch(fetchApplication({student_id: userId, status: "newRequest"}))
     }, [userId])
 
     const pageSize = useMemo(() => 10, [])

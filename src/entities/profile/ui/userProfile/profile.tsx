@@ -30,7 +30,6 @@ export const Profile = () => {
     useEffect(() => {
         dispatch(userProfileThunk(userId))
     }, [])
-    console.log(getData, 'ef')
     return (
         <DynamicModuleLoader reducers={reducers}>
         <div className={cls.container}>

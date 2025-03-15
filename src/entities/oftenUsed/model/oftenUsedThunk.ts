@@ -5,13 +5,13 @@ import {headers} from "shared/api/base";
 
 export const fetchDirectionsData = createAsyncThunk<
     IList[],
-    void,
+    {id:string},
     ThunkConfig<string>
->('oftenUsedSlice/fetchDirectionsData', async (_, thunkApi) => {
+>('oftenUsedSlice/fetchDirectionsData', async ({id}, thunkApi) => {
     const {extra, dispatch, rejectWithValue} = thunkApi;
     try {
         const response = await extra.api({
-            url: `shift/get/list/1/`,
+            url: `shift/get/list/${id}/`,
             method: "GET",
             body: null,
             headers: headers()

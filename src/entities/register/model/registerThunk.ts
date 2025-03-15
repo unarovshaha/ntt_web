@@ -17,7 +17,6 @@ export const registerThunk = createAsyncThunk<
             url: `users/user/crud/`,
             method: "POST",
             body: JSON.stringify(data),
-            headers: headers()
         })
         return  response
     }catch (e){

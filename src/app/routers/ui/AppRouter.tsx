@@ -34,7 +34,7 @@ export const AppRouter = () => {
                     path={"identify"}
                     element={<IdentifyPage/>}
                     />
-                {/*<Route element={<RequireAuth/>}>*/}
+                <Route element={<RequireAuth/>}>
                     <Route element={<Layout/>} path={"platform"}>
 
                         {
@@ -49,9 +49,7 @@ export const AppRouter = () => {
                             })
                         }
                     </Route>
-
-
-                {/*</Route>*/}
+                </Route>
 
 
                 <Route
