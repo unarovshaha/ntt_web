@@ -13,8 +13,12 @@ interface JWTProps {
     user_id: string
 }
 
+interface LoginResponse {
+    status: number;
+}
+
 export const loginThunk = createAsyncThunk<
-    void,
+    LoginResponse,
     LoginProps,
     ThunkConfig<string>
 >("loginSlice/loginThunk", async (data, thunkApi) => {

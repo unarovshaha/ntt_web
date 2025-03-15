@@ -19,7 +19,7 @@ export const Profile = () => {
     const [layout, setLayout] = useState<boolean>(false)
     const size = useWindowSize()
     const dispatch = useAppDispatch()
-    const userId: any = localStorage.getItem("user_id")
+    const userId: any = localStorage.getItem("user_key")
     const getData = useSelector(getUserData)
     useEffect(() => {
         if ((size[0] > 480 && !layout) || (size[0] <= 480 && layout)) {
@@ -29,7 +29,7 @@ export const Profile = () => {
 
     useEffect(() => {
         dispatch(userProfileThunk(userId))
-    }, [])
+    }, [userId])
     console.log(getData, 'ef')
     return (
         <DynamicModuleLoader reducers={reducers}>

@@ -8,7 +8,13 @@
 .study__content {
   padding: 1rem 3rem;
   overflow: auto;
-  height: 85%;
+  height: 90%;
+}
+
+@media (max-width: 430px) {
+  .study__content {
+    padding: 1rem 2rem;
+  }
 }
 
 /*# sourceMappingURL=studyPage.module.css.map */

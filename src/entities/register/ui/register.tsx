@@ -46,7 +46,7 @@ export const Register = () => {
     const size = useWindowSize();
     const [layout, setLayout] = useState<boolean>(false);
     const [index, setIndex] = useState(1);
-    const totalSteps = 3;
+    const totalSteps = 2;
     const dispatch = useAppDispatch()
 
     const pages = [
@@ -58,10 +58,10 @@ export const Register = () => {
           id: 1,
           name: <PCRegister index={index} setIndex={setIndex} totalSteps={totalSteps}/>
         },
-        {
-            id: 2,
-            name: <IdentificationReg index={index} setIndex={setIndex} totalSteps={totalSteps} layout={layout} setLayout={setLayout}/>
-        },
+        // {
+        //     id: 2,
+        //     name: <IdentificationReg index={index} setIndex={setIndex} totalSteps={totalSteps} layout={layout} setLayout={setLayout}/>
+        // },
         {
             id: 3,
             name: <Identify index={index} setIndex={setIndex} totalSteps={totalSteps}/>
@@ -76,7 +76,7 @@ export const Register = () => {
 
     const onHandle: SubmitHandler<IRegister> = (data) => {
         dispatch(registerThunk(data))
-        navigate('/login');
+        navigate('/identify');
     };
 
 
@@ -118,7 +118,7 @@ export const Register = () => {
                                         />
                                         <Input register={register} extraClass={cls.container__content__login__form__input} title={"Parol"} placeholder={"Parol"} name={"password"} type={"password"} />
                                         <Button extraClass={cls.container__content__login__form__button}>
-                                            Kirish
+                                            Ro'yxatdan o'tish
                                         </Button>
                                     </Form>
                                 </div>
@@ -140,8 +140,14 @@ const PCRegister = (props: IdentificationRegProps) => {
 
     const onHandle: SubmitHandler<IRegister> = (data) => {
         dispatch(registerThunk(data))
-        navigate('/login');
+        if (index < totalSteps) setIndex(index + 1);
+        // navigate('/login');
     };
+    // const nextStep = (e: React.FormEvent) => {
+    //     e.preventDefault()
+    //
+    //     if (index < totalSteps) setIndex(index + 1);
+    // };
 
     return(
         <div className={cls.register}>
@@ -160,8 +166,8 @@ const PCRegister = (props: IdentificationRegProps) => {
                         control={control}
                     />
                     <Input register={register} extraClass={cls.register__arounder__form__input} title={"Parol"} placeholder={"Parol"} name={"password"} type={"password"} />
-                    <Button  extraClass={cls.register__arounder__form__button}>
-                        Kirish
+                    <Button extraClass={cls.register__arounder__form__button}>
+                        Ro'yxatdan o'tish
                     </Button>
                 </Form>
             </div>

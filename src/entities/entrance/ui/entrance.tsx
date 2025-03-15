@@ -59,12 +59,12 @@ export const Entrance = () => {
                         <h1>{item.title}</h1>
                         <div className={cls.container__arounder__box__navigator}>
 
-                                <Button
-
-                                    extraClass={cls.container__arounder__box__navigator__btn}
-                                >
-                                    <img src={item.btnIcon} alt="" />
-                                </Button>
+                                {/*<Button*/}
+                                {/*    onClick={() => navigate(`${item.navigateTo}`)}*/}
+                                {/*    extraClass={cls.container__arounder__box__navigator__btn}*/}
+                                {/*>*/}
+                                {/*    <img src={item.btnIcon} alt="" />*/}
+                                {/*</Button>*/}
 
                         </div>
                     </Box>

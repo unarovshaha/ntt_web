@@ -52,13 +52,14 @@ export const Identify = (props: IdentificationRegProps) => {
     const [layout, setLayout] = useState<boolean>(false)
     const size = useWindowSize()
     const dispatch = useAppDispatch()
-    const userId: any = localStorage.getItem("user_id")
+    const userId: any = localStorage.getItem("user_key")
 
     useEffect(() => {
         if ((size[0] > 480 && !layout) || (size[0] <= 480 && layout)) {
             setLayout(size[0] > 480);
         }
     }, [size, layout]);
+
 
     const isEmailEmpty = email.trim() === "";
 
@@ -68,8 +69,8 @@ export const Identify = (props: IdentificationRegProps) => {
 
     const nextStep: SubmitHandler<IdentifyProps> = async (data) => {
         console.log(data)
-        dispatch(userProfileUpdateThunk({id: userId, data: data}))
-        navigate("/platform/personal/profile")
+        await dispatch(userProfileUpdateThunk({id: userId, data: data}))
+        navigate("/login")
 
     };
 
@@ -114,7 +115,7 @@ export const Identify = (props: IdentificationRegProps) => {
                             type="text"
                             name="sex"
                             register={register}
-                            title="Sex"
+                            title="Jinsi"
                         />
                         <Input
                             name="born_date"
@@ -203,7 +204,7 @@ export const Identify = (props: IdentificationRegProps) => {
                                                 type="text"
                                                 name="sex"
                                                 register={register}
-                                                title="Sex"
+                                                title="Jinsi"
                                             />
                                         </motion.div>
                                     )}

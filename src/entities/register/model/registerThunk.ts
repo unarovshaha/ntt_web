@@ -17,8 +17,16 @@ export const registerThunk = createAsyncThunk<
             url: `users/user/crud/`,
             method: "POST",
             body: JSON.stringify(data),
-            headers: headers()
         })
+
+        if (!response)
+        {
+            throw new Error()
+        }
+        if (response){
+            localStorage.setItem("user_key", response.id)
+        }
+
         return  response
     }catch (e){
         console.log(e)
