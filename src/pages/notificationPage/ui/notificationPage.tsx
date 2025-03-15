@@ -1,6 +1,5 @@
 import React from 'react';
 
-import cls from "./notificationPage.module.sass";
 import {NotificationItem, notificationReducer} from "entities/notification";
 import {Notification} from "features/notification";
 import { Outlet, Route, Routes} from "react-router";

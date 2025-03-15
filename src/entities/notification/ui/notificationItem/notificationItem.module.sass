@@ -1,22 +1,21 @@
 .notification
-  width: fit-content
-  max-width: 34rem
-  border: 1px solid #D1D1D6
-  border-radius: .8rem
-  padding: 1rem 1.5rem
-  display: flex
-  flex-direction: column
-  gap: .7rem
-  &__title
-    color: #2D2D2D
-    font-size: 1.6rem
+  width: 100%
+  border-radius: 10px
+  height: calc(100vh - 15rem)
+  background-color: rgba(239, 239, 239, 1)
+
+  position: relative
+  &__text
+    padding: 2rem
+    position: absolute
+    bottom: 0
+
+    width: 100%
     display: flex
     align-items: center
-    gap: .5rem
-  &__text
-    font-size: 1.4rem
-    color: #929292
-  &__date
-    font-size: 1.2rem
-    color: #2561FA
-    align-self: flex-end
+    justify-content: center
+    &_item
+      background-color: #FFFFFF
+
+
+      width: 100%!important

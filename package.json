@@ -3,6 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@lexical/code": "^0.23.1",
+    "@lexical/html": "^0.23.1",
+    "@lexical/link": "^0.23.1",
+    "@lexical/list": "^0.23.1",
+    "@lexical/markdown": "^0.23.1",
+    "@lexical/rich-text": "^0.23.1",
+    "@lexical/table": "^0.23.1",
     "@react-hook/window-size": "^3.1.1",
     "@reduxjs/toolkit": "^2.5.1",
     "@types/react": "^19.0.8",
@@ -47,6 +54,8 @@
     ]
   },
   "devDependencies": {
-    "sass": "^1.84.0"
+    "sass": "^1.84.0",
+    "lexical": "^0.23.1",
+    "@lexical/react": "^0.23.1"
   }
 }
