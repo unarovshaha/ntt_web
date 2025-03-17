@@ -1,4 +1,5 @@
-export const API_URL_DOC = `http://26.246.101.91:8000/`
+// export const API_URL_DOC = `http://26.12.122.72:8000/`
+export const API_URL_DOC = `https://ntt.avotra.ru/`
 // export const API_URL_DOC = `http://176.221.28.164/`
 // export const API_URL_DOC = `http://26.12.122.72/`
 export const API_URL: string = `${API_URL_DOC}api/`
@@ -21,6 +22,16 @@ export const headers = () => {
 export const header = () => {
     return {
         'Content-Type': 'application/json'
+    }
+}
+
+export const headersView = () => {
+    const token = sessionStorage.getItem("token")
+    const visitorId = localStorage.getItem("visitorId")
+    return {
+        // "Authorization" : "JWT " + token,
+        'Content-Type': 'application/json',
+        'X-Visitor-ID': visitorId
     }
 }
 

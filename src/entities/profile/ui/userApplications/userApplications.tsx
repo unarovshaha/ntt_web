@@ -8,7 +8,6 @@ import {Button} from "shared/ui/button";
 import {useWindowSize} from "@react-hook/window-size";
 
 const listData = [
-
     {id: "allRequest", label: "Hamma ariza"},
     {id: "newRequest", label: "Yangi ariza"},
     {id: "acceptRequest", label: "Qabul qilingan"},
@@ -259,7 +258,7 @@ export const UserApplications = ({types, setActiveType, list}: IApplicationProps
                         </div>
                         <div className={cls.container__dataBox__box__secondLayer__content}>
                             <h2>Ta’lim turi</h2>
-                            {/*<h3>{item.type}</h3>*/}
+                            <h3>{item.shift}</h3>
                         </div>
                         <div className={cls.container__dataBox__box__secondLayer__content}>
                             <h2>Ta’lim tili</h2>

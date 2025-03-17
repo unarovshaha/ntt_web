@@ -116,7 +116,7 @@ export const Login = () => {
 
     const onRedirect: SubmitHandler<ILogin> = (data) => {
         dispatch(loginThunk(data))
-        navigate("/identify")
+        navigate("/platform/personal")
     }
     return (
         <div className={cls.main}>

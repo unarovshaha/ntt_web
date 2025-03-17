@@ -38,7 +38,6 @@ export const fetchLocationsData = createAsyncThunk<
             url: `region/get`,
             method: "GET",
             body: null,
-            headers: headers()
         })
         if (!response) {
             throw new Error()

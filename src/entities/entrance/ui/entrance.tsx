@@ -34,14 +34,14 @@ const list = [
         btnIcon: rightIcon,
         navigateTo: "education"
     },
-    {
-        id: 4,
-        image: notifIcon,
-        backColor: "#ADA400B2",
-        title: "Bildirishnomalar",
-        btnIcon: rightIcon,
-        navigateTo: "userNotifications"
-    }
+    // {
+    //     id: 4,
+    //     image: notifIcon,
+    //     backColor: "#ADA400B2",
+    //     title: "Bildirishnomalar",
+    //     btnIcon: rightIcon,
+    //     navigateTo: "userNotifications"
+    // }
 ];
 
 export const Entrance = () => {

@@ -9,14 +9,14 @@ import {
     getApplicationTypesData
 } from "entities/application";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
-import {getUserId} from "entities/user";
+import {getUserId, getUserStudentId} from "entities/user";
 
 export const ApplicationList = () => {
 
     const dispatch = useAppDispatch()
     const types = useSelector(getApplicationTypesData)
     const applications = useSelector(getApplicationData)
-    const userId = useSelector(getUserId)
+    const userId = useSelector(getUserStudentId)
 
     const getActiveType = (data: string) => {
         if (userId) {

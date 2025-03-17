@@ -9,6 +9,7 @@ import {IStudyProfileSchema} from "entities/studyProfile";
 import {IApplicationSchema} from "entities/application";
 import {INotificationSchema} from "entities/notification";
 import {IAlertState} from "entities/alert";
+import {IHomeNewsSchema, IHomeSchema} from "entities/home";
 
 export interface StateSchema {
 
@@ -21,7 +22,9 @@ export interface StateSchema {
     studyProfileSlice?: IStudyProfileSchema;
     applicationSlice?: IApplicationSchema;
     notificationSlice?: INotificationSchema;
-    alertSlice?: IAlertState
+    alertSlice?: IAlertState;
+    homeSlice?: IHomeSchema;
+    homeNewsSlice?: IHomeNewsSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;
