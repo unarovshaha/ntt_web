@@ -1,0 +1,17 @@
+.header {
+  padding: 2.3rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.header__box {
+  padding-left: 3rem;
+}
+
+@media (max-width: 500px) {
+  .header__box {
+    padding-left: 0;
+  }
+}
+
+/*# sourceMappingURL=homePage.module.css.map */

@@ -12,5 +12,8 @@
   justify-content: center;
   gap: 2rem;
 }
+.filterModal__accordion {
+  align-self: center;
+}
 
 /*# sourceMappingURL=filterModal.module.css.map */

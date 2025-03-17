@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":[],"names":[],"mappings":"","file":"notificationList.module.css"}
+{"version":3,"sourceRoot":"","sources":["notificationList.module.sass"],"names":[],"mappings":"AAAA;EACE;EACA;EACA;EACA;EACA;EACA;EACA;EACA","file":"notificationList.module.css"}
