@@ -18,14 +18,14 @@ const list = [
         btnIcon: rightIcon,
         navigateTo: "profile"
     },
-    {
-        id: 2,
-        image: boardIcon,
-        backColor: "#5900ADB2",
-        title: "Mening arizalarim",
-        btnIcon: rightIcon,
-        navigateTo: "userApplications"
-    },
+    // {
+    //     id: 2,
+    //     image: boardIcon,
+    //     backColor: "#5900ADB2",
+    //     title: "Mening arizalarim",
+    //     btnIcon: rightIcon,
+    //     navigateTo: "userApplications"
+    // },
     {
         id: 3,
         image: bookIcon,
@@ -34,14 +34,14 @@ const list = [
         btnIcon: rightIcon,
         navigateTo: "education"
     },
-    {
-        id: 4,
-        image: notifIcon,
-        backColor: "#ADA400B2",
-        title: "Bildirishnomalar",
-        btnIcon: rightIcon,
-        navigateTo: "userNotifications"
-    }
+    // {
+    //     id: 4,
+    //     image: notifIcon,
+    //     backColor: "#ADA400B2",
+    //     title: "Bildirishnomalar",
+    //     btnIcon: rightIcon,
+    //     navigateTo: "userNotifications"
+    // }
 ];
 
 export const Entrance = () => {

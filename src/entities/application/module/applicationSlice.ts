@@ -1,9 +1,10 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {IApplicationSchema} from "./applicationSchema";
-import {fetchApplication} from "./applicationThunk";
+import {fetchApplication, fetchApplicationTypes} from "./applicationThunk";
 
 const initialState: IApplicationSchema = {
     data: [],
+    types: [],
     loading: false,
     error: undefined
 }
@@ -24,6 +25,19 @@ const applicationSlice = createSlice({
                 state.error = undefined
             })
             .addCase(fetchApplication.rejected, (state) => {
+                state.loading = false
+                state.error = "error"
+            })
+            .addCase(fetchApplicationTypes.pending, (state) => {
+                state.loading = true
+                state.error = undefined
+            })
+            .addCase(fetchApplicationTypes.fulfilled, (state, action) => {
+                state.types = action.payload
+                state.loading = false
+                state.error = undefined
+            })
+            .addCase(fetchApplicationTypes.rejected, (state) => {
                 state.loading = false
                 state.error = "error"
             })

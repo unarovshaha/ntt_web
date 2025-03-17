@@ -9,6 +9,7 @@ export interface UserSchema {
     surname: string
     born_date: string,
     email: string,
+    student_id?: number,
     isLoading: boolean
     error: undefined | string
 }
@@ -20,6 +21,7 @@ const initialState: UserSchema = {
     sex: "",
     born_date: "",
     email: "",
+    student_id: undefined,
     isLoading: false,
     error: undefined
 
@@ -38,6 +40,7 @@ const userSlice = createSlice({
             state.surname = action.payload.surname
             state.born_date = action.payload.born_date
             state.email = action.payload.email
+            state.student_id = action.payload.student_id
         }
 
 

@@ -83,7 +83,6 @@ export const Identify = (props: IdentificationRegProps) => {
 
     const handleSubmits = (e: React.FormEvent) => {
         e.preventDefault();
-        console.log("Form submitted with email:", email);
     };
 
     return (

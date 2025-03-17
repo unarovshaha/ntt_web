@@ -24,11 +24,24 @@ const filterSlice = createSlice({
         fetchLocations: (state, action) => {
             state.locations = action.payload
         },
+        clearLocations: (state, action) => {
+            state.locations = state.locations.filter(item => item !== action.payload)
+        },
         fetchLanguages: (state, action) => {
             state.languages = action.payload
         },
+        clearLanguage: (state, action) => {
+            state.languages = state.languages.filter(item => item !== action.payload)
+        },
         fetchDirection: (state, action) => {
             state.direction = action.payload
+        },
+        clearFilter: (state) => {
+            state.direction = undefined
+            state.maxSalary = undefined
+            state.minSalary = undefined
+            state.languages = []
+            state.locations = []
         }
     }
 })

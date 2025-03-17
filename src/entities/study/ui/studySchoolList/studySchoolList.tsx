@@ -25,7 +25,6 @@ export const StudySchoolList = ({setActive, active}: ISchoolList) => {
 
     useEffect(() => {
         if (id) {
-            console.log(id, "id")
             dispatch(fetchStudySchoolList({id}))
         }
     }, [id])

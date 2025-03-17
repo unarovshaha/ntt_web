@@ -8,7 +8,8 @@ import {
     getLoginRoute,
     getMttFilterRoute, getMttPageRoute, getNotificationListPageRoute, getNotificationPageRoute,
     getOnboardingRoute,
-    getOtmFilterRoute, getPersonalApplicationPageRoute,
+    getOtmFilterRoute,
+    // getPersonalApplicationPageRoute,
     getProfilePageRoute,
     getRegisterRoute,
     getSchoolPageRoute, getStudyPageRoute, getStudyProfilePageRoute,
@@ -94,11 +95,13 @@ export const routerConfigProfiles: IRouterConfigProfiles[] = [
         name: "mtt",
         element: <MttPage/>,
         path: getMttPageRoute()
-    },{
-        name: "application",
-        element: <ApplicationPage/>,
-        path: getPersonalApplicationPageRoute()
-    },{
+    },
+    // {
+    //     name: "application",
+    //     element: <ApplicationPage/>,
+    //     path: getPersonalApplicationPageRoute()
+    // },
+    {
         name: "applicationProfile",
         element: <ApplicationProfile/>,
         path: getApplicationProfilePageRoute(":id")
@@ -115,6 +118,7 @@ export const routerConfigProfiles: IRouterConfigProfiles[] = [
     },
     {
         name: "userApplications",
+        // element: <ApplicationPage/>,
         element: <UserApplicationsPage/>,
         path: getUserApplicationsPageRoute()
     },

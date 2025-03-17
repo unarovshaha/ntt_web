@@ -6,6 +6,7 @@
   flex-direction: column
   align-items: center
   gap: 2rem
+
   ul
     display: flex
     width: 100%
@@ -16,8 +17,10 @@
     padding-right: 1rem
     justify-content: space-between
     list-style: none
+
     li
       font-size: 1.2rem
+
   &__dataBox
     width: 100%
     height: 100%
@@ -26,6 +29,7 @@
     gap: 1rem
     display: flex
     flex-direction: column
+
     &__box
       width: 100%
       display: flex
@@ -36,6 +40,7 @@
         display: flex
         align-items: center
         gap: 1rem
+
         &__imgBox
           width: 5rem
           height: 5rem
@@ -44,16 +49,20 @@
           align-items: center
           justify-content: center
           border: 1px solid $color-border
+
           img
             width: 4rem
             height: 4rem
+
           &__content
             display: flex
             flex-direction: column
+
             &__locBox
               display: flex
               gap: .4rem
               align-items: center
+
       &__secondLayer
         width: 100%
         display: flex
@@ -61,22 +70,27 @@
         flex-wrap: wrap
         gap: 2rem
         padding: 1rem
+
         &__content
           h2
             font-size: .9rem
             color: $color-border
+
       &__thirdLayer
         width: 100%
         display: flex
         align-items: center
         justify-content: end
+
         &__btn
           background: none !important
           font-size: 1.4rem
+
           span
             display: flex
             align-items: center
             gap: .5rem
+
   &__dataBoxs
     width: 100%
     height: 100%
@@ -85,6 +99,7 @@
     gap: 1rem
     display: flex
     flex-wrap: wrap
+
     &__boxs
       width: 50rem
       display: flex
@@ -95,6 +110,7 @@
         display: flex
         align-items: center
         gap: 1rem
+
         &__imgBox
           width: 5rem
           height: 5rem
@@ -103,16 +119,20 @@
           align-items: center
           justify-content: center
           border: 1px solid $color-border
+
           img
             width: 4rem
             height: 4rem
+
           &__content
             display: flex
             flex-direction: column
+
             &__locBox
               display: flex
               gap: .4rem
               align-items: center
+
       &__secondLayer
         width: 100%
         display: flex
@@ -120,23 +140,26 @@
         flex-wrap: wrap
         gap: 2rem
         padding: 1rem
+
         &__content
           h2
             font-size: .9rem
             color: $color-border
+
       &__thirdLayer
         width: 100%
         display: flex
         align-items: center
         justify-content: end
+
         &__btn
           background: none !important
           font-size: 1.4rem
+
           span
             display: flex
             align-items: center
             gap: .5rem
-
 
 
 .tabs
@@ -164,8 +187,29 @@
 
 .activeIndicator
   position: absolute
-  width: 33.33%
+  width: 16.66%
   height: 3px
   bottom: 0
   background: blue
   transition: left 0.3s ease-in-out
+
+@media (max-width: 430px)
+  .container
+    ul
+      width: auto
+      overflow-x: auto
+      gap: 1.5rem
+      height: fit-content
+      li
+        border-radius: 10rem
+        padding: 1rem 2.4rem 1rem 2.4rem
+        white-space: nowrap
+
+  .activeIndicator
+    display: none
+  .tab
+    &.active
+      color: #fff
+      background: $color-main
+  .tabs
+    border: none
