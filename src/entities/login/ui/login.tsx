@@ -148,7 +148,7 @@ export const Login = () => {
                                     <Button onClick={handleSubmit(onRedirect)}>Login</Button>
 
                                 </Form>
-
+                                <h3 onClick={() => navigate("/register")}>Ro'yxatdan o'tish</h3>
                             </div>
                         </div>
                     </div>
