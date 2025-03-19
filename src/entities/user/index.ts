@@ -5,5 +5,6 @@ export {
     getUserError,
     getUserLoading,
     getUserName,
-    getUserSurname
+    getUserSurname,
+    getUserStudentId
 } from "./model/userSelector";

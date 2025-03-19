@@ -6,9 +6,12 @@ import {Button} from "shared/ui/button";
 import cls from "./schoolDirectionAbout.module.sass";
 import {useHttp} from "shared/api/base";
 import {useParams} from "react-router";
+import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
+import {alertAction} from "entities/alert";
 
 export const SchoolDirectionAbout = () => {
 
+    const dispatch = useAppDispatch()
     const {id} = useParams()
     const {request} = useHttp()
 
@@ -20,7 +23,11 @@ export const SchoolDirectionAbout = () => {
             method: "POST",
             body: JSON.stringify({landing: id, user: undefined})
         })
-            .then(res => console.log(res))
+            .then(res => {
+                dispatch(alertAction.onAddAlertOptions({
+                    status: true, type: "success", msg: res.msg
+                }))
+            })
     }
 
 

@@ -9,11 +9,16 @@ import {RegisterPage} from "pages/registerPage";
 import {IdentificationReg} from "entities/register";
 import {IdentifyPage} from "pages/identifyPage";
 import {RequireAuth} from "app/routers/ui/RequireAuth";
+import {Home} from "pages/homePage";
 
 export const AppRouter = () => {
     const router = createBrowserRouter(
         createRoutesFromElements(
             <>
+                <Route
+                    path={"/*"}
+                    element={<Home/>}
+                />
                 <Route
                     path={"login"}
                     element={<LoginPage/>}
@@ -49,15 +54,13 @@ export const AppRouter = () => {
                             })
                         }
                     </Route>
-
-
                 </Route>
 
 
-                <Route
-                    index
-                    element={<Navigate to={"login"}/>}
-                />
+                {/*<Route*/}
+                {/*    index*/}
+                {/*    element={<Navigate to={"platform"}/>}*/}
+                {/*/>*/}
             </>
         )
     );

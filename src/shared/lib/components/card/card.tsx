@@ -16,7 +16,10 @@ export const Card = ({region, name, price, startDate, id} : iCardProps) => {
     const navigate = useNavigate()
 
     return (
-        <div className={cls.card}>
+        <div
+            onClick={() => navigate(`profile/${id}`)}
+            className={cls.card}
+        >
             <div className={cls.header}>
                 <div className={cls.header__location}>
                     <i className="fa-solid fa-location-dot"/>
@@ -33,7 +36,6 @@ export const Card = ({region, name, price, startDate, id} : iCardProps) => {
                 <p>{startDate}</p>
                 <p
                     className={cls.footer__link}
-                    onClick={() => navigate(`profile/${id}`)}
                 >
                     Batafsil
                 </p>

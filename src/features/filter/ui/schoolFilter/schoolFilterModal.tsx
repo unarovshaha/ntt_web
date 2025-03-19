@@ -40,7 +40,10 @@ export const SchoolFilterModal = ({active, setActive}: IModalProps) => {
         fetchMaxSalary,
         fetchDirection,
         fetchLocations,
-        fetchLanguages
+        fetchLanguages,
+        clearFilter,
+        clearLocations,
+        clearLanguage
     } = filterActions
     const directions = useSelector(getDirectionsData)
     const locations = useSelector(getLocationsData)
@@ -53,9 +56,20 @@ export const SchoolFilterModal = ({active, setActive}: IModalProps) => {
 
     useEffect(() => {
         dispatch(fetchLocationsData())
-        dispatch(fetchDirectionsData())
         dispatch(fetchLanguagesData())
     }, [])
+
+    useEffect(() => {
+        if (id) {
+            dispatch(fetchDirectionsData({id}))
+            dispatch(clearFilter())
+            setSelectedDirection(undefined)
+            setSelectedLocations([])
+            setSelectedLanguages([])
+            setMinSalary(undefined)
+            setMaxSalary(undefined)
+        }
+    }, [id])
 
     const [selectedDirection, setSelectedDirection] = useState<number>()
     const [selectedLocations, setSelectedLocations] = useState<number[]>([])
@@ -64,64 +78,107 @@ export const SchoolFilterModal = ({active, setActive}: IModalProps) => {
     const [maxSalary, setMaxSalary] = useState<string>()
 
     const getDirection = (data: number) => {
-        dispatch(fetchStudySchoolList({
-            id,
-            language: selectedLanguages,
-            region: selectedLocations,
-            price_min: minSalary,
-            price_max: maxSalary,
-            shift: data
-        }))
-        setSelectedDirection(data)
-        dispatch(fetchDirection(data))
+        if (data) {
+            dispatch(fetchStudySchoolList({
+                id,
+                language: selectedLanguages,
+                region: selectedLocations,
+                price_min: minSalary,
+                price_max: maxSalary,
+                shift: data
+            }))
+            setSelectedDirection(data)
+            if (JSON.stringify(data) !== JSON.stringify(isDirection))
+                dispatch(fetchDirection(data))
+        }
     }
     const getSelectedLocations = (data: number[]) => {
-        dispatch(fetchStudySchoolList({
-            id,
-            language: selectedLanguages,
-            region: data,
-            price_min: minSalary,
-            price_max: maxSalary,
-            shift: selectedDirection
-        }))
+        if (!!data.length) {
+            if (JSON.stringify(data) !== JSON.stringify(isLocation)) {
+                dispatch(fetchStudySchoolList({
+                    id,
+                    language: selectedLanguages,
+                    region: data,
+                    price_min: minSalary,
+                    price_max: maxSalary,
+                    shift: selectedDirection
+                }))
+                dispatch(fetchLocations(data))
+            }
+        }
         setSelectedLocations(data)
-        dispatch(fetchLocations(data))
     }
-    const getSelectedLanguages = (data: number[]) => {
+
+    const onClearLocation = (data: number) => {
+        dispatch(clearLocations(data))
         dispatch(fetchStudySchoolList({
             id,
-            language: data,
+            language: selectedLanguages,
+            region: selectedLocations.filter(item => item !== data),
+            price_min: minSalary,
+            price_max: maxSalary,
+            shift: selectedDirection
+        }))
+    }
+
+    const getSelectedLanguages = (data: number[]) => {
+        if (!!data.length) {
+            if (JSON.stringify(data) !== JSON.stringify(isLanguages)) {
+                dispatch(fetchStudySchoolList({
+                    id,
+                    language: data,
+                    region: selectedLocations,
+                    price_min: minSalary,
+                    price_max: maxSalary,
+                    shift: selectedDirection
+                }))
+                dispatch(fetchLanguages(data))
+            }
+        }
+        setSelectedLanguages(data)
+    }
+
+    const onClearLanguages = (data: number) => {
+        dispatch(clearLanguage(data))
+        dispatch(fetchStudySchoolList({
+            id,
+            language: selectedLanguages.filter(item => item !== data),
             region: selectedLocations,
             price_min: minSalary,
             price_max: maxSalary,
             shift: selectedDirection
         }))
-        setSelectedLanguages(data)
-        dispatch(fetchLanguages(data))
     }
+
     const getMaxSalary = (data: string) => {
-        dispatch(fetchStudySchoolList({
-            id,
-            language: selectedLanguages,
-            region: selectedLocations,
-            price_min: minSalary,
-            price_max: data,
-            shift: selectedDirection
-        }))
-        setMaxSalary(data)
-        dispatch(fetchMaxSalary(data))
+        // if (data) {
+            dispatch(fetchStudySchoolList({
+                id,
+                language: selectedLanguages,
+                region: selectedLocations,
+                price_min: minSalary,
+                price_max: data,
+                shift: selectedDirection
+            }))
+            setMaxSalary(data)
+            if (JSON.stringify(data) !== JSON.stringify(isMaxSalary))
+                dispatch(fetchMaxSalary(data))
+        // }
     }
     const getMinSalary = (data: string) => {
-        dispatch(fetchStudySchoolList({
-            id,
-            language: selectedLanguages,
-            region: selectedLocations,
-            price_min: data,
-            price_max: maxSalary,
-            shift: selectedDirection
-        }))
-        setMinSalary(data)
-        dispatch(fetchMinSalary(data))
+        // if (data) {
+            dispatch(fetchStudySchoolList({
+                id,
+                language: selectedLanguages,
+                region: selectedLocations,
+                price_min: data,
+                price_max: maxSalary,
+                shift: selectedDirection
+            }))
+            setMinSalary(data)
+            if (JSON.stringify(data) !== JSON.stringify(isMinSalary))
+                dispatch(fetchMinSalary(data))
+        // }
     }
 
     const renderRadios = () => {
@@ -133,8 +190,8 @@ export const SchoolFilterModal = ({active, setActive}: IModalProps) => {
                     label={item.name}
                     value={item.id}
                     onChange={getDirection}
-                    // checked={item.id === (selectedDirection??isDirection)}
-                    checked={item.id === selectedDirection}
+                    checked={item.id === (selectedDirection ?? isDirection)}
+                    // checked={item.id === selectedDirection}
                 />
             )
         })
@@ -150,13 +207,13 @@ export const SchoolFilterModal = ({active, setActive}: IModalProps) => {
             <h2>Oylik to’lov</h2>
             <div className={cls.filterModal__input}>
                 <Input
-                    // defaultValue={isMinSalary}
+                    defaultValue={isMinSalary}
                     onChange={getMinSalary}
                     placeholder={"Min"}
                     name={"min"}
                 />
                 <Input
-                    // defaultValue={isMaxSalary}
+                    defaultValue={isMaxSalary}
                     onChange={getMaxSalary}
                     placeholder={"Max"}
                     name={"max"}
@@ -167,13 +224,17 @@ export const SchoolFilterModal = ({active, setActive}: IModalProps) => {
                 {renderRadios()}
             </div>
             <Accordion
-                // defaultChecked={isLocation}
+                onDisActive={onClearLocation}
+                extraClass={cls.filterModal__accordion}
+                defaultChecked={isLocation}
                 title={"Manzil"}
                 items={locations}
                 onClick={getSelectedLocations}
             />
             <Accordion
-                // defaultChecked={isLanguages}
+                onDisActive={onClearLanguages}
+                extraClass={cls.filterModal__accordion}
+                defaultChecked={isLanguages}
                 title={"Til"}
                 items={languages}
                 onClick={getSelectedLanguages}

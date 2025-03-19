@@ -21,6 +21,9 @@ import {registerThunk} from "../model/registerThunk";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {IRegister} from "entities/register/model/registerSchema";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
+import {fetchLocationsData, getLocationsData} from "entities/oftenUsed";
+import {useSelector} from "react-redux";
+import {Select} from "shared/ui/select";
 
 interface IdentificationRegProps {
     index?: number | any;
@@ -41,13 +44,21 @@ const reducers: ReducersList = {
 }
 
 export const Register = () => {
+
+    const regions = useSelector(getLocationsData)
+    const [region, setRegion] = useState()
+
     const {register, handleSubmit, control} = useForm<IRegister>()
     const navigate = useNavigate();
     const size = useWindowSize();
     const [layout, setLayout] = useState<boolean>(false);
     const [index, setIndex] = useState(1);
-    const totalSteps = 2;
+    const totalSteps = 3;
     const dispatch = useAppDispatch()
+
+    useEffect(() => {
+        dispatch(fetchLocationsData())
+    }, [])
 
     const pages = [
         {
@@ -58,10 +69,10 @@ export const Register = () => {
           id: 1,
           name: <PCRegister index={index} setIndex={setIndex} totalSteps={totalSteps}/>
         },
-        // {
-        //     id: 2,
-        //     name: <IdentificationReg index={index} setIndex={setIndex} totalSteps={totalSteps} layout={layout} setLayout={setLayout}/>
-        // },
+        {
+            id: 2,
+            name: <IdentificationReg index={index} setIndex={setIndex} totalSteps={totalSteps} layout={layout} setLayout={setLayout}/>
+        },
         {
             id: 3,
             name: <Identify index={index} setIndex={setIndex} totalSteps={totalSteps}/>
@@ -75,8 +86,12 @@ export const Register = () => {
     }, [size, layout]);
 
     const onHandle: SubmitHandler<IRegister> = (data) => {
-        dispatch(registerThunk(data))
-        navigate('/identify');
+        const res = {
+            region,
+            ...data
+        }
+        dispatch(registerThunk(res))
+        navigate('/login');
     };
 
 
@@ -116,9 +131,14 @@ export const Register = () => {
                                             name={"phone"}
                                             control={control}
                                         />
+                                        <Select
+                                            title={"Region"}
+                                            optionsData={regions}
+                                            setSelectOption={setRegion}
+                                        />
                                         <Input register={register} extraClass={cls.container__content__login__form__input} title={"Parol"} placeholder={"Parol"} name={"password"} type={"password"} />
                                         <Button extraClass={cls.container__content__login__form__button}>
-                                            Ro'yxatdan o'tish
+                                            Kirish
                                         </Button>
                                     </Form>
                                 </div>
@@ -138,16 +158,17 @@ const PCRegister = (props: IdentificationRegProps) => {
     const navigate = useNavigate()
     const {index, totalSteps, setIndex} = props
 
+    const regions = useSelector(getLocationsData)
+    const [region, setRegion] = useState()
+
     const onHandle: SubmitHandler<IRegister> = (data) => {
-        dispatch(registerThunk(data))
-        if (index < totalSteps) setIndex(index + 1);
-        // navigate('/login');
+        const res = {
+            region,
+            ...data
+        }
+        dispatch(registerThunk(res))
+        navigate('/login');
     };
-    // const nextStep = (e: React.FormEvent) => {
-    //     e.preventDefault()
-    //
-    //     if (index < totalSteps) setIndex(index + 1);
-    // };
 
     return(
         <div className={cls.register}>
@@ -165,9 +186,14 @@ const PCRegister = (props: IdentificationRegProps) => {
                         name={"phone"}
                         control={control}
                     />
+                    <Select
+                        title={"Region"}
+                        optionsData={regions}
+                        setSelectOption={setRegion}
+                    />
                     <Input register={register} extraClass={cls.register__arounder__form__input} title={"Parol"} placeholder={"Parol"} name={"password"} type={"password"} />
-                    <Button extraClass={cls.register__arounder__form__button}>
-                        Ro'yxatdan o'tish
+                    <Button  extraClass={cls.register__arounder__form__button}>
+                        Kirish
                     </Button>
                 </Form>
             </div>

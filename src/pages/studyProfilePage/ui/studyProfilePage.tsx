@@ -13,6 +13,7 @@ import {Loader} from "shared/ui/loader";
 import {useSelector} from "react-redux";
 import {getStudyProfileLoading} from "entities/studyProfile/model/studyProfileSelector";
 import {getUserId} from "entities/user";
+import {alertAction} from "entities/alert";
 
 const reducers: ReducersList = {
     studyProfileSlice: studyProfileReducer
@@ -38,7 +39,13 @@ export const StudyProfilePage = () => {
             body: JSON.stringify({landing: id, user: userId}),
             headers: headers()
         })
-            .then(res => console.log(res))
+            .then(res => {
+                dispatch(alertAction.onAddAlertOptions({
+                    type: "success",
+                    status: true,
+                    msg: res.msg
+                }))
+            })
     }
 
     if (loading) return <Loader/>

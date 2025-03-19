@@ -13,15 +13,24 @@ interface AccordionProps {
     items: AccordionItem[];
     onClick: (arg: number[]) => void;
     defaultChecked?: number[];
+    extraClass?: string;
+    onDisActive?: (arg: number) => void;
 }
 
-export const Accordion: React.FC<AccordionProps> = ({title, items, onClick, defaultChecked}) => {
+export const Accordion: React.FC<AccordionProps> = ({
+                                                        title,
+                                                        items,
+                                                        onClick,
+                                                        defaultChecked,
+                                                        extraClass,
+                                                        onDisActive
+                                                    }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedItems, setSelectedItems] = useState<number[]>([])
     const contentRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        if (defaultChecked){
+        if (defaultChecked) {
             setSelectedItems(defaultChecked)
         }
     }, [defaultChecked])
@@ -33,19 +42,23 @@ export const Accordion: React.FC<AccordionProps> = ({title, items, onClick, defa
     const onHandleItem = (id: number) => {
         setSelectedItems(prevState =>
             prevState.includes(id)
-                ? prevState.filter(item => item !== id)
+                ? onDelete(prevState, id)
                 : [...prevState, id]
         )
+    }
+
+    const onDelete = (arr: number[], number: number) => {
+        if (onDisActive)
+            onDisActive(number)
+        return arr.filter(item => item !== number)
     }
 
     const toggleOpen = () => {
         setIsOpen(!isOpen);
     };
 
-    console.log(items, "items")
-
     return (
-        <div className={cls.accordion}>
+        <div className={classNames(cls.accordion, extraClass)}>
             <div className={cls.header} onClick={toggleOpen}>
                 <h4 className={cls.title}>{title}</h4>
                 <span className={classNames(cls.arrow, {[cls.open]: isOpen})}>

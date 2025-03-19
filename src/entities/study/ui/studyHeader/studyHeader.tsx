@@ -13,7 +13,6 @@ export const StudyHeader = () => {
     const organizationTypes = useSelector(getOrganizationTypes)
 
     const renderLinks = () => {
-        console.log(organizationTypes, "organizationTypes")
         return organizationTypes?.map(item => {
             return (
                 <NavLink

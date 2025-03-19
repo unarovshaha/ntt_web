@@ -8,7 +8,8 @@ import {IFilterSchema} from "features/filter";
 import {IStudyProfileSchema} from "entities/studyProfile";
 import {IApplicationSchema} from "entities/application";
 import {INotificationSchema} from "entities/notification";
-import {IAlertState} from "features/alert/model/slice/alertSlice";
+import {IAlertState} from "entities/alert";
+import {IHomeNewsSchema, IHomeSchema} from "entities/home";
 
 export interface StateSchema {
 
@@ -21,7 +22,9 @@ export interface StateSchema {
     studyProfileSlice?: IStudyProfileSchema;
     applicationSlice?: IApplicationSchema;
     notificationSlice?: INotificationSchema;
-    AlertSlice?: IAlertState
+    alertSlice?: IAlertState;
+    homeSlice?: IHomeSchema;
+    homeNewsSlice?: IHomeNewsSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

@@ -15,7 +15,9 @@ export const ApplicationList = () => {
     const renderList = () => {
         return data?.map((item, index) => {
             return (
-                <tr>
+                <tr
+                    onClick={() => navigate(`profile/${item.id}`)}
+                >
                     <td>{index + 1}</td>
                     {
                         window.innerWidth <= 430 ? <td>
@@ -31,7 +33,6 @@ export const ApplicationList = () => {
                     }
                     <td>
                         <div
-                            onClick={() => navigate(`profile/${item.id}`)}
                             className={cls.list__more}
                         >
                             Batafsil
