@@ -1,15 +1,24 @@
 import {Link} from "react-router";
-import React from "react";
+import React, {useEffect} from "react";
 import {useSelector} from "react-redux";
-import {getNotificationData} from "entities/notification";
+import {fetchNotificationData, getNotificationData} from "entities/notification";
 
 import cls from "./notification.module.sass"
 import {Input} from "shared/ui/input";
 
 import img from "shared/assets/icons/Group 7.svg"
+import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 
 export const Notification = () => {
     const data = useSelector(getNotificationData)
+    const dispatch = useAppDispatch()
+
+
+
+    const student_id = localStorage.getItem("student_id")
+    useEffect(() => {
+        dispatch(fetchNotificationData(Number(student_id)))
+    } , [])
 
     console.log(data)
     return (
@@ -27,7 +36,7 @@ export const Notification = () => {
                                 <img src={img} alt=""/>
                                <div className={cls.notification__list_item_text}>
                                    <h2>{item.name}</h2>
-                                   <h3>{item.descr}</h3>
+                                   <h3 dangerouslySetInnerHTML={{__html: item.grand_text}}></h3>
                                </div>
 
                             </div>
