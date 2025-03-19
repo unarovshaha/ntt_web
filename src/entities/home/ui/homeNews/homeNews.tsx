@@ -21,19 +21,19 @@ export const HomeNewsList = ({item}: IHomeNewsListProps) => {
         return item?.map(item => (
             <div className={cls.box}>
 
-                <div className={cls.box__links}>
-                    <a href={item?.shared?.telegram}>
-                        <i className={"fa-brands fa-telegram"}/>
-                    </a>
-                    <a href={item?.shared?.facebook}>
-                        <i className={"fa-brands fa-facebook"}/>
-                    </a>
-                    <a href={item?.shared?.instagram}>
-                        <i className={"fa-brands fa-instagram"}/>
-                    </a>
+                {/*<div className={cls.box__links}>*/}
+                {/*    <a href={item?.shared?.telegram}>*/}
+                {/*        <i className={"fa-brands fa-telegram"}/>*/}
+                {/*    </a>*/}
+                {/*    <a href={item?.shared?.facebook}>*/}
+                {/*        <i className={"fa-brands fa-facebook"}/>*/}
+                {/*    </a>*/}
+                {/*    <a href={item?.shared?.instagram}>*/}
+                {/*        <i className={"fa-brands fa-instagram"}/>*/}
+                {/*    </a>*/}
 
 
-                </div>
+                {/*</div>*/}
 
 
                 <div className={cls.box__img}>

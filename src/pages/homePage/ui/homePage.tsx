@@ -1,6 +1,6 @@
 import {Outlet, Route, Routes} from "react-router";
 
-import {HomeHeader, HomeNewsProfile, HomePage, OnlineTestEnter} from "entities/home";
+import {HomeHeader, HomeNewsProfile, HomePage, OnlineTestEnter, TechnicalSchool} from "entities/home";
 import {HomeNews, OnlineTestEnterFeature} from "features/homePage";
 
 import cls from "./homePage.module.sass"
@@ -20,7 +20,7 @@ export const Home = () => {
                 <Route path={"news/:id"} element={<HomeNewsProfile/>}/>
                 <Route path={"onlineTest"} element={<OnlineTestEnter/>}/>
                 <Route path={"onlineTest/onlineTestEnter"} element={<OnlineTestEnterFeature/>}/>
-
+                <Route path={"technicSchools"} element={<TechnicalSchool/>}/>
             </Routes>
 
         </div>

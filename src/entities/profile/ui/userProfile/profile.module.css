@@ -1,22 +1,27 @@
 .container {
   width: 100%;
   display: flex;
-  align-items: center;
   flex-direction: column;
   gap: 3rem;
 }
 .container__arounder {
-  width: 40%;
+  width: 75%;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 5rem;
   align-items: center;
-  justify-content: space-between;
 }
-.container__arounder__input {
-  width: 60rem;
-  background: #E0E4EC;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+.container__arounder > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 3rem;
+}
+.container__arounder > div > label {
+  width: 50rem !important;
+}
+.container__arounder button {
+  align-self: flex-end !important;
 }
 .container__box {
   width: 100%;

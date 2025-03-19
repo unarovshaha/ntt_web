@@ -47,6 +47,7 @@ export const Register = () => {
 
     const regions = useSelector(getLocationsData)
     const [region, setRegion] = useState()
+    console.log(region, 'efef')
 
     const {register, handleSubmit, control} = useForm<IRegister>()
     const navigate = useNavigate();
@@ -132,6 +133,7 @@ export const Register = () => {
                                             control={control}
                                         />
                                         <Select
+                                            selectOption={region}
                                             title={"Region"}
                                             optionsData={regions}
                                             setSelectOption={setRegion}
@@ -159,8 +161,9 @@ const PCRegister = (props: IdentificationRegProps) => {
     const {index, totalSteps, setIndex} = props
 
     const regions = useSelector(getLocationsData)
-    const [region, setRegion] = useState()
 
+    const [region, setRegion] = useState()
+    console.log(region, 'eeff')
     const onHandle: SubmitHandler<IRegister> = (data) => {
         const res = {
             region,
@@ -190,6 +193,7 @@ const PCRegister = (props: IdentificationRegProps) => {
                         control={control}
                     />
                     <Select
+                        selectOption={region}
                         title={"Region"}
                         optionsData={regions}
                         setSelectOption={setRegion}
