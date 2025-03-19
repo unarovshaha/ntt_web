@@ -7,12 +7,13 @@ import {userActions} from "entities/user/model/userSlice";
 interface RefreshProps {
     refresh: string | null;
 }
+
 export const fetchRefresh = createAsyncThunk<
     void,
     RefreshProps,
     ThunkConfig<string>
 >("user/fetchRefresh", async (data, thunkApi) => {
-    const { extra, dispatch, rejectWithValue } = thunkApi;
+    const {extra, dispatch, rejectWithValue} = thunkApi;
     try {
         const response = await extra.api({
             url: `token/refresh/`,
@@ -32,11 +33,12 @@ export const fetchRefresh = createAsyncThunk<
             USER_LOCALSTORAGE_REFRESH_TOKEN,
             response.refresh,
         );
+        localStorage.setItem("student_id", response.student_id)
         dispatch(userActions.setAuthData(response))
 
         return response
 
     } catch (e) {
-        return  rejectWithValue("error")
+        return rejectWithValue("error")
     }
 })

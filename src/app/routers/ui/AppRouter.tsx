@@ -57,10 +57,11 @@ export const AppRouter = () => {
                 </Route>
 
 
-                {/*<Route*/}
-                {/*    index*/}
-                {/*    element={<Navigate to={"platform"}/>}*/}
-                {/*/>*/}
+
+                <Route
+                    index
+                    element={<Navigate to={"login"}/>}
+                />
             </>
         )
     );
