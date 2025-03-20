@@ -1,7 +1,6 @@
 import React from 'react';
 import cls from "./switch.module.sass";
 
-// Define the interface for Switch component props
 interface SwitchProps {
     disabled?: boolean;
     activeSwitch: boolean;
