@@ -3,14 +3,18 @@ import cls from './technicalSchool.module.sass'
 import univerImg from "shared/assets/images/Ellipse 118.png"
 import {Switch} from "shared/ui/switch";
 import {TechnicalSchoolFilter} from "features/filter";
+import {useNavigate} from "react-router-dom";
 export const TechnicalSchool = () => {
 
-
+    const navigate = useNavigate()
 
     return (
         <div className={cls.main}>
             <TechnicalSchoolFilter/>
-            <div className={cls.profile__footer_container_box}>
+            <div
+                onClick={() => navigate("profile/1")}
+                className={cls.profile__footer_container_box}
+            >
 
                 <div className={cls.profile__footer_container_box_header}>
                     <img src={univerImg} alt=""/>

@@ -119,7 +119,24 @@
 
 @media (max-width: 430px)
   .gallery
+    .info
+      display: none
     .galleryInner
+      justify-content: center
       &__item
         width: 16rem
         height: 16rem
+
+@media (max-width: 375px)
+  .gallery
+    .galleryInner
+      &__item
+        width: 15rem
+
+@media (max-width: 320px)
+  .gallery
+    .galleryInner
+      &__item
+        width: 12rem
+        height: 12rem
+

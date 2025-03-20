@@ -1,8 +1,9 @@
 import React from 'react';
 
+import {Button} from "shared/ui/button";
+
 import cls from "./newProfileDirection.module.sass";
 import image from "shared/assets/images/Ellipse 118.png";
-import {Button} from "shared/ui/button";
 
 export const NewProfileDirection = () => {
     return (

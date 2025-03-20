@@ -19,11 +19,11 @@ export const Home = () => {
                         <HomeNews/>
                     </div>}
                 />
-                <Route path={"profile/*"} element={<NewProfile/>}/>
                 <Route path={"news/:id"} element={<HomeNewsProfile/>}/>
                 <Route path={"onlineTest"} element={<OnlineTestEnter/>}/>
                 <Route path={"onlineTest/onlineTestEnter"} element={<OnlineTestEnterFeature/>}/>
                 <Route path={"technicSchools"} element={<TechnicalSchool/>}/>
+                <Route path={"technicSchools/profile/:id/*"} element={<NewProfile/>}/>
             </Routes>
 
         </div>
