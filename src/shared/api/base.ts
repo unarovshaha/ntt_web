@@ -37,7 +37,15 @@ export const headersImg = () => {
         "Authorization": "JWT " + token
     }
 }
-
+export const headersView = () => {
+    const token = sessionStorage.getItem("token")
+    const visitorId = localStorage.getItem("visitorId")
+    return {
+        // "Authorization" : "JWT " + token,
+        'Content-Type': 'application/json',
+        'X-Visitor-ID': visitorId
+    }
+}
 
 export type Methods = 'GET' | 'POST' | 'PUT' | 'DELETE' | "PATCH"
 

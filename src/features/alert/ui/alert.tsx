@@ -22,17 +22,19 @@ interface AlertItemProps {
 }
 
 const reducers: ReducersList = {
-    AlertSlice: alertReducer
+    alertSlice: alertReducer
 
     // userSlice:
 };
 export const Alert: React.FC = () => {
     const alertsData = useSelector(getAlerts);
 
+
     return (
         <DynamicModuleLoader reducers={reducers}>
             <div className={cls.alerts}>
-                {alertsData?.map((alert, index) => (
+                {alertsData?.map((alert: AlertType, index: React.Key | null | undefined) => (
+                    // @ts-ignore
                     <AlertItem key={index} alert={alert} index={index} />
                 ))}
             </div>
