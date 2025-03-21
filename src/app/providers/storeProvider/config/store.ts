@@ -4,7 +4,7 @@ import {oftenUsedReducer} from "entities/oftenUsed";
 import {useHttp} from "shared/api/base";
 import { StateSchema, ThunkExtraArg } from './stateSchema';
 import { createReducerManager } from './reducerManager';
-import {registerReducer} from "../../../../entities/register/model/registerSlice";
+import {registerReducer} from "entities/register/model/registerSlice";
 import {userProfileReducer} from "entities/profile/model/userProfile/userProfileSlice";
 import {userReducer} from "entities/user/model/userSlice";
 

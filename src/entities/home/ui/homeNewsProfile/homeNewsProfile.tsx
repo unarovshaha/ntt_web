@@ -8,7 +8,12 @@ import univerImg from "shared/assets/images/Ellipse 118.png"
 import {useEffect, useState} from "react";
 import {fetchProfileItem} from "entities/home/model/thunk/newsThunk";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
+import {DynamicModuleLoader, ReducersList} from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
+import {homeNewsReducer} from "entities/home/model/slice/homeNewsSlice";
 
+const reducers: ReducersList = {
+    homeNewsSlice: homeNewsReducer
+}
 
 export const HomeNewsProfile = () => {
     const data = useSelector(getHomeNewsProfileItem)
@@ -23,6 +28,7 @@ export const HomeNewsProfile = () => {
         if (id)
             dispatch(fetchProfileItem({id}))
     }, [id])
+    console.log(data, 'efefefefe')
     const renderData = () => {
         return data?.landing?.map(item => (
             <div className={cls.profile__footer_container_box}>
@@ -51,41 +57,44 @@ export const HomeNewsProfile = () => {
     }
 
     return (
-        <div className={cls.profile}>
-            <Button onClick={() => navigate(-1)}>Back</Button>
-            <div className={cls.profile__container}>
-                <div className={cls.profile__container_left}>
-                    <div className={cls.profile__container_left_img}>
-                        <img src={profileImg} alt=""/>
+        <DynamicModuleLoader reducers={reducers}>
+            <div className={cls.profile}>
+                <Button onClick={() => navigate(-1)}>Back</Button>
+                <div className={cls.profile__container}>
+                    <div className={cls.profile__container_left}>
+                        <div className={cls.profile__container_left_img}>
+                            <img src={profileImg} alt=""/>
+                        </div>
+                        <div className={cls.profile__container_left_info}>
+                            O’zbekistonda Oliy Ta’limni 3 tilda olish mumkin.
+                        </div>
                     </div>
-                    <div className={cls.profile__container_left_info}>
-                        O’zbekistonda Oliy Ta’limni 3 tilda olish mumkin.
+                    <div className={cls.profile__container_right}>
+                        <div className={cls.profile__container_right_header}>
+                            Ma’lumotlar
+                        </div>
+                        <div
+                            className={cls.profile__container_right_info}
+                            dangerouslySetInnerHTML={{__html: data ? data?.desc_json?.text : ""}}
+                        >
+
+                        </div>
                     </div>
                 </div>
-                <div className={cls.profile__container_right}>
-                    <div className={cls.profile__container_right_header}>
-                        Ma’lumotlar
-                    </div>
-                    <div
-                        className={cls.profile__container_right_info}
-                        dangerouslySetInnerHTML={{__html: data ? data?.desc_json?.text : ""}}
-                    >
 
+                <div className={cls.profile__footer}>
+
+                    <div className={cls.profile__footer_title}>
+                        E’lonlar
                     </div>
+                    <div className={cls.profile__footer_container}>
+                        {renderData()}
+                    </div>
+
                 </div>
             </div>
+        </DynamicModuleLoader>
 
-            <div className={cls.profile__footer}>
-
-                <div className={cls.profile__footer_title}>
-                    E’lonlar
-                </div>
-                <div className={cls.profile__footer_container}>
-                    {renderData()}
-                </div>
-
-            </div>
-        </div>
 
 
     );

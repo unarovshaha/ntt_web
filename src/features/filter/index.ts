@@ -6,7 +6,7 @@ export {SchoolFilter} from "./ui/schoolFilter/schoolFilter";
 export {SchoolFilterModal} from "./ui/schoolFilter/schoolFilterModal";
 export {OtmSecondFilter} from "./ui/otmSecondFilter/otmSecondFilter";
 export {OtmSecondFilterModal} from "./ui/otmSecondFilter/otmSecondFilterModal";
-
+export {TechnicalSchoolFilter} from './ui/technicalSchoolFilter/technicalSchoolFilter'
 export {} from "./model/filterSelector";
 export type {IFilterSchema} from "./model/filterSchema";
 export {filterReducer, filterActions} from "./model/filterSlice";

@@ -1,12 +1,18 @@
 import cls from "./homeNews.module.sass";
 import { useSelector } from "react-redux";
-import { getHomeNews, HomeNewsList } from "entities/home";
+import {getHomeNews, HomeNewsList, homeNewsReducer} from "entities/home";
 import { useEffect } from "react";
 import { fetchNews } from "entities/home/model/thunk/newsThunk";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
+import {DynamicModuleLoader, ReducersList} from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
+
+const reducers: ReducersList = {
+    homeNewsSlice: homeNewsReducer
+}
 
 export const HomeNews = () => {
     const homeNewsData = useSelector(getHomeNews);
+    console.log(homeNewsData, 'efef')
     const dispatch = useAppDispatch();
 
     useEffect(() => {
@@ -42,14 +48,18 @@ export const HomeNews = () => {
     }, []);
 
     return (
-        <div className={cls.news}>
-            <div className={cls.news__header}>
-                <h1>So’ngi yangiliklar % Trendlar</h1>
-                <h3>Hamasini ko’rish</h3>
+        <DynamicModuleLoader reducers={reducers}>
+
+            <div className={cls.news}>
+                <div className={cls.news__header}>
+                    <h1>So’ngi yangiliklar % Trendlar</h1>
+                    <h3>Hamasini ko’rish</h3>
+                </div>
+                <div className={cls.news__list}>
+                    <HomeNewsList item={homeNewsData} />
+                </div>
             </div>
-            <div className={cls.news__list}>
-                <HomeNewsList item={homeNewsData} />
-            </div>
-        </div>
+        </DynamicModuleLoader>
+
     );
 };

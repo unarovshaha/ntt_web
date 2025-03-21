@@ -40,7 +40,6 @@ const userSlice = createSlice({
             state.surname = action.payload.surname
             state.born_date = action.payload.born_date
             state.email = action.payload.email
-
             state.student_id = action.payload.student_id
         }
 

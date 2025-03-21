@@ -1,0 +1,81 @@
+.card
+  padding: 16px
+
+.header
+  display: flex
+  justify-content: space-between
+  align-items: center
+  margin-bottom: 16px
+
+.title
+  font-size: 18px
+  font-weight: 600
+  margin: 0
+
+.clearButton
+  background: #ff4d4f
+  color: #fff
+  border: none
+  border-radius: 16px
+  padding: 4px 12px
+  cursor: pointer
+  font-size: 14px
+  transition: background 0.3s
+
+  &:hover
+    background: #ff7875
+
+.content
+  display: flex
+  flex-direction: column
+  gap: 8px
+
+.label
+  font-size: 14px
+  font-weight: 500
+  margin: 0
+
+.rangeValues
+  display: flex
+  justify-content: space-between
+  font-size: 14px
+  color: #333
+
+.rangeSlider
+  position: relative
+
+.sliders
+  width: 50%
+  -webkit-appearance: none
+  height: 4px
+  background: #d3d3d3
+  outline: none
+  position: absolute
+  top: 0
+  left: 0
+.slider
+  width: 50%
+  -webkit-appearance: none
+  height: 4px
+  background: #d3d3d3
+  outline: none
+  position: absolute
+  top: 0
+  right: 0
+
+  &::-webkit-slider-thumb
+    -webkit-appearance: none
+    appearance: none
+    width: 16px
+    height: 16px
+    background: #1890ff
+    border-radius: 50%
+    cursor: pointer
+    z-index: 1
+
+  &::-moz-range-thumb
+    width: 16px
+    height: 16px
+    background: #1890ff
+    border-radius: 50%
+    cursor: pointer

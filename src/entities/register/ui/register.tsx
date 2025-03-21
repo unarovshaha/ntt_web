@@ -47,13 +47,14 @@ export const Register = () => {
 
     const regions = useSelector(getLocationsData)
     const [region, setRegion] = useState()
+    console.log(region, 'efef')
 
     const {register, handleSubmit, control} = useForm<IRegister>()
     const navigate = useNavigate();
     const size = useWindowSize();
     const [layout, setLayout] = useState<boolean>(false);
     const [index, setIndex] = useState(1);
-    const totalSteps = 3;
+    const totalSteps = 2;
     const dispatch = useAppDispatch()
 
     useEffect(() => {
@@ -69,10 +70,10 @@ export const Register = () => {
           id: 1,
           name: <PCRegister index={index} setIndex={setIndex} totalSteps={totalSteps}/>
         },
-        {
-            id: 2,
-            name: <IdentificationReg index={index} setIndex={setIndex} totalSteps={totalSteps} layout={layout} setLayout={setLayout}/>
-        },
+        // {
+        //     id: 2,
+        //     name: <IdentificationReg index={index} setIndex={setIndex} totalSteps={totalSteps} layout={layout} setLayout={setLayout}/>
+        // },
         {
             id: 3,
             name: <Identify index={index} setIndex={setIndex} totalSteps={totalSteps}/>
@@ -132,13 +133,14 @@ export const Register = () => {
                                             control={control}
                                         />
                                         <Select
+                                            selectOption={region}
                                             title={"Region"}
                                             optionsData={regions}
                                             setSelectOption={setRegion}
                                         />
                                         <Input register={register} extraClass={cls.container__content__login__form__input} title={"Parol"} placeholder={"Parol"} name={"password"} type={"password"} />
                                         <Button extraClass={cls.container__content__login__form__button}>
-                                            Kirish
+                                            Ro'yxatdan o'tish
                                         </Button>
                                     </Form>
                                 </div>
@@ -159,8 +161,9 @@ const PCRegister = (props: IdentificationRegProps) => {
     const {index, totalSteps, setIndex} = props
 
     const regions = useSelector(getLocationsData)
-    const [region, setRegion] = useState()
 
+    const [region, setRegion] = useState()
+    console.log(region, 'eeff')
     const onHandle: SubmitHandler<IRegister> = (data) => {
         const res = {
             region,
@@ -168,6 +171,9 @@ const PCRegister = (props: IdentificationRegProps) => {
         }
         dispatch(registerThunk(res))
         navigate('/login');
+        dispatch(registerThunk(data))
+        if (index < totalSteps) setIndex(index + 1);
+        // navigate('/login');
     };
 
     return(
@@ -187,13 +193,14 @@ const PCRegister = (props: IdentificationRegProps) => {
                         control={control}
                     />
                     <Select
+                        selectOption={region}
                         title={"Region"}
                         optionsData={regions}
                         setSelectOption={setRegion}
                     />
                     <Input register={register} extraClass={cls.register__arounder__form__input} title={"Parol"} placeholder={"Parol"} name={"password"} type={"password"} />
-                    <Button  extraClass={cls.register__arounder__form__button}>
-                        Kirish
+                    <Button extraClass={cls.register__arounder__form__button}>
+                        Ro'yxatdan o'tish
                     </Button>
                 </Form>
             </div>

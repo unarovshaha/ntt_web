@@ -1,28 +1,47 @@
 .notification {
-  width: fit-content;
-  max-width: 34rem;
-  border: 1px solid #D1D1D6;
-  border-radius: 0.8rem;
-  padding: 1rem 1.5rem;
+  width: 100%;
+  border-radius: 10px;
+  height: calc(100vh - 15rem);
+  background-color: rgb(239, 239, 239);
+  position: relative;
+}
+.notification__box {
   display: flex;
   flex-direction: column;
-  gap: 0.7rem;
+  gap: 1rem;
+  height: calc(100vh - 15rem);
+  overflow: auto;
+  padding: 2rem;
 }
-.notification__title {
-  color: #2D2D2D;
+.notification__box_item {
+  width: fit-content;
+  min-width: 30rem;
   font-size: 1.6rem;
+  background-color: rgba(192, 169, 169, 0.24);
+  padding: 1rem;
+  border-radius: 10px;
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  flex-direction: column;
+  gap: 0.1rem;
+  backdrop-filter: blur(5px);
+}
+.notification__box_item_time {
+  font-size: 1.3rem;
+  align-self: flex-end;
+  color: rgb(0, 74, 173);
 }
 .notification__text {
-  font-size: 1.4rem;
-  color: #929292;
+  padding: 2rem;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.notification__date {
-  font-size: 1.2rem;
-  color: #2561FA;
-  align-self: flex-end;
+.notification__text_item {
+  background-color: #FFFFFF;
+  width: 100% !important;
 }
 
 /*# sourceMappingURL=notificationItem.module.css.map */
