@@ -61,6 +61,7 @@ interface Education {
     price: number;
     region: string;
     shift: string;
+    img: string
 }
 export interface IHomeSchema {
     headerItem: HeaderItem[]
