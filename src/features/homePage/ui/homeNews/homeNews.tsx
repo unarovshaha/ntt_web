@@ -6,9 +6,7 @@ import { fetchNews } from "entities/home/model/thunk/newsThunk";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import {DynamicModuleLoader, ReducersList} from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
 
-const reducers: ReducersList = {
-    homeNewsSlice: homeNewsReducer
-}
+
 
 export const HomeNews = () => {
     const homeNewsData = useSelector(getHomeNews);
@@ -20,7 +18,7 @@ export const HomeNews = () => {
     }, [dispatch]);
 
     useEffect(() => {
-        document.title = "So’ngi yangiliklar % Trendlar";
+        document.title = `So’ngi yangiliklar  Trendlar`;
 
         const metaTags = [
             { name: "charset", content: "UTF-8" },
@@ -48,18 +46,18 @@ export const HomeNews = () => {
     }, []);
 
     return (
-        <DynamicModuleLoader reducers={reducers}>
+
 
             <div className={cls.news}>
                 <div className={cls.news__header}>
-                    <h1>So’ngi yangiliklar % Trendlar</h1>
+                    <h1>So’ngi yangiliklar  Trendlar</h1>
                     <h3>Hamasini ko’rish</h3>
                 </div>
                 <div className={cls.news__list}>
                     <HomeNewsList item={homeNewsData} />
                 </div>
             </div>
-        </DynamicModuleLoader>
+
 
     );
 };

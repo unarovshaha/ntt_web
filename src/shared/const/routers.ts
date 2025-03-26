@@ -19,4 +19,5 @@ export const getNotificationPageRoute = (id?: number) => `personal/userNotificat
 export const getStudyPageRoute = (id?: string) => `study/${id}`
 export const getStudyProfilePageRoute = (id?: string) => `study/:id/profile/${id}`
 // export const getPersonalApplicationPageRoute = () => `perApplication`
+export const getPersonalApplicationPageRoute = () => `perApplication`
 export const getNotificationListPageRoute = () => `notification/*`

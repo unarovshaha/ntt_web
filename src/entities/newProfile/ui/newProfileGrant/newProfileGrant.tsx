@@ -2,8 +2,12 @@ import React from 'react';
 
 import cls from "./newProfileGrant.module.sass";
 import image from "shared/assets/images/Rectangle 640.png";
+import {useSelector} from "react-redux";
+import {getHomeProfileGallery, getHomeProfileLanding} from "entities/home/model/selector/homeSelector";
 
 export const NewProfileGrant = () => {
+
+    const data = useSelector(getHomeProfileLanding)
     return (
         <div className={cls.grant}>
             <div className={cls.info}>
@@ -52,21 +56,8 @@ export const NewProfileGrant = () => {
                 </div>
             </div>
             <div className={cls.grant__container}>
-                <img className={cls.image} src={image} alt=""/>
-                <p className={cls.text}>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                    industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
-                    and scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-                    leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s
-                    with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
-                    publishing software like Aldus PageMaker including versions of Lorem IpsumLorem Ipsum is simply
-                    dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard
-                    dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
-                    make a type specimen book. It has survived not only five centuries, but also the leap into
-                    electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
-                    release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
-                    publishing software like Aldus PageMaker including versions of Lorem Ipsum
-                </p>
+                {/*<img className={cls.image} src={image} alt=""/>*/}
+                {data ?    <p className={cls.text} dangerouslySetInnerHTML={{__html: data[0]?.grand}}></p> : ""}
             </div>
         </div>
     );
