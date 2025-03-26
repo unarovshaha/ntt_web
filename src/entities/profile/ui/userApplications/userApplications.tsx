@@ -10,8 +10,8 @@ import {useWindowSize} from "@react-hook/window-size";
 const listData = [
     {id: "allRequest", label: "Hamma ariza"},
     {id: "newRequest", label: "Yangi ariza"},
-    {id: "acceptRequest", label: "Qabul qilingan"},
-    {id: "rejectRequest", label: "Rad etilgan"},
+    {id: "acceptedRequest", label: "Qabul qilingan"},
+    {id: "rejectedRequest", label: "Rad etilgan"},
     {id: "returnRequest", label: "Tahrirlashga qaytarilgan"},
     {id: "invitedRequest", label: "Imtihonga chaqirilgan"}
 ]

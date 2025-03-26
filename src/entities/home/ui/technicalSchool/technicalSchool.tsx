@@ -27,7 +27,10 @@ export const TechnicalSchool = ({item} : {item : HeaderItem}) => {
             <TechnicalSchoolFilter item={item}/>
             {data?.map(item => (
                 <div
-                    onClick={() => navigate(`profile/${item.id}/about`)}
+                    onClick={() => {
+                        navigate(`profile/${item.id}/about`)
+                        localStorage.setItem("organizationID" , String(item.id))
+                    }}
                     className={cls.profile__footer_container_box}
                 >
 

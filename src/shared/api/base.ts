@@ -1,7 +1,8 @@
-export const API_URL_DOC = `http://192.168.1.112:8001/`
-// export const API_URL_DOC = `https://ntt.avotra.ru/`
-// export const API_URL_DOC = `http://176.221.28.164/`
-// export const API_URL_DOC = `http://26.12.122.72/`
+// export const API_URL_DOC = `http://192.168.1.112:8001/`
+export const API_URL_DOC = `https://ntt.avotra.ru/`
+// export const API_URL_DOC = `http://26.12.122.72:8001/`
+// export const API_URL_DOC_IMG = `http://192.168.1.112:8001`
+export const API_URL_DOC_IMG = `https://ntt.avotra.ru/`
 export const API_URL: string = `${API_URL_DOC}api/`
 
 
@@ -25,6 +26,19 @@ export const header = () => {
     }
 }
 
+export const headerImg = () => {
+    return {
+        "Authorization": ""
+    }
+}
+
+
+export const headersImg = () => {
+    const token = sessionStorage.getItem("token")
+    return {
+        "Authorization": "JWT " + token
+    }
+}
 export const headersView = () => {
     const token = sessionStorage.getItem("token")
     const visitorId = localStorage.getItem("visitorId")

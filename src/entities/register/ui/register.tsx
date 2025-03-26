@@ -47,8 +47,8 @@ export const Register = () => {
 
     const regions = useSelector(getLocationsData)
     const [region, setRegion] = useState()
-    console.log(region, 'efef')
 
+    const landing = localStorage.getItem("landingId")
     const {register, handleSubmit, control} = useForm<IRegister>()
     const navigate = useNavigate();
     const size = useWindowSize();
@@ -63,12 +63,12 @@ export const Register = () => {
 
     const pages = [
         {
-            id:4,
+            id: 4,
             name: <PCRegister/> // prosta yozilgan bu )
         },
         {
-          id: 1,
-          name: <PCRegister index={index} setIndex={setIndex} totalSteps={totalSteps}/>
+            id: 1,
+            name: <PCRegister index={index} setIndex={setIndex} totalSteps={totalSteps}/>
         },
         // {
         //     id: 2,
@@ -86,10 +86,14 @@ export const Register = () => {
         }
     }, [size, layout]);
 
+    console.log(region)
     const onHandle: SubmitHandler<IRegister> = (data) => {
+
+
         const res = {
             region,
-            ...data
+            ...data,
+            landing: landing ? landing : " "
         }
         dispatch(registerThunk(res))
         navigate('/login');
@@ -103,7 +107,7 @@ export const Register = () => {
                     layout ? (
                         <div className={cls.pcContainer}>
                             <div className={cls.pcContainer__section}>
-                                <StepProgress currentStep={index} totalSteps={totalSteps} />
+                                <StepProgress currentStep={index} totalSteps={totalSteps}/>
                                 <AnimatePresence mode="wait">
                                     <motion.div
                                         key={pages[index].id}
@@ -111,7 +115,13 @@ export const Register = () => {
                                         initial="initial"
                                         animate="animate"
                                         exit="exit"
-                                        style={{marginTop: "5%", width: "100%", maxWidth: "100rem", display: 'flex', alignItems: 'start'}}
+                                        style={{
+                                            marginTop: "5%",
+                                            width: "100%",
+                                            maxWidth: "100rem",
+                                            display: 'flex',
+                                            alignItems: 'start'
+                                        }}
                                     >
                                         <Box extraClass={cls.pcContainer__section__box}>{pages[index].name}</Box>
                                     </motion.div>
@@ -124,7 +134,8 @@ export const Register = () => {
                                 <div className={cls.container__content__login}>
                                     <h2>Ro'yxatdan o'tish</h2>
                                     <p>Ro’yhatdan o’tish uchun ma’lumotlaringizni kiriting</p>
-                                    <Form onSubmit={handleSubmit(onHandle)} extraClass={cls.container__content__login__form}>
+                                    <Form onSubmit={handleSubmit(onHandle)}
+                                          extraClass={cls.container__content__login__form}>
                                         <Input
                                             extraType={"phone"}
                                             extraClass={cls.container__content__login__form__input}
@@ -138,7 +149,9 @@ export const Register = () => {
                                             optionsData={regions}
                                             setSelectOption={setRegion}
                                         />
-                                        <Input register={register} extraClass={cls.container__content__login__form__input} title={"Parol"} placeholder={"Parol"} name={"password"} type={"password"} />
+                                        <Input register={register}
+                                               extraClass={cls.container__content__login__form__input} title={"Parol"}
+                                               placeholder={"Parol"} name={"password"} type={"password"}/>
                                         <Button extraClass={cls.container__content__login__form__button}>
                                             Ro'yxatdan o'tish
                                         </Button>
@@ -161,29 +174,33 @@ const PCRegister = (props: IdentificationRegProps) => {
     const {index, totalSteps, setIndex} = props
 
     const regions = useSelector(getLocationsData)
+    const orgId = localStorage.getItem("organizationID")
+    const landing = localStorage.getItem("landingId")
 
     const [region, setRegion] = useState()
     console.log(region, 'eeff')
     const onHandle: SubmitHandler<IRegister> = (data) => {
         const res = {
             region,
-            ...data
+            ...data,
+            organizationID: orgId ? orgId : " ",
+            landing: landing ? landing : " "
         }
         dispatch(registerThunk(res))
         navigate('/login');
-        dispatch(registerThunk(data))
-        if (index < totalSteps) setIndex(index + 1);
+        // dispatch(registerThunk(data))
+        // if (index < totalSteps) setIndex(index + 1);
         // navigate('/login');
     };
 
-    return(
+    return (
         <div className={cls.register}>
             <div className={cls.register__img}>
                 <img src={registerImg} alt=""/>
             </div>
             <div className={cls.register__arounder}>
                 <img src={blueLogo} alt=""/>
-                <h1>Ro'yxatdan o'tish</h1>
+                <h1>Ro'yxatdan o'tish </h1>
                 <Form onSubmit={handleSubmit(onHandle)} extraClass={cls.register__arounder__form}>
                     <Input
                         extraType={"phone"}
@@ -198,7 +215,8 @@ const PCRegister = (props: IdentificationRegProps) => {
                         optionsData={regions}
                         setSelectOption={setRegion}
                     />
-                    <Input register={register} extraClass={cls.register__arounder__form__input} title={"Parol"} placeholder={"Parol"} name={"password"} type={"password"} />
+                    <Input register={register} extraClass={cls.register__arounder__form__input} title={"Parol"}
+                           placeholder={"Parol"} name={"password"} type={"password"}/>
                     <Button extraClass={cls.register__arounder__form__button}>
                         Ro'yxatdan o'tish
                     </Button>
@@ -265,7 +283,8 @@ export const IdentificationReg = (props: IdentificationRegProps) => {
                                         title={"Passport yoki ID karta seriya raqami"}
                                         name={"passport"}
                                     />
-                                    <Input type={"date"} extraClass={cls.container__content__login__form__input} title={"Tug’ulgan kun"} name={"date"} />
+                                    <Input type={"date"} extraClass={cls.container__content__login__form__input}
+                                           title={"Tug’ulgan kun"} name={"date"}/>
                                     <Button onClick={nextStep} extraClass={cls.container__content__login__form__button}>
                                         Davom etish
                                     </Button>
