@@ -42,7 +42,7 @@ export const fetchNews = createAsyncThunk<
             url: `organizations/news/`,
             method: "GET",
             body: null,
-            headers: headers()
+            // headers: headers()
         })
         if (!response) {
             throw new Error()

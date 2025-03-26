@@ -6,10 +6,9 @@ import {TechnicalSchoolFilter} from "features/filter";
 import {useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {getHomeTechnical} from "entities/home/model/selector/homeSelector";
-import {HeaderItem} from "entities/home/model/schema/homeSchema";
 
 
-export const TechnicalSchool = ({item} : {item : HeaderItem}) => {
+export const TechnicalSchool = () => {
 
     const navigate = useNavigate()
 
@@ -24,7 +23,7 @@ export const TechnicalSchool = ({item} : {item : HeaderItem}) => {
     return (
         <div className={cls.main}>
 
-            <TechnicalSchoolFilter item={item}/>
+            <TechnicalSchoolFilter/>
             {data?.map(item => (
                 <div
                     onClick={() => navigate(`profile/${item.id}/about`)}

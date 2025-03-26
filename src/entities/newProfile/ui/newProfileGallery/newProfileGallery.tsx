@@ -2,8 +2,14 @@ import React from 'react';
 
 import cls from "./newProfileGallery.module.sass";
 import image from "shared/assets/images/Rectangle 640.png";
+import {useSelector} from "react-redux";
+import {getHomeProfileGallery} from "entities/home/model/selector/homeSelector";
+import {API_URL, API_URL_DOC_IMG} from "shared/api/base";
+import {c} from "framer-motion/dist/types.d-6pKw1mTI";
 
 export const NewProfileGallery = () => {
+    const data = useSelector(getHomeProfileGallery)
+
     return (
         <div className={cls.gallery}>
             <div className={cls.info}>
@@ -52,24 +58,11 @@ export const NewProfileGallery = () => {
                 </div>
             </div>
             <div className={cls.galleryInner}>
-                <div className={cls.galleryInner__item}>
-                    <img src={image} alt="image"/>
-                </div>
-                <div className={cls.galleryInner__item}>
-                    <img src={image} alt="image"/>
-                </div>
-                <div className={cls.galleryInner__item}>
-                    <img src={image} alt="image"/>
-                </div>
-                <div className={cls.galleryInner__item}>
-                    <img src={image} alt="image"/>
-                </div>
-                <div className={cls.galleryInner__item}>
-                    <img src={image} alt="image"/>
-                </div>
-                <div className={cls.galleryInner__item}>
-                    <img src={image} alt="image"/>
-                </div>
+                {data?.map(item => (
+                    <div className={cls.galleryInner__item}>
+                        <img src={`${API_URL_DOC_IMG}${item.file}`} alt=""/>
+                    </div>
+                ))}
             </div>
         </div>
     );

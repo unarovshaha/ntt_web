@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import cls from "./newProfileHeader.module.sass";
 import {NavLink} from "react-router-dom";
@@ -17,18 +17,24 @@ export const NewProfileHeader = () => {
 
     const {id} = useParams()
 
+    const [active, setActive] = useState(list[0].to)
+    const pathname = localStorage.getItem("pathname")
+
     const renderLinks = () => {
         return list?.map(item => {
             if (item.to === "personal" && window.innerWidth > 430) return null
             return (
                 <NavLink
+                    onClick={() => {
+                        setActive(item.to)
+                    }}
                     className={({isActive}) =>
                         classNames(cls.header__item, {
-                            [cls.active]: isActive
+                            [cls.active]: active === item.to
                         })
                     }
-                    // to={`/technicSchools/profile/${id}/${item.to}`}
-                    to={`/technicSchools/profile/1/${item.to}`}
+                    to={`/${pathname}/profile/${id}/${item.to}`}
+                    // to={`/technicSchools/profile/1/${item.to}`}
                 >
                     {item.label}
                 </NavLink>

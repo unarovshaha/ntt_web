@@ -2,21 +2,24 @@ import React from 'react';
 
 import cls from "./newProfileAbout.module.sass";
 import image from "shared/assets/images/Rectangle 6648.png";
+import {useSelector} from "react-redux";
+import {getHomeProfileDescription} from "entities/home/model/selector/homeSelector";
 
 export const NewProfileAbout = () => {
+    const data = useSelector(getHomeProfileDescription)
+    console.log(data , "dadsa")
+
     return (
         <div className={cls.about}>
             <img className={cls.about__image} src={image} alt=""/>
             <h1 className={cls.about__title}>
-                Strategic, Operationl, Programme &
-                Financial Planning
+                {/*// @ts-ignore*/}
+
+                {data?.type}
             </h1>
-            <p className={cls.about__text}>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-                scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
-                into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
-                release of Letraset sheets containing Lorem Ipsum.
+            {/*// @ts-ignore*/}
+            <p className={cls.about__text} dangerouslySetInnerHTML={{__html: data?.desc}}>
+
             </p>
         </div>
     );
