@@ -14,3 +14,5 @@ export const getStudyProfileShift = (state: StateSchema) =>
     state.studyProfileSlice?.shift
 export const getStudyProfileLoading = (state:StateSchema) =>
     state.studyProfileSlice?.loading
+export const getStudyProfileGrand = (state: StateSchema) =>
+    state.studyProfileSlice?.grand

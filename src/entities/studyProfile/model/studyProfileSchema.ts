@@ -1,7 +1,7 @@
 
 export interface IStudyProfile {
     id?: number,
-    desc?: string,
+    grand?: string,
     education_language?: string,
     price?: number,
     shift?: string,
