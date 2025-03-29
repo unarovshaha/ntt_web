@@ -72,15 +72,15 @@ export const Range: React.FC<PriceFilterCardProps> = ({
                         onChange={handleMinPriceChange}
                         className={cls.sliders}
                     />
-                    <input
-                        type="range"
-                        name="max"
-                        min={minPrice}
-                        max={maxPrice}
-                        value={priceRange[1]}
-                        onChange={handleMaxPriceChange}
-                        className={cls.slider}
-                    />
+                    {/*<input*/}
+                    {/*    type="range"*/}
+                    {/*    name="max"*/}
+                    {/*    min={minPrice}*/}
+                    {/*    max={maxPrice}*/}
+                    {/*    value={priceRange[1]}*/}
+                    {/*    onChange={handleMaxPriceChange}*/}
+                    {/*    className={cls.slider}*/}
+                    {/*/>*/}
                 </div>
             </div>
         </div>

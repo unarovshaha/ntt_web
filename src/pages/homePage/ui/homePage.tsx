@@ -20,16 +20,7 @@ export const Home = () => {
     const [item, setItem] = useState<HeaderItem>()
 
 
-    const navigate = useNavigate()
-    if (item) {
-        localStorage.setItem("pathname", item.name)
-    }
-    const pathname = localStorage.getItem("pathname")
 
-    // useEffect(() => {
-    //
-    //     navigate(`/`)
-    // }, [pathname])
 
 
     return (

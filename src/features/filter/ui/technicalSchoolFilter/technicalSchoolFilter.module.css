@@ -1,10 +1,6 @@
 .main {
   width: 54rem;
   height: fit-content;
-  margin-top: 10rem;
-  display: flex;
-  align-self: center;
-  flex-direction: column;
 }
 .main__section {
   width: 100%;
