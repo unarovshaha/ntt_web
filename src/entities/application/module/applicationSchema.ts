@@ -8,6 +8,8 @@ export interface IApplication {
     language: string,
     phone: string,
     shift: string
+    region: string
+    price: string
 }
 
 export interface IApplicationSchema {

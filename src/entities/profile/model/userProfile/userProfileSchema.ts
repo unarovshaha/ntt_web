@@ -9,7 +9,8 @@ export interface IUserProfile {
     indefikatsiya_pin: string,
     phone_extra: string,
     email: string,
-    student_id: number
+    student_id: number,
+    password: string
 }
 
 export interface IUserProfileSchema {

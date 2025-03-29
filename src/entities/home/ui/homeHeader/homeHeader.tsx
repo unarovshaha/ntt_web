@@ -14,9 +14,12 @@ import {HeaderItem} from "entities/home/model/schema/homeSchema";
 
 const menuList = [
     {name: "/", label: "Home"},
+
+];
+const menuList1 = [
+
     {name: "/onlineTest", label: "Online Test"}
 ];
-
 
 export const HomeHeader = ({setItem} : {setItem: (item: HeaderItem) => void}) => {
 
@@ -37,6 +40,22 @@ export const HomeHeader = ({setItem} : {setItem: (item: HeaderItem) => void}) =>
     const data = useSelector(getHomeHeaderItem)
     const renderMenu = () => {
         return menuList.map(item => (
+            <li
+                onClick={() => {
+                    setActiveMenu(item.name)
+                    setActiveSubMenu(false)
+
+                    navigate(item.name)
+                }}
+                className={classNames({
+                    [activeSubMenu ? cls.activeSubmenu : cls.active]: activeMenu === item.name
+                })}
+            >{item.label}</li>
+        ))
+    }
+
+    const renderMenu2 = () => {
+        return menuList1.map(item => (
             <li
                 onClick={() => {
                     setActiveMenu(item.name)
@@ -74,11 +93,24 @@ export const HomeHeader = ({setItem} : {setItem: (item: HeaderItem) => void}) =>
                     className={classNames({
                         [activeSubMenu ? cls.activeSubmenu : cls.active]: activeMenu === item.name
                     })}>{item.name}</li>)}
+                {renderMenu2()}
             </ul>
 
             <div className={`${cls.header__subMenu} ${activeSubMenu ? cls.header__activeMenu : ""}`}>
                 <ul>
                     {renderMenu()}
+                    {data?.map(item => <li
+                        onClick={() => {
+                            setActiveMenu(item.name)
+                            setActiveSubMenu(false)
+                            navigate(`/${item.name}`)
+                            setItem(item)
+                        }}
+                        className={classNames({
+                            [activeSubMenu ? cls.activeSubmenu : cls.active]: activeMenu === item.name
+                        })}>{item.name}</li>)}
+                    {renderMenu2()}
+
                 </ul>
             </div>
 

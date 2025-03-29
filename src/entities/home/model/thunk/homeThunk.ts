@@ -39,7 +39,7 @@ export const fetchHomeItem = createAsyncThunk<
             url: `organizations/organization_landing_page/get/`,
             method: "GET",
             body: null,
-            headers: headers()
+            // headers: headers()
         })
         if (!response) {
             throw new Error()

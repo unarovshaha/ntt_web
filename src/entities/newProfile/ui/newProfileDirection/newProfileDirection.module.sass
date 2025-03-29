@@ -54,3 +54,51 @@
     color: #004AAD
     font-size: 1.3rem
     cursor: pointer
+
+@media (max-width: 600px)
+  .profile__footer_container_box
+    width: 100%
+    height: fit-content
+    box-shadow: 0 16px 32px -4px rgba(12, 12, 13, 0.1), 0 4px 4px -4px rgba(12, 12, 13, 0.05)
+    border-radius: 7px
+    padding: 2rem
+    display: flex
+    flex-direction: column
+    gap: 1rem
+    border: 1px solid #D1D1D6
+
+    &_header
+      display: flex
+      gap: 1rem
+      align-items: center
+      img
+        width: 7rem
+        height: 7rem
+        object-fit: cover
+        border-radius: 50%
+
+    & > ul
+      display: grid
+      list-style: none
+      gap: 2rem 0
+      grid-template-columns: repeat(3, 7rem)
+
+      li
+        color: #8999AB
+        display: flex
+        flex-direction: column
+        gap: .4rem
+        font-size: 1.2rem
+
+        span
+          color: black
+
+    &_footer
+      display: flex
+      align-items: center
+      width: 100%
+      justify-content: end
+      margin: .5rem 0
+      color: #004AAD
+      font-size: 1.3rem
+      cursor: pointer

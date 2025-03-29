@@ -20,7 +20,8 @@ const initialState: IHomeSchema = {
             direction: "18 ta yo’nalish bor"
         }
     ],
-    technical: [],
+    technical: [
+    ],
     description: [],
     advantages: [],
     gallery: [],
