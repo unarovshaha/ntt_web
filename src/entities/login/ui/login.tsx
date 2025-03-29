@@ -117,7 +117,7 @@ export const Login = () => {
 
     const onRedirect: SubmitHandler<ILogin> = async (data) => {
         await dispatch(loginThunk(data))
-        navigate("/platform/personal")
+        navigate("/platform/personal/profile")
     }
     return (
         <div className={cls.main}>
@@ -148,7 +148,7 @@ export const Login = () => {
                                     <Button onClick={handleSubmit(onRedirect)}>Login</Button>
 
                                 </Form>
-                                <h3 onClick={() => navigate("/register")}>Ro'yxatdan o'tish</h3>
+
                             </div>
                         </div>
                     </div>

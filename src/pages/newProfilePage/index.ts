@@ -1,0 +1,1 @@
+export {NewProfilePage} from "./ui/newProfilePage";

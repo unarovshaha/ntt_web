@@ -8,11 +8,12 @@ interface PriceFilterCardProps {
 }
 
 export const Range: React.FC<PriceFilterCardProps> = ({
-                                                          minPrice = 8000000,
+                                                          minPrice = 0,
                                                           maxPrice = 10000000,
                                                           onPriceChange,
                                                       }) => {
     const [priceRange, setPriceRange] = useState<[number, number]>([minPrice, maxPrice]);
+
 
     useEffect(() => {
         setPriceRange([minPrice, maxPrice]);

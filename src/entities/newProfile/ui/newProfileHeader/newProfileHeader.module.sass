@@ -1,0 +1,34 @@
+@import "app/styles/abstracts/variables"
+
+.header
+  height: fit-content
+  display: flex
+  justify-content: space-around
+  align-items: center
+  border-bottom: 1px solid #CAC4D0
+
+  &__item
+    white-space: nowrap
+    font-size: 1.6rem
+    color: #49454F
+    padding: 1.4rem 0
+
+    &.active
+      border-bottom: .3rem inset $color-main
+      border-top-right-radius: 1rem
+      border-top-left-radius: 1rem
+
+@media (max-width: 430px)
+  .header
+    border: none
+    overflow-x: auto
+    gap: 1.5rem
+    padding: 0 2.4rem
+    &__item
+      padding: 1rem 2.4rem 1rem 2.4rem
+      &.active
+        border: none
+        background: $color-main
+        border-radius: 10rem
+        color: white
+        height: fit-content

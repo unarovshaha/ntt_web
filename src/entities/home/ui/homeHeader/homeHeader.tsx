@@ -3,42 +3,69 @@ import cls from "./home.module.sass"
 import logo from "shared/assets/logo/nttLogo.svg"
 import earth from "shared/assets/icons/language.png"
 import {Button} from "shared/ui/button/button";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import classNames from "classnames";
 import {useNavigate} from "react-router";
+import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
+import {useSelector} from "react-redux";
+import {getHomeHeaderItem} from "entities/home/model/selector/homeSelector";
+import {fetchHomeHeaderItem} from "entities/home/model/thunk/homeThunk";
+import {HeaderItem} from "entities/home/model/schema/homeSchema";
 
 const menuList = [
     {name: "/", label: "Home"},
-    {name: "/technicSchools", label: "Texnikumlar"},
-    {name: "/directions", label: "Yo'nalish"},
-    {name: "/grant", label: "Grant"},
-    {name: "/news", label: "Yangiliklar"},
-    {name: "/aboutUs", label: "Biz haqimizda"},
+
+];
+const menuList1 = [
+
     {name: "/onlineTest", label: "Online Test"}
 ];
 
+export const HomeHeader = ({setItem} : {setItem: (item: HeaderItem) => void}) => {
 
-export const HomeHeader = () => {
+
+    const [activeMenu, setActiveMenu] = useState(menuList[0].name)
+    const [activeSubMenu, setActiveSubMenu] = useState(false)
 
 
-    const [activeMenu , setActiveMenu] = useState(menuList[0].name)
-    const [activeSubMenu , setActiveSubMenu] = useState(false)
+
 
     const navigate = useNavigate()
 
+    const dispatch = useAppDispatch()
 
+    useEffect(() => {
+        dispatch(fetchHomeHeaderItem())
+    }, [])
+    const data = useSelector(getHomeHeaderItem)
     const renderMenu = () => {
         return menuList.map(item => (
             <li
-            onClick={() => {
-                setActiveMenu(item.name)
-                setActiveSubMenu(false)
+                onClick={() => {
+                    setActiveMenu(item.name)
+                    setActiveSubMenu(false)
 
-                navigate(item.name)
-            }}
-            className={classNames({
-                [activeSubMenu ? cls.activeSubmenu : cls.active]: activeMenu === item.name
-            })}
+                    navigate(item.name)
+                }}
+                className={classNames({
+                    [activeSubMenu ? cls.activeSubmenu : cls.active]: activeMenu === item.name
+                })}
+            >{item.label}</li>
+        ))
+    }
+
+    const renderMenu2 = () => {
+        return menuList1.map(item => (
+            <li
+                onClick={() => {
+                    setActiveMenu(item.name)
+                    setActiveSubMenu(false)
+
+                    navigate(item.name)
+                }}
+                className={classNames({
+                    [activeSubMenu ? cls.activeSubmenu : cls.active]: activeMenu === item.name
+                })}
             >{item.label}</li>
         ))
     }
@@ -46,7 +73,7 @@ export const HomeHeader = () => {
     return (
         <div className={cls.header}>
             <div onClick={() => setActiveSubMenu(!activeSubMenu)} className={cls.header__hamburger}>
-                <i className={activeSubMenu ? "fa fa-times" :"fa fa-bars"}/>
+                <i className={activeSubMenu ? "fa fa-times" : "fa fa-bars"}/>
             </div>
 
             <div className={cls.header__logo}>
@@ -56,11 +83,34 @@ export const HomeHeader = () => {
 
             <ul className={cls.header__menu}>
                 {renderMenu()}
+                {data?.map(item => <li
+                    onClick={() => {
+                        setActiveMenu(item.name)
+                        setActiveSubMenu(false)
+                        navigate(`/${item.name}`)
+                        setItem(item)
+                    }}
+                    className={classNames({
+                        [activeSubMenu ? cls.activeSubmenu : cls.active]: activeMenu === item.name
+                    })}>{item.name}</li>)}
+                {renderMenu2()}
             </ul>
 
-             <div className={`${cls.header__subMenu} ${activeSubMenu ? cls.header__activeMenu : ""}`}>
+            <div className={`${cls.header__subMenu} ${activeSubMenu ? cls.header__activeMenu : ""}`}>
                 <ul>
                     {renderMenu()}
+                    {data?.map(item => <li
+                        onClick={() => {
+                            setActiveMenu(item.name)
+                            setActiveSubMenu(false)
+                            navigate(`/${item.name}`)
+                            setItem(item)
+                        }}
+                        className={classNames({
+                            [activeSubMenu ? cls.activeSubmenu : cls.active]: activeMenu === item.name
+                        })}>{item.name}</li>)}
+                    {renderMenu2()}
+
                 </ul>
             </div>
 
