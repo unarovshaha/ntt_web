@@ -11,7 +11,7 @@ import {
 
 import cls from "./newProfile.module.sass";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
-import {fetchHomeProfile} from "entities/home/model/thunk/homeThunk";
+import {fetchHomeProfile, fetchHomeProfileItem} from "entities/home/model/thunk/homeThunk";
 
 
 export const NewProfile = () => {
@@ -19,10 +19,11 @@ export const NewProfile = () => {
 
     const {id} = useParams()
     useEffect(() => {
-        if (id) dispatch(fetchHomeProfile(Number(id)))
+        if (id) {
+            dispatch(fetchHomeProfileItem(Number(id)))
+            dispatch(fetchHomeProfile(Number(id)))
+        }
     }, [])
-
-
 
 
     return (

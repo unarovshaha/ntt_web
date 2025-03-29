@@ -2,7 +2,7 @@ import {createSlice} from "@reduxjs/toolkit";
 import {
     fetchHomeHeaderItem,
     fetchHomeItem,
-    fetchHomeProfile, fetchHomeProfileItem,
+    fetchHomeProfile,
     fetchHomeTechnical
 } from "entities/home/model/thunk/homeThunk";
 import {IHomeSchema} from "../schema/homeSchema";
@@ -27,7 +27,7 @@ const initialState: IHomeSchema = {
     gallery: [],
     degree: [],
     landing: [],
-    organization_profile: []
+
 }
 
 
@@ -100,20 +100,7 @@ const homeSlice = createSlice({
                 state.loading = false
             })
 
-            .addCase(fetchHomeProfileItem.pending, state => {
-                state.loading = true
-                state.error = false
-            })
-            .addCase(fetchHomeProfileItem.fulfilled, (state, action) => {
-                state.loading = false
 
-                state.organization_profile = action.payload.results
-                state.error = false
-            })
-            .addCase(fetchHomeProfileItem.rejected, state => {
-                state.error = true
-                state.loading = false
-            })
 })
 
 export const {reducer: homeReducer} = homeSlice

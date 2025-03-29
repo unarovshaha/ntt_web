@@ -13,6 +13,7 @@ interface iCardProps {
 
 export const Card = ({region, name, price, startDate, id} : iCardProps) => {
 
+
     const navigate = useNavigate()
 
     return (

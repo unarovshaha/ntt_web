@@ -34,6 +34,7 @@ interface Description {
     id: number;
     desc: string;
     type: string;
+    img: string
 }
 
 interface GalleryItem {
@@ -73,5 +74,6 @@ export interface IHomeSchema {
     degree: any[];
     landing: Education[];
     loading: boolean,
-    error: boolean
+    error: boolean,
+    organization_profile: any[]
 }

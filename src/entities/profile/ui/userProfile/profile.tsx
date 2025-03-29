@@ -20,8 +20,8 @@ const reducers: ReducersList = {
 }
 
 const sex = [
-    {id: "male", name: "Erkak"},
-    {id: "female", name: "Ayol"}
+    {id: "erkak", name: "Erkak"},
+    {id: "ayol", name: "Ayol"}
 ]
 export const Profile = () => {
 
@@ -34,6 +34,7 @@ export const Profile = () => {
     const regions = useSelector(getLocationsData)
     const [region, setRegion] = useState()
     const [sexChange, setSex] = useState()
+    const [change, setChange] = useState(false)
 
     const {request} = useHttp()
     useEffect(() => {
@@ -88,13 +89,27 @@ export const Profile = () => {
                                 <Input name={"email"} title={"Email"} value={getData?.email} register={register}/>
                                 <Input name={"password"} title={"Password"} type={"password"} register={register}
                                        value={getData?.password}/>
-                                <Select setSelectOption={setRegion} optionsData={regions}
-                                        title={"Region"}/>
-                                <Select setSelectOption={setSex} optionsData={sex}
-                                        title={"Region"}/>
+                                {
+                                    change ?
+                                        <>
+                                            <Select setSelectOption={setRegion} optionsData={regions}
+                                                    title={"Region"}/>
+                                            <Select setSelectOption={setSex} optionsData={sex}
+                                                    title={"Jinsi"}/>
+                                        </>
+                                        : ""}
                             </div>
 
-                            <Button onClick={handleSubmit(onClick)} type={"success"}>Bajarildi</Button>
+                            {
+                                change ?
+
+                                       <Button onClick={handleSubmit(onClick)}
+                                               extraClass={cls.container__arounder__btn}>Saqlash</Button>
+
+                                    :
+                                    <Button onClick={() => setChange(true)}
+                                            extraClass={cls.container__arounder__btn}>Tahrirlash</Button>
+                            }
                         </div>
                         :
                         <div className={cls.container__box}>

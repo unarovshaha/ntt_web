@@ -6,7 +6,7 @@ import cls from "./newProfileDirection.module.sass";
 import image from "shared/assets/images/Ellipse 118.png";
 import {useSelector} from "react-redux";
 import {getHomeProfileLanding} from "entities/home/model/selector/homeSelector";
-import {API_URL, API_URL_DOC, API_URL_DOC_IMG} from "shared/api/base";
+import { API_URL_DOC, } from "shared/api/base";
 import univerImg from "shared/assets/images/Ellipse 118.png";
 import {useNavigate} from "react-router-dom";
 
