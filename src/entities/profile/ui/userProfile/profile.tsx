@@ -75,6 +75,7 @@ export const Profile = () => {
                         <div className={cls.container__arounder}>
 
                             <div>
+                                {/*// @ts-ignore*/}
                                 <Input register={register} name={"name"} title={"Ism familiya"} value={getData?.name}/>
                                 <Input name={"passport_seria"} register={register} title={"Passport seriya"}
                                        value={getData?.passport_seria}/>
