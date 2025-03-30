@@ -5,7 +5,7 @@ import {fetchStudyProfileData} from "./studyProfileThunk";
 const initialState: IStudyProfileSchema = {
     id: undefined,
     name: undefined,
-    desc: undefined,
+    grand: undefined,
     education_language: undefined,
     region: undefined,
     shift: undefined,

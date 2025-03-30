@@ -23,6 +23,7 @@ export const StudyProfilePage = () => {
 
     const userId = useSelector(getUserId)
     const loading = useSelector(getStudyProfileLoading)
+    const data = useSelector
     const dispatch = useAppDispatch()
     const {id} = useParams()
     const {request} = useHttp()
@@ -57,39 +58,7 @@ export const StudyProfilePage = () => {
                 <DirectionCard/>
                 <div className={cls.profile__content}>
                     <p className={cls.profile__text}>
-                        e’lon qilib kelmoqda. O‘qishga kirishda grant kundguzgi ta’lim
-                        uchun joriy qilingan bo‘lib, 4 yil
-                        uchun amal qiladi. Kirish imtihonlarida eng yuqori ball olgan
-                        talabgorlarga grant beriladi va
-                        grantni qo‘lga kiritgan talabalar ro‘yxati qabul imtihonlari
-                        yakunlanganidan so‘ng rasmiy
-                        sahifalarda e’lon qilinadi.
-                        UBS har yili iqtidorli talabalarni qo‘llab-quvvatlash maqsadida bir
-                        necha miliard so‘mlik grantlar
-                        e’lon qilib kelmoqda. O‘qishga kirishda grant kundguzgi ta’lim
-                        uchun joriy qilingan bo‘lib, 4 yil
-                        uchun amal qiladi. Kirish imtihonlarida eng yuqori ball olgan
-                        talabgorlarga grant beriladi va
-                        grantni qo‘lga kiritgan talabalar ro‘yxati qabul imtihonlari
-                        yakunlanganidan so‘ng rasmiy
-                        sahifalarda e’lon qilinadi.
-                        UBS har yili iqtidorli talabalarni qo‘llab-quvvatlash maqsadida
-                        bir necha miliard so‘mlik grantlar
-                        e’lon qilib kelmoqda. O‘qishga kirishda grant kundguzgi ta’lim
-                        uchun joriy qilingan bo‘lib, 4 yil
-                        uchun amal qiladi. Kirish imtihonlarida eng yuqori ball olgan
-                        talabgorlarga grant beriladi va
-                        grantni qo‘lga kiritgan talabalar ro‘yxati qabul imtihonlari
-                        yakunlanganidan so‘ng rasmiy
-                        sahifalarda e’lon qilinadi.UBS har yili iqtidorli talabalarni
-                        qo‘llab-quvvatlash maqsadida bir necha
-                        miliard so‘mlik grantlar e’lon qilib kelmoqda. O‘qishga kirishda
-                        grant kundguzgi ta’lim uchun joriy
-                        qilingan bo‘lib, 4 yil uchun amal qiladi. Kirish imtihonlarida
-                        eng yuqori ball olgan talabgorlarga
-                        grant beriladi va grantni qo‘lga kiritgan talabalar ro‘yxati qabul
-                        imtihonlari yakunlanganidan so‘ng
-                        rasmiy sahifalarda e’lon qilinadi.
+
                     </p>
                     <Button onClick={onCreate} extraClass={cls.profile__btn}>Hujjat topshirish</Button>
                 </div>
