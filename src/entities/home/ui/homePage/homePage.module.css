@@ -51,6 +51,7 @@
   height: 6rem;
   display: flex;
   gap: 2rem;
+  align-items: center;
   border-radius: 8px;
 }
 .main__container_infos_contact_text {
