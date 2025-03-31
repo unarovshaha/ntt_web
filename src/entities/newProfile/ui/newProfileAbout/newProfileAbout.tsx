@@ -13,7 +13,9 @@ export const NewProfileAbout = () => {
 
     return (
         <div style={{display: "flex"}}>
-            <NewProfilePersonal />
+            <div className={cls.info}>
+                <NewProfilePersonal/>
+            </div>
             <div className={cls.about}>
                 {/*// @ts-ignore*/}
                 <img className={cls.about__image} src={data?.img ? `${API_URL_DOC_IMG}${data?.img}` : image} alt=""/>

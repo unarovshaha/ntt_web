@@ -18,7 +18,7 @@ export const NewProfileHeader = () => {
     const {id} = useParams()
 
     const [active, setActive] = useState(list[0].to)
-    const pathname = localStorage.getItem("pathname")
+    const pathname = localStorage.getItem("activeMenu")
 
     const renderLinks = () => {
         return list?.map(item => {
@@ -33,7 +33,7 @@ export const NewProfileHeader = () => {
                             [cls.active]: active === item.to
                         })
                     }
-                    to={`/${pathname}/profile/${id}/${item.to}`}
+                    to={`${pathname}/profile/${id}/${item.to}`}
                     // to={`/technicSchools/profile/1/${item.to}`}
                 >
                     {item.label}
