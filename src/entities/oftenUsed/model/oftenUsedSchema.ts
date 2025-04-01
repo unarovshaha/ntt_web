@@ -4,6 +4,10 @@ export interface IList {
     name: string,
 }
 
+export interface IYearList extends IList{
+    date: string
+}
+
 
 
 export interface IOftenUsedSchema {
@@ -12,6 +16,8 @@ export interface IOftenUsedSchema {
     studyTypes: IList[],
     languages: IList[],
     organizationTypes: IList[],
+    academicYear: IYearList[],
+    currentYear?: number,
     loading: boolean,
     error?: "error"
 }

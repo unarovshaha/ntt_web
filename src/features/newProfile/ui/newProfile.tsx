@@ -34,7 +34,6 @@ export const NewProfile = () => {
                 <Route path={"gallery"} element={<NewProfileGallery/>}/>
                 <Route path={"grant"} element={<NewProfileGrant/>}/>
                 <Route path={"personal"} element={<NewProfilePersonal/>}/>
-
             </Routes>
         </div>
     );

@@ -1,6 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {IOftenUsedSchema} from "./oftenUsedSchema";
 import {
+    fetchAcademicYear,
     fetchDirectionsData,
     fetchLanguagesData,
     fetchLocationsData, fetchOrganizationTypesData,
@@ -29,6 +30,8 @@ const initialState: IOftenUsedSchema = {
         {id: 3, name: "Kechki"},
     ],
     organizationTypes: [],
+    academicYear: [],
+    currentYear: undefined,
     loading: false,
     error: undefined
 }
@@ -36,7 +39,11 @@ const initialState: IOftenUsedSchema = {
 const oftenUsedSlice = createSlice({
     name: "oftenUsedSlice",
     initialState,
-    reducers: {},
+    reducers: {
+        getCurrentYear: (state, action) => {
+            state.currentYear = action.payload
+        }
+    },
     extraReducers: builder =>
         builder
             .addCase(fetchDirectionsData.pending, (state) => {
@@ -101,6 +108,19 @@ const oftenUsedSlice = createSlice({
                 state.error = undefined
             })
             .addCase(fetchOrganizationTypesData.rejected, (state) => {
+                state.loading = false
+                state.error = "error"
+            })
+            .addCase(fetchAcademicYear.pending, (state) => {
+                state.loading = true
+                state.error = undefined
+            })
+            .addCase(fetchAcademicYear.fulfilled, (state, action) => {
+                state.academicYear = action.payload
+                state.loading = false
+                state.error = undefined
+            })
+            .addCase(fetchAcademicYear.rejected, (state) => {
                 state.loading = false
                 state.error = "error"
             })

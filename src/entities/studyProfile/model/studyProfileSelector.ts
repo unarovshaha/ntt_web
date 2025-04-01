@@ -1,5 +1,17 @@
 import {StateSchema} from "app/providers/storeProvider";
 
+export const getStudyProfileData = (state: StateSchema) =>
+    state.studyProfileSlice?.data
+export const getStudyProfileAnnouncements = (state: StateSchema) =>
+    state.studyProfileSlice?.announcements
+export const getStudyProfileGallery = (state: StateSchema) =>
+    state.studyProfileSlice?.gallery
+export const getStudyProfileUserData = (state: StateSchema) =>
+    state.studyProfileSlice?.userData
+export const getStudyProfileUserImage = (state: StateSchema) =>
+    state.studyProfileSlice?.userDataImage
+export const getStudyProfileDegree = (state: StateSchema) =>
+    state.studyProfileSlice?.degree
 export const getStudyProfileId = (state: StateSchema) =>
     state.studyProfileSlice?.id
 export const getStudyProfileLanguage = (state: StateSchema) =>

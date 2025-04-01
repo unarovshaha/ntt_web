@@ -33,7 +33,7 @@ export const StudySchoolList = ({setActive, active}: ISchoolList) => {
         return schoolList?.map((item, index) => {
             return (
                 <Card
-                    id={item.landing?.id}
+                    id={item?.id}
                     name={item.name}
                     price={item.landing?.price}
                     region={item.region}
