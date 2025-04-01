@@ -1,8 +1,20 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {IStudyProfileSchema} from "./studyProfileSchema";
-import {fetchStudyProfileData} from "./studyProfileThunk";
+import {
+    fetchStudyProfileAdmin,
+    fetchStudyProfileAnnouncements,
+    fetchStudyProfileData, fetchStudyProfileDegree,
+    fetchStudyProfileGallery,
+    fetchStudyProfileLandingData
+} from "./studyProfileThunk";
 
 const initialState: IStudyProfileSchema = {
+    data: undefined,
+    announcements: [],
+    gallery: [],
+    degree: [],
+    userData: null,
+    userDataImage: null,
     id: undefined,
     name: undefined,
     grand: undefined,
@@ -20,11 +32,11 @@ const studyProfileSlice = createSlice({
     reducers: {},
     extraReducers: builder =>
         builder
-            .addCase(fetchStudyProfileData.pending, (state) => {
+            .addCase(fetchStudyProfileLandingData.pending, (state) => {
                 state.loading = true
                 state.error = undefined
             })
-            .addCase(fetchStudyProfileData.fulfilled, (state, action) => {
+            .addCase(fetchStudyProfileLandingData.fulfilled, (state, action) => {
                 state.name = action.payload.name
                 state.id = action.payload.id
                 state.education_language = action.payload.education_language
@@ -34,7 +46,74 @@ const studyProfileSlice = createSlice({
                 state.loading = false
                 state.error = undefined
             })
+            .addCase(fetchStudyProfileLandingData.rejected, (state) => {
+                state.loading = false
+                state.error = "error"
+            })
+            .addCase(fetchStudyProfileData.pending, (state) => {
+                state.loading = true
+                state.error = undefined
+            })
+            .addCase(fetchStudyProfileData.fulfilled, (state, action) => {
+                console.log(action.payload, "action.payload")
+                state.data = action.payload
+                state.loading = false
+                state.error = undefined
+            })
             .addCase(fetchStudyProfileData.rejected, (state) => {
+                state.loading = false
+                state.error = "error"
+            })
+            .addCase(fetchStudyProfileGallery.pending, (state) => {
+                state.loading = true
+                state.error = undefined
+            })
+            .addCase(fetchStudyProfileGallery.fulfilled, (state, action) => {
+                state.gallery = action.payload
+                state.loading = false
+                state.error = undefined
+            })
+            .addCase(fetchStudyProfileGallery.rejected, (state) => {
+                state.loading = false
+                state.error = "error"
+            })
+            .addCase(fetchStudyProfileAnnouncements.pending, (state) => {
+                state.loading = true
+                state.error = undefined
+            })
+            .addCase(fetchStudyProfileAnnouncements.fulfilled, (state, action) => {
+                state.announcements = action.payload
+                state.loading = false
+                state.error = undefined
+            })
+            .addCase(fetchStudyProfileAnnouncements.rejected, (state) => {
+                state.loading = false
+                state.error = "error"
+            })
+            .addCase(fetchStudyProfileAdmin.pending, (state) => {
+                state.loading = true
+                state.error = undefined
+            })
+            .addCase(fetchStudyProfileAdmin.fulfilled, (state, action) => {
+                state.userData = action.payload?.results[0]
+                state.userDataImage = action.payload?.results[0]?.user?.file
+                state.loading = false
+                state.error = undefined
+            })
+            .addCase(fetchStudyProfileAdmin.rejected, (state) => {
+                state.loading = false
+                state.error = "error"
+            })
+            .addCase(fetchStudyProfileDegree.pending, (state) => {
+                state.loading = true
+                state.error = undefined
+            })
+            .addCase(fetchStudyProfileDegree.fulfilled, (state, action) => {
+                state.degree = action.payload
+                state.loading = false
+                state.error = undefined
+            })
+            .addCase(fetchStudyProfileDegree.rejected, (state) => {
                 state.loading = false
                 state.error = "error"
             })

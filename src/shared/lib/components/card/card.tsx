@@ -18,7 +18,7 @@ export const Card = ({region, name, price, startDate, id} : iCardProps) => {
 
     return (
         <div
-            onClick={() => navigate(`profile/${id}`)}
+            onClick={() => navigate(`/platform/study/profile/${id}`)}
             className={cls.card}
         >
             <div className={cls.header}>

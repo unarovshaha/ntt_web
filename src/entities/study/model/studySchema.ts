@@ -5,6 +5,7 @@ export interface IMttList {
 }
 
 export interface IOrganization {
+    id: number,
     name: string,
     landing: {
         price: number,
