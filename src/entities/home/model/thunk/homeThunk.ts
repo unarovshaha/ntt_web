@@ -178,7 +178,7 @@ export const fetchHomeProfileDegree = createAsyncThunk<
 })
 export const fetchHomeProfileDegreeItem = createAsyncThunk<
     any[],
-    {id: number | string | undefined , yearId: number , degreeId : number | string | undefined},
+    {id: number | string | undefined , yearId: number | undefined, degreeId : number | string | undefined},
     ThunkConfig<string>
     >("homeSlice/fetchHomeProfileDegreeItem", async ({id , yearId , degreeId}, thunkApi) => {
     const {extra, dispatch, rejectWithValue} = thunkApi;

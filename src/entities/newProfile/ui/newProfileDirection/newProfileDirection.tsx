@@ -29,19 +29,24 @@ export const NewProfileDirection = () => {
 
     const navigate = useNavigate()
 
-    const [active, setActive] = useState(degreeList ? degreeList[0]?.id : null)
+    const [active, setActive] = useState()
+    const [activeYear, setActiveYear] = useState()
+
+    useEffect(() => {
+        if (degreeList?.length) setActive(degreeList[0]?.id)
+    }, [degreeList])
+    useEffect(() => {
+        if (years?.length) setActiveYear(years[0]?.id)
+    }, [years])
 
     const dispatch = useAppDispatch()
 
 
     useEffect(() => {
-
-
-        const yearsId = years ? years[0]?.id : null
-
-
-        if (id || active) dispatch(fetchHomeProfileDegreeItem({id: id, yearId: yearsId ? yearsId : 2, degreeId: active}))
-    }, [active])
+        if (id || active || activeYear) {
+            dispatch(fetchHomeProfileDegreeItem({id: id, yearId: activeYear, degreeId: active}))
+        }
+    }, [activeYear , active])
 
 
     const renderData = () => {
@@ -85,7 +90,10 @@ export const NewProfileDirection = () => {
     }
 
     const render = renderData()
-
+    const yearOptions = years?.map(years => ({
+        id: years?.id,
+        name: years?.date,
+    }));
     return (
         <div style={{display: "flex", gap: "2rem"}}>
             <div className={cls.info}><NewProfilePersonal/></div>
@@ -93,14 +101,18 @@ export const NewProfileDirection = () => {
 
             <div className={cls.direction}>
 
-                <div className={cls.direction__list}>
-                    {degreeList?.map(item => (
-                        <h2 onClick={() => {
-                            setActive(item.id)
-                        }} className={classNames({
-                            [cls.active]: item.id === active
-                        })}>{item.name}</h2>
-                    ))}
+                <div className={cls.direction__filter}>
+                    <div className={cls.direction__list}>
+                        {degreeList?.map(item => (
+                            <h2 onClick={() => {
+                                setActive(item.id)
+                            }} className={classNames({
+                                [cls.active]: item.id === active
+                            })}>{item.name}</h2>
+                        ))}
+                    </div>
+
+                    <Select setSelectOption={setActiveYear} optionsData={yearOptions}/>
 
 
                 </div>

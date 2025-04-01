@@ -81,7 +81,10 @@ interface OrganizationHeader{
     id: number
     user: {
         id: number
-        file: string | number
+        file: {
+            id: number
+            url: string
+        }
         name: string
         phone_extra: string
         surname: string

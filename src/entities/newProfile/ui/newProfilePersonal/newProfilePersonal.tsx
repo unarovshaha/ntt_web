@@ -20,7 +20,7 @@ export const NewProfilePersonal = () => {
             >
                 <img
                     className={cls.info__ava}
-                    src={`${image}`}
+                    src={`${dataHeader?.user.file.url}`}
                     alt=""
                 />
                 <div className={cls.info__user}>
