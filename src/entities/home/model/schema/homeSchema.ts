@@ -188,6 +188,59 @@ interface EducationRecord {
     start_date: string;
 }
 
+interface JsonText {
+    mode: string;
+    text: string;
+    type: string;
+    style: string;
+    detail: number;
+    format: number;
+    version: number;
+}
+
+interface JsonParagraph {
+    type: string;
+    format: string;
+    indent: number;
+    version: number;
+    children: JsonText[];
+    direction: string;
+    textStyle: string;
+    textFormat: number;
+}
+
+interface JsonRoot {
+    type: string;
+    format: string;
+    indent: number;
+    version: number;
+    children: JsonParagraph[];
+    direction: string;
+}
+
+ export interface JsonContents {
+    root: JsonRoot;
+}
+
+interface IPosterLanding {
+    desc_json: JsonContents;
+    education_language: string;
+    expire_date: string;
+    field: Field;
+    grant: boolean;
+    id: number;
+    img: string;
+    location: string;
+    name: string;
+    price: number;
+    region: string;
+    shift: string;
+    start_date: string;
+    type: string;
+}
+interface IPoster {
+    landing: IPosterLanding[]
+}
 export interface IHomeSchema {
     headerItem: HeaderItem[]
     data: IHome[],
@@ -202,6 +255,8 @@ export interface IHomeSchema {
     organization_profile: Organization | undefined,
     organization_profile_header: OrganizationHeader | undefined
     degreeList: any[],
-    years: any[]
+    years: any[],
+    fields: any[],
+    posters: any[]
 
 }
