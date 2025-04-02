@@ -32,6 +32,8 @@ export const headerImg = () => {
     }
 }
 
+
+
 export const headersView = () => {
     const token = sessionStorage.getItem("token")
     const visitorId = localStorage.getItem("visitorId")

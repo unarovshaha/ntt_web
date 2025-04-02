@@ -3,10 +3,22 @@
 .direction
   padding: 2rem
   display: flex
+  flex-direction: column
 
   flex-wrap: wrap
   gap: 3.5rem
-
+  width: 100%
+  &__filter
+    display: flex
+    align-items: center
+    justify-content: space-between
+  &__list
+    display: flex
+    gap: 2rem
+    & > h2
+      cursor: pointer
+  .active
+    color: rgb(0, 74, 173)
 .profile__footer_container_box
   width: 54rem
   //margin-top: 10rem
@@ -102,3 +114,5 @@
       color: #004AAD
       font-size: 1.3rem
       cursor: pointer
+  .info
+    display: none

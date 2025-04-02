@@ -118,14 +118,14 @@ export const HomeHeader = ({ setItem }: { setItem: (item: HeaderItem) => void })
             </div>
 
             <div className={cls.header__end}>
-                <div className={cls.header__end_language}>
-                    <div className={cls.header__end_language_img}>
-                        <img src={earth} alt="" />
-                    </div>
-                    <div className={cls.header__end_language_text}>
-                        O'zbek <i className={"fa fa-caret-down"} />
-                    </div>
-                </div>
+                {/*<div className={cls.header__end_language}>*/}
+                {/*    <div className={cls.header__end_language_img}>*/}
+                {/*        <img src={earth} alt="" />*/}
+                {/*    </div>*/}
+                {/*    <div className={cls.header__end_language_text}>*/}
+                {/*        O'zbek <i className={"fa fa-caret-down"} />*/}
+                {/*    </div>*/}
+                {/*</div>*/}
                 <Button onClick={() => navigate("/login")} extraClass={cls.header__end_btn}>
                     Login
                 </Button>

@@ -18,6 +18,7 @@ export const Home = () => {
 
     const [item, setItem] = useState<HeaderItem>()
 
+    console.log(item)
 
 
 
