@@ -3,12 +3,16 @@ import {
     fetchHomeHeaderItem,
     fetchHomeItem,
     fetchHomeProfile,
-    fetchHomeTechnical
+    fetchHomeProfileDegree,
+    fetchHomeProfileDegreeItem,
+    fetchHomeProfileItem,
+    fetchHomeProfileItemHeader,
+    fetchHomeTechnical, fetchStudentAcademicYear
 } from "entities/home/model/thunk/homeThunk";
 import {IHomeSchema} from "../schema/homeSchema";
 
 const initialState: IHomeSchema = {
-    headerItem: [] ,
+    headerItem: [],
     loading: false,
     error: false,
     data: [
@@ -26,7 +30,10 @@ const initialState: IHomeSchema = {
     gallery: [],
     degree: [],
     landing: [],
-
+    organization_profile: undefined,
+    organization_profile_header: undefined,
+    degreeList: [],
+    years: []
 }
 
 
@@ -89,7 +96,6 @@ const homeSlice = createSlice({
                 state.loading = false
                 state.degree = action.payload.degree
                 state.advantages = action.payload.advantages
-                state.landing = action.payload.landing
                 state.description = action.payload.description
                 state.gallery = action.payload.gallery
                 state.error = false
@@ -99,6 +105,97 @@ const homeSlice = createSlice({
                 state.loading = false
             })
 
+            .addCase(fetchHomeProfileItem.pending, state => {
+                state.loading = true
+                state.error = false
+            })
+
+
+            .addCase(fetchHomeProfileItem.fulfilled, (state, action) => {
+                state.loading = false
+
+                // @ts-ignore
+                state.organization_profile = action.payload
+                state.error = false
+            })
+            .addCase(fetchHomeProfileItem.rejected, state => {
+                state.error = true
+                state.loading = false
+            })
+
+
+            .addCase(fetchHomeProfileItemHeader.pending, state => {
+                state.loading = true
+                state.error = false
+            })
+
+
+            .addCase(fetchHomeProfileItemHeader.fulfilled, (state, action) => {
+                state.loading = false
+
+                // @ts-ignore
+                state.organization_profile_header = action.payload.results[0]
+                state.error = false
+            })
+            .addCase(fetchHomeProfileItemHeader.rejected, state => {
+                state.error = true
+                state.loading = false
+            })
+
+
+            .addCase(fetchHomeProfileDegree.pending, state => {
+                state.loading = true
+                state.error = false
+            })
+
+
+            .addCase(fetchHomeProfileDegree.fulfilled, (state, action) => {
+                state.loading = false
+
+
+                state.degreeList = action.payload
+                state.error = false
+            })
+            .addCase(fetchHomeProfileDegree.rejected, state => {
+                state.error = true
+                state.loading = false
+            })
+
+
+            .addCase(fetchHomeProfileDegreeItem.pending, state => {
+                state.loading = true
+                state.error = false
+            })
+
+
+            .addCase(fetchHomeProfileDegreeItem.fulfilled, (state, action) => {
+                state.loading = false
+
+
+                state.landing = action.payload
+                state.error = false
+            })
+            .addCase(fetchHomeProfileDegreeItem.rejected, state => {
+                state.error = true
+                state.loading = false
+            })
+
+            .addCase(fetchStudentAcademicYear.pending, state => {
+                state.error = true
+                state.loading = false
+            })
+
+            .addCase(fetchStudentAcademicYear.fulfilled, (state, action) => {
+                state.loading = false
+
+
+                state.years = action.payload
+                state.error = false
+            })
+            .addCase(fetchStudentAcademicYear.rejected, state => {
+                state.error = true
+                state.loading = false
+            })
 
 })
 

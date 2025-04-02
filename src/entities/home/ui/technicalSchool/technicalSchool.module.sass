@@ -57,3 +57,12 @@
   align-self: end
   cursor: pointer
   color: #004AAD
+@media (max-width: 500px)
+  .profile__footer_container_box
+    width: 100%
+    padding: 1rem
+    & > ul
+      grid-template-columns: repeat(3, 7rem)
+
+    &_header
+      font-size: .8rem

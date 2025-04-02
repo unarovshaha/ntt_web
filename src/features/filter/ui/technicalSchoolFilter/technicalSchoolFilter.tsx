@@ -53,10 +53,10 @@ export const TechnicalSchoolFilter = ({item}: { item: HeaderItem }) => {
                 <h2>Grant mavjud</h2>
                 <Switch activeSwitch={active} onChangeSwitch={onCHange} disabled={false}/>
             </div>
-            <div className={cls.main__section}>
-                <h2>Stipendiya mavjud</h2>
-                <Switch activeSwitch={handle} onChangeSwitch={onHandle} disabled={false}/>
-            </div>
+            {/*<div className={cls.main__section}>*/}
+            {/*    <h2>Stipendiya mavjud</h2>*/}
+            {/*    <Switch activeSwitch={handle} onChangeSwitch={onHandle} disabled={false}/>*/}
+            {/*</div>*/}
 
         </div>
     );

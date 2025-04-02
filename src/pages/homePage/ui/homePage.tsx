@@ -18,10 +18,8 @@ export const Home = () => {
 
     const [item, setItem] = useState<HeaderItem>()
 
+    console.log(item)
 
-    if (item) {
-        localStorage.setItem("pathname", item.name)
-    }
 
 
 

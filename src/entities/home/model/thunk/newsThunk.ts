@@ -31,6 +31,9 @@ export const fetchProfileItem = createAsyncThunk<
     }
 })
 
+
+
+
 export const fetchNews = createAsyncThunk<
     IHomeNews[],
     void,

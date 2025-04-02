@@ -15,7 +15,8 @@ const initialState: IUserProfileSchema = {
         indefikatsiya_pin: "",
         phone_extra: "",
         email: "",
-        student_id: 0
+        student_id: 0,
+        password: ""
     },
     loading: false,
     error: undefined

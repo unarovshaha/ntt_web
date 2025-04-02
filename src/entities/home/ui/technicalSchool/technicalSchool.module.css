@@ -1,14 +1,13 @@
 .main {
   width: 100%;
-  height: 100vh;
   display: flex;
   gap: 3rem;
   flex-wrap: wrap;
+  padding: 10rem 0;
 }
 
 .profile__footer_container_box {
   width: 54rem;
-  margin-top: 10rem;
   height: fit-content;
   box-shadow: 0 16px 32px -4px rgba(12, 12, 13, 0.1), 0 4px 4px -4px rgba(12, 12, 13, 0.05);
   border-radius: 7px;
@@ -59,6 +58,19 @@
   align-self: end;
   cursor: pointer;
   color: #004AAD;
+}
+
+@media (max-width: 500px) {
+  .profile__footer_container_box {
+    width: 100%;
+    padding: 1rem;
+  }
+  .profile__footer_container_box > ul {
+    grid-template-columns: repeat(3, 7rem);
+  }
+  .profile__footer_container_box_header {
+    font-size: 0.8rem;
+  }
 }
 
 /*# sourceMappingURL=technicalSchool.module.css.map */

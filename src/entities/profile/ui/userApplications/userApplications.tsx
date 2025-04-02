@@ -114,7 +114,9 @@ interface IApplicationProps {
         field: string,
         language: string,
         phone: string,
-        shift: string
+        shift: string,
+        region: string
+        price: string
     }[]
 }
 
@@ -177,8 +179,8 @@ export const UserApplications = ({types, setActiveType, list}: IApplicationProps
                             </h2>
                             <div className={cls.container__dataBoxs__boxs__firstLayer__imgBox__content__locBox}>
                                 <img src={locationIcon} alt=""/>
-                                {/*<h3>{item.location}</h3>*/}
-                                <h3>Chirchiq</h3>
+                                <h3>{item.region}</h3>
+                                {/*<h3>Chirchiq</h3>*/}
                             </div>
 
                         </div>
@@ -198,13 +200,12 @@ export const UserApplications = ({types, setActiveType, list}: IApplicationProps
                         </div>
                         <div className={cls.container__dataBoxs__boxs__secondLayer__content}>
                             <h2>Ta’lim narxi</h2>
-                            <h3>10000</h3>
+                            <h3>{item.price}</h3>
                             {/*<h3>{item.price}</h3>*/}
                         </div>
                         <div className={cls.container__dataBoxs__boxs__secondLayer__content}>
                             <h2>Manzil</h2>
-                            <h3>Viloyat</h3>
-                            {/*<h3>{item.location}</h3>*/}
+                            <h3>{item.region}</h3>
                         </div>
                     </div>
                     <div className={cls.container__dataBoxs__boxs__thirdLayer}>
@@ -266,11 +267,11 @@ export const UserApplications = ({types, setActiveType, list}: IApplicationProps
                         </div>
                         <div className={cls.container__dataBox__box__secondLayer__content}>
                             <h2>Ta’lim narxi</h2>
-                            {/*<h3>{item.price}</h3>*/}
+                            <h3>{item.price}</h3>
                         </div>
                         <div className={cls.container__dataBox__box__secondLayer__content}>
                             <h2>Manzil</h2>
-                            {/*<h3>{item.location}</h3>*/}
+                            <h3>{item.region}</h3>
                         </div>
                     </div>
                     <div className={cls.container__dataBox__box__thirdLayer}>

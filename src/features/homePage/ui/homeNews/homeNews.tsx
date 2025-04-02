@@ -41,7 +41,7 @@ export const HomeNews = () => {
         });
 
         return () => {
-            document.title = "Default Title";
+            document.title = "Title";
         };
     }, []);
 

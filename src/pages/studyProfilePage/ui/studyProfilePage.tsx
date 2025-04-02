@@ -35,6 +35,7 @@ export const StudyProfilePage = () => {
         if (id)
             dispatch(fetchStudyProfileLandingData({id}))
     }, [id])
+    console.log(id , "id")
 
     const onCreate = () => {
         request({

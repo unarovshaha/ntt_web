@@ -1,63 +1,124 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
-import {Button} from "shared/ui/button";
 
 import cls from "./newProfileDirection.module.sass";
-import image from "shared/assets/images/Ellipse 118.png";
+
 import {useSelector} from "react-redux";
-import {getHomeProfileLanding} from "entities/home/model/selector/homeSelector";
-import {API_URL, API_URL_DOC, API_URL_DOC_IMG} from "shared/api/base";
-import univerImg from "shared/assets/images/Ellipse 118.png";
+import {
+    getHomeProfileDegreeList,
+    getHomeProfileItem,
+    getHomeProfileLanding, getHomeProfileYears
+} from "entities/home/model/selector/homeSelector";
+import {API_URL_DOC,} from "shared/api/base";
+
 import {useNavigate} from "react-router-dom";
+import {NewProfilePersonal} from '../newProfilePersonal/newProfilePersonal';
+import classNames from "classnames";
+import {useAppDispatch} from "../../../../shared/lib/hooks/useAppDispatch/useAppDispatch";
+import {fetchHomeProfileDegree, fetchHomeProfileDegreeItem} from "../../../home/model/thunk/homeThunk";
+import {useParams} from "react-router";
+import {Select} from "../../../../shared/ui/select";
 
 export const NewProfileDirection = () => {
 
     const data = useSelector(getHomeProfileLanding)
+    const years = useSelector(getHomeProfileYears)
+    const degreeList = useSelector(getHomeProfileDegreeList)
+    const {id} = useParams()
+    const dataItem = useSelector(getHomeProfileItem)
 
     const navigate = useNavigate()
 
-    console.log(data, "data")
+    const [active, setActive] = useState()
+    const [activeYear, setActiveYear] = useState()
 
+    useEffect(() => {
+        if (degreeList?.length) setActive(degreeList[0]?.id)
+    }, [degreeList])
+    useEffect(() => {
+        if (years?.length) setActiveYear(years[0]?.id)
+    }, [years])
+
+    const dispatch = useAppDispatch()
+
+
+    useEffect(() => {
+        if (id || active || activeYear) {
+            dispatch(fetchHomeProfileDegreeItem({id: id, yearId: activeYear, degreeId: active}))
+        }
+    }, [activeYear , active])
+
+
+    const renderData = () => {
+        return data?.map(item => (
+            <div
+                // onClick={() => navigate(`profile/${item.id}/about`)}
+                className={cls.profile__footer_container_box}
+            >
+
+                <div className={cls.profile__footer_container_box_header}>
+                    <img src={`${dataItem?.img}`} alt=""/>
+                    <h2>{item?.organization?.name}</h2>
+                </div>
+                <ul>
+                    <li>Ta'lim tili <span>{item?.education_language?.name}</span></li>
+                    <li>Ta’lim shakli <span>{item?.shift?.name}</span></li>
+                    <li>Ta’lim narxi <span>{item?.price}</span></li>
+                    <li>Ta’lim turi <span>{item?.degree?.organization_type?.name}</span></li>
+                    <li>Boshlanish vaqti <span>{item?.start_date}</span></li>
+                    <li>Tugash vaqti <span>{item?.expire_date}</span></li>
+
+                </ul>
+
+                <div className={cls.profile__footer_container_box_footer}>
+                    <h3
+                        onClick={() => {
+                            localStorage.setItem("landingId", String(item.id))
+                            navigate(`/register`)
+                            // console.log()
+                        }}
+                        className={cls.box__link}
+                    >
+                        Hujjat topshirish
+                    </h3>
+
+                </div>
+
+
+            </div>
+        ))
+    }
+
+    const render = renderData()
+    const yearOptions = years?.map(years => ({
+        id: years?.id,
+        name: years?.date,
+    }));
     return (
-        <div className={cls.direction}>
+        <div style={{display: "flex", gap: "2rem"}}>
+            <div className={cls.info}><NewProfilePersonal/></div>
 
-            {data?.map(item => (
-                <div
-                    // onClick={() => navigate(`profile/${item.id}/about`)}
-                    className={cls.profile__footer_container_box}
-                >
 
-                    <div className={cls.profile__footer_container_box_header}>
-                        <img src={`${API_URL_DOC}media/${item.img}`} alt=""/>
-                        <h2>{item.name}</h2>
+            <div className={cls.direction}>
+
+                <div className={cls.direction__filter}>
+                    <div className={cls.direction__list}>
+                        {degreeList?.map(item => (
+                            <h2 onClick={() => {
+                                setActive(item.id)
+                            }} className={classNames({
+                                [cls.active]: item.id === active
+                            })}>{item.name}</h2>
+                        ))}
                     </div>
-                    <ul>
-                        <li>Ta'lim tili <span>{item?.education_language}</span></li>
-                        <li>Ta’lim shakli <span>{item?.shift}</span></li>
-                        <li>Ta’lim narxi <span>{item?.price}</span></li>
-                        <li>Ta’lim turi <span>{item?.type}</span></li>
-                        <li>Boshlanish vaqti  <span>{item?.start_date}</span></li>
-                        <li>Tugash vaqti  <span>{item?.expire_date}</span></li>
 
-                    </ul>
-
-                    <div className={cls.profile__footer_container_box_footer}>
-                        <h3
-                            onClick={() => {
-                                localStorage.setItem("landingId", String(item.id))
-                                navigate(`/register`)
-                                // console.log()
-                            }}
-                            className={cls.box__link}
-                        >
-                            Hujjat topshirish
-                        </h3>
-
-                    </div>
+                    <Select setSelectOption={setActiveYear} optionsData={yearOptions}/>
 
 
                 </div>
-            ))}
+                {render}
+            </div>
+
         </div>
     );
 }
