@@ -10,6 +10,10 @@ export const getLanguagesData = (state: StateSchema) =>
     state.oftenUsedSlice.languages
 export const getOrganizationTypes = (state: StateSchema) =>
     state.oftenUsedSlice.organizationTypes
+export const getAcademicYear = (state: StateSchema) =>
+    state.oftenUsedSlice.academicYear
+export const getCurrentAcademicYear = (state: StateSchema) =>
+    state.oftenUsedSlice.currentYear
 export const getOftenUsedLoading = (state: StateSchema) =>
     state.oftenUsedSlice.loading
 export const getOftenUsedError = (state: StateSchema) =>

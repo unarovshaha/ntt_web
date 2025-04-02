@@ -7,7 +7,8 @@ export {
     fetchLocationsData,
     fetchLanguagesData,
     fetchStudyTypesData,
-    fetchOrganizationTypesData
+    fetchOrganizationTypesData,
+    fetchAcademicYear
 } from "./model/oftenUsedThunk";
 
 export {
@@ -16,6 +17,8 @@ export {
     getLanguagesData,
     getStudyTypesData,
     getOrganizationTypes,
+    getAcademicYear,
+    getCurrentAcademicYear,
     getOftenUsedLoading,
     getOftenUsedError
 } from "./model/oftenUsedSelector";

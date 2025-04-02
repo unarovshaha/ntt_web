@@ -149,7 +149,7 @@ export const UserApplications = ({types, setActiveType, list}: IApplicationProps
                 setActiveStyle({color: "#34C759", icon: <i className="fa-solid fa-check"/>})
                 break
             case "newRequest":
-                setActiveStyle({color: "#0059ff", icon: <i className="fa-solid fa-plus"/>})
+                setActiveStyle({color: "#0059ff", icon: undefined})
                 break
             case "rejectRequest":
                 setActiveStyle({color: "#FF3B30", icon: <i className="fa-solid fa-xmark"/>})

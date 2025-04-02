@@ -1,6 +1,6 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {ThunkConfig} from "app/providers/storeProvider";
-import {IList} from "./oftenUsedSchema";
+import {IList, IYearList} from "./oftenUsedSchema";
 import {headers} from "shared/api/base";
 
 export const fetchDirectionsData = createAsyncThunk<
@@ -105,6 +105,30 @@ export const fetchOrganizationTypesData = createAsyncThunk<
     try {
         const response = await extra.api({
             url: `organizations/organization_type/get/list/`,
+            method: "GET",
+            body: null,
+            headers: headers()
+        })
+        if (!response) {
+            throw new Error()
+        }
+
+        return response.results;
+    } catch (e) {
+        console.log(e);
+        return rejectWithValue('error')
+    }
+})
+
+export const fetchAcademicYear = createAsyncThunk<
+    IYearList[],
+    void,
+    ThunkConfig<string>
+>('oftenUsedSlice/fetchAcademicYear', async (_, thunkApi) => {
+    const {extra, dispatch, rejectWithValue} = thunkApi;
+    try {
+        const response = await extra.api({
+            url: `students/acedemic_year/`,
             method: "GET",
             body: null,
             headers: headers()

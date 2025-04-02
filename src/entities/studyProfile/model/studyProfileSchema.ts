@@ -1,7 +1,7 @@
 
 export interface IStudyProfile {
     id?: number,
-    desc?: string,
+    grand?: string,
     education_language?: string,
     price?: number,
     shift?: string,
@@ -10,6 +10,12 @@ export interface IStudyProfile {
 }
 
 export interface IStudyProfileSchema extends IStudyProfile{
+    data: any,
+    announcements: any[],
+    gallery: any[],
+    degree: any[],
+    userData: any,
+    userDataImage: any,
     loading: boolean,
     error?: "error"
 }

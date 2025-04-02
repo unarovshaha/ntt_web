@@ -14,7 +14,7 @@ export const menuConfig = [
     },
     {
         to: "study/1",
-        label: `Ta’lim ma’lumotlari`,
+        label: `Tashkilotlar`,
         icon: <i className="fa-solid fa-book-open"/>,
         // roles: [ROLES.admin , ROLES.organization_admin]
     },

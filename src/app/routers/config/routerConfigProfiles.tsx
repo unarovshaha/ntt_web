@@ -36,7 +36,7 @@ import {StudyPage} from "pages/studyPage/ui/studyPage";
 import {ApplicationPage} from "pages/applicationPage";
 import {ApplicationProfile} from "pages/applicationProfile";
 import {SchoolDirectionAbout} from "entities/school";
-import {StudyProfilePage} from "pages/studyProfilePage";
+import {StudyProfileNewPage, StudyProfilePage} from "pages/studyProfilePage";
 import {NotificationPage} from "pages/notificationPage";
 
 
@@ -139,7 +139,8 @@ export const routerConfigProfiles: IRouterConfigProfiles[] = [
     },
     {
         name: "studyProfile",
-        element: <StudyProfilePage/>,
+        // element: <StudyProfilePage/>,
+        element: <StudyProfileNewPage/>,
         path: getStudyProfilePageRoute(":id")
     },
     {

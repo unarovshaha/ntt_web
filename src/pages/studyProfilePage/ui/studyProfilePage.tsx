@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {useParams} from "react-router";
+import {Route, Routes, useParams} from "react-router";
 
 import {fetchStudyProfileData, studyProfileReducer} from "entities/studyProfile";
 import {DirectionCard} from "shared/lib/components/directionCard/directionCard";
@@ -14,6 +14,9 @@ import {useSelector} from "react-redux";
 import {getStudyProfileLoading} from "entities/studyProfile/model/studyProfileSelector";
 import {getUserId} from "entities/user";
 import {alertAction} from "entities/alert";
+import {StudyHeader} from "entities/study";
+import {SchoolHeader} from "entities/school";
+import {fetchStudyProfileLandingData} from "entities/studyProfile/model/studyProfileThunk";
 
 const reducers: ReducersList = {
     studyProfileSlice: studyProfileReducer
@@ -23,13 +26,14 @@ export const StudyProfilePage = () => {
 
     const userId = useSelector(getUserId)
     const loading = useSelector(getStudyProfileLoading)
+    // const data = useSelector
     const dispatch = useAppDispatch()
     const {id} = useParams()
     const {request} = useHttp()
 
     useEffect(() => {
         if (id)
-            dispatch(fetchStudyProfileData({id}))
+            dispatch(fetchStudyProfileLandingData({id}))
     }, [id])
 
     const onCreate = () => {
@@ -52,43 +56,17 @@ export const StudyProfilePage = () => {
 
     return (
         <DynamicModuleLoader reducers={reducers}>
+            <div>
+                <SchoolHeader/>
+                <Routes>
+                    {/*<Route element={}/>*/}
+                </Routes>
+            </div>
             <div className={cls.profile}>
                 <DirectionCard/>
                 <div className={cls.profile__content}>
                     <p className={cls.profile__text}>
-                        e’lon qilib kelmoqda. O‘qishga kirishda grant kundguzgi ta’lim
-                        uchun joriy qilingan bo‘lib, 4 yil
-                        uchun amal qiladi. Kirish imtihonlarida eng yuqori ball olgan
-                        talabgorlarga grant beriladi va
-                        grantni qo‘lga kiritgan talabalar ro‘yxati qabul imtihonlari
-                        yakunlanganidan so‘ng rasmiy
-                        sahifalarda e’lon qilinadi.
-                        UBS har yili iqtidorli talabalarni qo‘llab-quvvatlash maqsadida bir
-                        necha miliard so‘mlik grantlar
-                        e’lon qilib kelmoqda. O‘qishga kirishda grant kundguzgi ta’lim
-                        uchun joriy qilingan bo‘lib, 4 yil
-                        uchun amal qiladi. Kirish imtihonlarida eng yuqori ball olgan
-                        talabgorlarga grant beriladi va
-                        grantni qo‘lga kiritgan talabalar ro‘yxati qabul imtihonlari
-                        yakunlanganidan so‘ng rasmiy
-                        sahifalarda e’lon qilinadi.
-                        UBS har yili iqtidorli talabalarni qo‘llab-quvvatlash maqsadida
-                        bir necha miliard so‘mlik grantlar
-                        e’lon qilib kelmoqda. O‘qishga kirishda grant kundguzgi ta’lim
-                        uchun joriy qilingan bo‘lib, 4 yil
-                        uchun amal qiladi. Kirish imtihonlarida eng yuqori ball olgan
-                        talabgorlarga grant beriladi va
-                        grantni qo‘lga kiritgan talabalar ro‘yxati qabul imtihonlari
-                        yakunlanganidan so‘ng rasmiy
-                        sahifalarda e’lon qilinadi.UBS har yili iqtidorli talabalarni
-                        qo‘llab-quvvatlash maqsadida bir necha
-                        miliard so‘mlik grantlar e’lon qilib kelmoqda. O‘qishga kirishda
-                        grant kundguzgi ta’lim uchun joriy
-                        qilingan bo‘lib, 4 yil uchun amal qiladi. Kirish imtihonlarida
-                        eng yuqori ball olgan talabgorlarga
-                        grant beriladi va grantni qo‘lga kiritgan talabalar ro‘yxati qabul
-                        imtihonlari yakunlanganidan so‘ng
-                        rasmiy sahifalarda e’lon qilinadi.
+
                     </p>
                     <Button onClick={onCreate} extraClass={cls.profile__btn}>Hujjat topshirish</Button>
                 </div>
