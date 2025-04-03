@@ -47,10 +47,11 @@ export const HomeHeader = ({ setItem }: { setItem: (item: HeaderItem) => void })
     }, [data, activeMenu, setItem]);
 
 
-    const handleMenuClick = (name: string) => {
+    const handleMenuClick = (name: string, id?: any) => {
         setActiveMenu(name);
         setActiveSubMenu(false);
         navigate(name);
+        localStorage.setItem("menuId", id)
     };
 
     const renderMenu = (menuArray: { name: string; label: string }[]) => {
@@ -105,6 +106,8 @@ export const HomeHeader = ({ setItem }: { setItem: (item: HeaderItem) => void })
                             onClick={() => {
                                 handleMenuClick(`/${item.name}`);
                                 setItem(item);
+
+
                             }}
                             className={classNames({
                                 [activeSubMenu ? cls.activeSubmenu : cls.active]: activeMenu === `/${item.name}`,

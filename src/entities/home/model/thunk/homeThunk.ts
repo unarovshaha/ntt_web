@@ -27,6 +27,55 @@ export const fetchHomeHeaderItem = createAsyncThunk<
     }
 })
 
+export const fetchOrganizationsPosters = createAsyncThunk<
+    any,
+    string | undefined,
+    ThunkConfig<string>
+>("homeSlice/fetchOrganizationsPosters", async (id, thunkApi) => {
+    const {extra, dispatch, rejectWithValue} = thunkApi;
+    try {
+        const response = await extra.api({
+            url: `organizations/organization/get/home/${id}`,
+            method: "GET",
+            body: null,
+            // headers: headers()
+        })
+        if (!response) {
+            throw new Error()
+        }
+
+        return response;
+    } catch (e) {
+        console.log(e);
+        return rejectWithValue('error')
+    }
+})
+
+export const fetchFieldsItem = createAsyncThunk<
+    any[],
+    void,
+    ThunkConfig<string>
+>("homeSlice/fetchFieldsItem", async (_, thunkApi) => {
+    const {extra, dispatch, rejectWithValue} = thunkApi;
+    const menuId = localStorage.getItem("menuId");
+    try {
+        const response = await extra.api({
+            url: `organization_fields/get/organization-fields/${menuId}/`,
+            method: "GET",
+            body: null,
+            // headers: headers()
+        })
+        if (!response) {
+            throw new Error()
+        }
+
+        return response.results;
+    } catch (e) {
+        console.log(e);
+        return rejectWithValue('error')
+    }
+})
+
 
 export const fetchHomeItem = createAsyncThunk<
     IHome[],
@@ -54,13 +103,13 @@ export const fetchHomeItem = createAsyncThunk<
 
 export const fetchHomeTechnical = createAsyncThunk<
     any,
-    { priceMin: number, priceMax: number, stipendiya: boolean, grand: boolean, organizationId: number | string | null },
+    { priceMin: number, priceMax: number, stipendiya: boolean, grand: boolean, organizationId: number | string | null, fieldId: string | number | null | undefined },
     ThunkConfig<string>
->("homeSlice/fetchHomeTechnical", async ({priceMax, priceMin, grand, stipendiya, organizationId}, thunkApi) => {
+>("homeSlice/fetchHomeTechnical", async ({priceMax, priceMin, grand, stipendiya, organizationId, fieldId}, thunkApi) => {
     const {extra, dispatch, rejectWithValue} = thunkApi;
     try {
         const response = await extra.api({
-            url: `organizations/organization/get/home/?organization_type=${organizationId}&price_min=${priceMin}&price_max=${priceMax}${grand ? `&grant=${grand}` : ""}${stipendiya ? `&stipendiya=${stipendiya}` : ""}`,
+            url: `organizations/organization/get/home/?organization_type=${organizationId}&price_min=${priceMin}&price_max=${priceMax}${grand ? `&grant=${grand}` : ""}${stipendiya ? `&stipendiya=${stipendiya}` : ""}${fieldId ? `&field=${fieldId}` : ""}`,
             method: "GET",
             body: null,
             // headers: headers()

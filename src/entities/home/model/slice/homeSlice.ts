@@ -1,5 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {
+    fetchFieldsItem,
     fetchHomeHeaderItem,
     fetchHomeItem,
     fetchHomeProfile,
@@ -7,7 +8,7 @@ import {
     fetchHomeProfileDegreeItem,
     fetchHomeProfileItem,
     fetchHomeProfileItemHeader,
-    fetchHomeTechnical, fetchStudentAcademicYear
+    fetchHomeTechnical, fetchOrganizationsPosters, fetchStudentAcademicYear
 } from "entities/home/model/thunk/homeThunk";
 import {IHomeSchema} from "../schema/homeSchema";
 
@@ -33,7 +34,9 @@ const initialState: IHomeSchema = {
     organization_profile: undefined,
     organization_profile_header: undefined,
     degreeList: [],
-    years: []
+    years: [],
+    fields: [],
+    posters: []
 }
 
 
@@ -57,6 +60,35 @@ const homeSlice = createSlice({
                 state.loading = false
             })
 
+            .addCase(fetchFieldsItem.pending, state => {
+                state.loading = true
+                state.error = false
+            })
+            .addCase(fetchFieldsItem.fulfilled, (state, action) => {
+                state.loading = false
+                state.fields = action.payload
+                state.error = false
+            })
+            .addCase(fetchOrganizationsPosters.pending, state => {
+                state.loading = true
+                state.error = false
+            })
+
+            .addCase(fetchFieldsItem.rejected, state => {
+                state.error = true
+                state.loading = false
+            })
+            .addCase(fetchOrganizationsPosters.fulfilled, (state, action) => {
+                state.loading = false
+                //@ts-ignore
+                state.posters = action.payload.landing
+                console.log(state.posters, 'dadada')
+                state.error = false
+            })
+            .addCase(fetchOrganizationsPosters.rejected, state => {
+                state.error = true
+                state.loading = false
+            })
 
             .addCase(fetchHomeItem.pending, state => {
                 state.loading = true

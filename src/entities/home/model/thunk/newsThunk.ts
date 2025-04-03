@@ -9,7 +9,7 @@ interface IFetchProfileItem extends IProfileItemSchema {
 
 export const fetchProfileItem = createAsyncThunk<
     IFetchProfileItem,
-    { id: string },
+    { id: string | undefined },
     ThunkConfig<string>
 >("homeNewsSlice/fetchProfileItem", async ({id}, thunkApi) => {
     const {extra, dispatch, rejectWithValue} = thunkApi;
@@ -24,7 +24,7 @@ export const fetchProfileItem = createAsyncThunk<
             throw new Error()
         }
 
-        return response.results;
+        return response;
     } catch (e) {
         console.log(e);
         return rejectWithValue('error')
