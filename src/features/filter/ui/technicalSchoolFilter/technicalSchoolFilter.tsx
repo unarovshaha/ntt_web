@@ -20,7 +20,6 @@ export const TechnicalSchoolFilter = ({item}: { item: HeaderItem }) => {
     const data = useSelector(getFieldsItem)
 
 
-
     const onChangePriceMin = (value: string) => {
         const numValue = Number(value);
         setPriceMin(numValue);
@@ -59,25 +58,28 @@ export const TechnicalSchoolFilter = ({item}: { item: HeaderItem }) => {
     return (
         <div className={cls.main}>
             <div className={cls.main__header}>
-                <Input
-                    extraClass={cls.main__header_input}
-                    name="minprice"
-                    type="number"
+                <h2>Narx</h2>
+                <div>
+                    <Input
+                        extraClass={cls.main__header_input}
+                        name="minprice"
+                        type="number"
 
 
-                    // value={priceMin.toString()}
-                    onChange={onChangePriceMin}
-                    placeholder="Min narx"
-                />
-                <Input
-                    extraClass={cls.main__header_input}
-                    name="maxprice"
-                    type="number"
+                        // value={priceMin.toString()}
+                        onChange={onChangePriceMin}
+                        placeholder="Min narx"
+                    />
+                    <Input
+                        extraClass={cls.main__header_input}
+                        name="maxprice"
+                        type="number"
 
-                    // value={priceMax.toString()}
-                    onChange={onChangePriceMax}
-                    placeholder="Max narx"
-                />
+                        // value={priceMax.toString()}
+                        onChange={onChangePriceMax}
+                        placeholder="Max narx"
+                    />
+                </div>
             </div>
             <div className={cls.main__headers}>
 

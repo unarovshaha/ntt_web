@@ -35,7 +35,7 @@ export const TechnicalSchool = ({item} : {item : HeaderItem}) => {
                 >
 
                     <div className={cls.profile__footer_container_box_header}>
-                        <img src={univerImg} alt=""/>
+                        <img src={item.img ? item.img : univerImg} alt=""/>
                         <h2>{item.name}</h2>
                     </div>
                     <ul>

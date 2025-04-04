@@ -8,9 +8,9 @@
 // export const API_URL_DOC_IMG = `http://26.12.122.72:8000`
 // export const API_URL_DOC_IMG = `http://192.168.1.15:8000`
 
-export const API_URL_DOC = `https://xususiytalim.uz`
+export const API_URL_DOC = `https://api.xususiytalim.uz/`
 
-export const API_URL: string = `${API_URL_DOC}/api/`
+export const API_URL: string = `${API_URL_DOC}api/`
 
 
 // export const API_URL_DOC = `/`
