@@ -1,10 +1,32 @@
 .main {
-  width: 54rem;
+  width: 100%;
   height: fit-content;
+  display: flex;
+  gap: 2rem;
 }
-.main__section {
+.main__header {
   width: 100%;
   display: flex;
+  align-items: center;
+  gap: 3rem;
+  order: 2;
+}
+.main__header__select {
+  width: 90%;
+  padding: 1.2rem;
+}
+.main__headers {
+  width: 100%;
+  display: flex;
+  height: 10rem;
+  order: 1;
+  padding-top: 1.9rem;
+  align-items: center;
+}
+.main__section {
+  width: 80%;
+  display: flex;
+  order: 3;
   align-items: center;
   justify-content: space-between;
   padding: 1rem;

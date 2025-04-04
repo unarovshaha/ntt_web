@@ -13,4 +13,5 @@ export const getHomeProfileItem = (state: StateSchema) => state.homeSlice?.organ
 export const getHomeProfileItemHeader = (state: StateSchema) => state.homeSlice?.organization_profile_header
 export const getHomeProfileDegreeList = (state: StateSchema) => state.homeSlice?.degreeList
 export const getHomeProfileYears = (state: StateSchema) => state.homeSlice?.years
-export const getHomeNews = (state: StateSchema) => state.homeSlice?.news
+export const getFieldsItem = (state: StateSchema) => state.homeSlice?.fields
+export const getHomePosters = (state: StateSchema) => state.homeSlice?.posters

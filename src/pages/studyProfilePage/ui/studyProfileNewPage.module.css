@@ -1,0 +1,10 @@
+.newPage {
+  display: flex;
+  flex-direction: column;
+}
+.newPage__container {
+  display: flex;
+  gap: 2.8rem;
+}
+
+/*# sourceMappingURL=studyProfileNewPage.module.css.map */

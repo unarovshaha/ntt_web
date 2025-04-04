@@ -187,18 +187,59 @@ interface EducationRecord {
     field: Field;
     start_date: string;
 }
-export interface IHomeNews {
-    id: number,
-    desc_json: { text: string },
-    name: string,
-    views_display: string,
-    date: string,
-    img: string,
-    shared: {
-        instagram: string,
-        facebook: string,
-        telegram: string,
-    }
+
+interface JsonText {
+    mode: string;
+    text: string;
+    type: string;
+    style: string;
+    detail: number;
+    format: number;
+    version: number;
+}
+
+interface JsonParagraph {
+    type: string;
+    format: string;
+    indent: number;
+    version: number;
+    children: JsonText[];
+    direction: string;
+    textStyle: string;
+    textFormat: number;
+}
+
+interface JsonRoot {
+    type: string;
+    format: string;
+    indent: number;
+    version: number;
+    children: JsonParagraph[];
+    direction: string;
+}
+
+ export interface JsonContents {
+    root: JsonRoot;
+}
+
+interface IPosterLanding {
+    desc_json: JsonContents;
+    education_language: string;
+    expire_date: string;
+    field: Field;
+    grant: boolean;
+    id: number;
+    img: string;
+    location: string;
+    name: string;
+    price: number;
+    region: string;
+    shift: string;
+    start_date: string;
+    type: string;
+}
+interface IPoster {
+    landing: IPosterLanding[]
 }
 export interface IHomeSchema {
     headerItem: HeaderItem[]
@@ -215,6 +256,7 @@ export interface IHomeSchema {
     organization_profile_header: OrganizationHeader | undefined
     degreeList: any[],
     years: any[],
-    news: IHomeNews[]
+    fields: any[],
+    posters: any[]
 
 }
