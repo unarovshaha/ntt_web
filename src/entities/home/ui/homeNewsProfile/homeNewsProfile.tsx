@@ -28,7 +28,7 @@ export const HomeNewsProfile = () => {
         if (id)
             dispatch(fetchProfileItem({id}))
     }, [id])
-    console.log(data, 'efefefefe')
+
     const renderData = () => {
         return data?.landing?.map(item => (
             <div className={cls.profile__footer_container_box}>
@@ -55,7 +55,8 @@ export const HomeNewsProfile = () => {
             </div>
         ))
     }
-
+    console.log(data)
+    // alert(data?.img)
     return (
         <DynamicModuleLoader reducers={reducers}>
             <div className={cls.profile}>
@@ -63,7 +64,7 @@ export const HomeNewsProfile = () => {
                 <div className={cls.profile__container}>
                     <div className={cls.profile__container_left}>
                         <div className={cls.profile__container_left_img}>
-                            <img src={profileImg} alt=""/>
+                            <img src={`${data?.img}`} alt=""/>
                         </div>
                         <div className={cls.profile__container_left_info}>
                             O’zbekistonda Oliy Ta’limni 3 tilda olish mumkin.
@@ -94,7 +95,6 @@ export const HomeNewsProfile = () => {
                 </div>
             </div>
         </DynamicModuleLoader>
-
 
 
     );

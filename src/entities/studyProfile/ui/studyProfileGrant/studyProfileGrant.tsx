@@ -12,7 +12,7 @@ export const StudyProfileGrant = () => {
     return (
         <div className={cls.info}>
             <div className={cls.container}>
-                <p dangerouslySetInnerHTML={{__html: data?.desc}}/>
+                <p dangerouslySetInnerHTML={{__html: data?.grand_text}}/>
             </div>
         </div>
     )

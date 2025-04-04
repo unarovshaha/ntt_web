@@ -55,9 +55,10 @@ export const StudyProfileInfo = () => {
                 {/*/>*/}
                 {/*}*/}
                 <div className={cls.info__form}>
+
                     <Input
                         name={"name"}
-                        defaultValue={data?.name}
+                        value={data?.name}
                         extraClass={cls.info__input}
                         placeholder={"Name"}
                         disabled

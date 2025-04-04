@@ -7,9 +7,10 @@ import {
     fetchHomeProfileDegreeItem,
     fetchHomeProfileItem,
     fetchHomeProfileItemHeader,
-    fetchHomeTechnical, fetchStudentAcademicYear
+    fetchHomeTechnical, fetchNews, fetchStudentAcademicYear
 } from "entities/home/model/thunk/homeThunk";
 import {IHomeSchema} from "../schema/homeSchema";
+
 
 const initialState: IHomeSchema = {
     headerItem: [],
@@ -33,7 +34,8 @@ const initialState: IHomeSchema = {
     organization_profile: undefined,
     organization_profile_header: undefined,
     degreeList: [],
-    years: []
+    years: [],
+    news: []
 }
 
 
@@ -43,6 +45,22 @@ const homeSlice = createSlice({
     reducers: {},
     extraReducers: builder =>
         builder
+
+            .addCase(fetchNews.pending, state => {
+                state.loading = true
+                state.error = false
+            })
+            .addCase(fetchNews.fulfilled, (state, action) => {
+                state.loading = false
+                state.news = action.payload
+                console.log(action.payload , "data")
+                state.error = false
+            })
+            .addCase(fetchNews.rejected, state => {
+                state.error = true
+                state.loading = false
+            })
+
             .addCase(fetchHomeHeaderItem.pending, state => {
                 state.loading = true
                 state.error = false

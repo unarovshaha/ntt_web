@@ -1,16 +1,3 @@
-export interface IHomeNews {
-    id: number,
-    desc_json: { text: string },
-    name: string,
-    views_display: string,
-    date: string,
-    img: string,
-    shared: {
-        instagram: string,
-        facebook: string,
-        telegram: string,
-    }
-}
 
 export interface IProfileItem {
     id: number,
@@ -26,12 +13,13 @@ export interface IProfileItem {
 
 export interface IProfileItemSchema {
     landing: IProfileItem[],
-    desc_json: { text: string }
+    desc_json: { text: string },
+
+    img: string
 }
 
 export interface IHomeNewsSchema {
     loading: boolean,
     error: boolean,
-    data: IHomeNews[],
-    profileItem: { landing: IProfileItem[], desc_json: { text: string } }
+    profileItem: IProfileItemSchema
 }

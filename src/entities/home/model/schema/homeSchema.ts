@@ -187,7 +187,19 @@ interface EducationRecord {
     field: Field;
     start_date: string;
 }
-
+export interface IHomeNews {
+    id: number,
+    desc_json: { text: string },
+    name: string,
+    views_display: string,
+    date: string,
+    img: string,
+    shared: {
+        instagram: string,
+        facebook: string,
+        telegram: string,
+    }
+}
 export interface IHomeSchema {
     headerItem: HeaderItem[]
     data: IHome[],
@@ -202,6 +214,7 @@ export interface IHomeSchema {
     organization_profile: Organization | undefined,
     organization_profile_header: OrganizationHeader | undefined
     degreeList: any[],
-    years: any[]
+    years: any[],
+    news: IHomeNews[]
 
 }
