@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import cls from './technicalSchoolFilter.module.sass';
-import { Switch } from "shared/ui/switch";
-import { Button } from "shared/ui/button";
+import {Switch} from "shared/ui/switch";
+import {Button} from "shared/ui/button";
 import {fetchFieldsItem, fetchHomeTechnical} from "entities/home/model/thunk/homeThunk";
-import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
-import { HeaderItem } from "entities/home/model/schema/homeSchema";
-import { Input } from "shared/ui/input";
+import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
+import {HeaderItem} from "entities/home/model/schema/homeSchema";
+import {Input} from "shared/ui/input";
 import {useSelector} from "react-redux";
 import {getFieldsItem, getHomeHeaderItem} from "entities/home/model/selector/homeSelector";
 import {Select} from "shared/ui/select";
 
-export const TechnicalSchoolFilter = ({ item }: { item: HeaderItem }) => {
+export const TechnicalSchoolFilter = ({item}: { item: HeaderItem }) => {
     const [active, setActive] = useState<boolean>(false);
     const [handle, setHandle] = useState<boolean>(false);
     const [select, setSelect] = useState()
@@ -19,9 +19,6 @@ export const TechnicalSchoolFilter = ({ item }: { item: HeaderItem }) => {
     const [priceMax, setPriceMax] = useState(1000000);
     const data = useSelector(getFieldsItem)
 
-    console.log(select, 'select')
-
-    console.log(data, 'ededed')
 
 
     const onChangePriceMin = (value: string) => {
@@ -49,7 +46,7 @@ export const TechnicalSchoolFilter = ({ item }: { item: HeaderItem }) => {
     useEffect(() => {
         if (priceMin || priceMax || active || handle || item.id) {
             dispatch(fetchHomeTechnical({
-                priceMax: priceMax,
+                priceMax: priceMax === 0 ? 1000000000 : priceMax,
                 priceMin: priceMin,
                 grand: active,
                 stipendiya: handle,
@@ -63,29 +60,32 @@ export const TechnicalSchoolFilter = ({ item }: { item: HeaderItem }) => {
         <div className={cls.main}>
             <div className={cls.main__header}>
                 <Input
+                    extraClass={cls.main__header_input}
                     name="minprice"
                     type="number"
-                    title={"Boshlang'ich narx"}
-                    value={priceMin.toString()}
+
+
+                    // value={priceMin.toString()}
                     onChange={onChangePriceMin}
                     placeholder="Min narx"
                 />
                 <Input
+                    extraClass={cls.main__header_input}
                     name="maxprice"
                     type="number"
-                    title={"Maksimal narx"}
-                    value={priceMax.toString()}
+
+                    // value={priceMax.toString()}
                     onChange={onChangePriceMax}
                     placeholder="Max narx"
                 />
             </div>
             <div className={cls.main__headers}>
 
-            <Select  extraClass={cls.main__header__select} setSelectOption={setSelect} optionsData={data}/>
+                <Select extraClass={cls.main__headers__select} setSelectOption={setSelect} optionsData={data}/>
             </div>
             <div className={cls.main__section}>
                 <h2>Grant mavjud</h2>
-                <Switch activeSwitch={active} onChangeSwitch={onChange} disabled={false} />
+                <Switch activeSwitch={active} onChangeSwitch={onChange} disabled={false}/>
             </div>
 
         </div>

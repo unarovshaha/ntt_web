@@ -2,7 +2,8 @@ import cls from "./homeNews.module.sass"
 import itemImg from "shared/assets/images/Rectangle 1001.svg"
 import {useNavigate} from "react-router";
 import {useState} from "react";
-import {IHomeNews} from "entities/home/model/schema/homeSchema";
+import {IHomeNews} from "entities/home/model/schema/homeNewsSchema";
+
 
 
 interface IHomeNewsListProps {

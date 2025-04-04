@@ -4,7 +4,7 @@ import cls from "./newProfileGallery.module.sass";
 import image from "shared/assets/images/Rectangle 640.png";
 import {useSelector} from "react-redux";
 import {getHomeProfileGallery} from "entities/home/model/selector/homeSelector";
-import {API_URL, API_URL_DOC_IMG} from "shared/api/base";
+import {API_URL, API_URL_DOC} from "shared/api/base";
 import {c} from "framer-motion/dist/types.d-6pKw1mTI";
 import {NewProfilePersonal} from "entities/newProfile/ui/newProfilePersonal/newProfilePersonal";
 
@@ -63,7 +63,7 @@ export const NewProfileGallery = () => {
             <div className={cls.galleryInner}>
                 {data?.map(item => (
                     <div className={cls.galleryInner__item}>
-                        <img src={`${API_URL_DOC_IMG}${item.file}`} alt=""/>
+                        <img src={`${API_URL_DOC}${item.file}`} alt=""/>
                     </div>
                 ))}
             </div>

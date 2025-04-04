@@ -3,9 +3,11 @@ import cls from "./homeNews.module.sass";
 import {HomeNewsList} from "entities/home";
 import { useEffect } from "react";
 import {useSelector} from "react-redux";
-import {getHomeNews} from "entities/home/model/selector/homeSelector";
+
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
-import {fetchNews} from "entities/home/model/thunk/homeThunk";
+
+import {getHomeNews} from "entities/home/model/selector/homeNewsSelector";
+import {fetchNews} from "entities/home/model/thunk/newsThunk";
 
 
 
