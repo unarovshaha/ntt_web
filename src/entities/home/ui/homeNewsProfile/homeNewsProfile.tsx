@@ -72,7 +72,7 @@ export const HomeNewsProfile = () => {
             ))
     };
     return (
-        <DynamicModuleLoader reducers={reducers}>
+        // <DynamicModuleLoader reducers={reducers}>
             <div className={cls.profile}>
                 <Button onClick={() => navigate(-1)}>Back</Button>
                 <div className={cls.profile__container}>
@@ -109,7 +109,7 @@ export const HomeNewsProfile = () => {
 
                 </div>
             </div>
-        </DynamicModuleLoader>
+        // </DynamicModuleLoader>
 
 
 

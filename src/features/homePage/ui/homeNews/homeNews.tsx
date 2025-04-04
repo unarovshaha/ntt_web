@@ -15,7 +15,7 @@ export const HomeNews = () => {
 
     useEffect(() => {
         dispatch(fetchNews());
-    }, [dispatch]);
+    }, []);
 
     useEffect(() => {
         document.title = `So’ngi yangiliklar  Trendlar`;

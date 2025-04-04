@@ -51,6 +51,8 @@ export const fetchNews = createAsyncThunk<
             throw new Error()
         }
 
+        console.log(response.results, "hello")
+
         return response.results;
     } catch (e) {
         console.log(e);
