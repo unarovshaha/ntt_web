@@ -79,9 +79,9 @@ export const TechnicalSchoolFilter = ({ item }: { item: HeaderItem }) => {
                     placeholder="Max narx"
                 />
             </div>
-            <div className={cls.main__header}>
+            <div className={cls.main__headers}>
 
-            <Select extraClass={cls.main__header__select} setSelectOption={setSelect} optionsData={data}/>
+            <Select  extraClass={cls.main__header__select} setSelectOption={setSelect} optionsData={data}/>
             </div>
             <div className={cls.main__section}>
                 <h2>Grant mavjud</h2>
