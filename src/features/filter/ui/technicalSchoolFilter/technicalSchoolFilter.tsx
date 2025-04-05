@@ -16,8 +16,8 @@ export const TechnicalSchoolFilter = ({item}: { item: HeaderItem }) => {
     const [select, setSelect] = useState()
     const dispatch = useAppDispatch();
     const [priceMin, setPriceMin] = useState(0);
-    const [priceMax, setPriceMax] = useState(1000000);
-    const data = useSelector(getFieldsItem)
+    const [priceMax, setPriceMax] = useState(1000000000);
+    const data = useSelector(getFieldsItem  )
 
 
     const onChangePriceMin = (value: string) => {
@@ -83,7 +83,7 @@ export const TechnicalSchoolFilter = ({item}: { item: HeaderItem }) => {
             </div>
             <div className={cls.main__headers}>
 
-                <Select extraClass={cls.main__headers__select} setSelectOption={setSelect} optionsData={data}/>
+                <Select extraClass={cls.main__headers__select} setSelectOption={setSelect} optionsData={data} title={"Tanlash"}/>
             </div>
             <div className={cls.main__section}>
                 <h2>Grant mavjud</h2>

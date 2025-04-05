@@ -1,22 +1,17 @@
-// export const API_URL_DOC = `http://192.168.1.15:8000/`
+// export const API_URL_DOC = `http://192.168.1.15:8000`
 // export const API_URL_DOC = `https://ntt.avotra.ru/`
-// export const API_URL_DOC = `http://26.12.122.72:8000/`
+export const API_URL_DOC = `http://26.12.122.72:8000`
 
 
 
-// export const API_URL_DOC_IMG = `http://192.168.1.112:8001`
-// export const API_URL_DOC_IMG = `http://26.12.122.72:8000`
-// export const API_URL_DOC_IMG = `http://192.168.1.15:8000`
-
-export const API_URL_DOC = `https://api.xususiytalim.uz/`
-
-export const API_URL: string = `${API_URL_DOC}api/`
 
 
-// export const API_URL_DOC = `/`
+// export const API_URL_DOC = `https://api.xususiytalim.uz`
 //
-//
-// export const API_URL: string = `${API_URL_DOC}api/`
+export const API_URL: string = `${API_URL_DOC}/api/`
+
+
+
 
 export const headers = () => {
     const token = sessionStorage.getItem("token")

@@ -10,8 +10,6 @@ export const NewProfilePersonal = () => {
     const data  = useSelector(getHomeProfileItem)
     const dataHeader  = useSelector(getHomeProfileItemHeader)
 
-
-    console.log(data , "data home")
     localStorage.setItem("orgId" , String(data?.organization_type.id))
     return (
         <div className={cls.info}>
