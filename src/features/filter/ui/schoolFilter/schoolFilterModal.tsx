@@ -204,7 +204,7 @@ export const SchoolFilterModal = ({active, setActive}: IModalProps) => {
             title={"Filter"}
             extraClass={cls.filterModal}
         >
-            <h2>Oylik to’lov</h2>
+            <h2>Kontrakt to’lov</h2>
             <div className={cls.filterModal__input}>
                 <Input
                     defaultValue={isMinSalary}
