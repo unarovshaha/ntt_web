@@ -28,8 +28,18 @@ export const Card = ({region, name, price, startDate, id} : iCardProps) => {
                 </div>
                 <h2 className={cls.header__title}>{name}</h2>
                 <div className={cls.header__info}>
-                    <p>Oylik to’lovi</p>
-                    <p>{price} UZS</p>
+                    <p>Kontrakt to’lovi</p>
+                    <div>
+
+                        <p>{price} UZS</p>
+                        <h4>dan</h4>
+                    </div>
+                    <div>
+
+                        <p>{price} UZS</p>
+                        <h4>gacha</h4>
+                    </div>
+
                 </div>
             </div>
             <div className={cls.card__line}/>
