@@ -39,7 +39,7 @@ export const TechnicalSchool = ({item} : {item : HeaderItem}) => {
                         <h2>{item.name}</h2>
                     </div>
                     <ul>
-                        <li>Ta'lim tili <span>{item?.landing?.language}</span></li>
+                        <li>Ta'lim tili <span>{item?.landing?.language?.map(item => <span>{item.name}</span>)}</span></li>
                         <li>Ta’lim shakli <span>{item.landing?.shift}</span></li>
                         <li>Talablar <span dangerouslySetInnerHTML={{__html: item.landing?.requirements}}></span></li>
                         <li>Kontrakt to’lovi<span>{formatSalary(item.landing?.price)}</span></li>

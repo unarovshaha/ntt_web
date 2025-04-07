@@ -15,7 +15,9 @@ interface Landing {
     id: number;
     price: number;
     requirements: string;
-    language: string;
+    language: [
+        {id: number, name: string}
+    ];
     grant: boolean;
     shift: string
 }

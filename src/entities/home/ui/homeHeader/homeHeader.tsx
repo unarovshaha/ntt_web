@@ -12,7 +12,7 @@ import { fetchHomeHeaderItem } from "entities/home/model/thunk/homeThunk";
 import { HeaderItem } from "entities/home/model/schema/homeSchema";
 
 const menuList = [
-    { name: "/", label: "Home" },
+    { name: "/", label: "Bosh sahifa" },
 ];
 
 const menuList1 = [
