@@ -7,6 +7,7 @@ import {useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {getHomeTechnical} from "entities/home/model/selector/homeSelector";
 import {HeaderItem} from "entities/home/model/schema/homeSchema";
+import {useLocation} from "react-router";
 
 
 export const TechnicalSchool = ({item} : {item : HeaderItem}) => {
@@ -15,6 +16,8 @@ export const TechnicalSchool = ({item} : {item : HeaderItem}) => {
 
 
     const data = useSelector(getHomeTechnical)
+    const location = useLocation();
+
 
 
     const formatSalary = (salary : string | number) => {
@@ -42,7 +45,16 @@ export const TechnicalSchool = ({item} : {item : HeaderItem}) => {
                         <li>Ta'lim tili <span>{item?.landing?.language}</span></li>
                         <li>Ta’lim shakli <span>{item.landing?.shift}</span></li>
                         <li>Talablar <span dangerouslySetInnerHTML={{__html: item.landing?.requirements}}></span></li>
-                        <li>Kontrakt to’lovi<span>{formatSalary(item.landing?.price)}</span></li>
+                        <li>
+                            {
+                                location.pathname === "/Maktab" ?
+                                    "Oylik to’lovi" : location.pathname === "/O'quv%20markaz" ?
+                                        "Oylik to'lovi" : location.pathname === "/Litsey" ?
+                                            "Kontrakt to'lvi" : location.pathname === "/Universitet" ?
+                                                "Kontrakt to'lovi" : "Summa"
+                            }
+
+                            <span>{formatSalary(item.landing?.price)}</span></li>
                     </ul>
 
                     <div className={cls.profile__footer_container_box_footer}>
