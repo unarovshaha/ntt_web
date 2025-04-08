@@ -179,7 +179,8 @@ export const UserApplications = ({types, setActiveType, list}: IApplicationProps
                         </div>
                         <div className={cls.container__dataBoxs__boxs__firstLayer__content}>
                             <h2>
-                                {item.field}
+                                {item.name}
+                                {/*{item.field}*/}
                             </h2>
                             <div className={cls.container__dataBoxs__boxs__firstLayer__imgBox__content__locBox}>
                                 <img src={locationIcon} alt=""/>
