@@ -24,6 +24,8 @@ import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import {fetchLocationsData, getLocationsData} from "entities/oftenUsed";
 import {useSelector} from "react-redux";
 import {Select} from "shared/ui/select";
+import {useHttp} from "shared/api/base";
+import {Alert, alertAction} from "entities/alert";
 
 interface IdentificationRegProps {
     index?: number | any;
@@ -177,6 +179,8 @@ const PCRegister = (props: IdentificationRegProps) => {
     const orgId = localStorage.getItem("organizationID")
     const landing = localStorage.getItem("landingId")
 
+    const {request} = useHttp()
+
     const [region, setRegion] = useState()
     console.log(region, 'eeff')
     const onHandle: SubmitHandler<IRegister> = (data) => {
@@ -186,8 +190,24 @@ const PCRegister = (props: IdentificationRegProps) => {
             organizationID: orgId ? orgId : " ",
             landing: landing ? landing : " "
         }
-        dispatch(registerThunk(res))
-        navigate('/login');
+        // dispatch(registerThunk(res))
+        request({
+            url: `users/user/crud/`,
+            method: "POST",
+            body: JSON.stringify(res),
+        })
+            .then(res => {
+                navigate('/login');
+
+            })
+            .catch(err => {
+                console.log(err)
+                dispatch(alertAction.onAddAlertOptions({
+                    type: "error",
+                    status: true,
+                    msg: "Bu telefon numerga ega foydalanuvchilar allaqachon mavjud"
+                }))
+            })
         // dispatch(registerThunk(data))
         // if (index < totalSteps) setIndex(index + 1);
         // navigate('/login');
@@ -195,6 +215,7 @@ const PCRegister = (props: IdentificationRegProps) => {
 
     return (
         <div className={cls.register}>
+            <Alert/>
             <div className={cls.register__img}>
                 <img src={registerImg} alt=""/>
             </div>

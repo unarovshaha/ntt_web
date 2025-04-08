@@ -67,7 +67,7 @@ export const StudyProfileAnnouncements = () => {
                                 </div>
                                 <p className={cls.info__subTitle}>Ta’lim tili</p>
                             </div>
-                            <h3 className={cls.info__title}>{item.education_language.name}</h3>
+                            <h3 className={cls.info__title}>{item.education_language?.map((item: {name: string}, index: number, arr: string | any[]) => <span>{item.name}{index !== arr.length - 1 && "\\"}</span>)}</h3>
 
                         </div>
                         {/*<div className={cls.info}>*/}
@@ -87,7 +87,7 @@ export const StudyProfileAnnouncements = () => {
                                 </div>
                                 <p className={cls.info__subTitle}>Ta’lim shakli</p>
                             </div>
-                            <h3 className={cls.info__title}>{item.shift.name}</h3>
+                            <h3 className={cls.info__title}>{item.shift.map((item: { name: string }, index: number, arr: string | any[]) => <span>{item.name}{index !== arr.length - 1 && "\\"}</span>)}</h3>
 
                         </div>
                         <div className={cls.info}>

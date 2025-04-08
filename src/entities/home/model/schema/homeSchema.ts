@@ -15,11 +15,11 @@ interface Landing {
     id: number;
     price: number;
     requirements: string;
-    language: [
-        {id: number, name: string}
-    ];
+    language: [];
     grant: boolean;
-    shift: string
+    shift: []
+    price_max: number
+    price_min: number
 }
 
 interface IHomeTechnical {
@@ -180,10 +180,10 @@ interface EducationRecord {
     expire_date: string;
     degree: Degree;
     grant: boolean;
-    education_language: EducationLanguage;
+    education_language: EducationLanguage[];
     price: number;
     requirements: string;
-    shift: Shift;
+    shift: Shift[];
     desc_json: JsonContent;
     requirements_json: JsonContent;
     field: Field;

@@ -61,8 +61,20 @@ export const NewProfileDirection = () => {
                     <h2>{item?.organization?.name}</h2>
                 </div>
                 <ul>
-                    <li>Ta'lim tili <span>{item?.education_language?.name}</span></li>
-                    <li>Ta’lim shakli <span>{item?.shift?.name}</span></li>
+                    <li>Ta'lim tili <span>{item?.education_language?.map((item , index , arr) => <span>
+                        {item.name}  {index !== arr.length - 1 && "\\"}
+                    </span>)}</span></li>
+                    <li>
+                        Ta'lim shakli{" "}
+                        <span>
+                                    {item?.shift?.map((shiftItem, index, arr) => (
+                                        <span key={index}>
+                                        {shiftItem.name}
+                                            {index !== arr.length - 1 && "\\"}
+                                        </span>
+                                    ))}
+                                </span>
+                    </li>
                     <li>Ta’lim narxi <span>{item?.price}</span></li>
                     <li>Ta’lim turi <span>{item?.degree?.organization_type?.name}</span></li>
                     <li>Boshlanish vaqti <span>{item?.start_date}</span></li>

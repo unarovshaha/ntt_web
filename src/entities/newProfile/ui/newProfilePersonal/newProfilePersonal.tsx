@@ -13,30 +13,30 @@ export const NewProfilePersonal = () => {
     localStorage.setItem("orgId" , String(data?.organization_type.id))
     return (
         <div className={cls.info}>
-            <div
-                className={cls.info__header}
-            >
-                <img
-                    className={cls.info__ava}
-                    src={`${dataHeader?.user.file?.url}`}
-                    alt=""
-                />
-                <div className={cls.info__user}>
-                    <h2>{dataHeader?.user.username} {dataHeader?.user.name}</h2>
-                    <p>{dataHeader?.user.phone_extra}</p>
-                </div>
-            </div>
+            {/*<div*/}
+            {/*    className={cls.info__header}*/}
+            {/*>*/}
+            {/*    <img*/}
+            {/*        className={cls.info__ava}*/}
+            {/*        src={`${dataHeader?.user.file?.url}`}*/}
+            {/*        alt=""*/}
+            {/*    />*/}
+            {/*    <div className={cls.info__user}>*/}
+            {/*        <h2>{dataHeader?.user.username}</h2>*/}
+            {/*        <p>{dataHeader?.user.phone_extra}</p>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
             <div className={cls.info__container}>
-                <img className={cls.info__image} src={`${data?.img}`} alt=""/>
+                <img className={cls.info__image} src={`${data?.img ? data.img : image}`} alt=""/>
                 <div className={cls.info__form}>
                     <p className={cls.list}>
-                        Name<span>{data?.name}</span>
+                        Nomi<span>{data?.name}</span>
                     </p>
                     <p className={cls.list}>
-                        Organazition type<span>{data?.organization_type.name}</span>
+                        Tashkilot turi<span>{data?.organization_type.name}</span>
                     </p>
                     <p className={cls.list}>
-                        Region<span>{data?.region.name}</span>
+                        Viloyat<span>{data?.region.name}</span>
                     </p>
                     <p className={cls.list}>
                          {/*@ts-ignore*/}
