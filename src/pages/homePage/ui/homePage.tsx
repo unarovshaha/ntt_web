@@ -1,5 +1,5 @@
 import {Outlet, Route, Routes} from "react-router";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 
 import {HomeHeader, HomeNewsProfile, homeNewsReducer, HomePage, homeReducer, OnlineTestEnter} from "entities/home";
 import {HomeNews, HomeTechnical, OnlineTestEnterFeature} from "features/homePage";
