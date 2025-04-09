@@ -9,15 +9,17 @@ import {getHomeTechnical} from "entities/home/model/selector/homeSelector";
 import {HeaderItem} from "entities/home/model/schema/homeSchema";
 
 
-export const TechnicalSchool = ({item} : {item : HeaderItem}) => {
+export const TechnicalSchool = ({item}: { item: HeaderItem }) => {
 
     const navigate = useNavigate()
 
 
     const data = useSelector(getHomeTechnical)
 
+    const menuName = localStorage.getItem("activeMenu")
 
-    const formatSalary = (salary : string | number) => {
+
+    const formatSalary = (salary: string | number) => {
         return Number(salary).toLocaleString();
     };
 
@@ -29,20 +31,39 @@ export const TechnicalSchool = ({item} : {item : HeaderItem}) => {
                 <div
                     onClick={() => {
                         navigate(`profile/${item.id}/about`)
-                        localStorage.setItem("organizationID" , String(item.id))
+                        localStorage.setItem("organizationID", String(item.id))
                     }}
                     className={cls.profile__footer_container_box}
                 >
 
                     <div className={cls.profile__footer_container_box_header}>
-                        <img src={univerImg} alt=""/>
+                        <img src={item.img ? item.img : univerImg} alt=""/>
                         <h2>{item.name}</h2>
                     </div>
                     <ul>
-                        <li>Ta'lim tili <span>{item?.landing?.language}</span></li>
-                        <li>Ta’lim shakli <span>{item.landing?.shift}</span></li>
+                        <li>Ta'lim tili
+                            <span>
+                                    {item?.landing?.language?.map((shiftItem, index, arr) => (
+                                        <span key={index}>
+                                        {shiftItem}
+                                            {index !== arr.length - 1 && "\\"}
+                                        </span>
+                                    ))}
+                                </span>
+                        </li>
+                        <li>
+                            Ta'lim shakli{" "}
+                                <span>
+                                    {item?.landing?.shift?.map((shiftItem, index, arr) => (
+                                        <span key={index}>
+                                        {shiftItem}
+                                        {index !== arr.length - 1 && "\\"}
+                                        </span>
+                                    ))}
+                                </span>
+                        </li>
                         <li>Talablar <span dangerouslySetInnerHTML={{__html: item.landing?.requirements}}></span></li>
-                        <li>Kontrakt to’lovi<span>{formatSalary(item.landing?.price)}</span></li>
+                        <li>{menuName === '/Universitet' ? "Kontrakt to’lovi" : "To'lov summasi"}<div  className={cls.contract}><span>{formatSalary(item.landing?.price_min)}</span>-<span>{formatSalary(item.landing?.price_max)}</span></div> </li>
                     </ul>
 
                     <div className={cls.profile__footer_container_box_footer}>

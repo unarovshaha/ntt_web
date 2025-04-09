@@ -15,7 +15,7 @@ export const OtmAbout = () => {
                     </div>
                     <h2 className={cls.header__title}>Cathode Ray Oscilloscope (CRO)</h2>
                     <div className={cls.header__info}>
-                        <p>Oylik to’lovi</p>
+                        <p>Kontrakt to’lovi</p>
                         <p>600 000 - 2 300 000 UZS</p>
                     </div>
                 </div>

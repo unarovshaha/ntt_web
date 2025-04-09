@@ -2,7 +2,9 @@ import cls from "./homeNews.module.sass"
 import itemImg from "shared/assets/images/Rectangle 1001.svg"
 import {useNavigate} from "react-router";
 import {useState} from "react";
-import {IHomeNews} from "../../model/schema/homeNewsSchema";
+import {IHomeNews} from "entities/home/model/schema/homeNewsSchema";
+
+
 
 interface IHomeNewsListProps {
     item?: IHomeNews[]
@@ -16,6 +18,8 @@ export const HomeNewsList = ({item}: IHomeNewsListProps) => {
 
     console.log(activeItem)
     const [activeModal, setActiveModal] = useState(false)
+
+    console.log(item , "item")
     const renderData = () => {
 
         return item?.map(item => (

@@ -1,20 +1,42 @@
 .main
-  width: 54rem
+  width: 100%
   height: fit-content
   display: flex
-  flex-direction: column
-  gap: 2rem
+  //flex-direction: column
+  //gap: 2rem
   &__header
-    width: 100%
+    //width: 60%
     display: flex
+    //align-items: center
+    flex-direction: column
+    gap: 1rem
+    order: 2
+    //justify-content: space-between
+    &_input
+      width: 15rem
+    & > h2
+
+      text-align: left
+    &> div
+      display: flex
+
+  &__headers
+    width: 15%
+    display: flex
+    height: 10rem
+    //order: 1
+    //padding-top: 1.9rem
     align-items: center
-    justify-content: space-between
     &__select
       width: 100%
+      padding: 1.2rem
+
 
   &__section
-    width: 100%
+    //width: 80%
     display: flex
-    align-items: center
-    justify-content: space-between
+    flex-direction: column
+    order: 3
+    //align-items: center
     padding: 1rem
+    gap: 1rem

@@ -14,6 +14,8 @@ import {fetchHomeItem} from "entities/home/model/thunk/homeThunk";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 
 
+
+
 export const HomePage = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 1114);
 
@@ -27,6 +29,8 @@ export const HomePage = () => {
     }, []);
     useEffect(() => {
         dispatch(fetchHomeItem())
+        // dispatch(fetchNews());
+
     }, [])
 
     const renderItem = () => {

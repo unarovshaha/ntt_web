@@ -30,21 +30,21 @@ export const StudyProfileInfo = () => {
 
     return (
         <div className={cls.info}>
-            <div
-                className={cls.info__header}
-            >
-                <img
-                    className={cls.info__ava}
-                    src={userProfileImage?.url}
-                    alt=""
-                />
-                <div className={cls.info__user}>
-                    <h2>{userProfile?.user?.name} {userProfile?.user?.surname}</h2>
-                    <p>{userProfile?.user?.phone}</p>
-                </div>
-            </div>
+            {/*<div*/}
+            {/*    className={cls.info__header}*/}
+            {/*>*/}
+            {/*    <img*/}
+            {/*        className={cls.info__ava}*/}
+            {/*        src={userProfileImage?.url}*/}
+            {/*        alt=""*/}
+            {/*    />*/}
+            {/*    <div className={cls.info__user}>*/}
+            {/*        <h2>{userProfile?.user?.name} {userProfile?.user?.surname}</h2>*/}
+            {/*        <p>{userProfile?.user?.phone}</p>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
             <div className={cls.info__container}>
-                <img className={cls.info__image} src={data?.img} alt=""/>
+                <img className={cls.info__image} src={data?.img ? data?.img : ""} alt=""/>
                 {/*{userRole && */}
                 {/*<i*/}
                 {/*    className={classNames(*/}
@@ -55,9 +55,10 @@ export const StudyProfileInfo = () => {
                 {/*/>*/}
                 {/*}*/}
                 <div className={cls.info__form}>
+
                     <Input
                         name={"name"}
-                        defaultValue={data?.name}
+                        value={data?.name}
                         extraClass={cls.info__input}
                         placeholder={"Name"}
                         disabled

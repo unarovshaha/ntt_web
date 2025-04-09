@@ -1,3 +1,4 @@
+
 import {createSlice} from "@reduxjs/toolkit";
 import {fetchNews, fetchProfileItem} from "entities/home/model/thunk/newsThunk";
 import {IHomeNewsSchema} from "../schema/homeNewsSchema";

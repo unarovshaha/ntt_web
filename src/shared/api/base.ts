@@ -1,21 +1,19 @@
-// export const API_URL_DOC = `http://192.168.1.15:8000/`
-export const API_URL_DOC = `https://api.xususiytalim.uz/`
-// export const API_URL_DOC = `http://26.12.122.72:8000/`
+export const API_URL_DOC = `http://192.168.1.15:8000`
+// export const API_URL_DOC = `https://ntt.avotra.ru/`
+// export const API_URL_DOC = `http://26.12.122.72:8000`
 
 
-// export const API_URL_DOC_IMG = `http://192.168.1.112:8001`
-// export const API_URL_DOC_IMG = `http://26.12.122.72:8000`
-// export const API_URL_DOC_IMG = `http://192.168.1.15:8000`
-
-export const API_URL_DOC_IMG = `https://api.xususiytalim.uz/`
-
-export const API_URL: string = `${API_URL_DOC}api/`
 
 
-// export const API_URL_DOC = `/`
+
+// export const API_URL_DOC = `https://api.xususiytalim.uz`
 //
-//
-// export const API_URL: string = `${API_URL_DOC}api/`
+export const API_URL: string = `${API_URL_DOC}/api/`
+
+
+
+
+
 
 export const headers = () => {
     const token = sessionStorage.getItem("token")
@@ -102,15 +100,18 @@ export const useHttp: () => { request: (props: UseHttpProps) => Promise<any> } =
     return {request}
 
 }
-
 export const ParamUrl = (params: Record<string, string | number | number[] | boolean | undefined>): string => {
-    return Object.entries(params)
-        .filter(([_, value]) => value !== undefined && value !== null)
-        .map(([key, value]) =>
-            Array.isArray(value)
-                ? `${encodeURIComponent(key)}=${value.map(v => encodeURIComponent(String(v))).join(',')}`
-                : `${encodeURIComponent(key)}=${encodeURIComponent(String(value))}`
-        )
-        .join('&');
-};
+    const paramsList = Object.keys(params);
+    let res = '';
 
+    for (let i = 0; i < paramsList.length; i++) {
+        const key = paramsList[i];
+        const value = params[key];
+
+        if (value !== undefined && value !== null) { // ✅ Ensures we don't add `undefined` or `null` values
+            res += `${encodeURIComponent(key)}=${encodeURIComponent(String(value))}&`; // ✅ Properly encodes URL parameters
+        }
+    }
+
+    return res.slice(0, -1); // ✅ Removes the trailing "&"
+};

@@ -1,21 +1,26 @@
 import cls from "./homeNews.module.sass";
-import { useSelector } from "react-redux";
-import {getHomeNews, HomeNewsList, homeNewsReducer} from "entities/home";
+
+import {HomeNewsList} from "entities/home";
 import { useEffect } from "react";
-import { fetchNews } from "entities/home/model/thunk/newsThunk";
-import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
-import {DynamicModuleLoader, ReducersList} from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
+import {useSelector} from "react-redux";
+
+import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
+
+import {getHomeNews} from "entities/home/model/selector/homeNewsSelector";
+import {fetchNews} from "entities/home/model/thunk/newsThunk";
+
 
 
 
 export const HomeNews = () => {
-    const homeNewsData = useSelector(getHomeNews);
-    console.log(homeNewsData, 'efef')
+
     const dispatch = useAppDispatch();
+
 
     useEffect(() => {
         dispatch(fetchNews());
-    }, []);
+    }, [dispatch]);
+    const homeNewsData = useSelector(getHomeNews);
 
     useEffect(() => {
         document.title = `So’ngi yangiliklar  Trendlar`;
@@ -54,7 +59,7 @@ export const HomeNews = () => {
                     <h3>Hamasini ko’rish</h3>
                 </div>
                 <div className={cls.news__list}>
-                    <HomeNewsList item={homeNewsData} />
+                    <HomeNewsList item={homeNewsData}/>
                 </div>
             </div>
 

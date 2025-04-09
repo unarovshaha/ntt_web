@@ -8,8 +8,8 @@ import {useParams} from "react-router";
 const menuList = [
     {name: "about", label: "Haqida"},
     {name: "grant", label: "Grantlar"},
-    {name: "gallery", label: "Gallereya"},
-    {name: "directions", label: "E’lonlar"},
+    {name: "gallery", label: "Galereya"},
+    {name: "directions", label: "Talim yo’nalishi"},
 ]
 
 export const StudyProfileHeader = () => {

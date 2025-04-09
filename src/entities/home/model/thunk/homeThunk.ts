@@ -3,6 +3,7 @@ import {headers} from "shared/api/base";
 import {ThunkConfig} from "app/providers/storeProvider";
 import {HeaderItem, IHome, Organization} from "../schema/homeSchema"
 
+
 export const fetchHomeHeaderItem = createAsyncThunk<
     HeaderItem[],
     void,
@@ -273,3 +274,7 @@ export const fetchStudentAcademicYear = createAsyncThunk<
         return rejectWithValue('error')
     }
 })
+
+
+
+

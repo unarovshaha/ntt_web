@@ -1,3 +1,4 @@
+
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {headers, headersView} from "shared/api/base";
 import {ThunkConfig} from "app/providers/storeProvider";
@@ -59,4 +60,3 @@ export const fetchNews = createAsyncThunk<
         return rejectWithValue('error')
     }
 })
-

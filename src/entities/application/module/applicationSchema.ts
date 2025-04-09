@@ -5,9 +5,15 @@ export interface IApplication {
     date: string,
     degree: string,
     field: string,
-    language: string,
+    language: [{
+        id: number,
+        name: string
+    }],
     phone: string,
-    shift: string
+    shift: [{
+        id: number,
+        name: string
+    }]
     region: string
     price: string
 }

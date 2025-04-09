@@ -52,7 +52,7 @@ export const MttFilter = () => {
         <div className={cls.container}>
             <h1 className={cls.container__title}>Filter</h1>
             <div className={cls.container__items}>
-                <h2 className={cls.container__subTitle}>Oylik to'lov</h2>
+                <h2 className={cls.container__subTitle}>Kontrakt to'lov</h2>
                 <div className={cls.inputs}>
                     <Input onChange={getMinSalary} placeholder={"Min"} type={"number"} name={"min"}/>
                     <Input onChange={getMaxSalary} placeholder={"Max"} type={"number"} name={"max"}/>
