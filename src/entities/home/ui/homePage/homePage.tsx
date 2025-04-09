@@ -12,6 +12,7 @@ import {useSelector} from "react-redux";
 import {getHomeItem} from "entities/home/model/selector/homeSelector";
 import {fetchHomeItem} from "entities/home/model/thunk/homeThunk";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
+import {Input} from "shared/ui/input";
 
 
 
@@ -94,7 +95,8 @@ export const HomePage = () => {
                         <Button extraClass={cls.main__container_infos_contact_btn}><i
                             className="fa-solid fa-phone"/> Biz bilan bog'laning</Button>
                         <div className={cls.main__container_infos_contact_text}>
-                            <h2>OTM yoki ta’lim yo’nalishlarini </h2>
+                            {/*<h2>OTM yoki ta’lim yo’nalishlarini </h2>*/}
+                            <Input placeholder={"Qidiruv"} extraLabelClass={cls.search} name={"search"}/>
                             <Button>Qidiring</Button>
                         </div>
                     </div>
