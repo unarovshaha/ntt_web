@@ -13,6 +13,7 @@ import {Select} from "shared/ui/select";
 export const TechnicalSchoolFilter = ({ item }: { item: HeaderItem }) => {
     const [active, setActive] = useState<boolean>(false);
     const [handle, setHandle] = useState<boolean>(false);
+    const [query, setQuery] = useState<string>('')
     const [select, setSelect] = useState()
     const dispatch = useAppDispatch();
     const [priceMin, setPriceMin] = useState(0);
@@ -21,7 +22,7 @@ export const TechnicalSchoolFilter = ({ item }: { item: HeaderItem }) => {
 
     console.log(select, 'select')
 
-    console.log(data, 'ededed')
+    console.log(query, 'ededed')
 
 
     const onChangePriceMin = (value: string) => {
@@ -33,6 +34,9 @@ export const TechnicalSchoolFilter = ({ item }: { item: HeaderItem }) => {
         const numValue = Number(value);
         setPriceMax(numValue);
     };
+    const onChangeSearch = (value: string) => {
+        setQuery(value)
+    }
 
     const onChange = () => {
         setActive(!active);
@@ -47,17 +51,18 @@ export const TechnicalSchoolFilter = ({ item }: { item: HeaderItem }) => {
     }, []);
 
     useEffect(() => {
-        if (priceMin || priceMax || active || handle || item.id) {
+        if (priceMin || priceMax || active || handle || item.id || query) {
             dispatch(fetchHomeTechnical({
                 priceMax: priceMax,
                 priceMin: priceMin,
                 grand: active,
                 stipendiya: handle,
                 organizationId: item.id,
-                fieldId: select
+                fieldId: select,
+                value: query
             }));
         }
-    }, [priceMin, priceMax, active, handle, item.id, select]);
+    }, [priceMin, priceMax, active, handle, item.id, select, query]);
 
     return (
         <div className={cls.main}>
@@ -78,6 +83,7 @@ export const TechnicalSchoolFilter = ({ item }: { item: HeaderItem }) => {
                     onChange={onChangePriceMax}
                     placeholder="Max narx"
                 />
+                <Input title={"Tezkor qidiruv"} name={"search"}  onChange={onChangeSearch} placeholder={"Qidiruv..."}/>
             </div>
             <div className={cls.main__headers}>
 

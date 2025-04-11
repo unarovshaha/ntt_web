@@ -15,3 +15,4 @@ export const getHomeProfileDegreeList = (state: StateSchema) => state.homeSlice?
 export const getHomeProfileYears = (state: StateSchema) => state.homeSlice?.years
 export const getFieldsItem = (state: StateSchema) => state.homeSlice?.fields
 export const getHomePosters = (state: StateSchema) => state.homeSlice?.posters
+export const getSearchResults = (state: StateSchema) => state.homeSlice?.searchResult
