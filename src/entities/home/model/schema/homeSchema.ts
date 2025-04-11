@@ -259,6 +259,7 @@ export interface IHomeSchema {
     degreeList: any[],
     years: any[],
     fields: any[],
-    posters: any[]
+    posters: any[],
+    searchResult: any[],
 
 }

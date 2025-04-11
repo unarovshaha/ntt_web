@@ -13,11 +13,16 @@ import {Select} from "shared/ui/select";
 export const TechnicalSchoolFilter = ({item}: { item: HeaderItem }) => {
     const [active, setActive] = useState<boolean>(false);
     const [handle, setHandle] = useState<boolean>(false);
+    const [query, setQuery] = useState<string>('')
     const [select, setSelect] = useState()
     const dispatch = useAppDispatch();
     const [priceMin, setPriceMin] = useState(0);
     const [priceMax, setPriceMax] = useState(1000000000);
     const data = useSelector(getFieldsItem  )
+
+    console.log(select, 'select')
+
+    console.log(query, 'ededed')
 
 
     const onChangePriceMin = (value: string) => {
@@ -29,6 +34,9 @@ export const TechnicalSchoolFilter = ({item}: { item: HeaderItem }) => {
         const numValue = Number(value);
         setPriceMax(numValue);
     };
+    const onChangeSearch = (value: string) => {
+        setQuery(value)
+    }
 
     const onChange = () => {
         setActive(!active);
@@ -43,17 +51,18 @@ export const TechnicalSchoolFilter = ({item}: { item: HeaderItem }) => {
     }, []);
 
     useEffect(() => {
-        if (priceMin || priceMax || active || handle || item.id) {
+        if (priceMin || priceMax || active || handle || item.id || query) {
             dispatch(fetchHomeTechnical({
                 priceMax: priceMax === 0 ? 1000000000 : priceMax,
                 priceMin: priceMin,
                 grand: active,
                 stipendiya: handle,
                 organizationId: item.id,
-                fieldId: select
+                fieldId: select,
+                value: query
             }));
         }
-    }, [priceMin, priceMax, active, handle, item.id, select]);
+    }, [priceMin, priceMax, active, handle, item.id, select, query]);
 
     return (
         <div className={cls.main}>
@@ -80,6 +89,23 @@ export const TechnicalSchoolFilter = ({item}: { item: HeaderItem }) => {
                         placeholder="Max narx"
                     />
                 </div>
+                <Input
+                    name="minprice"
+                    type="number"
+                    title={"Boshlang'ich narx"}
+                    value={priceMin.toString()}
+                    onChange={onChangePriceMin}
+                    placeholder="Min narx"
+                />
+                <Input
+                    name="maxprice"
+                    type="number"
+                    title={"Maksimal narx"}
+                    value={priceMax.toString()}
+                    onChange={onChangePriceMax}
+                    placeholder="Max narx"
+                />
+                <Input title={"Tezkor qidiruv"} name={"search"}  onChange={onChangeSearch} placeholder={"Qidiruv..."}/>
             </div>
             <div className={cls.main__headers}>
 
