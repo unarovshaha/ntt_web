@@ -8,7 +8,7 @@ import {
     fetchHomeProfileDegreeItem,
     fetchHomeProfileItem,
     fetchHomeProfileItemHeader,
-    fetchHomeTechnical, fetchOrganizationsPosters, fetchStudentAcademicYear
+    fetchHomeTechnical, fetchOrganizationsPosters, fetchSearchOrganizations, fetchStudentAcademicYear
 } from "entities/home/model/thunk/homeThunk";
 import {IHomeSchema} from "../schema/homeSchema";
 
@@ -36,7 +36,8 @@ const initialState: IHomeSchema = {
     degreeList: [],
     years: [],
     fields: [],
-    posters: []
+    posters: [],
+    searchResult: []
 }
 
 
@@ -100,6 +101,19 @@ const homeSlice = createSlice({
                 state.error = false
             })
             .addCase(fetchHomeItem.rejected, state => {
+                state.error = true
+                state.loading = false
+            })
+            .addCase(fetchSearchOrganizations.pending, state => {
+                state.loading = true
+                state.error = false
+            })
+            .addCase(fetchSearchOrganizations.fulfilled, (state, action) => {
+                state.loading = false
+                state.searchResult = action.payload
+                state.error = false
+            })
+            .addCase(fetchSearchOrganizations.rejected, state => {
                 state.error = true
                 state.loading = false
             })

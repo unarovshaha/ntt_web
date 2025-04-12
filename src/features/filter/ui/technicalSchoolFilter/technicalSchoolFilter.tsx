@@ -13,6 +13,7 @@ import {Select} from "shared/ui/select";
 export const TechnicalSchoolFilter = ({item}: { item: HeaderItem }) => {
     const [active, setActive] = useState<boolean>(false);
     const [handle, setHandle] = useState<boolean>(false);
+    const [query, setQuery] = useState<string>('')
     const [select, setSelect] = useState()
     const dispatch = useAppDispatch();
     const [priceMin, setPriceMin] = useState(0);
@@ -29,6 +30,9 @@ export const TechnicalSchoolFilter = ({item}: { item: HeaderItem }) => {
         const numValue = Number(value);
         setPriceMax(numValue);
     };
+    const onChangeSearch = (value: string) => {
+        setQuery(value)
+    }
 
     const onChange = () => {
         setActive(!active);
@@ -43,51 +47,47 @@ export const TechnicalSchoolFilter = ({item}: { item: HeaderItem }) => {
     }, []);
 
     useEffect(() => {
-        if (priceMin || priceMax || active || handle || item.id) {
+        if (priceMin || priceMax || active || handle || item.id || query) {
             dispatch(fetchHomeTechnical({
-                priceMax: priceMax === 0 ? 1000000000 : priceMax,
+                priceMax: priceMax,
                 priceMin: priceMin,
                 grand: active,
                 stipendiya: handle,
                 organizationId: item.id,
-                fieldId: select
+                fieldId: select,
+                value: query
             }));
         }
-    }, [priceMin, priceMax, active, handle, item.id, select]);
+    }, [priceMin, priceMax, active, handle, item.id, select, query]);
 
     return (
         <div className={cls.main}>
             <div className={cls.main__header}>
-                <h2>Narx</h2>
-                <div>
-                    <Input
-                        extraClass={cls.main__header_input}
-                        name="minprice"
-                        type="number"
-
-
-                        // value={priceMin.toString()}
-                        onChange={onChangePriceMin}
-                        placeholder="Min narx"
-                    />
-                    <Input
-                        extraClass={cls.main__header_input}
-                        name="maxprice"
-                        type="number"
-
-                        // value={priceMax.toString()}
-                        onChange={onChangePriceMax}
-                        placeholder="Max narx"
-                    />
-                </div>
+                <Input
+                    name="minprice"
+                    type="number"
+                    title={"Boshlang'ich narx"}
+                    value={priceMin.toString()}
+                    onChange={onChangePriceMin}
+                    placeholder="Min narx"
+                />
+                <Input
+                    name="maxprice"
+                    type="number"
+                    title={"Maksimal narx"}
+                    value={priceMax.toString()}
+                    onChange={onChangePriceMax}
+                    placeholder="Max narx"
+                />
+                <Input title={"Tezkor qidiruv"} name={"search"}  onChange={onChangeSearch} placeholder={"Qidiruv..."}/>
             </div>
             <div className={cls.main__headers}>
 
-                <Select extraClass={cls.main__headers__select} setSelectOption={setSelect} optionsData={data} title={"Tanlash"}/>
+            <Select  extraClass={cls.main__header__select} setSelectOption={setSelect} optionsData={data}/>
             </div>
             <div className={cls.main__section}>
                 <h2>Grant mavjud</h2>
-                <Switch activeSwitch={active} onChangeSwitch={onChange} disabled={false}/>
+                <Switch activeSwitch={active} onChangeSwitch={onChange} disabled={false} />
             </div>
 
         </div>
