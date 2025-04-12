@@ -40,7 +40,8 @@ export const Home = () => {
                         <div className={cls.header__box}>
                             <HomePage/>
                             <HomeNews/>
-                        </div>}
+                        </div>
+                    }
                     />
                     <Route path={"news/:id"} element={<HomeNewsProfile/>}/>
                     <Route path={"onlineTest"} element={<OnlineTestEnter/>}/>
