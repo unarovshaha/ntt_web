@@ -1,0 +1,97 @@
+@import "app/styles/abstracts/variables"
+
+.main
+  display: flex
+  align-items: center
+  width: 100%
+.pcContainer
+  width: 100%
+  height: 100%
+  display: flex
+  align-items: center
+  background: linear-gradient(to bottom, $color-main 30%, white 30%)
+  &__section
+    width: 100%
+    height: 100vh
+    display: flex
+    flex-direction: column
+    align-items: center
+    &__box
+      width: 100% !important
+      height: 100% !important
+      margin-left: 0
+
+.register
+  width: 100%
+  display: flex
+  align-items: center
+  gap: 1rem
+  justify-content: space-between
+  &__img
+    width: 10rem
+    img
+      object-fit: cover
+  &__arounder
+    width: 50%
+    display: flex
+    flex-direction: column
+    gap: 6rem
+    align-items: start
+    &__form
+      display: flex
+      flex-direction: column
+      gap: 3rem
+      &__button
+        width: 100% !important
+.container
+  width: 100%
+  height: 100dvh
+  display: flex
+  align-items: end
+  flex-direction: column
+  justify-content: end
+  background: $color-main
+  &__content
+    width: 100%
+    height: 90%
+    background: #FFFFFF
+    border-top-left-radius: 40px
+    border-top-right-radius: 40px
+    display: flex
+    align-items: center
+    flex-direction: column
+    justify-content: center
+    &__login
+      width: 100%
+      height: 100%
+      //background: red
+      display: flex
+      align-items: center
+      gap: 3rem
+      flex-direction: column
+      padding: 3rem
+      padding-top: 5rem
+      h2
+        font-size: 3rem
+      p
+        font-size: 1.6rem
+        color: #545454
+
+        font-weight: bold
+        text-align: center
+      &__form
+        padding-top: 2rem
+        display: flex
+        //align-items: center
+        width: 100%
+        flex-direction: column
+        gap: 3rem
+        &__input
+        //width: 140% !important
+        &__button
+          width: 100% !important
+          background: $color-main
+          font-size: 1.4rem
+          color: white
+          font-weight: 600
+          padding: 1.4rem

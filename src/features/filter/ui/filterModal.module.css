@@ -1,0 +1,19 @@
+.filterModal {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.filterModal__input {
+  display: flex;
+  gap: 2rem;
+}
+.filterModal__radio {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+.filterModal__accordion {
+  align-self: center;
+}
+
+/*# sourceMappingURL=filterModal.module.css.map */

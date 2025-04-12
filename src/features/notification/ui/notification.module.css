@@ -1,0 +1,42 @@
+.notification {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.notification__list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.notification__list_item {
+  background-color: rgb(247, 247, 253);
+  padding: 2rem;
+  position: relative;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.notification__list_item:after {
+  content: "";
+  width: 100%;
+  left: 0;
+  bottom: -0.5rem;
+  height: 0.2rem;
+  position: absolute;
+  background-color: rgba(118, 118, 124, 0.8);
+}
+.notification__list_item img {
+  width: 4rem;
+  height: 4rem;
+}
+.notification__list_item_text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.notification__list_item_text h3 {
+  color: #6B7280;
+}
+
+/*# sourceMappingURL=notification.module.css.map */

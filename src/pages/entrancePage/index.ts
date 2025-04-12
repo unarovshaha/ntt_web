@@ -1,0 +1,1 @@
+export {EntrancePage} from './ui/entrancePage'

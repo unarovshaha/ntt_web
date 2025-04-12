@@ -1,0 +1,51 @@
+.progressContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 2rem;
+  align-items: center;
+}
+
+.progressBar {
+  position: relative;
+  width: 70rem;
+  height: 4px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+}
+
+.progressThumb {
+  width: 80rem;
+  border: 3px solid white;
+  border-radius: 2rem;
+  padding: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progressFill {
+  position: absolute;
+  height: 6px;
+  background: green;
+  border-radius: 3px;
+  transition: width 0.3s ease-in-out;
+}
+
+.step {
+  width: 3rem;
+  height: 3rem;
+  background: gray;
+  border-radius: 50%;
+  border: 2px solid white;
+  position: relative;
+}
+
+.step.active {
+  background: green;
+}
+
+/*# sourceMappingURL=stepProgress.module.css.map */

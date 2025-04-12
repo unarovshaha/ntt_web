@@ -1,0 +1,1 @@
+export {OtmPage} from "./ui/otmPage";
