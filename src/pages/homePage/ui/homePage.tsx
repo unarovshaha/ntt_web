@@ -48,7 +48,7 @@ export const Home = () => {
                     <Route path={"onlineTest/onlineTestEnter"} element={<OnlineTestEnterFeature/>}/>
 
                     {/*// @ts-ignore*/}
-                    <Route path={`${item?.name}`} element={<HomeTechnical item={item}/>}/>
+                    <Route path={`${item?.name}`} element={<HomeTechnical item={item}/>} />
                     {/*// @ts-ignore*/}
                     <Route path={`${item?.name}/profile/:id/*`} element={<NewProfile/>}/>
                 </Routes>
