@@ -51,7 +51,7 @@ export const HomeHeader = ({ setItem }: { setItem: (item: HeaderItem) => void })
         setActiveMenu(name);
         setActiveSubMenu(false);
         navigate(name);
-        localStorage.setItem("menuId", id)
+        // localStorage.setItem("menuId", id)
     };
 
     const renderMenu = (menuArray: { name: string; label: string }[]) => {
