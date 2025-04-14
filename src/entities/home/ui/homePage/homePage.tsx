@@ -6,22 +6,19 @@ import userImg3 from "shared/assets/icons/Ellipse 885.svg"
 import userImg4 from "shared/assets/icons/Ellipse 886.svg"
 import homeImg from "shared/assets/images/homeImg.svg"
 import univerLogo from "shared/assets/logo/logo.png"
-import supportImg from "shared/assets/icons/support.png"
-import telegramImg from "shared/assets/icons/logos_telegram.png"
 import {Button} from "shared/ui/button/button";
 import {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 import {getHomeItem} from "entities/home/model/selector/homeSelector";
-import {fetchHomeItem, fetchSearchOrganizations} from "entities/home/model/thunk/homeThunk";
+import {fetchHomeItem} from "entities/home/model/thunk/homeThunk";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
-import {SearchInput} from "shared/ui/searchInput";
+import {Input} from "shared/ui/input";
 
 
 
 
 export const HomePage = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 1114);
-    const [open, setOpen] = useState<boolean>(false);
 
     const homeItem = useSelector(getHomeItem)
 
@@ -36,11 +33,6 @@ export const HomePage = () => {
         // dispatch(fetchNews());
 
     }, [])
-
-    const handleClick = () => {
-        setOpen(!open);
-    }
-
 
     const renderItem = () => {
         if (!isMobile) {
@@ -100,30 +92,12 @@ export const HomePage = () => {
                         <li><img src={checkIcon} alt=""/>OTM — bu kasbiy bilim va malaka beruvchi o‘quv maskani.</li>
                     </ul>
                     <div className={cls.main__container_infos_contact}>
-                        <Button onClick={handleClick} extraClass={cls.main__container_infos_contact_btn}><i
+                        <Button extraClass={cls.main__container_infos_contact_btn}><i
                             className="fa-solid fa-phone"/> Biz bilan bog'laning</Button>
-                        {
-                            open && (
-                                <div className={cls.dropdown}>
-                                   <div className={cls.dropDownItem}>
-                                       <img src={supportImg} alt=""/>
-                                       <div className={cls.dropDownItem__box}>
-                                           <h1>Aloqa markazi</h1>
-                                           <h2>+998 78 255 77 77</h2>
-                                       </div>
-                                   </div>
-                                    <div className={cls.dropDownItem}>
-                                       <img src={telegramImg} alt=""/>
-                                       <div className={cls.dropDownItem__box}>
-                                           <h1>Telegram bot</h1>
-                                           <h2>Nodavlat ta’lim tashkiloti</h2>
-                                       </div>
-                                   </div>
-                                </div>
-                            )
-                        }
                         <div className={cls.main__container_infos_contact_text}>
-                            <SearchInput/>
+                            {/*<h2>OTM yoki ta’lim yo’nalishlarini </h2>*/}
+                            <Input placeholder={"Qidiruv"} extraLabelClass={cls.search} name={"search"}/>
+                            <Button>Qidiring</Button>
                         </div>
                     </div>
                     <div className={cls.main__container_infos_users}>

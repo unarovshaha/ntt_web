@@ -75,7 +75,7 @@ export const NewProfileDirection = () => {
                                     ))}
                                 </span>
                     </li>
-                    <li>Ta’lim narxi <span>{item?.price}</span></li>
+                    <li>To'lov summasi <span>{item?.price}</span></li>
                     <li>Ta’lim turi <span>{item?.degree?.organization_type?.name}</span></li>
                     <li>Boshlanish vaqti <span>{item?.start_date}</span></li>
                     <li>Tugash vaqti <span>{item?.expire_date}</span></li>

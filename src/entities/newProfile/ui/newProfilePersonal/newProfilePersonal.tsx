@@ -29,8 +29,8 @@ export const NewProfilePersonal = () => {
             <div className={cls.info__container}>
                 <img className={cls.info__image} src={`${data?.img ? data.img : image}`} alt=""/>
                 <div className={cls.info__form}>
-                    <p className={cls.list}>
-                        Nomi<span>{data?.name}</span>
+                    <p className={cls.list} style={{justifyContent: "center"}}>
+                        <span>{data?.name}</span>
                     </p>
                     <p className={cls.list}>
                         Tashkilot turi<span>{data?.organization_type.name}</span>
