@@ -46,7 +46,7 @@ export const NewProfileDirection = () => {
         if (id || active || activeYear) {
             dispatch(fetchHomeProfileDegreeItem({id: id, yearId: activeYear, degreeId: active}))
         }
-    }, [activeYear , active])
+    }, [activeYear, active])
 
 
     const renderData = () => {
@@ -61,8 +61,8 @@ export const NewProfileDirection = () => {
                     <h2>{item?.organization?.name}</h2>
                 </div>
                 <ul>
-                    <li>Ta'lim tili <span>{item?.education_language?.map((item , index , arr) => <span>
-                        {item.name}  {index !== arr.length - 1 && "\\"}
+                    <li>Ta'lim tili <span>{item?.education_language?.map((item, index, arr) => <span>
+                        {item.name} {index !== arr.length - 1 && "\\"}
                     </span>)}</span></li>
                     <li>
                         Ta'lim shakli{" "}
@@ -79,8 +79,22 @@ export const NewProfileDirection = () => {
                     <li>Ta’lim turi <span>{item?.degree?.organization_type?.name}</span></li>
                     <li>Boshlanish vaqti <span>{item?.start_date}</span></li>
                     <li>Tugash vaqti <span>{item?.expire_date}</span></li>
-
                 </ul>
+                <div className={cls.profile__footer_container_box_middle}>
+                    <div>
+                        <h2>Ma'lumotlar</h2>
+                        <div>
+                            <p dangerouslySetInnerHTML={{__html: item?.desc || ''}}></p>
+                        </div>
+                    </div>
+                    <div>
+                        <h2>Talablar</h2>
+                        <div>
+                            <p dangerouslySetInnerHTML={{__html: item?.requirements || ''}}></p>
+                        </div>
+                    </div>
+                </div>
+
 
                 <div className={cls.profile__footer_container_box_footer}>
                     <h3
