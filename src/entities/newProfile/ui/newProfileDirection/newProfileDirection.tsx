@@ -32,6 +32,7 @@ export const NewProfileDirection = () => {
     const [active, setActive] = useState()
     const [activeYear, setActiveYear] = useState()
 
+    const activeMenu = localStorage.getItem("activeMenu")
     useEffect(() => {
         if (degreeList?.length) setActive(degreeList[0]?.id)
     }, [degreeList])
@@ -75,7 +76,7 @@ export const NewProfileDirection = () => {
                                     ))}
                                 </span>
                     </li>
-                    <li>To'lov summasi <span>{item?.price}</span></li>
+                    <li>{activeMenu === "/Universitet" ? "Kontrakt summasi " : "To'lov summasi "} <span>{item?.price}</span></li>
                     <li>Ta’lim turi <span>{item?.degree?.organization_type?.name}</span></li>
                     <li>Boshlanish vaqti <span>{item?.start_date}</span></li>
                     <li>Tugash vaqti <span>{item?.expire_date}</span></li>
@@ -94,8 +95,6 @@ export const NewProfileDirection = () => {
                         </div>
                     </div>
                 </div>
-
-
                 <div className={cls.profile__footer_container_box_footer}>
                     <h3
                         onClick={() => {
