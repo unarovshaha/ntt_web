@@ -76,6 +76,13 @@ export interface Organization {
     grand_json: any;
     inn: string | null;
     request_count: number;
+    address: string;
+    email: string;
+    telegram_link: string;
+    instagram_link: string;
+    facebook_link: string;
+    youtube_link: string;
+    website_link: string;
 }
 
 interface OrganizationHeader{
