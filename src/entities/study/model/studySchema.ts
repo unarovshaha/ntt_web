@@ -1,3 +1,4 @@
+import {IComment} from "entities/home/model/schema/homeSchema";
 
 export interface IMttList {
     id:number,
@@ -24,5 +25,6 @@ export interface IStudySchema {
     grant?: {},
     advantages?: {},
     loading: boolean,
-    error?: "error"
+    error?: "error",
+
 }

@@ -5,8 +5,9 @@ import {
     fetchStudyProfileAnnouncements,
     fetchStudyProfileData, fetchStudyProfileDegree,
     fetchStudyProfileGallery,
-    fetchStudyProfileLandingData
+    fetchStudyProfileLandingData, fetchUserComments
 } from "./studyProfileThunk";
+
 
 const initialState: IStudyProfileSchema = {
     data: undefined,
@@ -23,13 +24,18 @@ const initialState: IStudyProfileSchema = {
     shift: undefined,
     price: undefined,
     loading: false,
-    error: undefined
+    error: undefined,
+    comments: []
 }
 
 const studyProfileSlice = createSlice({
     name: "studyProfileSlice",
     initialState,
-    reducers: {},
+    reducers: {
+        onAddComment : (state , action) => {
+            state.comments = [...state.comments , action.payload]
+        }
+    },
     extraReducers: builder =>
         builder
             .addCase(fetchStudyProfileLandingData.pending, (state) => {
@@ -117,6 +123,23 @@ const studyProfileSlice = createSlice({
                 state.loading = false
                 state.error = "error"
             })
+
+
+            .addCase(fetchUserComments.pending, (state) => {
+                state.error = "error"
+                state.loading = false
+            })
+            .addCase(fetchUserComments.fulfilled, (state, action) => {
+                state.comments = action.payload
+                state.loading = false
+                state.error = undefined
+            })
+            .addCase(fetchUserComments.rejected, (state) => {
+                state.error = "error"
+                state.loading = false
+            })
+
+
 })
 
 export const {reducer: studyProfileReducer} = studyProfileSlice

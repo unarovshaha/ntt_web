@@ -10,7 +10,8 @@ const list = [
     {label: "Talim yo’nalishi", to: "direction"},
     {label: "Gallereya", to: "gallery"},
     {label: "Grantlar", to: "grant"},
-    {label: "Profil", to: "personal"}
+    {label: "Profil", to: "personal"},
+    {label: "Izohlar", to: "comments"},
 ]
 
 export const NewProfileHeader = () => {

@@ -15,6 +15,8 @@ export const Card = ({region, name, price, startDate, id} : iCardProps) => {
 
     const navigate = useNavigate()
 
+    const organizationType = localStorage.getItem("organizationType")
+
     return (
         <div
             onClick={() => navigate(`/platform/study/profile/${id}`)}
@@ -27,7 +29,7 @@ export const Card = ({region, name, price, startDate, id} : iCardProps) => {
                 </div>
                 <h2 className={cls.header__title}>{name}</h2>
                 <div className={cls.header__info}>
-                    <p>Kontrakt to’lovi</p>
+                    <p>{organizationType === "Universitet" ? "Kontrakt to’lovi" : 'To’lovi summasi'}</p>
                     <div>
 
                         <p>{price} UZS</p>

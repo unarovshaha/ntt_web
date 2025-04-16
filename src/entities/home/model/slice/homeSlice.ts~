@@ -45,12 +45,7 @@ const initialState: IHomeSchema = {
 const homeSlice = createSlice({
     name: "homeSlice",
     initialState,
-    reducers: {
-        onAddComment : (state , action) => {
-            state.comments = [...state.comments , action.payload]
-        }
-
-    },
+    reducers: {},
     extraReducers: builder =>
         builder
             .addCase(fetchHomeHeaderItem.pending, state => {

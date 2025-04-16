@@ -1,7 +1,7 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {headers} from "shared/api/base";
 import {ThunkConfig} from "app/providers/storeProvider";
-import {HeaderItem, IHome, Organization} from "../schema/homeSchema"
+import {HeaderItem, IComment, IHome, Organization} from "../schema/homeSchema"
 
 
 export const fetchHomeHeaderItem = createAsyncThunk<
@@ -300,3 +300,26 @@ export const fetchStudentAcademicYear = createAsyncThunk<
 
 
 
+export const fetchUserComment = createAsyncThunk<
+    IComment[],
+    number,
+    ThunkConfig<string>
+>("homeSlice/fetchUserComment", async (id, thunkApi) => {
+    const {extra, dispatch, rejectWithValue} = thunkApi;
+    try {
+        const response = await extra.api({
+            url: `comments/list/?organization_id=${id}`,
+            method: "GET",
+            body: null,
+            // headers: headers()
+        })
+        if (!response) {
+            throw new Error()
+        }
+
+        return response.results;
+    } catch (e) {
+        console.log(e);
+        return rejectWithValue('error')
+    }
+})

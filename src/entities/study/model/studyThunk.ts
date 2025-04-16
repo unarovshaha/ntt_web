@@ -1,6 +1,7 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {ThunkConfig} from "app/providers/storeProvider";
 import {headers, ParamUrl} from "shared/api/base";
+import {IComment} from "entities/home/model/schema/homeSchema";
 
 export const fetchStudyMttList = createAsyncThunk<
     void,
@@ -185,4 +186,5 @@ export const fetchStudyGrant = createAsyncThunk<
         return rejectWithValue('error')
     }
 })
+
 

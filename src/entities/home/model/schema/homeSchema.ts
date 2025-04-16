@@ -250,6 +250,15 @@ interface IPosterLanding {
 interface IPoster {
     landing: IPosterLanding[]
 }
+
+export interface IComment{
+    user: string
+    rating: string
+    name: string
+    surname: string
+    comment: string
+    organization: string | number
+}
 export interface IHomeSchema {
     headerItem: HeaderItem[]
     data: IHome[],
@@ -268,5 +277,6 @@ export interface IHomeSchema {
     fields: any[],
     posters: any[],
     searchResult: any[],
+    comments: IComment[]
 
 }

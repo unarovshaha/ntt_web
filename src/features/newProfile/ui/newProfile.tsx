@@ -6,7 +6,7 @@ import {
     NewProfileGallery,
     NewProfileHeader,
     NewProfileAbout,
-    NewProfileGrant, NewProfilePersonal
+    NewProfileGrant, NewProfilePersonal, NewProfileComments
 } from "entities/newProfile";
 
 import cls from "./newProfile.module.sass";
@@ -15,7 +15,7 @@ import {
     fetchHomeProfile,
     fetchHomeProfileDegree,
     fetchHomeProfileItem,
-    fetchHomeProfileItemHeader, fetchStudentAcademicYear
+    fetchHomeProfileItemHeader, fetchStudentAcademicYear, fetchUserComment
 } from "entities/home/model/thunk/homeThunk";
 import {useSelector} from "react-redux";
 import {getHomeProfileItem} from "../../../entities/home/model/selector/homeSelector";
@@ -34,6 +34,7 @@ export const NewProfile = () => {
             dispatch(fetchHomeProfileItem(Number(id)))
             dispatch(fetchHomeProfile(Number(id)))
             dispatch(fetchHomeProfileItemHeader(Number(id)))
+            dispatch(fetchUserComment(Number(id)))
 
             dispatch(fetchStudentAcademicYear())
         }
@@ -59,6 +60,7 @@ export const NewProfile = () => {
                 <Route path={"gallery"} element={<NewProfileGallery/>}/>
                 <Route path={"grant"} element={<NewProfileGrant/>}/>
                 <Route path={"personal"} element={<NewProfilePersonal/>}/>
+                <Route path={"comments"} element={<NewProfileComments/>}/>
             </Routes>
         </div>
     );
