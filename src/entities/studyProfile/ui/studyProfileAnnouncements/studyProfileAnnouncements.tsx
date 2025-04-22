@@ -113,15 +113,8 @@ export const StudyProfileAnnouncements = () => {
                     <div className={cls.announcementsItem__text}>
                         <div className={cls.header}>
                             {
-                                !item.grant ? <div className={cls.header__garant}>
-                                        <i
-                                            className={classNames(
-                                                "fas fa-thumbs-up",
-                                                cls.header__likes
-                                            )}
-                                        />
-                                        <p className={cls.header__titles}>Grant mavjud emas</p>
-                                    </div>:
+                                item.grant === false ? <div className={cls.header__garant}></div>
+                                    : item.grant === true ?
                                     <div className={cls.header__garant}>
                                         <i
                                             className={classNames(
@@ -130,7 +123,7 @@ export const StudyProfileAnnouncements = () => {
                                             )}
                                         />
                                         <p className={cls.header__title}>Grant mavjud</p>
-                                    </div>
+                                    </div> : null
                             }
                             <div className={cls.header__up}>
                                 <i className={"fas fa-arrow-up"}/>
