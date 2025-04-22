@@ -205,7 +205,7 @@ const PCRegister = (props: IdentificationRegProps) => {
                 dispatch(alertAction.onAddAlertOptions({
                     type: "error",
                     status: true,
-                    msg: "Bu telefon numerga ega foydalanuvchilar allaqachon mavjud"
+                    msg: "Bu telefon raqamga ega foydalanuvchilar allaqachon mavjud"
                 }))
             })
         // dispatch(registerThunk(data))

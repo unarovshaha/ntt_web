@@ -2,6 +2,7 @@ import {StateSchema} from "app/providers/storeProvider";
 
 
 export const getHomeHeaderItem = (state: StateSchema) => state.homeSlice?.headerItem
+export const getHomeLoading = (state: StateSchema) => state.homeSlice?.loading
 export const getHomeItem = (state: StateSchema) => state.homeSlice?.data
 export const getHomeTechnical = (state: StateSchema) => state.homeSlice?.technical
 export const getHomeProfileDescription = (state: StateSchema) => state.homeSlice?.description
