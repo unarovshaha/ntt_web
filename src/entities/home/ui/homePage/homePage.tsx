@@ -15,6 +15,7 @@ import {getHomeItem} from "entities/home/model/selector/homeSelector";
 import {fetchHomeItem, fetchSearchOrganizations} from "entities/home/model/thunk/homeThunk";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import {SearchInput} from "shared/ui/searchInput";
+import {Loader} from "shared/ui/loader";
 
 
 export const HomePage = () => {
@@ -86,7 +87,6 @@ export const HomePage = () => {
 
     return (
         <div className={cls.main}>
-
             <div className={cls.main__container}>
                 <div className={cls.main__container_infos}>
                     <div className={cls.main__container_infos_title}>
