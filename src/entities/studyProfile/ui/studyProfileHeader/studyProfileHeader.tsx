@@ -10,6 +10,7 @@ const menuList = [
     {name: "grant", label: "Grantlar"},
     {name: "gallery", label: "Galereya"},
     {name: "directions", label: "Talim yo’nalishi"},
+    {name: "comments", label: "Izohlar"},
 ]
 
 export const StudyProfileHeader = () => {

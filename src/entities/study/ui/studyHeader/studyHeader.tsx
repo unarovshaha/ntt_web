@@ -16,6 +16,9 @@ export const StudyHeader = () => {
         return organizationTypes?.map(item => {
             return (
                 <NavLink
+                    onClick={() => {
+                        localStorage.setItem("organizationType", item.name)
+                    }}
                     className={({isActive}) =>
                         classNames(cls.header__item, {
                             [cls.active] : isActive

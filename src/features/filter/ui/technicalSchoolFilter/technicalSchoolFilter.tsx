@@ -20,10 +20,6 @@ export const TechnicalSchoolFilter = ({ item }: { item: HeaderItem }) => {
     const [priceMax, setPriceMax] = useState(1000000);
     const data = useSelector(getFieldsItem)
 
-    console.log(select, 'select')
-
-    console.log(query, 'ededed')
-
 
     const onChangePriceMin = (value: string) => {
         const numValue = Number(value);

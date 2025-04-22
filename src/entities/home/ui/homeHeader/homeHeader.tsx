@@ -16,7 +16,7 @@ const menuList = [
 ];
 
 const menuList1 = [
-    { name: "/onlineTest", label: "Online Test" }
+    { name: "/onlineTest", label: "Online test" }
 ];
 
 export const HomeHeader = ({ setItem }: { setItem: (item: HeaderItem) => void }) => {

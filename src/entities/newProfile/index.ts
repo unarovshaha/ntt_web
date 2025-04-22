@@ -4,3 +4,4 @@ export {NewProfileDirection} from "./ui/newProfileDirection/newProfileDirection"
 export {NewProfileGallery} from "./ui/newProfileGallery/newProfileGallery";
 export {NewProfileGrant} from "./ui/newProfileGrant/newProfileGrant";
 export {NewProfilePersonal} from "./ui/newProfilePersonal/newProfilePersonal";
+export {NewProfileComments} from "entities/newProfile/ui/newProfileComments/newProfileComments";
