@@ -91,6 +91,12 @@
   justify-content: space-between;
   padding: 1.6rem;
   border-radius: 10px;
+  gap: 1rem;
+}
+.main__container_infos_contact_text .search {
+  width: 100% !important;
+  height: 100%;
+  border-radius: 1rem;
 }
 .main__container_infos_users {
   display: flex;
