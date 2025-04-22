@@ -7,7 +7,7 @@ import {useParams} from "react-router";
 
 const list = [
     {label: "Haqida", to: "about"},
-    {label: "Yo’nalish", to: "direction"},
+    {label: "Talim yo’nalishi", to: "direction"},
     {label: "Gallereya", to: "gallery"},
     {label: "Grantlar", to: "grant"},
     {label: "Profil", to: "personal"}

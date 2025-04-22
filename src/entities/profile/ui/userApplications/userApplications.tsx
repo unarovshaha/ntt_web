@@ -112,9 +112,13 @@ interface IApplicationProps {
         date: string,
         degree: string,
         field: string,
-        language: string,
+        language: [
+            {id: number, name: string}
+        ],
         phone: string,
-        shift: string,
+        shift: [
+            {id: number, name: string}
+        ],
         region: string
         price: string
     }[]
@@ -175,7 +179,8 @@ export const UserApplications = ({types, setActiveType, list}: IApplicationProps
                         </div>
                         <div className={cls.container__dataBoxs__boxs__firstLayer__content}>
                             <h2>
-                                {item.field}
+                                {item.name}
+                                {/*{item.field}*/}
                             </h2>
                             <div className={cls.container__dataBoxs__boxs__firstLayer__imgBox__content__locBox}>
                                 <img src={locationIcon} alt=""/>
@@ -192,11 +197,11 @@ export const UserApplications = ({types, setActiveType, list}: IApplicationProps
                         </div>
                         <div className={cls.container__dataBoxs__boxs__secondLayer__content}>
                             <h2>Ta’lim turi</h2>
-                            <h3>{item.shift}</h3>
+                            <h3>{item.shift?.map((item , index , arr) => <span>{item.name}{index !== arr.length - 1 && "\\"}</span>)}</h3>
                         </div>
                         <div className={cls.container__dataBoxs__boxs__secondLayer__content}>
                             <h2>Ta’lim tili</h2>
-                            <h3>{item.language}</h3>
+                            <h3>{item.language?.map((item , index , arr) => <span>{item.name}{index !== arr.length - 1 && "\\"}</span>)}</h3>
                         </div>
                         <div className={cls.container__dataBoxs__boxs__secondLayer__content}>
                             <h2>Ta’lim narxi</h2>
@@ -257,13 +262,13 @@ export const UserApplications = ({types, setActiveType, list}: IApplicationProps
                             <h2>Daraja</h2>
                             <h3>{item.degree}</h3>
                         </div>
-                        <div className={cls.container__dataBox__box__secondLayer__content}>
+                        <div className={cls.container__dataBoxs__boxs__secondLayer__content}>
                             <h2>Ta’lim turi</h2>
-                            <h3>{item.shift}</h3>
+                            <h3>{item.shift?.map((item , index , arr) => <span>{item.name}{index !== arr.length - 1 && "\\"}</span>)}</h3>
                         </div>
-                        <div className={cls.container__dataBox__box__secondLayer__content}>
+                        <div className={cls.container__dataBoxs__boxs__secondLayer__content}>
                             <h2>Ta’lim tili</h2>
-                            <h3>{item.language}</h3>
+                            <h3>{item.language?.map((item , index , arr) => <span>{item.name}{index !== arr.length - 1 && "\\"}</span>)}</h3>
                         </div>
                         <div className={cls.container__dataBox__box__secondLayer__content}>
                             <h2>Ta’lim narxi</h2>

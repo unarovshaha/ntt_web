@@ -4,7 +4,7 @@ import cls from "./newProfileAbout.module.sass";
 import image from "shared/assets/images/Rectangle 6648.png";
 import {useSelector} from "react-redux";
 import {getHomeProfileDescription} from "entities/home/model/selector/homeSelector";
-import {API_URL_DOC, API_URL_DOC_IMG} from "shared/api/base";
+import {API_URL_DOC} from "shared/api/base";
 import {NewProfilePersonal} from "entities/newProfile/ui/newProfilePersonal/newProfilePersonal";
 
 export const NewProfileAbout = () => {
@@ -18,7 +18,7 @@ export const NewProfileAbout = () => {
             </div>
             <div className={cls.about}>
                 {/*// @ts-ignore*/}
-                <img className={cls.about__image} src={data?.img ? `${API_URL_DOC_IMG}${data?.img}` : image} alt=""/>
+                <img className={cls.about__image} src={data?.img ? `${API_URL_DOC}${data?.img}` : image} alt=""/>
                 <h1 className={cls.about__title}>
                     {/*// @ts-ignore*/}
 

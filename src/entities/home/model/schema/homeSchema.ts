@@ -15,9 +15,11 @@ interface Landing {
     id: number;
     price: number;
     requirements: string;
-    language: string;
+    language: [];
     grant: boolean;
-    shift: string
+    shift: []
+    price_max: number
+    price_min: number
 }
 
 interface IHomeTechnical {
@@ -74,6 +76,13 @@ export interface Organization {
     grand_json: any;
     inn: string | null;
     request_count: number;
+    address: string;
+    email: string;
+    telegram_link: string;
+    instagram_link: string;
+    facebook_link: string;
+    youtube_link: string;
+    website_link: string;
 }
 
 interface OrganizationHeader{
@@ -178,10 +187,10 @@ interface EducationRecord {
     expire_date: string;
     degree: Degree;
     grant: boolean;
-    education_language: EducationLanguage;
+    education_language: EducationLanguage[];
     price: number;
     requirements: string;
-    shift: Shift;
+    shift: Shift[];
     desc_json: JsonContent;
     requirements_json: JsonContent;
     field: Field;
