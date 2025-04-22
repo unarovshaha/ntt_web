@@ -112,15 +112,26 @@ export const StudyProfileAnnouncements = () => {
                     </div>
                     <div className={cls.announcementsItem__text}>
                         <div className={cls.header}>
-                            <div className={cls.header__garant}>
-                                <i
-                                    className={classNames(
-                                        "fas fa-thumbs-up",
-                                        cls.header__like
-                                    )}
-                                />
-                                <p className={cls.header__title}>Grant mavjud</p>
-                            </div>
+                            {
+                                !item.grant ? <div className={cls.header__garant}>
+                                        <i
+                                            className={classNames(
+                                                "fas fa-thumbs-up",
+                                                cls.header__likes
+                                            )}
+                                        />
+                                        <p className={cls.header__titles}>Grant mavjud emas</p>
+                                    </div>:
+                                    <div className={cls.header__garant}>
+                                        <i
+                                            className={classNames(
+                                                "fas fa-thumbs-up",
+                                                cls.header__like
+                                            )}
+                                        />
+                                        <p className={cls.header__title}>Grant mavjud</p>
+                                    </div>
+                            }
                             <div className={cls.header__up}>
                                 <i className={"fas fa-arrow-up"}/>
                             </div>
