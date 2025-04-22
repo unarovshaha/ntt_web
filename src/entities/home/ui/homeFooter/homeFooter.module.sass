@@ -1,0 +1,99 @@
+@import "app/styles/abstracts/variables"
+
+.footer
+  align-self: flex-end
+  padding: 7.2rem 10rem
+  background: $color-main
+  display: flex
+  flex-direction: column
+  color: white
+  gap: 12rem
+  &__end
+    border-top: 1px solid #D9DBE9
+    padding-top: 2.5rem
+    display: flex
+    justify-content: space-between
+    p
+      font-size: 1.8rem
+  &__container
+    display: flex
+    justify-content: space-between
+    .link, p
+      font-size: 1.6rem
+      color: white
+    h2
+      font-size: 2rem
+    i
+      font-size: 2rem
+    .info
+      display: flex
+      flex-direction: column
+      gap: 2rem
+      img
+        width: fit-content
+      &__links
+        display: flex
+        gap: 2.2rem
+    .routes
+      display: flex
+      gap: 9rem
+      &__container
+        display: flex
+        flex-direction: column
+        gap: 4.3rem
+        .inner
+          display: flex
+          flex-direction: column
+          flex-wrap: wrap
+          gap: 1.5rem
+          height: 12.5rem
+          .link
+            width: fit-content
+            &.active
+              border-bottom: 1px solid white
+          p
+            display: flex
+            align-items: center
+            gap: 2rem
+
+@media (max-width: 1024px)
+  .footer
+    padding: 3.7rem 3.5rem
+    gap: 5rem
+
+@media (max-width: 768px)
+  .footer
+    padding: 1.7rem 1.5rem
+    &__container
+      .routes
+        gap: 2rem
+      h2
+        font-size: 1.8rem
+      .link, p
+        font-size: 1.4rem
+      i
+        font-size: 1.8rem
+    &__end
+      p
+        font-size: 1.4rem
+
+@media (max-width: 430px)
+  .footer
+    gap: 2.5rem
+    &__container
+      flex-direction: column
+      gap: 2rem
+      .routes
+        gap: 7rem
+        &__container
+          gap: 1.5rem
+      h2
+        font-size: 1.6rem
+      .link, p
+        font-size: 1.2rem
+      i
+        font-size: 1.6rem
+    &__end
+      p
+        font-size: 1.2rem
+

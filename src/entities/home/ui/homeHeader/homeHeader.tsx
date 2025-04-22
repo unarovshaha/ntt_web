@@ -1,27 +1,28 @@
 import cls from "./home.module.sass";
 import logo from "shared/assets/logo/nttLogo.svg";
 import earth from "shared/assets/icons/language.png";
-import { Button } from "shared/ui/button/button";
-import { useEffect, useState } from "react";
+import {Button} from "shared/ui/button/button";
+import {useEffect, useState} from "react";
 import classNames from "classnames";
-import { useNavigate } from "react-router";
-import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
-import { useSelector } from "react-redux";
-import { getHomeHeaderItem } from "entities/home/model/selector/homeSelector";
-import { fetchHomeHeaderItem } from "entities/home/model/thunk/homeThunk";
-import { HeaderItem } from "entities/home/model/schema/homeSchema";
+import {useLocation, useNavigate} from "react-router";
+import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
+import {useSelector} from "react-redux";
+import {getHomeHeaderItem} from "entities/home/model/selector/homeSelector";
+import {fetchHomeHeaderItem} from "entities/home/model/thunk/homeThunk";
+import {HeaderItem} from "entities/home/model/schema/homeSchema";
 
 const menuList = [
-    { name: "/", label: "Bosh sahifa" },
+    {name: "/", label: "Bosh sahifa"},
 ];
 
 const menuList1 = [
-    { name: "/onlineTest", label: "Online test" }
+    {name: "/onlineTest", label: "Online test"}
 ];
 
-export const HomeHeader = ({ setItem }: { setItem: (item: HeaderItem) => void }) => {
+export const HomeHeader = ({setItem}: { setItem: (item: HeaderItem) => void }) => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
+    const location = useLocation()
 
     const initialMenu = localStorage.getItem("activeMenu") || menuList[0].name;
     const [activeMenu, setActiveMenu] = useState(initialMenu);
@@ -30,6 +31,11 @@ export const HomeHeader = ({ setItem }: { setItem: (item: HeaderItem) => void })
     useEffect(() => {
         dispatch(fetchHomeHeaderItem());
     }, [dispatch]);
+
+    useEffect(() => {
+        if (!activeMenu || activeMenu !== location?.pathname)
+            setActiveMenu(decodeURIComponent(location?.pathname))
+    }, [location?.pathname])
 
     const data = useSelector(getHomeHeaderItem);
 
@@ -71,11 +77,11 @@ export const HomeHeader = ({ setItem }: { setItem: (item: HeaderItem) => void })
     return (
         <div className={cls.header}>
             <div onClick={() => setActiveSubMenu(!activeSubMenu)} className={cls.header__hamburger}>
-                <i className={activeSubMenu ? "fa fa-times" : "fa fa-bars"} />
+                <i className={activeSubMenu ? "fa fa-times" : "fa fa-bars"}/>
             </div>
 
             <div className={cls.header__logo}>
-                <img src={logo} alt="" />
+                <img src={logo} alt=""/>
             </div>
 
             <ul className={cls.header__menu}>
