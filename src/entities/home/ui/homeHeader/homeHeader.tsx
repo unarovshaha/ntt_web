@@ -1,10 +1,10 @@
 import cls from "./home.module.sass";
 import logo from "shared/assets/logo/nttLogo.svg";
 import earth from "shared/assets/icons/language.png";
-import { Button } from "shared/ui/button/button";
-import { useEffect, useState } from "react";
+import {Button} from "shared/ui/button/button";
+import {useEffect, useState} from "react";
 import classNames from "classnames";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { useSelector } from "react-redux";
 import {getHomeHeaderItem, getHomeLoading} from "entities/home/model/selector/homeSelector";
@@ -13,16 +13,17 @@ import { HeaderItem } from "entities/home/model/schema/homeSchema";
 import {Loader} from "shared/ui/loader";
 
 const menuList = [
-    { name: "/", label: "Bosh sahifa" },
+    {name: "/", label: "Bosh sahifa"},
 ];
 
 const menuList1 = [
-    { name: "/onlineTest", label: "Online test" }
+    {name: "/onlineTest", label: "Online test"}
 ];
 
-export const HomeHeader = ({ setItem }: { setItem: (item: HeaderItem) => void }) => {
+export const HomeHeader = ({setItem}: { setItem: (item: HeaderItem) => void }) => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
+    const location = useLocation()
 
     const initialMenu = localStorage.getItem("activeMenu") || menuList[0].name;
     const getLoading = useSelector(getHomeLoading)
@@ -32,6 +33,11 @@ export const HomeHeader = ({ setItem }: { setItem: (item: HeaderItem) => void })
     useEffect(() => {
         dispatch(fetchHomeHeaderItem());
     }, [dispatch]);
+
+    useEffect(() => {
+        if (!activeMenu || activeMenu !== location?.pathname)
+            setActiveMenu(decodeURIComponent(location?.pathname))
+    }, [location?.pathname])
 
     const data = useSelector(getHomeHeaderItem);
 
@@ -71,7 +77,6 @@ export const HomeHeader = ({ setItem }: { setItem: (item: HeaderItem) => void })
     };
 
     return (
-
         <div className={cls.header}>
             {
                 getLoading ? <Loader/> :

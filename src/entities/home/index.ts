@@ -4,6 +4,7 @@ export {HomeNewsList} from "./ui/homeNews/homeNews"
 export {HomeNewsProfile} from "./ui/homeNewsProfile/homeNewsProfile"
 export {OnlineTestEnter} from "./ui/onlineTest/onlineTestEnter/onlineTestEnter"
 export {TechnicalSchool } from './ui/technicalSchool/technicalSchool'
+export {HomeFooter} from "./ui/homeFooter/homeFooter";
 
 
 export {homeNewsReducer, homeNewsActions} from "./model/slice/homeNewsSlice";
