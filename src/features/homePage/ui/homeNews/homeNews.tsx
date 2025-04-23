@@ -23,7 +23,7 @@ export const HomeNews = () => {
     const homeNewsData = useSelector(getHomeNews);
 
     useEffect(() => {
-        document.title = `So’ngi yangiliklar  Trendlar`;
+        document.title = `Yangiliklar`;
 
         const metaTags = [
             { name: "charset", content: "UTF-8" },
@@ -55,7 +55,7 @@ export const HomeNews = () => {
 
             <div className={cls.news}>
                 <div className={cls.news__header}>
-                    <h1>So’ngi yangiliklar  Trendlar</h1>
+                    <h1>Yangiliklar</h1>
                     <h3>Hamasini ko’rish</h3>
                 </div>
                 <div className={cls.news__list}>

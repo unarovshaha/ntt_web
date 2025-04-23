@@ -76,18 +76,18 @@ export const NewProfileDirection = () => {
                                     ))}
                                 </span>
                     </li>
-                    <li>{activeMenu === "/Universitet" ? "Kontrakt summasi " : "To'lov summasi "} <span>{item?.price}</span></li>
+                    <li>{activeMenu === "/Universitet" ? "Kontrakt summasi " : "To'lov summasi "} <span>{item?.price.toLocaleString()}</span></li>
                     <li>Ta’lim turi <span>{item?.degree?.organization_type?.name}</span></li>
-                    <li>Boshlanish vaqti <span>{item?.start_date}</span></li>
-                    <li>Tugash vaqti <span>{item?.expire_date}</span></li>
+                    <li>Boshlanish vaqti <span>{item?.start_date.replace(/-/g, ".")}</span></li>
+                    <li>Tugash vaqti <span>{item?.expire_date.replace(/-/g, ".")}</span></li>
                 </ul>
                 <div className={cls.profile__footer_container_box_middle}>
-                    <div>
-                        <h2>Ma'lumotlar</h2>
-                        <div>
-                            <p dangerouslySetInnerHTML={{__html: item?.desc || ''}}></p>
-                        </div>
-                    </div>
+                    {/*<div>*/}
+                    {/*    <h2>Ma'lumotlar</h2>*/}
+                    {/*    <div>*/}
+                    {/*        <p dangerouslySetInnerHTML={{__html: item?.desc || ''}}></p>*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
                     <div>
                         <h2>Talablar</h2>
                         <div>

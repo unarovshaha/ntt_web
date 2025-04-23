@@ -20,7 +20,7 @@ export const TechnicalSchool = ({item}: { item: HeaderItem }) => {
 
 
     const formatSalary = (salary: string | number) => {
-        return Number(salary).toLocaleString();
+        return salary?.toLocaleString();
     };
 
     return (
@@ -51,18 +51,6 @@ export const TechnicalSchool = ({item}: { item: HeaderItem }) => {
                                     ))}
                                 </span>
                         </li>
-                        <li>
-                            Ta'lim shakli{" "}
-                                <span>
-                                    {item?.landing?.shift?.map((shiftItem, index, arr) => (
-                                        <span key={index}>
-                                        {shiftItem}
-                                        {index !== arr.length - 1 && "\\"}
-                                        </span>
-                                    ))}
-                                </span>
-                        </li>
-                        <li>Talablar <span dangerouslySetInnerHTML={{__html: item.landing?.requirements}}></span></li>
                         <li>{menuName === '/Universitet' ? "Kontrakt to’lovi" : "To'lov summasi"}<div  className={cls.contract}><span>{formatSalary(item.landing?.price_min)}</span>-<span>{formatSalary(item.landing?.price_max)}</span></div> </li>
                     </ul>
 
