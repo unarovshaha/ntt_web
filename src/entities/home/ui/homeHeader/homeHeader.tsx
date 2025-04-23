@@ -7,9 +7,10 @@ import classNames from "classnames";
 import { useNavigate } from "react-router";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { useSelector } from "react-redux";
-import { getHomeHeaderItem } from "entities/home/model/selector/homeSelector";
+import {getHomeHeaderItem, getHomeLoading} from "entities/home/model/selector/homeSelector";
 import { fetchHomeHeaderItem } from "entities/home/model/thunk/homeThunk";
 import { HeaderItem } from "entities/home/model/schema/homeSchema";
+import {Loader} from "shared/ui/loader";
 
 const menuList = [
     { name: "/", label: "Bosh sahifa" },
@@ -24,6 +25,7 @@ export const HomeHeader = ({ setItem }: { setItem: (item: HeaderItem) => void })
     const dispatch = useAppDispatch();
 
     const initialMenu = localStorage.getItem("activeMenu") || menuList[0].name;
+    const getLoading = useSelector(getHomeLoading)
     const [activeMenu, setActiveMenu] = useState(initialMenu);
     const [activeSubMenu, setActiveSubMenu] = useState(false);
 
@@ -51,7 +53,7 @@ export const HomeHeader = ({ setItem }: { setItem: (item: HeaderItem) => void })
         setActiveMenu(name);
         setActiveSubMenu(false);
         navigate(name);
-        localStorage.setItem("menuId", id)
+        // localStorage.setItem("menuId", id)
     };
 
     const renderMenu = (menuArray: { name: string; label: string }[]) => {
@@ -69,73 +71,73 @@ export const HomeHeader = ({ setItem }: { setItem: (item: HeaderItem) => void })
     };
 
     return (
+
         <div className={cls.header}>
-            <div onClick={() => setActiveSubMenu(!activeSubMenu)} className={cls.header__hamburger}>
-                <i className={activeSubMenu ? "fa fa-times" : "fa fa-bars"} />
-            </div>
+            {
+                getLoading ? <Loader/> :
+                    <>
+                        <div onClick={() => setActiveSubMenu(!activeSubMenu)} className={cls.header__hamburger}>
+                            <i className={activeSubMenu ? "fa fa-times" : "fa fa-bars"} />
+                        </div>
 
-            <div className={cls.header__logo}>
-                <img src={logo} alt="" />
-            </div>
+                        <div className={cls.header__logo}>
+                            <img src={logo} alt="" />
+                        </div>
 
-            <ul className={cls.header__menu}>
-                {renderMenu(menuList)}
-                {data?.map((item) => (
-                    <li
-                        key={item.name}
-                        onClick={() => {
-                            handleMenuClick(`/${item.name}`);
-                            setItem(item);
-                        }}
-                        className={classNames({
-                            [activeSubMenu ? cls.activeSubmenu : cls.active]: activeMenu === `/${item.name}`,
-                        })}
-                    >
-                        {item.name}
-                    </li>
-                ))}
-                {renderMenu(menuList1)}
-            </ul>
+                        <ul className={cls.header__menu}>
+                            {renderMenu(menuList)}
+                            {data?.map((item) => (
+                                <li
+                                    key={item.name}
+                                    onClick={() => {
+                                        handleMenuClick(`/${item.name}`);
+                                        setItem(item);
+                                    }}
+                                    className={classNames({
+                                        [activeSubMenu ? cls.activeSubmenu : cls.active]: activeMenu === `/${item.name}`,
+                                    })}
+                                >
+                                    {item.name}
+                                </li>
+                            ))}
+                            {renderMenu(menuList1)}
+                        </ul>
 
-            <div className={`${cls.header__subMenu} ${activeSubMenu ? cls.header__activeMenu : ""}`}>
-                <ul>
-                    {renderMenu(menuList)}
-                    {data?.map((item) => (
-                        <li
-                            key={item.name}
-                            onClick={() => {
-                                handleMenuClick(`/${item.name}`);
-                                setItem(item);
+                        <div className={`${cls.header__subMenu} ${activeSubMenu ? cls.header__activeMenu : ""}`}>
+                            <ul>
+                                {renderMenu(menuList)}
+                                {data?.map((item) => (
+                                    <li
+                                        key={item.name}
+                                        onClick={() => {
+                                            handleMenuClick(`/${item.name}`);
+                                            setItem(item);
 
 
-                            }}
-                            className={classNames({
-                                [activeSubMenu ? cls.activeSubmenu : cls.active]: activeMenu === `/${item.name}`,
-                            })}
-                        >
-                            {item.name}
-                        </li>
-                    ))}
-                    {renderMenu(menuList1)}
-                </ul>
-            </div>
+                                        }}
+                                        className={classNames({
+                                            [activeSubMenu ? cls.activeSubmenu : cls.active]: activeMenu === `/${item.name}`,
+                                        })}
+                                    >
+                                        {item.name}
+                                    </li>
+                                ))}
+                                {renderMenu(menuList1)}
+                            </ul>
+                        </div>
 
-            <div className={cls.header__end}>
-                {/*<div className={cls.header__end_language}>*/}
-                {/*    <div className={cls.header__end_language_img}>*/}
-                {/*        <img src={earth} alt="" />*/}
-                {/*    </div>*/}
-                {/*    <div className={cls.header__end_language_text}>*/}
-                {/*        O'zbek <i className={"fa fa-caret-down"} />*/}
-                {/*    </div>*/}
-                {/*</div>*/}
-                <Button onClick={() => navigate("/login")} extraClass={cls.header__end_btn}>
-                    Login
-                </Button>
-                <Button onClick={() => navigate("/register")} extraClass={cls.header__end_btn}>
-                    Register
-                </Button>
-            </div>
+                        <div className={cls.header__end}>
+
+                            <Button onClick={() => navigate("/login")} extraClass={cls.header__end_btn}>
+                                Login
+                            </Button>
+                            <Button onClick={() => navigate("/register")} extraClass={cls.header__end_btn}>
+                                Register
+                            </Button>
+                        </div>
+                    </>
+            }
+
         </div>
     );
 };

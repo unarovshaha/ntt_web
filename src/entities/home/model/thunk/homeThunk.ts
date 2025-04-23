@@ -76,9 +76,9 @@ export const fetchSearchOrganizations = createAsyncThunk<
 })
 export const fetchFieldsItem = createAsyncThunk<
     any[],
-    void,
+    string | number | undefined,
     ThunkConfig<string>
->("homeSlice/fetchFieldsItem", async (_, thunkApi) => {
+>("homeSlice/fetchFieldsItem", async (menuID, thunkApi) => {
     const {extra, dispatch, rejectWithValue} = thunkApi;
     const menuId = localStorage.getItem("menuId");
     try {
@@ -132,7 +132,7 @@ export const fetchHomeTechnical = createAsyncThunk<
     const {extra, dispatch, rejectWithValue} = thunkApi;
     try {
         const response = await extra.api({
-            url: `organizations/organization/get/home/?organization_type=${organizationId}${value ? `&search=${value}` : ""}&price_min=${priceMin}&price_max=${priceMax}${grand ? `&grant=${grand}` : ""}${stipendiya ? `&stipendiya=${stipendiya}` : ""}${fieldId ? `&field=${fieldId}` : ""}`,
+            url: `organizations/organization/get/home/?organization_type=${organizationId}${value ? `&search=${value}` : ""}${priceMin ? `&price_min=${priceMin}` : ""}${priceMax ? `&price_max=${priceMax}` : ""}${grand ? `&grant=${grand}` : ""}${stipendiya ? `&stipendiya=${stipendiya}` : ""}${fieldId ? `&field=${fieldId}` : ""}`,
             method: "GET",
             body: null,
             // headers: headers()

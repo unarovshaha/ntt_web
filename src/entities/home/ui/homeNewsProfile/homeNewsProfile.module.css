@@ -18,9 +18,11 @@
   position: relative;
 }
 .profile__container_left_img {
-  width: 100%;
+  width: 50%;
+  height: 20rem;
 }
 .profile__container_left_img img {
+  height: 100%;
   width: 100%;
 }
 .profile__container_left_info {

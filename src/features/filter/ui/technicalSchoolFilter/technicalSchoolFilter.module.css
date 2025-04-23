@@ -11,17 +11,17 @@
   gap: 3rem;
   order: 2;
 }
-.main__header__select {
-  width: 90%;
-  padding: 1.2rem;
-}
 .main__headers {
-  width: 100%;
+  width: 30%;
   display: flex;
   height: 10rem;
   order: 1;
-  padding-top: 1.9rem;
+  padding-top: 3rem;
   align-items: center;
+}
+.main__headers__select {
+  width: 100%;
+  padding: 1.2rem;
 }
 .main__section {
   width: 80%;
@@ -29,7 +29,28 @@
   order: 3;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem;
+  padding-top: 2rem;
+}
+
+@media (max-width: 500px) {
+  .main {
+    flex-wrap: wrap;
+  }
+  .main__header {
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .main__header__input {
+    width: 190% !important;
+  }
+  .main__headers__select {
+    width: 150% !important;
+  }
+  .main__section {
+    width: 100%;
+    padding: 0;
+    padding-top: 1rem;
+  }
 }
 
 /*# sourceMappingURL=technicalSchoolFilter.module.css.map */

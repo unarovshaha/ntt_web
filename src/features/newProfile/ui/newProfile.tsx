@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {Route, Routes, useParams} from "react-router";
 
 import {
-    NewProfileDirection,
+
     NewProfileGallery,
     NewProfileHeader,
     NewProfileAbout,
@@ -17,8 +17,7 @@ import {
     fetchHomeProfileItem,
     fetchHomeProfileItemHeader, fetchStudentAcademicYear, fetchUserComment
 } from "entities/home/model/thunk/homeThunk";
-import {useSelector} from "react-redux";
-import {getHomeProfileItem} from "../../../entities/home/model/selector/homeSelector";
+
 
 
 
@@ -56,7 +55,7 @@ export const NewProfile = () => {
             <NewProfileHeader/>
             <Routes>
                 <Route path={"about"} element={<NewProfileAbout/>}/>
-                <Route path={"direction"} element={<NewProfileDirection/>}/>
+                {/*<Route path={"direction"} element={<NewProfileDirection/>}/>*/}
                 <Route path={"gallery"} element={<NewProfileGallery/>}/>
                 <Route path={"grant"} element={<NewProfileGrant/>}/>
                 <Route path={"personal"} element={<NewProfilePersonal/>}/>

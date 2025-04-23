@@ -13,6 +13,7 @@ import {SubmitHandler, useForm} from "react-hook-form";
 import {ILogin} from "entities/login/model/loginSchema";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import {loginThunk} from "entities/login/model/loginThunk";
+import {Loader} from "shared/ui/loader";
 
 
 const slides = [
@@ -117,6 +118,7 @@ export const Login = () => {
 
     const onRedirect: SubmitHandler<ILogin> = async (data) => {
         await dispatch(loginThunk(data))
+
         navigate("/platform/personal/profile")
     }
     return (
@@ -148,7 +150,7 @@ export const Login = () => {
                                     <Button onClick={handleSubmit(onRedirect)}>Login</Button>
 
                                 </Form>
-
+                                <h3 onClick={() => navigate("/register")}>Ro'yxatdan o'tish</h3>
                             </div>
                         </div>
                     </div>
