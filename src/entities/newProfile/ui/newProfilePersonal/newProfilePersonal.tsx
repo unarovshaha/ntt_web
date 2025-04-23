@@ -33,24 +33,36 @@ export const NewProfilePersonal = () => {
                     <p className={cls.list} style={{justifyContent: "center"}}>
                         <span>{data?.name}</span>
                     </p>
-                    <p className={cls.list}>
-                        Tashkilot turi<span>{data?.organization_type.name}</span>
+                    <p className={classNames(cls.list, {
+                        [cls.active]: !!data?.organization_type.name?.length
+                    })}>
+                        Tashkilot turi: <span>{data?.organization_type.name}</span>
                     </p>
-                    <p className={cls.list}>
-                        Viloyat<span>{data?.region.name}</span>
+                    <p className={classNames(cls.list, {
+                        [cls.active]: !!data?.region.name?.length
+                    })}>
+                        Viloyat: <span>{data?.region.name}</span>
                     </p>
-                    <p className={cls.list}>
+                    <p className={classNames(cls.list, {
+                        [cls.active]: !!data?.inn?.length
+                    })}>
                          {/*@ts-ignore*/}
-                        INN<span dangerouslySetInnerHTML={{__html: data?.inn}}/>
+                        INN: <span dangerouslySetInnerHTML={{__html: data?.inn}}/>
                     </p>
-                    <p className={cls.list}>
-                        Email<span>{data?.email}</span>
+                    <p className={classNames(cls.list, {
+                        [cls.active]: !!data?.email?.length
+                    })}>
+                        Email: <span>{data?.email}</span>
                     </p>
-                    <p className={cls.list}>
-                        Telefon raqam<span>{data?.phone}</span>
+                    <p className={classNames(cls.list, {
+                        [cls.active]: !!data?.phone?.length
+                    })}>
+                        Telefon raqam: <span>{data?.phone}</span>
                     </p>
-                    <p className={cls.list}>
-                        Addres<span>{data?.address}</span>
+                    <p className={classNames(cls.list, {
+                        [cls.active]: !!data?.address?.length
+                    })}>
+                        Addres: <span>{data?.address}</span>
                     </p>
                     <div className={cls.links}>
                         <a
