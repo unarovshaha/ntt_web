@@ -28,7 +28,7 @@ export const MenuBar = () => {
                     }
                     to={item.to}
                 >
-                    {item.icon}
+                    {item.icon ? item.icon : <img src={item.img} alt=""/>}
                     <p>{item.label}</p>
 
                 </NavLink>

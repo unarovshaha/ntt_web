@@ -30,7 +30,7 @@ export const NewProfileComments = () => {
         return data?.map(item => (
             <div className={cls.comment__box}>
                 <div className={cls.comment__box_header}>
-                    <div style={{ display: 'flex', gap: '4px' , alignItems: "center" }}>
+                    <div style={{ display: 'flex', gap: '4px' , alignItems: "center" , flexWrap: "wrap" }}>
                         {/*<img src={avatar} alt=""/>*/}
                         <h3>{item.name}</h3>
                         <h3>{item.surname}</h3>
@@ -63,14 +63,13 @@ export const NewProfileComments = () => {
     return (
         <div className={cls.comment}>
 
-            <NewProfilePersonal/>
-            <div className={cls.comment__container}>
+            {window.innerWidth > 700 && <NewProfilePersonal/> }
 
 
-                {renderData()}
-
-                <Button onClick={() => setActive(true)} extraClass={cls.comment__add}>Izoh kiritish</Button>
-            </div>
+                <div className={cls.comment__container}>
+                    {renderData()}
+                    <Button onClick={() => setActive(true)} extraClass={cls.comment__add}>Izoh kiritish</Button>
+                </div>
 
             <AddComment  setActive={setActive} active={active}/>
         </div>
@@ -87,7 +86,7 @@ const AddComment = ({active, setActive } : {active : boolean , setActive : (arg 
     const handleStarClick = (index: number) => {
         setRating(index + 1);
     };
-    console.log(rating)
+
 
     const {request} = useHttp()
 
@@ -124,8 +123,8 @@ const AddComment = ({active, setActive } : {active : boolean , setActive : (arg 
 
 
             <Form extraClass={cls.form}>
-                <Input name={"name"} register={register} placeholder={"Ism"} />
-                <Input name={"surname"} register={register} placeholder={"Familya"}/>
+                <Input extraClass={cls.form__input} name={"name"} register={register} placeholder={"Ism"} />
+                <Input extraClass={cls.form__input}  name={"surname"} register={register} placeholder={"Familya"}/>
                 <textarea {...register("comment")} name={"comment"} placeholder={"Text"}/>
 
                 <div className={cls.modal__star}>
@@ -149,7 +148,7 @@ const AddComment = ({active, setActive } : {active : boolean , setActive : (arg 
                 </div>
                 {/*// @ts-ignore*/}
 
-                <Button extraClass={cls.comment__add} onClick={handleSubmit(onAdd)}>Qushmoq</Button>
+                <Button extraClass={cls.form__add} onClick={handleSubmit(onAdd)}>Qushmoq</Button>
             </Form>
         </Modal>
     )

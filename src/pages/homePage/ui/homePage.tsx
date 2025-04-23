@@ -10,16 +10,13 @@ import {
     homeReducer,
     OnlineTestEnter
 } from "entities/home";
-import {HomeNews, HomeTechnical, OnlineTestEnterFeature} from "features/homePage";
+import {HomeNews, HomeTechnical} from "features/homePage";
 import {NewProfile} from "features/newProfile";
 
 import cls from "./homePage.module.sass"
 import {DynamicModuleLoader, ReducersList} from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
 import {HeaderItem} from "entities/home/model/schema/homeSchema";
-import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
-import {fetchProfileItem} from "entities/home/model/thunk/newsThunk";
-import {useSelector} from "react-redux";
-import {getHomeNewsProfileItem} from "entities/home/model/selector/homeNewsSelector";
+import {OnlineTestEnterFeature, TakeTest} from "features/onlineTestEnter";
 
 const reducers: ReducersList = {
     homeNewsSlice: homeNewsReducer,
@@ -52,13 +49,13 @@ export const Home = () => {
                     <Route path={"onlineTest"} element={<OnlineTestEnter/>}/>
                     <Route path={"onlineTest/onlineTestEnter"} element={<OnlineTestEnterFeature/>}/>
 
+                    <Route path={"onlineTest/takeTest"} element={<TakeTest/>} />
                     {/*// @ts-ignore*/}
                     <Route path={`${item?.name}`} element={<HomeTechnical item={item}/>}/>
                     {/*// @ts-ignore*/}
                     <Route path={`${item?.name}/profile/:id/*`} element={<NewProfile/>}/>
                 </Routes>
             </div>
-            <HomeFooter/>
         </DynamicModuleLoader>
     );
 };

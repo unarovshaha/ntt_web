@@ -38,6 +38,8 @@ import {ApplicationProfile} from "pages/applicationProfile";
 import {SchoolDirectionAbout} from "entities/school";
 import {StudyProfileNewPage, StudyProfilePage} from "pages/studyProfilePage";
 import {NotificationPage} from "pages/notificationPage";
+import {OnlineTestEnter} from "entities/home";
+import {OnlineTestEnterFeature , TakeTest} from "features/onlineTestEnter";
 
 
 interface IRouterConfigProfiles {
@@ -147,6 +149,21 @@ export const routerConfigProfiles: IRouterConfigProfiles[] = [
         name: "notification",
         element: <NotificationPage/>,
         path: getNotificationListPageRoute()
+    } ,
+    {
+        name: `onlineTest`,
+        element: <OnlineTestEnter/>,
+        path: "onlineTest/*"
+    },
+    {
+        name: `onlineTestEnter`,
+        element: <OnlineTestEnterFeature/>,
+        path: "onlineTest/onlineTestEnter"
+    },
+    {
+        name: `takeTest`,
+        element: <TakeTest/>,
+        path: "onlineTest/takeTest"
     }
 ]
 

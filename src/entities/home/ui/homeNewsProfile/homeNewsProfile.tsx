@@ -47,8 +47,6 @@ export const HomeNewsProfile = () => {
             dispatch(fetchOrganizationsPosters(id))
 
     }, [id])
-
-    console.log(list, 'efefefefe')
     const renderData = () => {
 
            //@ts-ignore

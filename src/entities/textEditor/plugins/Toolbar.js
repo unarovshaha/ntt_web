@@ -383,7 +383,6 @@ const InputToolBarPlugin = () => {
                 // $setBlocksType(selection,() => $createInputNode())
                 // selection.insertNodes([myNode])
 
-                // console.log()
                 //
                 // const selectedItem = editor.getElementByKey(nodes[0].getKey())
 
@@ -439,7 +438,6 @@ const MatchToolBarPlugin = () => {
                 // $setBlocksType(selection,() => $createInputNode())
                 // selection.insertNodes([myNode])
 
-                // console.log()
                 //
                 // const selectedItem = editor.getElementByKey(nodes[0].getKey())
 
@@ -490,7 +488,6 @@ const MatchWrongToolBarPlugin = () => {
                 // $setBlocksType(selection,() => $createInputNode())
                 // selection.insertNodes([myNode])
 
-                // console.log()
                 //
                 // const selectedItem = editor.getElementByKey(nodes[0].getKey())
 

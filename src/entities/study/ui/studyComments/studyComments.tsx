@@ -84,7 +84,7 @@ const AddComment = ({active, setActive } : {active : boolean , setActive : (arg 
     const handleStarClick = (index: number) => {
         setRating(index + 1);
     };
-    console.log(rating)
+
 
     const {request} = useHttp()
 

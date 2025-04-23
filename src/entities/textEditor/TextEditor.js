@@ -143,11 +143,11 @@ function OnSetEditorState({oldEditorState}) {
 
 
     useEffect(() => {
-        console.log(oldEditorState, "oldddddddd")
+
 
 
         if (oldEditorState && !isChanged) {
-            console.log(oldEditorState)
+
             const editorState = editor.parseEditorState(oldEditorState)
             editor.setEditorState(editorState);
             setIsChanged(true)

@@ -23,7 +23,7 @@ export const fetchHomeHeaderItem = createAsyncThunk<
 
         return response.results;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -47,7 +47,7 @@ export const fetchOrganizationsPosters = createAsyncThunk<
 
         return response;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -70,7 +70,7 @@ export const fetchSearchOrganizations = createAsyncThunk<
 
         return response.results;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -94,7 +94,7 @@ export const fetchFieldsItem = createAsyncThunk<
 
         return response.results;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -119,7 +119,7 @@ export const fetchHomeItem = createAsyncThunk<
 
         return response.results;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -143,7 +143,7 @@ export const fetchHomeTechnical = createAsyncThunk<
 
         return response.results;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -168,7 +168,7 @@ export const fetchHomeProfile = createAsyncThunk<
 
         return response;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -195,7 +195,7 @@ export const fetchHomeProfileItem = createAsyncThunk<
 
         return response;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -219,7 +219,7 @@ export const fetchHomeProfileItemHeader = createAsyncThunk<
 
         return response;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -244,7 +244,7 @@ export const fetchHomeProfileDegree = createAsyncThunk<
 
         return response.results;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -267,7 +267,7 @@ export const fetchHomeProfileDegreeItem = createAsyncThunk<
 
         return response.results;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -292,7 +292,7 @@ export const fetchStudentAcademicYear = createAsyncThunk<
 
         return response.results;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -319,7 +319,7 @@ export const fetchUserComment = createAsyncThunk<
 
         return response.results;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })

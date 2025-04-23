@@ -24,7 +24,7 @@ export const fetchStudyProfileLandingData = createAsyncThunk<
 
         return response;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -48,7 +48,7 @@ export const fetchStudyProfileData = createAsyncThunk<
 
         return response;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -72,7 +72,7 @@ export const fetchStudyProfileGallery = createAsyncThunk<
 
         return response.results;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -97,7 +97,7 @@ export const fetchStudyProfileAnnouncements = createAsyncThunk<
 
         return response.results;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -121,7 +121,7 @@ export const fetchStudyProfileAdmin = createAsyncThunk<
 
         return response;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -147,7 +147,7 @@ export const fetchStudyProfileDegree = createAsyncThunk<
 
         return response.results;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -171,7 +171,7 @@ export const fetchUserComments = createAsyncThunk<
 
         return response.results;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })

@@ -9,13 +9,11 @@ import {NewProfilePersonal} from "entities/newProfile/ui/newProfilePersonal/newP
 
 export const NewProfileAbout = () => {
     const data = useSelector(getHomeProfileDescription)
-    console.log(data , "dadsa")
+
 
     return (
         <div style={{display: "flex"}}>
-            <div className={cls.info}>
-                <NewProfilePersonal/>
-            </div>
+            {window.innerWidth > 700 &&<div className={cls.info}> <NewProfilePersonal/></div> }
             <div className={cls.about}>
                 {/*// @ts-ignore*/}
                 <img className={cls.about__image} src={data?.img ? `${API_URL_DOC}${data?.img}` : image} alt=""/>
