@@ -24,7 +24,7 @@ export const fetchApplication = createAsyncThunk<
 
         return response.results;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -48,7 +48,7 @@ export const fetchApplicationTypes = createAsyncThunk<
 
         return response.results;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })

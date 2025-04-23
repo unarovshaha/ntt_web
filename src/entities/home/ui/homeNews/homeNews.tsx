@@ -11,15 +11,14 @@ interface IHomeNewsListProps {
 }
 
 export const HomeNewsList = ({item}: IHomeNewsListProps) => {
-    console.log(item)
+
     const navigate = useNavigate()
 
     const [activeItem, setActiveItem] = useState(null)
 
-    console.log(activeItem)
+
     const [activeModal, setActiveModal] = useState(false)
 
-    console.log(item , "item")
     const renderData = () => {
 
         return item?.map(item => (

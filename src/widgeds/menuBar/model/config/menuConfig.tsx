@@ -1,4 +1,6 @@
 
+import testIcon from "shared/assets/icons/test.svg"
+
 export const menuConfig = [
     {
         to: "personal",
@@ -24,5 +26,10 @@ export const menuConfig = [
         icon: <i className="fa-solid fa-envelope"/>,
         // roles: [ROLES.admin , ROLES.organization_admin]
     },
+    {
+        to: "onlineTest",
+        label: "Test topshirish",
+        img: testIcon
+    }
 
 ]

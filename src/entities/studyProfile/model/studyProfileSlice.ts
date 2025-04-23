@@ -61,7 +61,7 @@ const studyProfileSlice = createSlice({
                 state.error = undefined
             })
             .addCase(fetchStudyProfileData.fulfilled, (state, action) => {
-                console.log(action.payload, "action.payload")
+
                 state.data = action.payload
                 state.loading = false
                 state.error = undefined

@@ -31,7 +31,7 @@ export const SearchInput= () => {
     useEffect(() => {
         dispatch(fetchSearchOrganizations(query))
     }, [query])
-    console.log(getData, 'eeddd')
+
 
     useEffect(() => {
         if (query.trim() === '') {

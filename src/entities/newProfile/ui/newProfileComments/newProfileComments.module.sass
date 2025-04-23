@@ -5,6 +5,7 @@
 
   &__add
     align-self: flex-end
+
   &__container
     display: flex
     padding: 2rem
@@ -47,6 +48,10 @@
     height: 15rem
     border-radius: 10px
     padding: 2rem
+  &__add
+    align-self: flex-end
+    background: white!important
+    color: black
 .modal
   background-color: rgba(0, 74, 173, 1) !important
   color: white!important
@@ -54,3 +59,19 @@
     display: flex
     gap: 1rem
     flex-direction: column
+@media (max-width: 700px)
+  .modal
+    width: 90%
+    height: 40rem
+    overflow: auto
+
+  .form
+    //height: 40rem!important
+    overflow: auto
+
+    &__input
+      width: 90%!important
+    & > textarea
+      height: 10rem!important
+      width: 90%!important
+      padding: .7rem 2rem

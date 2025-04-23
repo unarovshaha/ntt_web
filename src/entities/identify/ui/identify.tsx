@@ -68,7 +68,7 @@ export const Identify = (props: IdentificationRegProps) => {
     };
 
     const nextStep: SubmitHandler<IdentifyProps> = async (data) => {
-        console.log(data)
+
         await dispatch(userProfileUpdateThunk({id: userId, data: data}))
         navigate("/login")
 

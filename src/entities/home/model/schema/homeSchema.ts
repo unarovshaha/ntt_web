@@ -179,7 +179,7 @@ interface JsonContent {
     };
 }
 
-interface EducationRecord {
+export interface EducationRecord {
     id: number;
     organization: OrganizationLanding;
     year: Year;

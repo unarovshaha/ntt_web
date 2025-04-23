@@ -59,7 +59,7 @@ export const NewProfileGallery = () => {
             {/*        </div>*/}
             {/*    </div>*/}
             {/*</div>*/}
-            <NewProfilePersonal/>
+            {window.innerWidth > 700 && <NewProfilePersonal/> }
             <div className={cls.galleryInner}>
                 {data?.map(item => (
                     <div className={cls.galleryInner__item}>

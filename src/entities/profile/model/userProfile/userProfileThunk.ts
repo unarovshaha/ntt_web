@@ -23,7 +23,7 @@ export const userProfileThunk = createAsyncThunk<
         })
         return response
     }catch (e) {
-        console.log(e)
+
         return rejectWithValue("error")
     }
 })
@@ -42,7 +42,7 @@ export const userProfileUpdateThunk = createAsyncThunk<
         })
         return response
     }catch (e) {
-        console.log(e)
+
         return rejectWithValue("error")
     }
 })

@@ -20,7 +20,7 @@ export const Notification = () => {
         dispatch(fetchNotificationData(Number(student_id)))
     } , [])
 
-    console.log(data)
+
     return (
         <div className={cls.notification}>
 
