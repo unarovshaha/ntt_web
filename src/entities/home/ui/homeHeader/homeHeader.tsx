@@ -33,7 +33,7 @@ export const HomeHeader = ({setItem}: { setItem: (item: HeaderItem) => void }) =
     }, [dispatch]);
 
     useEffect(() => {
-        if (!activeMenu || activeMenu !== location?.pathname)
+        if (!activeMenu || !decodeURIComponent(location?.pathname)?.includes(activeMenu) || activeMenu === "/")
             setActiveMenu(decodeURIComponent(location?.pathname))
     }, [location?.pathname])
 

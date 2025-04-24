@@ -56,6 +56,7 @@ export const Home = () => {
                     <Route path={`${item?.name}/profile/:id/*`} element={<NewProfile/>}/>
                 </Routes>
             </div>
+            <HomeFooter/>
         </DynamicModuleLoader>
     );
 };
