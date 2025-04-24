@@ -11,7 +11,7 @@ const list = [
     {label: "Galereya", to: "gallery"},
     {label: "Grantlar", to: "grant"},
     {label: "Profil", to: "personal"},
-    {label: "Izohlar", to: "comments"},
+    {label: "Reyting", to: "comments"},
 ]
 
 export const NewProfileHeader = () => {
