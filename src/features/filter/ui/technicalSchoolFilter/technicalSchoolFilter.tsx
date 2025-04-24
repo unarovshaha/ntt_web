@@ -17,7 +17,7 @@ export const TechnicalSchoolFilter = ({ item }: { item: HeaderItem }) => {
     const [select, setSelect] = useState()
     const dispatch = useAppDispatch();
     const [priceMin, setPriceMin] = useState(0);
-    const [priceMax, setPriceMax] = useState(1000000);
+    const [priceMax, setPriceMax] = useState(0);
     const data = useSelector(getFieldsItem)
 
 

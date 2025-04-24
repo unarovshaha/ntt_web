@@ -20,7 +20,7 @@ export const TechnicalSchool = ({item}: { item: HeaderItem }) => {
 
 
     const formatSalary = (salary: string | number) => {
-        return Number(salary).toLocaleString();
+        return salary?.toLocaleString();
     };
 
     return (

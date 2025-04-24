@@ -97,7 +97,7 @@ export const StudyProfileAnnouncements = () => {
                                 </div>
                                 <p className={cls.info__subTitle}>Kontrakt to'lovi</p>
                             </div>
-                            <h3 className={cls.info__title}>{item.price}</h3>
+                            <h3 className={cls.info__title}>{item.price.toLocaleString()} so'm</h3>
 
                         </div>
                         <div className={cls.info}>
@@ -107,21 +107,14 @@ export const StudyProfileAnnouncements = () => {
                                 </div>
                                 <p className={cls.info__subTitle}>Qabul muddati</p>
                             </div>
-                            <h3 className={cls.info__title}>{item.start_date} - {item.expire_date}</h3>
+                            <h3 className={cls.info__title}>{item.expire_date.replace(/-/g, ".")}</h3>
                         </div>
                     </div>
                     <div className={cls.announcementsItem__text}>
                         <div className={cls.header}>
                             {
-                                !item.grant ? <div className={cls.header__garant}>
-                                        <i
-                                            className={classNames(
-                                                "fas fa-thumbs-up",
-                                                cls.header__likes
-                                            )}
-                                        />
-                                        <p className={cls.header__titles}>Grant mavjud emas</p>
-                                    </div>:
+                                item.grant === false ? <div className={cls.header__garant}></div>
+                                    : item.grant === true ?
                                     <div className={cls.header__garant}>
                                         <i
                                             className={classNames(
@@ -130,18 +123,18 @@ export const StudyProfileAnnouncements = () => {
                                             )}
                                         />
                                         <p className={cls.header__title}>Grant mavjud</p>
-                                    </div>
+                                    </div> : null
                             }
                             <div className={cls.header__up}>
                                 <i className={"fas fa-arrow-up"}/>
                             </div>
                         </div>
 
-                        <h2>Ma'lumot</h2>
-                        <div className={cls.text}>
-                            <div dangerouslySetInnerHTML={{__html: item.desc.toString().substring(0,300)}}></div>
-                            <span>...</span>
-                        </div>
+                        {/*<h2>Ma'lumot</h2>*/}
+                        {/*<div className={cls.text}>*/}
+                        {/*    <div dangerouslySetInnerHTML={{__html: item.desc.toString().substring(0,300)}}></div>*/}
+                        {/*    <span>...</span>*/}
+                        {/*</div>*/}
 
                         <br/>
                         <br/>
