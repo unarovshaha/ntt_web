@@ -1,4 +1,5 @@
 .card
+  //width: 50rem
   width: fit-content
   padding: 1.5rem
   border-radius: 1.5rem
@@ -26,13 +27,27 @@
       color: #2650BB
     &__info
       display: flex
+      //flex-direction: column
       gap: 7rem
       font-size: 1.2rem
+      .wrapper
+        display: flex
+        align-self: flex-end
+        gap: 5rem
   .footer
     display: flex
     justify-content: space-between
     font-size: 1.2rem
     &__link
       color: #00C371
+
+@media (max-width: 768px)
+  .card
+    width: 30rem
+    .header
+      &__info
+        flex-direction: column
+        gap: .7rem
+        //gap: 5rem
 
 
