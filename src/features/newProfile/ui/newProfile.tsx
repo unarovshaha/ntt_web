@@ -6,7 +6,7 @@ import {
     NewProfileGallery,
     NewProfileHeader,
     NewProfileAbout,
-    NewProfileGrant, NewProfilePersonal, NewProfileComments
+    NewProfileGrant, NewProfilePersonal, NewProfileComments, NewProfileDirection
 } from "entities/newProfile";
 
 import cls from "./newProfile.module.sass";
@@ -55,7 +55,7 @@ export const NewProfile = () => {
             <NewProfileHeader/>
             <Routes>
                 <Route path={"about"} element={<NewProfileAbout/>}/>
-                {/*<Route path={"direction"} element={<NewProfileDirection/>}/>*/}
+            <Route path={"direction"} element={<NewProfileDirection/>}/>
                 <Route path={"gallery"} element={<NewProfileGallery/>}/>
                 <Route path={"grant"} element={<NewProfileGrant/>}/>
                 <Route path={"personal"} element={<NewProfilePersonal/>}/>

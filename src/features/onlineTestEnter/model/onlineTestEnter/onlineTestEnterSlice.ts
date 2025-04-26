@@ -1,10 +1,10 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {IOnlineTestEnter} from "features/onlineTestEnter/model/onlineTestEnterSchema";
+import {IOnlineTestEnter} from "features/onlineTestEnter/model/onlineTestEnter/onlineTestEnterSchema";
 import {
     fetchFirstSubject,
     fetchRequiredSubject,
     fetchSecondSubject
-} from "features/onlineTestEnter/model/onlineTestEnterThunk";
+} from "features/onlineTestEnter/model/onlineTestEnter/onlineTestEnterThunk";
 
 
 const initialState : IOnlineTestEnter = {

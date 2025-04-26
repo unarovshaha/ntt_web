@@ -37,7 +37,10 @@ export const NewProfilePersonal = () => {
                         Tashkilot turi<span>{data?.organization_type.name}</span>
                     </p>
                     <p className={cls.list}>
-                        Viloyat<span>{data?.region.name}</span>
+                        Viloyat<span>{data?.region?.name}</span>
+                    </p>
+                    <p className={cls.list}>
+                        Tuman<span>{data?.district?.name}</span>
                     </p>
                     <p className={cls.list}>
                          {/*@ts-ignore*/}

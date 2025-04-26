@@ -39,7 +39,8 @@ import {SchoolDirectionAbout} from "entities/school";
 import {StudyProfileNewPage, StudyProfilePage} from "pages/studyProfilePage";
 import {NotificationPage} from "pages/notificationPage";
 import {OnlineTestEnter} from "entities/home";
-import {OnlineTestEnterFeature , TakeTest} from "features/onlineTestEnter";
+import {OnlineTestEnterFeature , TakeTest , FinalGetAnswer} from "features/onlineTestEnter";
+
 
 
 interface IRouterConfigProfiles {
@@ -163,7 +164,12 @@ export const routerConfigProfiles: IRouterConfigProfiles[] = [
     {
         name: `takeTest`,
         element: <TakeTest/>,
-        path: "onlineTest/takeTest"
+        path: "onlineTest/takeTest/:id"
+    },
+    {
+        name: "answers",
+        element: <FinalGetAnswer/>,
+        path: "onlineTest/answer/:id"
     }
 ]
 

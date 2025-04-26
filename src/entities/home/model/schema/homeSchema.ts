@@ -71,6 +71,10 @@ export interface Organization {
         id: number;
         name: string;
     };
+    district: {
+        id: number;
+        name: string;
+    };
     desc_json: any;
     grand_text: string;
     grand_json: any;

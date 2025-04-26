@@ -79,6 +79,13 @@ export const StudyProfileInfo = () => {
                         disabled
                     />
                     <Input
+                        name={"district"}
+                        value={data?.district?.name}
+                        extraClass={cls.info__input}
+                        placeholder={"Region"}
+                        disabled
+                    />
+                    <Input
                         name={"phone"}
                         value={data?.phone}
                         extraClass={cls.info__input}

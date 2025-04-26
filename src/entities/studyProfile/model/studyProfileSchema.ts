@@ -8,6 +8,7 @@ export interface IStudyProfile {
     shift?: string,
     region?: string,
     name?: string
+    district?: string
 }
 
 export interface IStudyProfileSchema extends IStudyProfile{

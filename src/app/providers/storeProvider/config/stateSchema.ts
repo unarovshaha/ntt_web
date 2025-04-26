@@ -10,7 +10,10 @@ import {IApplicationSchema} from "entities/application";
 import {INotificationSchema} from "entities/notification";
 import {IAlertState} from "entities/alert";
 import {IHomeNewsSchema, IHomeSchema} from "entities/home";
-import {IOnlineTestEnter} from "features/onlineTestEnter/model/onlineTestEnterSchema";
+import {IOnlineTestEnter} from "features/onlineTestEnter/model/onlineTestEnter/onlineTestEnterSchema";
+import {ITakeTestInterface} from "features/onlineTestEnter/model/takeTest/takeTestSchema";
+import {finalAnswerSlice} from "features/onlineTestEnter/model/getFinalAnswer/getFinalAnswerSlice";
+import {GetFinalAnswerSchema} from "features/onlineTestEnter/model/getFinalAnswer/getFinalAnswerSchema";
 
 export interface StateSchema {
 
@@ -27,6 +30,8 @@ export interface StateSchema {
     homeSlice?: IHomeSchema;
     homeNewsSlice?: IHomeNewsSchema;
     onlineTestEnterSlice?: IOnlineTestEnter
+    takeTestSlice?: ITakeTestInterface
+    finalAnswerSlice?: GetFinalAnswerSchema
 }
 
 export type StateSchemaKey = keyof StateSchema;
