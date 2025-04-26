@@ -10,6 +10,7 @@ import {IApplicationSchema} from "entities/application";
 import {INotificationSchema} from "entities/notification";
 import {IAlertState} from "entities/alert";
 import {IHomeNewsSchema, IHomeSchema} from "entities/home";
+import {IOnlineTestEnter} from "features/onlineTestEnter/model/onlineTestEnterSchema";
 
 export interface StateSchema {
 
@@ -25,6 +26,7 @@ export interface StateSchema {
     alertSlice?: IAlertState;
     homeSlice?: IHomeSchema;
     homeNewsSlice?: IHomeNewsSchema;
+    onlineTestEnterSlice?: IOnlineTestEnter
 }
 
 export type StateSchemaKey = keyof StateSchema;

@@ -64,9 +64,6 @@ export const Profile = () => {
             body: JSON.stringify(res),
             headers: headers()
         })
-            .then(res => {
-                console.log(res)
-            })
 
     }
     return (

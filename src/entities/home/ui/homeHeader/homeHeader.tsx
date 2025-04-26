@@ -1,10 +1,10 @@
 import cls from "./home.module.sass";
 import logo from "shared/assets/logo/nttLogo.svg";
 import earth from "shared/assets/icons/language.png";
-import {Button} from "shared/ui/button/button";
-import {useEffect, useState} from "react";
+import { Button } from "shared/ui/button/button";
+import { useEffect, useState } from "react";
 import classNames from "classnames";
-import { useLocation, useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { useSelector } from "react-redux";
 import {getHomeHeaderItem, getHomeLoading} from "entities/home/model/selector/homeSelector";
@@ -35,7 +35,7 @@ export const HomeHeader = ({setItem}: { setItem: (item: HeaderItem) => void }) =
     }, [dispatch]);
 
     useEffect(() => {
-        if (!activeMenu || activeMenu !== location?.pathname)
+        if (!activeMenu || !decodeURIComponent(location?.pathname)?.includes(activeMenu) || activeMenu === "/")
             setActiveMenu(decodeURIComponent(location?.pathname))
     }, [location?.pathname])
 
@@ -77,6 +77,7 @@ export const HomeHeader = ({setItem}: { setItem: (item: HeaderItem) => void }) =
     };
 
     return (
+
         <div className={cls.header}>
             {
                 getLoading ? <Loader/> :

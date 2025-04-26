@@ -11,7 +11,7 @@ interface iCardProps {
     id?: number,
 }
 
-export const Card = ({region, name, price, startDate, id} : iCardProps) => {
+export const Card = ({region, name, price, startDate, id}: iCardProps) => {
 
     const navigate = useNavigate()
 
@@ -27,18 +27,22 @@ export const Card = ({region, name, price, startDate, id} : iCardProps) => {
                     <i className="fa-solid fa-location-dot"/>
                     <p className={cls.header__subTitle}>{region}</p>
                 </div>
-                <h2 className={cls.header__title}>{name}</h2>
+                <h2 className={cls.header__title}>
+                    {name && name?.length > 16 ? `${name?.slice(0, 16)}...` : name}
+                </h2>
                 <div className={cls.header__info}>
-                    <p>{organizationType === "Universitet" ? "Kontrakt to’lovi" : 'To’lovi summasi'}</p>
-                    <div>
+                    <p>{organizationType === "Universitet" ? "Kontrakt to’lovi" : 'To’lovi summasi:'}</p>
+                    <div className={cls.wrapper}>
+                        <div>
 
-                        <p>{price} UZS</p>
-                        <h4>dan</h4>
-                    </div>
-                    <div>
+                            <p>{price} UZS</p>
+                            <h4>dan</h4>
+                        </div>
+                        <div>
 
-                        <p>{price} UZS</p>
-                        <h4>gacha</h4>
+                            <p>{price} UZS</p>
+                            <h4>gacha</h4>
+                        </div>
                     </div>
 
                 </div>

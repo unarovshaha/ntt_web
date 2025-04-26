@@ -26,7 +26,7 @@ export const fetchMttFilter = createAsyncThunk<
 
         return response.info;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })

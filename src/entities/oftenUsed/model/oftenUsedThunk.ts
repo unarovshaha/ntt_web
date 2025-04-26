@@ -22,7 +22,7 @@ export const fetchDirectionsData = createAsyncThunk<
 
         return response.results;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -45,7 +45,7 @@ export const fetchLocationsData = createAsyncThunk<
 
         return response.results;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -68,7 +68,7 @@ export const fetchLanguagesData = createAsyncThunk<
 
         return response.results;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -91,7 +91,7 @@ export const fetchStudyTypesData = createAsyncThunk<
 
         return response.results;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -115,7 +115,6 @@ export const fetchOrganizationTypesData = createAsyncThunk<
 
         return response.results;
     } catch (e) {
-        console.log(e);
         return rejectWithValue('error')
     }
 })
@@ -139,7 +138,6 @@ export const fetchAcademicYear = createAsyncThunk<
 
         return response.results;
     } catch (e) {
-        console.log(e);
         return rejectWithValue('error')
     }
 })

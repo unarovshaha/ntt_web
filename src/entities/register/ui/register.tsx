@@ -88,7 +88,6 @@ export const Register = () => {
         }
     }, [size, layout]);
 
-    console.log(region)
     const onHandle: SubmitHandler<IRegister> = (data) => {
 
 
@@ -182,7 +181,7 @@ const PCRegister = (props: IdentificationRegProps) => {
     const {request} = useHttp()
 
     const [region, setRegion] = useState()
-    console.log(region, 'eeff')
+
     const onHandle: SubmitHandler<IRegister> = (data) => {
         const res = {
             region,
@@ -201,7 +200,7 @@ const PCRegister = (props: IdentificationRegProps) => {
 
             })
             .catch(err => {
-                console.log(err)
+
                 dispatch(alertAction.onAddAlertOptions({
                     type: "error",
                     status: true,

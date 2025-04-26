@@ -29,7 +29,7 @@ export const registerThunk = createAsyncThunk<
 
         return  response
     }catch (e){
-        console.log(e)
+
         return rejectWithValue('error')
     }
 })

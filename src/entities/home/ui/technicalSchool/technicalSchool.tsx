@@ -47,10 +47,24 @@ export const TechnicalSchool = ({item}: { item: HeaderItem }) => {
                                         <span key={index}>
                                         {shiftItem}
                                             {index !== arr.length - 1 && "\\"}
+                                            {window.innerWidth < 700 && <br/>}
                                         </span>
                                     ))}
                                 </span>
                         </li>
+                        <li>
+                            Ta'lim shakli{" "}
+                                <span>
+                                    {item?.landing?.shift?.map((shiftItem, index, arr) => (
+                                        <span key={index}>
+                                        {shiftItem}
+                                        {index !== arr.length - 1 && "\\"}
+                                            {window.innerWidth < 700 && <br/>}
+                                        </span>
+                                    ))}
+                                </span>
+                        </li>
+                        <li>Talablar <span style={{height: "2rem" , overflow: "hidden "}} dangerouslySetInnerHTML={{__html: item.landing?.requirements}}></span></li>
                         <li>{menuName === '/Universitet' ? "Kontrakt to’lovi" : "To'lov summasi"}<div  className={cls.contract}><span>{formatSalary(item.landing?.price_min)}</span>-<span>{formatSalary(item.landing?.price_max)}</span></div> </li>
                     </ul>
 

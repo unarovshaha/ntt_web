@@ -27,7 +27,7 @@ export const fetchProfileItem = createAsyncThunk<
 
         return response;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -52,11 +52,11 @@ export const fetchNews = createAsyncThunk<
             throw new Error()
         }
 
-        console.log(response.results, "hello")
+
 
         return response.results;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })

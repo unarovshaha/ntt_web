@@ -28,7 +28,7 @@ export const MenuBar = () => {
                     }
                     to={item.to}
                 >
-                    {item.icon}
+                    {item.icon ? item.icon : <img src={item.img} alt=""/>}
                     <p>{item.label}</p>
 
                 </NavLink>
@@ -47,7 +47,18 @@ export const MenuBar = () => {
                             isActive ? classNames(cls.item, {[cls.active]: true}) : cls.item
                     }
                 >
-                    {item.label}
+                    {item.icon ? item.icon : <img src={item.img} alt=""/>}
+                    {
+                        window.innerWidth <= 430
+                            ? item.label.split(" ").map((word, index) => (
+                                <React.Fragment key={index}>
+                                    {word}
+                                    {index < item.label.split(" ").length - 1 && <br />}
+                                </React.Fragment>
+                            ))
+                            : item.label
+                    }
+
                 </NavLink>
             )
         })
@@ -61,21 +72,21 @@ export const MenuBar = () => {
     return (
         <>
             {
-                window.innerWidth <= 430 ?
-                    createPortal(
+                window.innerWidth <= 768 ?
+                    // createPortal(
                         <div
                             className={classNames(cls.bars, {
                                 [cls.active]: activeMenu
                             })}
                             onClick={(e) => onClose(e)}
                         >
-                            <i
-                                className={classNames(
-                                    `fa-solid ${activeMenu ? "fa-xmark" : "fa-bars"}`,
-                                    cls.bars__icon
-                                )}
-                                onClick={() => setActiveMenu(!activeMenu)}
-                            />
+                            {/*<i*/}
+                            {/*    className={classNames(*/}
+                            {/*        `fa-solid ${activeMenu ? "fa-xmark" : "fa-bars"}`,*/}
+                            {/*        cls.bars__icon*/}
+                            {/*    )}*/}
+                            {/*    onClick={() => setActiveMenu(!activeMenu)}*/}
+                            {/*/>*/}
                             <div
                                 className={classNames(
                                     cls.bars__container,
@@ -85,9 +96,10 @@ export const MenuBar = () => {
                             >
                                 {renderMobileMenu()}
                             </div>
-                        </div>,
-                        document.body
-                    )
+                        </div>
+                            // ,
+                        // document.body
+                    // )
                     :
                     <div className={cls.menubar}>
                         <div className={cls.profile}>

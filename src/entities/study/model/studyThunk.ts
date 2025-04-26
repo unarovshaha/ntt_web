@@ -22,7 +22,7 @@ export const fetchStudyMttList = createAsyncThunk<
 
         return response.info;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -46,7 +46,7 @@ export const fetchStudyOtmList = createAsyncThunk<
 
         return response.info;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -86,7 +86,7 @@ export const fetchStudySchoolList = createAsyncThunk<
 
         return response.results;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -110,7 +110,6 @@ export const fetchStudyDirectionList = createAsyncThunk<
 
         return response.info;
     } catch (e) {
-        console.log(e);
         return rejectWithValue('error')
     }
 })
@@ -134,7 +133,7 @@ export const fetchStudyGallery = createAsyncThunk<
 
         return response.info;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -158,7 +157,7 @@ export const fetchStudyAdvantages = createAsyncThunk<
 
         return response.info;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -182,7 +181,7 @@ export const fetchStudyGrant = createAsyncThunk<
 
         return response.info;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })

@@ -89,7 +89,7 @@ const homeSlice = createSlice({
                 state.loading = false
                 //@ts-ignore
                 state.posters = action.payload.landing
-                console.log(state.posters, 'dadada')
+
                 state.error = false
             })
             .addCase(fetchOrganizationsPosters.rejected, state => {

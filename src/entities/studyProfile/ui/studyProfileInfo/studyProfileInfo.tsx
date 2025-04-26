@@ -27,7 +27,7 @@ export const StudyProfileInfo = () => {
             dispatch(fetchStudyProfileAdmin({id}))
     }, [id])
 
-    console.log(data, "data")
+
 
     return (
         <div className={cls.info}>

@@ -3,8 +3,11 @@
 
 .schoolList
   display: flex
+  //align-items: center
+  //justify-content: space-around
   flex-wrap: wrap
   gap: 2rem 3rem
+  position: relative
   &.active
     height: 100%
     justify-content: center
@@ -12,8 +15,9 @@
   &__filter
     background: #FFFFFF
     position: fixed
-    bottom: 2rem
-    right: 5rem
+    right: 4rem
+    bottom: 3rem
+    z-index: 20
     height: fit-content
     width: fit-content
     border-radius: 50%
@@ -25,3 +29,9 @@
     &.active
       i
         color: $color-main
+
+@media (max-width: 768px)
+  .schoolList
+    &__filter
+      bottom: 10rem
+
