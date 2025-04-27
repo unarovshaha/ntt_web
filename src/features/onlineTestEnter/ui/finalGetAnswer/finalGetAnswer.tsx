@@ -41,27 +41,27 @@ export const FinalGetAnswer = () => {
     const [son, setSon] = useState(0);
     const [boshladi, setBoshladi] = useState(false);
 
-    useEffect(() => {
-        let interval;
-        if (boshladi && son >= 0) {
-            interval = setInterval(() => {
-                setSon((oldSon) => oldSon - 1);
-            }, 1000);
-        }
-
-        if (son < 0 && boshladi) {
-            clearInterval(interval);
-            setBoshladi(false);
-        }
-
-        return () => clearInterval(interval);
-    }, [boshladi, son]);
-
-    const boshlash = () => {
-        if (son > 0) {
-            setBoshladi(true);
-        }
-    };
+    // useEffect(() => {
+    //     let interval;
+    //     if (boshladi && son >= 0) {
+    //         interval = setInterval(() => {
+    //             setSon((oldSon) => oldSon - 1);
+    //         }, 1000);
+    //     }
+    //
+    //     if (son < 0 && boshladi) {
+    //         clearInterval(interval);
+    //         setBoshladi(false);
+    //     }
+    //
+    //     return () => clearInterval(interval);
+    // }, [boshladi, son]);
+    //
+    // const boshlash = () => {
+    //     if (son > 0) {
+    //         setBoshladi(true);
+    //     }
+    // };
 
     return (
         <DynamicModuleLoader reducers={reducer}>
