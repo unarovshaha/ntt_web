@@ -76,7 +76,7 @@ export const HomeNewsProfile = () => {
                 <div className={cls.profile__container}>
                     <div className={cls.profile__container_left}>
                         <div className={cls.profile__container_left_img}>
-                            <img src={profileImg} alt=""/>
+                            <img src={data?.img ? data?.img : profileImg} alt=""/>
                         </div>
                         <div className={cls.profile__container_left_info}>
                             O’zbekistonda Oliy Ta’limni 3 tilda olish mumkin.
@@ -98,7 +98,7 @@ export const HomeNewsProfile = () => {
                 <div className={cls.profile__footer}>
 
                     <div className={cls.profile__footer_title}>
-                        E’lonlar
+                        Ta'lim yo'nalishlari
                     </div>
                     <div className={cls.profile__footer_container}>
                         {renderData()}

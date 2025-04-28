@@ -94,7 +94,8 @@ const AddComment = ({active, setActive}: { active: boolean, setActive: (arg: boo
             ...data,
             rating: rating,
             organization: id,
-            user: userId
+            user: userId,
+            comment: ""
         }
 
 
