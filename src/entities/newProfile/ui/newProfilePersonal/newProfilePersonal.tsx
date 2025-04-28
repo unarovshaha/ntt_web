@@ -38,10 +38,11 @@ export const NewProfilePersonal = () => {
                     })}>
                         Tashkilot turi: <span>{data?.organization_type.name}</span>
                     </p>
-                    <p className={classNames(cls.list, {
-                        [cls.active]: !!data?.region.name?.length
-                    })}>
-                        Viloyat: <span>{data?.region.name}</span>
+                    <p className={cls.list}>
+                        Viloyat<span>{data?.region?.name}</span>
+                    </p>
+                    <p className={cls.list}>
+                        Tuman<span>{data?.district?.name}</span>
                     </p>
                     <p className={classNames(cls.list, {
                         [cls.active]: !!data?.inn?.length

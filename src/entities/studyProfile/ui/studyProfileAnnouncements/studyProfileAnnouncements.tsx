@@ -176,6 +176,7 @@ export const StudyProfileAnnouncements = () => {
 
     return (
         <div className={cls.wrapper}>
+
             <div className={cls.announcementsHeader}>
                 {/*<h1 className={cls.announcementsHeader__title}>E’lonlar</h1>*/}
                 {/*<div className={cls.announcementsHeader__icon}>*/}
@@ -204,6 +205,8 @@ export const StudyProfileAnnouncements = () => {
 
                 </div>
             </div>
+
+
             <div className={cls.announcements}>
 
                 {renderDirections()}

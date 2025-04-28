@@ -18,8 +18,6 @@ import {useAppDispatch} from "../../../../shared/lib/hooks/useAppDispatch/useApp
 import {fetchHomeProfileDegree, fetchHomeProfileDegreeItem} from "../../../home/model/thunk/homeThunk";
 import {useParams} from "react-router";
 import {Select} from "../../../../shared/ui/select";
-import {Modal} from "shared/ui/modal";
-import {EducationRecord} from "entities/home/model/schema/homeSchema";
 
 export const NewProfileDirection = () => {
 
@@ -28,9 +26,6 @@ export const NewProfileDirection = () => {
     const degreeList = useSelector(getHomeProfileDegreeList)
     const {id} = useParams()
     const dataItem = useSelector(getHomeProfileItem)
-
-    const [activeModal , setActiveModal] = useState(false)
-    const [activeModalItem , setActiveModalItem] = useState<EducationRecord>()
 
     const navigate = useNavigate()
 
@@ -64,7 +59,7 @@ export const NewProfileDirection = () => {
 
                 <div className={cls.profile__footer_container_box_header}>
                     <img src={`${dataItem?.img}`} alt=""/>
-                    <h2>{item?.field?.name}</h2>
+                    <h2>{item?.organization?.name}</h2>
                 </div>
                 <ul>
                     <li>Ta'lim tili <span>{item?.education_language?.map((item, index, arr) => <span>
@@ -77,7 +72,6 @@ export const NewProfileDirection = () => {
                                         <span key={index}>
                                         {shiftItem.name}
                                             {index !== arr.length - 1 && "\\"}
-                                            {window.innerWidth < 700 && <br/>}
                                         </span>
                                     ))}
                                 </span>
@@ -102,20 +96,11 @@ export const NewProfileDirection = () => {
                     </div>
                 </div>
                 <div className={cls.profile__footer_container_box_footer}>
-
-                    <h3
-                        onClick={() => {
-                            setActiveModal(true)
-                            setActiveModalItem(item)
-                        }}
-
-                    >
-                        Batafil ma'lumot
-                    </h3>
                     <h3
                         onClick={() => {
                             localStorage.setItem("landingId", String(item.id))
                             navigate(`/register`)
+                            // console.log()
                         }}
                         className={cls.box__link}
                     >
@@ -153,29 +138,11 @@ export const NewProfileDirection = () => {
                     </div>
 
                     <Select setSelectOption={setActiveYear} optionsData={yearOptions}/>
+
+
                 </div>
                 {render}
             </div>
-
-
-            <Modal title={"Qo'shimcha ma'lumotlar"} extraClass={cls.modal} active={activeModal} setActive={setActiveModal}>
-
-                <div className={cls.profile__footer_container_box_middle}>
-                    <div>
-                        <h2>Ma'lumotlar</h2>
-                        <div>
-                            <p dangerouslySetInnerHTML={{__html: activeModalItem?.desc || ''}}></p>
-                        </div>
-                    </div>
-                    <div>
-                        <h2>Talablar</h2>
-                        <div>
-                            <p dangerouslySetInnerHTML={{__html: activeModalItem?.requirements || ''}}></p>
-                        </div>
-                    </div>
-                </div>
-
-            </Modal>
 
         </div>
     );

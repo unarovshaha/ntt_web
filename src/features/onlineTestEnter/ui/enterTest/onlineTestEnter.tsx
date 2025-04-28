@@ -6,16 +6,16 @@ import {Button} from "shared/ui/button";
 import uzFlag from "shared/assets/images/uzFlag.svg"
 import ruFlag from "shared/assets/images/ruFlag.svg"
 import {Input} from "shared/ui/input";
-import {useForm} from "react-hook-form";
+import {SubmitHandler, useForm} from "react-hook-form";
 import {Select} from "shared/ui/select";
-import {onlineTestEnterReducer} from "features/onlineTestEnter/model/onlineTestEnterSlice";
+import {onlineTestEnterReducer} from "features/onlineTestEnter/model/onlineTestEnter/onlineTestEnterSlice";
 import {DynamicModuleLoader} from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
 import {useSelector} from "react-redux";
 import {
     getOnlineTestList,
     getOnlineTestSecondSubject,
     getOnlineTestSubject
-} from "features/onlineTestEnter/model/onlineTestEnterSelector";
+} from "features/onlineTestEnter/model/onlineTestEnter/onlineTestEnterSelector";
 import {c} from "framer-motion/dist/types.d-6pKw1mTI";
 import {useEffect, useState} from "react";
 import classNames from "classnames";
@@ -24,13 +24,14 @@ import {
     fetchFirstSubject,
     fetchRequiredSubject,
     fetchSecondSubject
-} from "features/onlineTestEnter/model/onlineTestEnterThunk";
+} from "features/onlineTestEnter/model/onlineTestEnter/onlineTestEnterThunk";
 import {useNavigate} from "react-router-dom";
 import {useHttp} from "shared/api/base";
-import {IOnlineTestSubject} from "features/onlineTestEnter/model/onlineTestEnterSchema";
+import {IOnlineTestSubject} from "features/onlineTestEnter/model/onlineTestEnter/onlineTestEnterSchema";
+interface IData  {
+    name: string , surname: string
+}
 
-
-const lang = [{name: "O’zbek tili", img: uzFlag}, {name: "Rus tili", img: ruFlag}]
 
 const filterSide = [{name: "Test Topshirish"}, {name: "Natijalarni kurish"}]
 
@@ -103,6 +104,8 @@ const OnlineTestLeft = () => {
     )
 }
 
+
+
 const OnlineTestRight = ({token}: { token: string | null }) => {
 
     const navigate = useNavigate()
@@ -113,16 +116,19 @@ const OnlineTestRight = ({token}: { token: string | null }) => {
 
 
 
+
+
     const secondSubject = useSelector(getOnlineTestSecondSubject)
     const [secondSubjectSelect, setSecondSubjectSelect] = useState<number>()
 
 
     const {request} = useHttp()
-    const {register, handleSubmit} = useForm()
+    const {register, handleSubmit} = useForm<IData>()
     const requireSub = useSelector(getOnlineTestList)
     const dispatch = useAppDispatch()
 
 
+    const user_id = localStorage.getItem("student_id")
 
 
     useEffect(() => {
@@ -153,6 +159,31 @@ const OnlineTestRight = ({token}: { token: string | null }) => {
         if (firstSubjectSelect && secondSubjectSelect)
             dispatch(fetchRequiredSubject({main_id: firstSubjectSelect , second_id: secondSubjectSelect}))
     }, [firstSubjectSelect && secondSubjectSelect])
+
+
+    const onPostData  : SubmitHandler<IData>   = (data) => {
+
+
+        console.log("rere")
+
+        const res = {
+            ...data ,
+            student: user_id,
+
+            test1: firstSubjectSelect,
+            test2: secondSubjectSelect,
+        }
+
+        request({
+            url: `test/test/crud/student-tests/`,
+            method: "POST",
+            body: JSON.stringify(res),
+
+        })
+            .then(res => [
+                navigate(`../onlineTest/takeTest/${res.id}`)
+            ])
+    }
 
 
 
@@ -223,7 +254,8 @@ const OnlineTestRight = ({token}: { token: string | null }) => {
                 {/*    <h1>19000 UZS</h1>*/}
                 {/*</div>*/}
             </div>
-            <Button onClick={() => navigate("../onlineTest/takeTest")} extraClass={cls.main__container_right_btn}>Testni
+
+            <Button onClick={handleSubmit(onPostData)} extraClass={cls.main__container_right_btn}>Testni
                 boshlash</Button>
         </div>
     )

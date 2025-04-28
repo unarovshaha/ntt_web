@@ -20,7 +20,7 @@ export const TechnicalSchool = ({item}: { item: HeaderItem }) => {
 
 
     const formatSalary = (salary: string | number) => {
-        return salary?.toLocaleString();
+        return Number(salary).toLocaleString();
     };
 
     return (
@@ -54,11 +54,11 @@ export const TechnicalSchool = ({item}: { item: HeaderItem }) => {
                         </li>
                         <li>
                             Ta'lim shakli{" "}
-                                <span>
+                            <span>
                                     {item?.landing?.shift?.map((shiftItem, index, arr) => (
                                         <span key={index}>
                                         {shiftItem}
-                                        {index !== arr.length - 1 && "\\"}
+                                            {index !== arr.length - 1 && "\\"}
                                             {window.innerWidth < 700 && <br/>}
                                         </span>
                                     ))}
@@ -84,4 +84,3 @@ export const TechnicalSchool = ({item}: { item: HeaderItem }) => {
         </div>
     );
 };
-

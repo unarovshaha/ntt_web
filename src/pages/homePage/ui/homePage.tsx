@@ -16,7 +16,8 @@ import {NewProfile} from "features/newProfile";
 import cls from "./homePage.module.sass"
 import {DynamicModuleLoader, ReducersList} from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
 import {HeaderItem} from "entities/home/model/schema/homeSchema";
-import {OnlineTestEnterFeature, TakeTest} from "features/onlineTestEnter";
+import {OnlineTestEnterFeature, TakeTest , FinalGetAnswer} from "features/onlineTestEnter";
+
 
 const reducers: ReducersList = {
     homeNewsSlice: homeNewsReducer,
@@ -29,6 +30,8 @@ export const Home = () => {
 
     //@ts-ignore
     localStorage.setItem("menuId", item?.id)
+
+    localStorage.clear()
 
 
     return (
@@ -49,7 +52,8 @@ export const Home = () => {
                     <Route path={"onlineTest"} element={<OnlineTestEnter/>}/>
                     <Route path={"onlineTest/onlineTestEnter"} element={<OnlineTestEnterFeature/>}/>
 
-                    <Route path={"onlineTest/takeTest"} element={<TakeTest/>} />
+                    <Route path={"onlineTest/takeTest/:id"} element={<TakeTest/>} />
+                    <Route path={"onlineTest/answer/:id"} element={<FinalGetAnswer/>} />
                     {/*// @ts-ignore*/}
                     <Route path={`${item?.name}`} element={<HomeTechnical item={item}/>}/>
                     {/*// @ts-ignore*/}
