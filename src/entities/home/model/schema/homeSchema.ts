@@ -281,6 +281,8 @@ export interface IHomeSchema {
     fields: any[],
     posters: any[],
     searchResult: any[],
-    comments: IComment[]
+    comments: IComment[],
+    region: any[],
+    district: any[]
 
 }

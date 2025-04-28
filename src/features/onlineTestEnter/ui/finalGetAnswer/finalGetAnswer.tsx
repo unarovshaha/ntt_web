@@ -11,6 +11,7 @@ import {finalAnswerReducer} from "features/onlineTestEnter/model/getFinalAnswer/
 import {API_URL_DOC} from "shared/api/base";
 import {Button} from "shared/ui/button";
 import {useNavigate} from "react-router-dom";
+import classNames from "classnames";
 
 const reducer = {
     finalAnswerSlice:finalAnswerReducer
@@ -38,30 +39,8 @@ export const FinalGetAnswer = () => {
     const activeSubject = data?.subjects[activeSubjectIndex];
 
 
-    const [son, setSon] = useState(0);
-    const [boshladi, setBoshladi] = useState(false);
 
-    // useEffect(() => {
-    //     let interval;
-    //     if (boshladi && son >= 0) {
-    //         interval = setInterval(() => {
-    //             setSon((oldSon) => oldSon - 1);
-    //         }, 1000);
-    //     }
-    //
-    //     if (son < 0 && boshladi) {
-    //         clearInterval(interval);
-    //         setBoshladi(false);
-    //     }
-    //
-    //     return () => clearInterval(interval);
-    // }, [boshladi, son]);
-    //
-    // const boshlash = () => {
-    //     if (son > 0) {
-    //         setBoshladi(true);
-    //     }
-    // };
+
 
     return (
         <DynamicModuleLoader reducers={reducer}>
@@ -102,7 +81,7 @@ export const FinalGetAnswer = () => {
                     </div>
                 </div>
                <div className={cls.container}>
-                   <div className={cls.sidebar}>
+                   <div className={classNames(cls.sidebar , cls.btns)}>
                        {data?.subjects.map((subject, index) => (
                            <button
                                key={index}

@@ -56,7 +56,8 @@ export const Profile = () => {
         const res = {
             ...data,
             region: region,
-            sex: sexChange
+            sex: sexChange ? sexChange : getData?.sex,
+            password: 12345678
         }
         request({
             url: `users/user/crud/${userId}/`,
@@ -64,6 +65,9 @@ export const Profile = () => {
             body: JSON.stringify(res),
             headers: headers()
         })
+            .catch(err => {
+                console.log(err)
+            })
 
     }
     return (
@@ -76,42 +80,40 @@ export const Profile = () => {
                                 <div className={cls.container__arounder}>
 
                                     <div>
-                                        {/*// @ts-ignore*/}
-                                        <Input register={register} name={"name"} title={"Ism familiya"} value={getData?.name}/>
-                                        <Input name={"passport_seria"} register={register} title={"Passport seriya"}
+                                        <Input required register={register} name={"name"} title={"Ism familiya"}
+                                               value={getData?.name}/>
+                                        <Input required name={"passport_seria"} register={register}
+                                               title={"Passport seriya"}
                                                value={getData?.passport_seria}/>
-                                        <Input name={"indefikatsiya_pin"} title={"JSHSHR"} register={register}
+                                        <Input required name={"indefikatsiya_pin"} title={"JSHSHR"} register={register}
                                                value={getData?.indefikatsiya_pin}/>
-                                        <Input name={"phone_extra"} title={"Qo'shimcha telefon raqami"} register={register}
+                                        <Input required name={"phone_extra"} title={"Qo'shimcha telefon raqami"}
+                                               register={register}
                                                value={getData?.phone_extra}/>
-                                        <Input name={"born_date"} title={"Tug'ilgan sanasi"} type={"date"} register={register}
+                                        <Input required name={"born_date"} title={"Tug'ilgan sanasi"} type={"date"}
+                                               register={register}
                                                value={getData?.born_date}/>
-                                        <Input name={"born_address"} title={"Tug'ilgan joyi"} value={getData?.born_address}
+                                        <Input required name={"born_address"} title={"Tug'ilgan joyi"}
+                                               value={getData?.born_address}
                                                register={register}/>
-                                        <Input name={"email"} title={"Email"} value={getData?.email} register={register}/>
-                                        <Input name={"password"} title={"Password"} type={"password"} register={register}
-                                               value={getData?.password}/>
-                                        {
-                                            change ?
-                                                <>
-                                                    <Select setSelectOption={setRegion} optionsData={regions}
-                                                            title={"Region"}/>
-                                                    <Select setSelectOption={setSex} optionsData={sex}
-                                                            title={"Jinsi"}/>
-                                                </>
-                                                : ""}
+                                        <Input required name={"email"} title={"Email"} value={getData?.email}
+                                               register={register}/>
+                                        {/*<Input required name={"password"} title={"Password"} type={"password"}*/}
+                                        {/*       register={register}*/}
+                                        {/*       value={getData?.password}/>*/}
+
+
+                                        <Select setSelectOption={setRegion} optionsData={regions}
+                                                title={"Region"}/>
+                                        <Select  setSelectOption={setSex} optionsData={sex}
+
+                                                 title={`${getData?.sex ? getData?.sex : "Jinsi"}`}/>
+
                                     </div>
 
-                                    {
-                                        change ?
+                                    <Button onClick={handleSubmit(onClick)}
+                                            extraClass={cls.container__arounder__btn}>Saqlash</Button>
 
-                                            <Button onClick={handleSubmit(onClick)}
-                                                    extraClass={cls.container__arounder__btn}>Saqlash</Button>
-
-                                            :
-                                            <Button onClick={() => setChange(true)}
-                                                    extraClass={cls.container__arounder__btn}>Tahrirlash</Button>
-                                    }
                                 </div>
                                 :
                                 <div className={cls.container__box}>

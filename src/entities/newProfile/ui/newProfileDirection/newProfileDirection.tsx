@@ -121,7 +121,8 @@ export const NewProfileDirection = () => {
     }));
     return (
         <div style={{display: "flex", gap: "2rem"}}>
-            <div className={cls.info}><NewProfilePersonal/></div>
+            {window.innerWidth > 700 &&  <div className={cls.info}><NewProfilePersonal/></div> }
+
 
 
             <div className={cls.direction}>

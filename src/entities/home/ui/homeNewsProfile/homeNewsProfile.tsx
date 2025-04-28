@@ -74,18 +74,18 @@ export const HomeNewsProfile = () => {
             <div className={cls.profile}>
                 <Button onClick={() => navigate(-1)}>Back</Button>
                 <div className={cls.profile__container}>
-                    <div className={cls.profile__container_left}>
-                        <div className={cls.profile__container_left_img}>
-                            <img src={profileImg} alt=""/>
-                        </div>
-                        <div className={cls.profile__container_left_info}>
-                            O’zbekistonda Oliy Ta’limni 3 tilda olish mumkin.
-                        </div>
-                    </div>
+                    {/*<div className={cls.profile__container_left}>*/}
+                    {/*    <div className={cls.profile__container_left_img}>*/}
+                    {/*        <img src={profileImg} alt=""/>*/}
+                    {/*    </div>*/}
+                    {/*    <div className={cls.profile__container_left_info}>*/}
+                    {/*        O’zbekistonda Oliy Ta’limni 3 tilda olish mumkin.*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
                     <div className={cls.profile__container_right}>
-                        <div className={cls.profile__container_right_header}>
-                            Ma’lumotlar
-                        </div>
+                        {/*<div className={cls.profile__container_right_header}>*/}
+                        {/*    Ma’lumotlar*/}
+                        {/*</div>*/}
                         <div
                             className={cls.profile__container_right_info}
                             dangerouslySetInnerHTML={{__html: data ? data?.desc_json?.text : ""}}

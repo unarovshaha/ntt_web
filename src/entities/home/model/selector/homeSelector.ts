@@ -18,3 +18,5 @@ export const getFieldsItem = (state: StateSchema) => state.homeSlice?.fields
 export const getHomePosters = (state: StateSchema) => state.homeSlice?.posters
 export const getSearchResults = (state: StateSchema) => state.homeSlice?.searchResult
 export const getSearchComments = (state: StateSchema) => state.homeSlice?.comments
+export const getRegion = (state: StateSchema) => state.homeSlice?.region
+export const getDistrict = (state: StateSchema) => state.homeSlice?.district

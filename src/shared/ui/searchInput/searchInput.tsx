@@ -68,7 +68,6 @@ export const SearchInput = () => {
 
     const handleNavigate = async (type: string , id: number) => {
         const route = organizationRoutes[type];
-        console.log(type, 'deddddd')
         if (route) {
             localStorage.setItem('activeMenu', route);
             await dispatch(fetchFieldsItem(type));

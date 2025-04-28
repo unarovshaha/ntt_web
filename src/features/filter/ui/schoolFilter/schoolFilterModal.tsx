@@ -20,11 +20,13 @@ import {fetchStudySchoolList} from "entities/study";
 import {useParams} from "react-router";
 import {filterActions} from "../../model/filterSlice";
 import {
-    getFilterDirection,
+    getFilterDirection, getFilterDistrict,
     getFilterLanguages,
     getFilterLocations, getFilterMaxSalary,
     getFilterMinSalary
 } from "features/filter/model/filterSelector";
+import {getDistrictData} from "entities/oftenUsed/model/oftenUsedSelector";
+import {fetchDistrictThunk} from "entities/oftenUsed/model/oftenUsedThunk";
 
 interface IModalProps {
     active: boolean,
@@ -43,13 +45,18 @@ export const SchoolFilterModal = ({active, setActive}: IModalProps) => {
         fetchLanguages,
         clearFilter,
         clearLocations,
-        clearLanguage
+        clearLanguage,
+        fetchDistrict,
+        clearDistrict
+
     } = filterActions
     const directions = useSelector(getDirectionsData)
     const locations = useSelector(getLocationsData)
     const languages = useSelector(getLanguagesData)
+    const district = useSelector(getDistrictData)
     const isLocation = useSelector(getFilterLocations)
     const isLanguages = useSelector(getFilterLanguages)
+    const isDistrict = useSelector(getFilterDistrict)
     const isDirection = useSelector(getFilterDirection)
     const isMinSalary = useSelector(getFilterMinSalary)
     const isMaxSalary = useSelector(getFilterMaxSalary)
@@ -62,10 +69,12 @@ export const SchoolFilterModal = ({active, setActive}: IModalProps) => {
     useEffect(() => {
         if (id) {
             dispatch(fetchDirectionsData({id}))
+
             dispatch(clearFilter())
             setSelectedDirection(undefined)
             setSelectedLocations([])
             setSelectedLanguages([])
+            setSelectedDistrict([])
             setMinSalary(undefined)
             setMaxSalary(undefined)
         }
@@ -73,9 +82,20 @@ export const SchoolFilterModal = ({active, setActive}: IModalProps) => {
 
     const [selectedDirection, setSelectedDirection] = useState<number>()
     const [selectedLocations, setSelectedLocations] = useState<number[]>([])
+    const [selectedDistrict, setSelectedDistrict] = useState<number[]>([])
     const [selectedLanguages, setSelectedLanguages] = useState<number[]>([])
     const [minSalary, setMinSalary] = useState<string>()
     const [maxSalary, setMaxSalary] = useState<string>()
+    const [iF, setIf] = useState<boolean>(true)
+
+
+    useEffect(() => {
+        if (selectedLocations) {
+            dispatch(fetchDistrictThunk(selectedLocations))
+            setIf(false)
+        }
+    }, [selectedLocations])
+
 
     const getDirection = (data: number) => {
         if (data) {
@@ -83,6 +103,7 @@ export const SchoolFilterModal = ({active, setActive}: IModalProps) => {
                 id,
                 language: selectedLanguages,
                 region: selectedLocations,
+                district: selectedDistrict,
                 price_min: minSalary,
                 price_max: maxSalary,
                 shift: data
@@ -99,6 +120,8 @@ export const SchoolFilterModal = ({active, setActive}: IModalProps) => {
                     id,
                     language: selectedLanguages,
                     region: data,
+                    district: selectedDistrict,
+
                     price_min: minSalary,
                     price_max: maxSalary,
                     shift: selectedDirection
@@ -115,6 +138,8 @@ export const SchoolFilterModal = ({active, setActive}: IModalProps) => {
             id,
             language: selectedLanguages,
             region: selectedLocations.filter(item => item !== data),
+            district: selectedDistrict,
+
             price_min: minSalary,
             price_max: maxSalary,
             shift: selectedDirection
@@ -128,6 +153,8 @@ export const SchoolFilterModal = ({active, setActive}: IModalProps) => {
                     id,
                     language: data,
                     region: selectedLocations,
+                    district: selectedDistrict,
+
                     price_min: minSalary,
                     price_max: maxSalary,
                     shift: selectedDirection
@@ -138,11 +165,47 @@ export const SchoolFilterModal = ({active, setActive}: IModalProps) => {
         setSelectedLanguages(data)
     }
 
+
+    const getSelectedDistrict = (data: number[]) => {
+        if (!!data.length) {
+            if (JSON.stringify(data) !== JSON.stringify(isDistrict)) {
+                dispatch(fetchStudySchoolList({
+                    id,
+                    language: selectedLanguages,
+                    district: data,
+                    region: selectedLocations,
+                    price_min: minSalary,
+                    price_max: maxSalary,
+                    shift: selectedDirection
+                }))
+                dispatch(fetchDistrict(data))
+            }
+        }
+        setSelectedDistrict(data)
+    }
+
     const onClearLanguages = (data: number) => {
         dispatch(clearLanguage(data))
         dispatch(fetchStudySchoolList({
             id,
             language: selectedLanguages.filter(item => item !== data),
+            region: selectedLocations,
+            district: selectedDistrict,
+            price_min: minSalary,
+            price_max: maxSalary,
+            shift: selectedDirection
+        }))
+    }
+
+
+    const onClearDistrict = (data: number) => {
+        dispatch(clearDistrict(data))
+        dispatch(fetchStudySchoolList({
+            id,
+            district: selectedDistrict.filter(item => item !== data),
+
+            language: selectedLanguages,
+            // @ts-ignore
             region: selectedLocations,
             price_min: minSalary,
             price_max: maxSalary,
@@ -152,32 +215,36 @@ export const SchoolFilterModal = ({active, setActive}: IModalProps) => {
 
     const getMaxSalary = (data: string) => {
         // if (data) {
-            dispatch(fetchStudySchoolList({
-                id,
-                language: selectedLanguages,
-                region: selectedLocations,
-                price_min: minSalary,
-                price_max: data,
-                shift: selectedDirection
-            }))
-            setMaxSalary(data)
-            if (JSON.stringify(data) !== JSON.stringify(isMaxSalary))
-                dispatch(fetchMaxSalary(data))
+        dispatch(fetchStudySchoolList({
+            id,
+            language: selectedLanguages,
+            district: selectedDistrict,
+
+            region: selectedLocations,
+            price_min: minSalary,
+            price_max: data,
+            shift: selectedDirection
+        }))
+        setMaxSalary(data)
+        if (JSON.stringify(data) !== JSON.stringify(isMaxSalary))
+            dispatch(fetchMaxSalary(data))
         // }
     }
     const getMinSalary = (data: string) => {
         // if (data) {
-            dispatch(fetchStudySchoolList({
-                id,
-                language: selectedLanguages,
-                region: selectedLocations,
-                price_min: data,
-                price_max: maxSalary,
-                shift: selectedDirection
-            }))
-            setMinSalary(data)
-            if (JSON.stringify(data) !== JSON.stringify(isMinSalary))
-                dispatch(fetchMinSalary(data))
+        dispatch(fetchStudySchoolList({
+            id,
+            language: selectedLanguages,
+            district: selectedDistrict,
+
+            region: selectedLocations,
+            price_min: data,
+            price_max: maxSalary,
+            shift: selectedDirection
+        }))
+        setMinSalary(data)
+        if (JSON.stringify(data) !== JSON.stringify(isMinSalary))
+            dispatch(fetchMinSalary(data))
         // }
     }
 
@@ -230,6 +297,14 @@ export const SchoolFilterModal = ({active, setActive}: IModalProps) => {
                 title={"Manzil"}
                 items={locations}
                 onClick={getSelectedLocations}
+            />
+            <Accordion
+                onDisActive={onClearDistrict}
+                extraClass={cls.filterModal__accordion}
+                defaultChecked={isDistrict}
+                title={"Tuman"}
+                items={district}
+                onClick={getSelectedDistrict}
             />
             <Accordion
                 onDisActive={onClearLanguages}

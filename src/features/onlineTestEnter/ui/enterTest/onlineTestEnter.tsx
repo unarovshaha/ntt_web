@@ -164,7 +164,6 @@ const OnlineTestRight = ({token}: { token: string | null }) => {
     const onPostData  : SubmitHandler<IData>   = (data) => {
 
 
-        console.log("rere")
 
         const res = {
             ...data ,

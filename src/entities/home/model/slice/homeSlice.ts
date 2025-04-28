@@ -1,5 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {
+    fetchDistrict,
     fetchFieldsItem,
     fetchHomeHeaderItem,
     fetchHomeItem,
@@ -8,7 +9,12 @@ import {
     fetchHomeProfileDegreeItem,
     fetchHomeProfileItem,
     fetchHomeProfileItemHeader,
-    fetchHomeTechnical, fetchOrganizationsPosters, fetchSearchOrganizations, fetchStudentAcademicYear, fetchUserComment
+    fetchHomeTechnical,
+    fetchOrganizationsPosters,
+    fetchRegion,
+    fetchSearchOrganizations,
+    fetchStudentAcademicYear,
+    fetchUserComment
 } from "entities/home/model/thunk/homeThunk";
 import {IHomeSchema} from "../schema/homeSchema";
 
@@ -38,7 +44,9 @@ const initialState: IHomeSchema = {
     fields: [],
     posters: [],
     searchResult: [],
-    comments: []
+    comments: [],
+    district: [],
+    region: [],
 }
 
 
@@ -46,8 +54,8 @@ const homeSlice = createSlice({
     name: "homeSlice",
     initialState,
     reducers: {
-        onAddComment : (state , action) => {
-            state.comments = [...state.comments , action.payload]
+        onAddComment: (state, action) => {
+            state.comments = [...state.comments, action.payload]
         }
 
     },
@@ -263,6 +271,34 @@ const homeSlice = createSlice({
                 state.loading = false
             })
 
+
+            .addCase(fetchRegion.pending, (state) => {
+                state.error = true
+                state.loading = false
+            })
+            .addCase(fetchRegion.fulfilled, (state, action) => {
+                state.region = action.payload
+                state.loading = false
+                state.error = false
+            })
+            .addCase(fetchRegion.rejected, (state) => {
+                state.error = true
+                state.loading = false
+            })
+
+            .addCase(fetchDistrict.pending, (state) => {
+                state.error = true
+                state.loading = false
+            })
+            .addCase(fetchDistrict.fulfilled, (state, action) => {
+                state.district = action.payload
+                state.loading = false
+                state.error = false
+            })
+            .addCase(fetchDistrict.rejected, (state) => {
+                state.error = true
+                state.loading = false
+            })
 
 
 })

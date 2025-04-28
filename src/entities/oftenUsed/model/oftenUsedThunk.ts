@@ -141,4 +141,26 @@ export const fetchAcademicYear = createAsyncThunk<
         return rejectWithValue('error')
     }
 })
+export const fetchDistrictThunk = createAsyncThunk<
+    [],
+    number[],
+    ThunkConfig<string>
+>('oftenUsedSlice/fetchDistrict', async (id, thunkApi) => {
+    const {extra, dispatch, rejectWithValue} = thunkApi;
+    try {
+        const response = await extra.api({
+            url: `region/get/list_district/?region_id=${id}`,
+            method: "GET",
+            body: null,
+            headers: headers()
+        })
+        if (!response) {
+            throw new Error()
+        }
+
+        return response.results;
+    } catch (e) {
+        return rejectWithValue('error')
+    }
+})
 

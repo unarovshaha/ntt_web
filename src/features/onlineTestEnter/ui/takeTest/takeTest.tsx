@@ -3,7 +3,7 @@ import {DynamicModuleLoader} from "shared/lib/components/DynamicModuleLoader/Dyn
 import {takeTestReducer} from "features/onlineTestEnter/model/takeTest/takeTestSlice";
 import {useSelector} from "react-redux";
 import {getTakeTestItem} from "features/onlineTestEnter/model/takeTest/takeTestSelector";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import {fetchTestItem} from "features/onlineTestEnter/model/takeTest/takeTestThunk";
 import {useParams} from "react-router";
@@ -19,6 +19,12 @@ export const TakeTest = () => {
     useEffect(()=> {
         dispatch(fetchTestItem(id))
     } ,[])
+
+
+
+
+
+
     return (
        <DynamicModuleLoader reducers={reducer}>
            <div style={{padding: token ? 0 : '10rem 0 0 0 '}}>

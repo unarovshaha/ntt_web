@@ -1,6 +1,6 @@
 import cls from "./home.module.sass";
 import logo from "shared/assets/logo/nttLogo.svg";
-import earth from "shared/assets/icons/language.png";
+  import earth from "shared/assets/icons/language.png";
 import { Button } from "shared/ui/button/button";
 import { useEffect, useState } from "react";
 import classNames from "classnames";
@@ -127,12 +127,11 @@ export const HomeHeader = ({ setItem }: { setItem: (item: HeaderItem) => void })
                         </div>
 
                         <div className={cls.header__end}>
-
                             <Button onClick={() => navigate("/login")} extraClass={cls.header__end_btn}>
-                                Login
+                                Tizimga kirish
                             </Button>
                             <Button onClick={() => navigate("/register")} extraClass={cls.header__end_btn}>
-                                Register
+                                Ro'yxatdan o'tish
                             </Button>
                         </div>
                     </>

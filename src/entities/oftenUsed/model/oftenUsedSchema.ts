@@ -15,6 +15,7 @@ export interface IOftenUsedSchema {
     locations: IList[],
     studyTypes: IList[],
     languages: IList[],
+    district: any[]
     organizationTypes: IList[],
     academicYear: IYearList[],
     currentYear?: number,

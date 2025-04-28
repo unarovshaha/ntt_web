@@ -23,7 +23,7 @@ export const Home = () => {
     //@ts-ignore
     localStorage.setItem("menuId", item?.id)
 
-    localStorage.clear()
+    // localStorage.clear()
 
 
 

@@ -56,6 +56,7 @@ interface ISchoolListProps {
     region?: number[],
     degree?: number[],
     language?: number[],
+    district?: number[],
     price_min?: string,
     price_max?: string,
     shift?: number,
@@ -69,12 +70,12 @@ export const fetchStudySchoolList = createAsyncThunk<
     ThunkConfig<string>
 >('studySlice/fetchStudySchoolList', async (data, thunkApi) => {
     const {extra, dispatch, rejectWithValue} = thunkApi;
-    const {id, region, degree, language, price_min, price_max, shift, offset, limit} = data
+    const {id, region, degree, language, price_min , district, price_max, shift, offset, limit} = data
     try {
         const response = await extra.api({
             url: `organizations/organization/get/home/?${ParamUrl({
                 organization_type: id,
-                region, degree, language, price_min, price_max, shift, offset, limit
+                region, degree, language, district, price_min, price_max, shift, offset, limit
             })}`,
             method: "GET",
             body: null,

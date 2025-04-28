@@ -4,6 +4,29 @@
   //display: flex
   //justify-content: center
   padding: 2rem 0 0 0
+  &__header
+    display: none
+    width: 100%
+    //box-shadow: 0 0 5px 0
+    padding: 0 1rem
+    border-radius: 10px
+    justify-content: space-between
+
+    &_timer
+      display: flex
+      flex-direction: column
+      align-items: center
+      font-size: 1.4rem
+      font-family: "Inter", serif
+      font-weight: 600
+      gap: .3rem
+      &  >span
+        color: rgba(201, 202, 204, 1)
+        font-size: 1.2rem
+    &_end
+      .endBtn
+        background-color: red
+        font-size: 1.2rem
 
 .content
   display: flex
@@ -21,6 +44,9 @@
   overflow: auto
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1)
   border: 1px solid #C7C7CC
+  gap: 1rem
+  display: flex
+  flex-direction: column
 
 
 
@@ -108,6 +134,7 @@
   //height: fit-content
 
 
+
   align-items: center
   .subjectItem
     width: 80%
@@ -120,6 +147,7 @@
     gap: 1rem
     align-items: center
     font-family: "Inter", serif
+    text-transform: capitalize
     font-size: 1.8rem
     font-weight: 700
     //padding: 0.75rem 1rem
@@ -138,3 +166,72 @@
       background-color: #0056d6
       color: white
       font-weight: bold
+@media (max-width: 950px)
+  .main
+    display: flex
+    flex-direction: column
+    gap: 2rem
+
+
+    &__header
+      //align-self: center
+      display: flex
+
+
+  .testPanel
+    width: 100%
+    border: none
+    padding: 1rem 0
+    border-radius: 0
+
+
+
+    .subjectTitle
+      font-size: 1.8rem
+  .block
+    .question
+      font-size: 1.6rem
+    .answers
+      .answer
+        font-size: 1.4rem
+
+  .selected
+    background: none!important
+    color: rgba(0, 74, 173, 1)!important
+
+  .sidebar
+    flex-direction: row
+    gap: 0
+
+    width: 100%
+    &__timer
+      display: none
+    .subjectItem
+      font-size: 1.3rem
+      text-align: center
+      width: fit-content
+      padding: 1rem
+      //background: none!important
+      //color: rgba(0, 74, 173, 1)!important
+      //font-weight: 400
+    .subjectItemActive
+      background: none!important
+      color: rgba(0, 74, 173, 1)!important
+
+  .content
+    display: flex
+    flex-direction: column-reverse
+    //display: none
+
+  .footer
+    display: none
+@media (max-width: 500px)
+  .subjectItem
+    font-size: 1rem !important
+  .testPanel
+    .subjectTitle
+      font-size: 1.6rem
+  .question
+    font-size: 1.4rem
+  .answer
+    font-size: 1.2rem

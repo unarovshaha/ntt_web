@@ -23,7 +23,7 @@ export const HomeNews = () => {
     const homeNewsData = useSelector(getHomeNews);
 
     useEffect(() => {
-        document.title = `Yangiliklar`;
+        // document.title = `Yangiliklar`;
 
         const metaTags = [
             { name: "charset", content: "UTF-8" },
@@ -45,9 +45,7 @@ export const HomeNews = () => {
             meta.setAttribute("content", content);
         });
 
-        return () => {
-            document.title = "Title";
-        };
+
     }, []);
 
     return (
