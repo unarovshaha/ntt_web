@@ -1,7 +1,15 @@
 import {Outlet, Route, Routes} from "react-router";
 import {useState} from "react";
 
-import {HomeHeader, HomeNewsProfile, homeNewsReducer, HomePage, homeReducer, OnlineTestEnter} from "entities/home";
+import {
+    HomeFooter,
+    HomeHeader,
+    HomeNewsProfile,
+    homeNewsReducer,
+    HomePage,
+    homeReducer,
+    OnlineTestEnter
+} from "entities/home";
 import {HomeNews, HomeTechnical} from "features/homePage";
 import {NewProfile} from "features/newProfile";
 
@@ -26,9 +34,6 @@ export const Home = () => {
     // localStorage.clear()
 
 
-
-
-
     return (
         <DynamicModuleLoader reducers={reducers}>
             <div className={cls.header}>
@@ -50,12 +55,12 @@ export const Home = () => {
                     <Route path={"onlineTest/takeTest/:id"} element={<TakeTest/>} />
                     <Route path={"onlineTest/answer/:id"} element={<FinalGetAnswer/>} />
                     {/*// @ts-ignore*/}
-                    <Route path={`${item?.name}`} element={<HomeTechnical item={item}/>} />
+                    <Route path={`${item?.name}`} element={<HomeTechnical item={item}/>}/>
                     {/*// @ts-ignore*/}
                     <Route path={`${item?.name}/profile/:id/*`} element={<NewProfile/>}/>
                 </Routes>
-
             </div>
+            <HomeFooter/>
         </DynamicModuleLoader>
     );
 };

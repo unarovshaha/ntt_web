@@ -51,9 +51,9 @@ export const NewProfileComments = () => {
                         ))}
                     </div>
                 </div>
-                <div className={cls.comment__box_text}>
-                    {item.comment}
-                </div>
+                {/*<div className={cls.comment__box_text}>*/}
+                {/*    {item.comment}*/}
+                {/*</div>*/}
                 {/*<div className={cls.comment__box_date}>*/}
                 {/*    {item.date}*/}
                 {/*</div>*/}
@@ -68,7 +68,7 @@ export const NewProfileComments = () => {
 
                 <div className={cls.comment__container}>
                     {renderData()}
-                    <Button onClick={() => setActive(true)} extraClass={cls.comment__add}>Izoh kiritish</Button>
+                    <Button onClick={() => setActive(true)} extraClass={cls.comment__add}>Reyting kiritish</Button>
                 </div>
 
             <AddComment  setActive={setActive} active={active}/>
@@ -119,16 +119,16 @@ const AddComment = ({active, setActive } : {active : boolean , setActive : (arg 
     }
 
     return (
-        <Modal title={"Komment"} extraClass={cls.modal} active={active} setActive={setActive}>
+        <Modal title={"Reyting"} extraClass={cls.modal} active={active} setActive={setActive}>
 
 
             <Form extraClass={cls.form}>
                 <Input extraClass={cls.form__input} name={"name"} register={register} placeholder={"Ism"} />
                 <Input extraClass={cls.form__input}  name={"surname"} register={register} placeholder={"Familya"}/>
-                <textarea {...register("comment")} name={"comment"} placeholder={"Text"}/>
+                {/*<textarea {...register("comment")} name={"comment"} placeholder={"Text"}/>*/}
 
                 <div className={cls.modal__star}>
-                    <h2>Reyting</h2>
+                    {/*<h2>Reyting</h2>*/}
                     <div>
                         {Array.from({length: 5}).map((_, index) => (
                             <span

@@ -33,11 +33,16 @@ export const StudySchoolList = ({setActive, active}: ISchoolList) => {
         return schoolList?.map((item, index) => {
             return (
                 <Card
+                    route={`/platform/study/profile/`}
                     id={item?.id}
                     name={item.name}
-                    price={item.landing?.price}
-                    region={item.region}
+                    priceMax={item.landing?.price_max}
+                    priceMin={item.landing?.price_min}
+                    region={item.locations}
+                    image={item.img}
                     startDate={item.landing?.start_date}
+                    desc={item?.desc}
+                    rating={item?.rating}
                     key={index}
                 />
             )

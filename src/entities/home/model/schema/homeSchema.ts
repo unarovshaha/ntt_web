@@ -1,3 +1,5 @@
+import {IOrganization} from "../../../study/model/studySchema";
+
 export interface HeaderItem {
     id: number,
     name: string,
@@ -22,13 +24,13 @@ interface Landing {
     price_min: number
 }
 
-interface IHomeTechnical {
-    id: number;
-    name: string;
-    locations: string;
-    img: string;
+interface IHomeTechnical extends IOrganization{
+    // id: number;
+    // name: string;
+    // locations: string;
+    // img: string;
     organization_type: number;
-    landing: Landing;
+    // landing: Landing;
 }
 
 

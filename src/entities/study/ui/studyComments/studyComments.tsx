@@ -6,7 +6,7 @@ import {Modal} from "shared/ui/modal";
 import {useState} from "react";
 import {Form} from "shared/ui/form";
 
-import { useForm} from "react-hook-form";
+import {useForm} from "react-hook-form";
 
 import {useHttp} from "shared/api/base";
 
@@ -20,9 +20,7 @@ import {studyProfileActions} from "entities/studyProfile";
 import {getStudyProfileComment} from "entities/studyProfile/model/studyProfileSelector";
 
 
-
 export const StudyComments = () => {
-
 
 
     const [active, setActive] = useState(false)
@@ -33,13 +31,13 @@ export const StudyComments = () => {
         return data?.map(item => (
             <div className={cls.comment__box}>
                 <div className={cls.comment__box_header}>
-                    <div style={{ display: 'flex', gap: '4px' , alignItems: "center" }}>
+                    <div style={{display: 'flex', gap: '4px', alignItems: "center"}}>
                         {/*<img src={avatar} alt=""/>*/}
                         <h3>{item.name}</h3>
                         <h3>{item.surname}</h3>
                     </div>
-                    <div style={{ display: 'flex', gap: '4px' }}>
-                        {Array.from({ length: 5 }).map((_, index) => (
+                    <div style={{display: 'flex', gap: '4px'}}>
+                        {Array.from({length: 5}).map((_, index) => (
                             <span
                                 key={index}
                                 style={{
@@ -54,9 +52,9 @@ export const StudyComments = () => {
                         ))}
                     </div>
                 </div>
-                <div className={cls.comment__box_text}>
-                    {item.comment}
-                </div>
+                {/*<div className={cls.comment__box_text}>*/}
+                {/*    {item.comment}*/}
+                {/*</div>*/}
                 {/*<div className={cls.comment__box_date}>*/}
                 {/*    {item.date}*/}
                 {/*</div>*/}
@@ -66,17 +64,17 @@ export const StudyComments = () => {
     return (
         <div className={cls.comment}>
 
-                    {renderData()}
+            {renderData()}
 
-                <Button onClick={() => setActive(true)} extraClass={cls.comment__add}>Izoh kiritish</Button>
-            <AddComment  setActive={setActive} active={active}/>
+            <Button onClick={() => setActive(true)} extraClass={cls.comment__add}>Reyting kiritish</Button>
+            <AddComment setActive={setActive} active={active}/>
         </div>
     );
 };
 
-const AddComment = ({active, setActive } : {active : boolean , setActive : (arg : boolean) => void}) => {
+const AddComment = ({active, setActive}: { active: boolean, setActive: (arg: boolean) => void }) => {
 
-    const {register, handleSubmit , setValue} = useForm()
+    const {register, handleSubmit, setValue} = useForm()
 
 
     const dispatch = useAppDispatch()
@@ -91,14 +89,14 @@ const AddComment = ({active, setActive } : {active : boolean , setActive : (arg 
     const {id} = useParams()
 
     const userId = localStorage.getItem('user_id')
-    const onAdd = (data : IComment) => {
+    const onAdd = (data: IComment) => {
         const res = {
             ...data,
             rating: rating,
             organization: id,
-            user: userId
+            user: userId,
+            comment: ""
         }
-
 
 
         request({
@@ -108,26 +106,26 @@ const AddComment = ({active, setActive } : {active : boolean , setActive : (arg 
             // headers: headers()
         })
 
-            .then(res =>{
+            .then(res => {
                 dispatch(studyProfileActions.onAddComment(res.comment))
                 setActive(false)
                 setRating(0)
-                setValue("name",  "")
-                setValue("surname",  "")
-                setValue("comment",  "")
+                setValue("name", "")
+                setValue("surname", "")
+                setValue("comment", "")
             })
 
     }
 
     return (
-        <Modal title={"Komment"} extraClass={cls.modal} active={active} setActive={setActive}>
+        <Modal title={"Reyting"} extraClass={cls.modal} active={active} setActive={setActive}>
 
 
             <Form extraClass={cls.form}>
-                <textarea {...register("comment")} name={"comment"} placeholder={"Text"}/>
+                {/*<textarea {...register("comment")} name={"comment"} placeholder={"Text"}/>*/}
 
                 <div className={cls.modal__star}>
-                    <h2>Reyting</h2>
+                    {/*<h2>Reyting</h2>*/}
                     <div>
                         {Array.from({length: 5}).map((_, index) => (
                             <span
@@ -147,7 +145,7 @@ const AddComment = ({active, setActive } : {active : boolean , setActive : (arg 
                 </div>
                 {/*// @ts-ignore*/}
 
-                <Button extraClass={cls.comment__add} onClick={handleSubmit(onAdd)}>Qushmoq</Button>
+                <Button extraClass={cls.form__add} onClick={handleSubmit(onAdd)}>Qushmoq</Button>
             </Form>
         </Modal>
     )

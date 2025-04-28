@@ -12,15 +12,16 @@ export const Layout = () => {
     return (
         <div className={cls.layout}>
             <Alert/>
-            <MenuBar/>
+            {window.innerWidth <= 768 ? null : <MenuBar/>}
             <main
                 className={cls.layout__content}
-                style={window.innerWidth <= 430 ? {} : {backgroundImage: `url(${image})`}}
+                style={window.innerWidth <= 768 ? {} : {backgroundImage: `url(${image})`}}
             >
                 <Header/>
                 <div className={cls.layout__route}>
                     <Outlet/>
                 </div>
+                {window.innerWidth <= 768 ? <MenuBar/> : null}
             </main>
         </div>
     );
