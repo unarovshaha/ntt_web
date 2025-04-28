@@ -47,4 +47,13 @@
   border-radius: 1.7rem;
 }
 
+@media (max-width: 430px) {
+  .header {
+    max-width: 430px;
+    width: 100%;
+    overflow: hidden;
+    overflow-x: auto;
+  }
+}
+
 /*# sourceMappingURL=studyProfileHeader.module.css.map */

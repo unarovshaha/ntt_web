@@ -97,13 +97,13 @@ export const HomeNewsProfile = () => {
 
                 <div className={cls.profile__footer}>
 
-                    <div className={cls.profile__footer_title}>
-                        E’lonlar
-                    </div>
-                    <div className={cls.profile__footer_container}>
-                        {renderData()}
-                        {/*<h2>vihurhufhuf</h2>*/}
-                    </div>
+                    {/*<div className={cls.profile__footer_title}>*/}
+                    {/*    E’lonlar*/}
+                    {/*</div>*/}
+                    {/*<div className={cls.profile__footer_container}>*/}
+                    {/*    {renderData()}*/}
+                    {/*    /!*<h2>vihurhufhuf</h2>*!/*/}
+                    {/*</div>*/}
 
                 </div>
             </div>

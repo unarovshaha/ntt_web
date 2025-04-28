@@ -1,10 +1,10 @@
 import cls from "./home.module.sass";
 import logo from "shared/assets/logo/nttLogo.svg";
-  import earth from "shared/assets/icons/language.png";
+import earth from "shared/assets/icons/language.png";
 import { Button } from "shared/ui/button/button";
 import { useEffect, useState } from "react";
 import classNames from "classnames";
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { useSelector } from "react-redux";
 import {getHomeHeaderItem, getHomeLoading} from "entities/home/model/selector/homeSelector";
@@ -13,17 +13,18 @@ import { HeaderItem } from "entities/home/model/schema/homeSchema";
 import {Loader} from "shared/ui/loader";
 
 const menuList = [
-    { name: "/", label: "Bosh sahifa" },
+    {name: "/", label: "Bosh sahifa"},
 ];
 
 const menuList1 = [
-    { name: "/onlineTest", label: "Online test" }
+    {name: "/onlineTest", label: "Online test"}
 ];
 
-export const HomeHeader = ({ setItem }: { setItem: (item: HeaderItem) => void }) => {
+export const HomeHeader = ({setItem}: { setItem: (item: HeaderItem) => void }) => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
-
+    const location = useLocation()
+    const [loading, setLoading] = useState(true);
     const initialMenu = localStorage.getItem("activeMenu") || menuList[0].name;
     const getLoading = useSelector(getHomeLoading)
     const [activeMenu, setActiveMenu] = useState(initialMenu);
@@ -32,6 +33,11 @@ export const HomeHeader = ({ setItem }: { setItem: (item: HeaderItem) => void })
     useEffect(() => {
         dispatch(fetchHomeHeaderItem());
     }, [dispatch]);
+
+    useEffect(() => {
+        if (!activeMenu || !decodeURIComponent(location?.pathname)?.includes(activeMenu) || activeMenu === "/")
+            setActiveMenu(decodeURIComponent(location?.pathname))
+    }, [location?.pathname])
 
     const data = useSelector(getHomeHeaderItem);
 
@@ -49,11 +55,20 @@ export const HomeHeader = ({ setItem }: { setItem: (item: HeaderItem) => void })
     }, [data, activeMenu, setItem]);
 
 
+    useEffect(() => {
+        // Sahifa yuklanayotganda loading true bo'ladi
+        const timer = setTimeout(() => {
+            setLoading(false); // 1-2 sekunddan keyin sahifa tayyor bo'ladi
+        }, 1500);
+
+        return () => clearTimeout(timer); // Komponent unmount bo'lsa clear qilish
+    }, []);
+
+
     const handleMenuClick = (name: string, id?: any) => {
         setActiveMenu(name);
         setActiveSubMenu(false);
         navigate(name);
-        // localStorage.setItem("menuId", id)
     };
 
     const renderMenu = (menuArray: { name: string; label: string }[]) => {
@@ -73,9 +88,7 @@ export const HomeHeader = ({ setItem }: { setItem: (item: HeaderItem) => void })
     return (
 
         <div className={cls.header}>
-            {
-                getLoading ? <Loader/> :
-                    <>
+
                         <div onClick={() => setActiveSubMenu(!activeSubMenu)} className={cls.header__hamburger}>
                             <i className={activeSubMenu ? "fa fa-times" : "fa fa-bars"} />
                         </div>
@@ -127,15 +140,14 @@ export const HomeHeader = ({ setItem }: { setItem: (item: HeaderItem) => void })
                         </div>
 
                         <div className={cls.header__end}>
+
                             <Button onClick={() => navigate("/login")} extraClass={cls.header__end_btn}>
-                                Tizimga kirish
+                                Login
                             </Button>
                             <Button onClick={() => navigate("/register")} extraClass={cls.header__end_btn}>
-                                Ro'yxatdan o'tish
+                                Register
                             </Button>
                         </div>
-                    </>
-            }
 
         </div>
     );
