@@ -9,6 +9,11 @@
   height: 50rem;
   border-radius: 2rem;
   overflow: hidden;
+  cursor: pointer;
+  transition: 0.4s ease-in-out;
+}
+.box:hover {
+  transform: translateY(-1rem);
 }
 .box__link {
   position: absolute;
@@ -77,7 +82,12 @@
 .box__info_text {
   font-size: 1.6rem;
   height: 7rem;
-  overflow: auto;
+  width: 38rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .box__links {
   display: flex;

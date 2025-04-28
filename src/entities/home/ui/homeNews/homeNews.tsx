@@ -22,7 +22,7 @@ export const HomeNewsList = ({item}: IHomeNewsListProps) => {
     const renderData = () => {
 
         return item?.map(item => (
-            <div className={cls.box}>
+            <div onClick={() => navigate(`news/${item.id}`)} className={cls.box}>
 
                 {/*<div className={cls.box__links}>*/}
                 {/*    <a href={item?.shared?.telegram}>*/}
@@ -41,7 +41,6 @@ export const HomeNewsList = ({item}: IHomeNewsListProps) => {
 
                 <div className={cls.box__img}>
                     <img src={item.img ? item.img : itemImg} alt=""/>
-                    <h2>Yangilik</h2>
                 </div>
 
                 <div className={cls.box__info}>
@@ -62,7 +61,7 @@ export const HomeNewsList = ({item}: IHomeNewsListProps) => {
                 </div>
 
                 <h3
-                    onClick={() => navigate(`news/${item.id}`)}
+
                     className={cls.box__link}
                 >
                     Batafsil <i className={"fa fa-arrow-right"}/>
