@@ -83,9 +83,9 @@ export const HomeNewsProfile = () => {
                         </div>
                     </div>
                     <div className={cls.profile__container_right}>
-                        <div className={cls.profile__container_right_header}>
-                            Ma’lumotlar
-                        </div>
+                        {/*<div className={cls.profile__container_right_header}>*/}
+                        {/*    Ma’lumotlar*/}
+                        {/*</div>*/}
                         <div
                             className={cls.profile__container_right_info}
                             dangerouslySetInnerHTML={{__html: data ? data?.desc_json?.text : ""}}
@@ -97,13 +97,13 @@ export const HomeNewsProfile = () => {
 
                 <div className={cls.profile__footer}>
 
-                    <div className={cls.profile__footer_title}>
-                        E’lonlar
-                    </div>
-                    <div className={cls.profile__footer_container}>
-                        {renderData()}
-                        {/*<h2>vihurhufhuf</h2>*/}
-                    </div>
+                    {/*<div className={cls.profile__footer_title}>*/}
+                    {/*    E’lonlar*/}
+                    {/*</div>*/}
+                    {/*<div className={cls.profile__footer_container}>*/}
+                    {/*    {renderData()}*/}
+                    {/*    /!*<h2>vihurhufhuf</h2>*!/*/}
+                    {/*</div>*/}
 
                 </div>
             </div>

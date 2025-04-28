@@ -24,7 +24,7 @@ export const HomeHeader = ({setItem}: { setItem: (item: HeaderItem) => void }) =
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const location = useLocation()
-
+    const [loading, setLoading] = useState(true);
     const initialMenu = localStorage.getItem("activeMenu") || menuList[0].name;
     const getLoading = useSelector(getHomeLoading)
     const [activeMenu, setActiveMenu] = useState(initialMenu);
@@ -55,11 +55,20 @@ export const HomeHeader = ({setItem}: { setItem: (item: HeaderItem) => void }) =
     }, [data, activeMenu, setItem]);
 
 
+    useEffect(() => {
+        // Sahifa yuklanayotganda loading true bo'ladi
+        const timer = setTimeout(() => {
+            setLoading(false); // 1-2 sekunddan keyin sahifa tayyor bo'ladi
+        }, 1500);
+
+        return () => clearTimeout(timer); // Komponent unmount bo'lsa clear qilish
+    }, []);
+
+
     const handleMenuClick = (name: string, id?: any) => {
         setActiveMenu(name);
         setActiveSubMenu(false);
         navigate(name);
-        // localStorage.setItem("menuId", id)
     };
 
     const renderMenu = (menuArray: { name: string; label: string }[]) => {
@@ -79,9 +88,7 @@ export const HomeHeader = ({setItem}: { setItem: (item: HeaderItem) => void }) =
     return (
 
         <div className={cls.header}>
-            {
-                getLoading ? <Loader/> :
-                    <>
+
                         <div onClick={() => setActiveSubMenu(!activeSubMenu)} className={cls.header__hamburger}>
                             <i className={activeSubMenu ? "fa fa-times" : "fa fa-bars"} />
                         </div>
@@ -141,8 +148,6 @@ export const HomeHeader = ({setItem}: { setItem: (item: HeaderItem) => void }) =
                                 Register
                             </Button>
                         </div>
-                    </>
-            }
 
         </div>
     );

@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router";
 import {useSelector} from "react-redux";
+import {API_URL_DOC_IMG} from "shared/api/base";
 
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import {
@@ -54,7 +55,7 @@ export const StudyProfileAnnouncements = () => {
             return (
                 <div className={cls.announcementsItem}>
                     <div className={cls.announcementsItem__header}>
-                        <img className={cls.announcementsItem__ava} src={''} alt=""/>
+                        <img className={cls.announcementsItem__ava} src={item?.img ? `${API_URL_DOC_IMG}${item.img}` : ""} alt=""/>
                         <h2 className={cls.announcementsItem__title}>
                             {item.field.name}
                         </h2>

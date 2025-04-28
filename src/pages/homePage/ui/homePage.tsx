@@ -28,10 +28,10 @@ export const Home = () => {
 
     const [item, setItem] = useState<HeaderItem>()
 
+
     //@ts-ignore
     localStorage.setItem("menuId", item?.id)
 
-    localStorage.clear()
 
 
     return (
@@ -43,6 +43,7 @@ export const Home = () => {
                 <Routes>
                     <Route path={"/"} element={
                         <div className={cls.header__box}>
+
                             <HomePage/>
                             <HomeNews/>
                         </div>

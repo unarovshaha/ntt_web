@@ -41,7 +41,7 @@ export const StudyProfileNewPage = () => {
             <div className={cls.newPage}>
                 <StudyProfileHeader/>
                 <div className={cls.newPage__container}>
-                    <StudyProfileInfo/>
+                    { window.innerWidth > 700 && <div><StudyProfileInfo/></div>}
                     <Outlet/>
                     <Routes>
                         <Route path={"about"} element={<StudyProfileAbout/>}/>

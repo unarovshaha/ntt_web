@@ -28,7 +28,12 @@ export const NewProfilePersonal = () => {
             {/*    </div>*/}
             {/*</div>*/}
             <div className={cls.info__container}>
-                <img className={cls.info__image} src={`${data?.img ? data.img : image}`} alt=""/>
+                {
+                    data?.img ?
+                    <img className={cls.info__image} src={`${data.img}`} alt=""/> :
+                        <h2>Afsuski rasm topilmadi</h2>
+                }
+
                 <div className={cls.info__form}>
                     <p className={cls.list} style={{justifyContent: "center"}}>
                         <span>{data?.name}</span>
@@ -48,22 +53,16 @@ export const NewProfilePersonal = () => {
                         [cls.active]: !!data?.inn?.length
                     })}>
                          {/*@ts-ignore*/}
-                        INN: <span dangerouslySetInnerHTML={{__html: data?.inn}}/>
+                        INN<span dangerouslySetInnerHTML={{__html: data?.inn}}/>
                     </p>
-                    <p className={classNames(cls.list, {
-                        [cls.active]: !!data?.email?.length
-                    })}>
-                        Email: <span>{data?.email}</span>
+                    <p className={cls.list}>
+                        Email<span>{data?.email}</span>
                     </p>
-                    <p className={classNames(cls.list, {
-                        [cls.active]: !!data?.phone?.length
-                    })}>
-                        Telefon raqam: <span>{data?.phone}</span>
+                    <p className={cls.list}>
+                        Telefon raqam<span>{data?.phone}</span>
                     </p>
-                    <p className={classNames(cls.list, {
-                        [cls.active]: !!data?.address?.length
-                    })}>
-                        Addres: <span>{data?.address}</span>
+                    <p className={cls.list}>
+                        Addres<span>{data?.address}</span>
                     </p>
                     <div className={cls.links}>
                         <a
