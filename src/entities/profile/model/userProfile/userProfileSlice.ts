@@ -18,7 +18,8 @@ const initialState: IUserProfileSchema = {
         student_id: 0,
         password: "",
         certificate: "",
-        passport_pdf1: ""
+        passport_pdf1: "",
+        passport_pdf2: ""
     },
     loading: false,
     error: undefined

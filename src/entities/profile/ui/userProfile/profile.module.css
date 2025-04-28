@@ -27,6 +27,7 @@
   max-width: 35rem;
   max-height: 25rem;
   width: 100%;
+  height: 100%;
   border-radius: 3rem;
 }
 .container__box {
@@ -42,6 +43,12 @@
   gap: 1rem;
   width: 50%;
   font-weight: normal;
+}
+
+.labelBox {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
 }
 
 .labels {
@@ -89,6 +96,49 @@
   font-weight: bold;
   font-family: "Monospaced", "serif";
   letter-spacing: 0.2rem;
+}
+
+.flipCard {
+  width: 40rem;
+  height: 250px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.flipCardInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flipCardInner.flipped {
+  transform: rotateX(180deg);
+}
+
+.flipCardFront, .flipCardBack {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.flipCardFront img,
+.flipCardBack img {
+  max-width: 40rem;
+  max-height: 25rem;
+  width: 100%;
+  height: 100%;
+  border-radius: 3rem;
+}
+
+.flipCardBack img {
+  transform: rotate(180deg);
+}
+
+.flipCardBack {
+  transform: rotateY(180deg);
 }
 
 /*# sourceMappingURL=profile.module.css.map */

@@ -162,7 +162,7 @@ export const StudyProfileAnnouncements = () => {
                 dispatch(alertAction.onAddAlertOptions({
                     type: "success",
                     status: true,
-                    msg: res.msg
+                    msg: res.detail
                 }))
             })
             .catch(err => {

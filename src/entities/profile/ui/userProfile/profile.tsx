@@ -39,16 +39,19 @@ export const Profile = () => {
     const [change, setChange] = useState(false);
     const [file, setFile] = useState<File | null>(null);
     const [pdf, setPdf] = useState<File | null>(null);
+    const [pdf2, setPdf2] = useState<File | null>(null);
     const [trumb, setTrumb] = useState<boolean>(false);
+    const [flipped, setFlipped] = useState(false);
+
+
 
     const { request } = useHttp();
 
-    // Fayl tanlanganda ishlaydigan funksiya
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, setState: React.Dispatch<React.SetStateAction<File | null>>) => {
         const files = e.target.files;
         if (files && files[0]) {
             setState(files[0]);
-            console.log('Selected file:', files[0]); // Tanlangan faylni logga chiqarish
+            console.log('Selected file:', files[0]);
         }
     };
 
@@ -83,8 +86,9 @@ export const Profile = () => {
         // Append files if they exist
         if (file) formData.append('certificate', file);
         if (pdf) formData.append('passport_pdf1', pdf);
+        if (pdf2) formData.append('passport_pdf2', pdf2);
 
-        request({
+        await request({
             url: `users/user/crud/${userId}/`,
             method: 'PUT',
             body: formData,
@@ -105,7 +109,8 @@ export const Profile = () => {
                     {layout ? (
                         <div className={cls.container__arounder}>
                             <div>
-                                <Input register={register} name="name" title="Ism familiya" value={getData?.name} />
+                                <Input register={register} name="name" title="Ism" value={getData?.name} />
+                                <Input register={register} name="surname" title="Familiya" value={getData?.surname} />
                                 <Input
                                     name="passport_seria"
                                     register={register}
@@ -138,13 +143,13 @@ export const Profile = () => {
                                     register={register}
                                 />
                                 <Input name="email" title="Email" value={getData?.email} register={register} />
-                                <Input
-                                    name="password"
-                                    title="Password"
-                                    type="password"
-                                    register={register}
-                                    value={getData?.password}
-                                />
+                                {/*<Input*/}
+                                {/*    name="password"*/}
+                                {/*    title="Password"*/}
+                                {/*    type="password"*/}
+                                {/*    register={register}*/}
+                                {/*    value={getData?.password}*/}
+                                {/*/>*/}
                                 <label className={cls.label}>
                                     <h2>Diplom</h2>
                                     <a target={"_blank"} href={`${getData?.certificate}`}>
@@ -154,9 +159,22 @@ export const Profile = () => {
                                 </label>
                                 <label className={cls.label}>
                                     <h2>Passport</h2>
-                                    <a target={"_blank"} href={`${getData?.passport_pdf1}`}>
-                                        <img src={getData?.passport_pdf1 ? `${getData.passport_pdf1}` : image} alt=""/>
-                                    </a>
+                                    <div className={cls.flipCard} onClick={() => setFlipped(!flipped)}>
+                                        <div className={`${cls.flipCardInner} ${flipped ? [cls.flipped] : ""}`}>
+                                            <div className={cls.flipCardFront}>
+                                                {/*<a target={"_blank"} href={`${getData?.passport_pdf1}`}>*/}
+                                                    <img src={getData?.passport_pdf1 ? `${getData.passport_pdf1}` : image} alt=""/>
+                                                {/*</a>*/}
+                                            </div>
+                                            <div className={cls.flipCardBack}>
+                                                {/*<a target={"_blank"} href={`${getData?.passport_pdf2}`}>*/}
+                                                    <img src={getData?.passport_pdf2 ? `${getData.passport_pdf2}` : image} alt=""/>
+                                                {/*</a>*/}
+                                            </div>
+                                        </div>
+                                    </div>
+
+
 
                                 </label>
                                 {change && (
@@ -172,11 +190,19 @@ export const Profile = () => {
                                             />
                                         </label>
                                         <label className={cls.labels} htmlFor="">
-                                            <h2>Passport rasmi</h2>
+                                            <h2>Passport rasmi(old tomoni)</h2>
                                             <input
                                                 name="passport_pdf1"
                                                 type="file"
                                                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleFileChange(e, setPdf)}
+                                            />
+                                        </label>
+                                        <label className={cls.labels} htmlFor="">
+                                            <h2>Passport rasmi(orqa tomoni)</h2>
+                                            <input
+                                                name="passport_pdf2"
+                                                type="file"
+                                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleFileChange(e, setPdf2)}
                                             />
                                         </label>
 
