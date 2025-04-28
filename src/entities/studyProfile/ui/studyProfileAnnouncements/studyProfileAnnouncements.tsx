@@ -67,7 +67,10 @@ export const StudyProfileAnnouncements = () => {
                                 </div>
                                 <p className={cls.info__subTitle}>Ta’lim tili</p>
                             </div>
-                            <h3 className={cls.info__title}>{item.education_language?.map((item: {name: string}, index: number, arr: string | any[]) => <span>{item.name}{index !== arr.length - 1 && "\\"}</span>)}</h3>
+                            <h3 className={cls.info__title}>{item.education_language?.map((item: {
+                                name: string
+                            }, index: number, arr: string | any[]) =>
+                                <span>{item.name}{index !== arr.length - 1 && "\\"}</span>)}</h3>
 
                         </div>
                         {/*<div className={cls.info}>*/}
@@ -87,7 +90,10 @@ export const StudyProfileAnnouncements = () => {
                                 </div>
                                 <p className={cls.info__subTitle}>Ta’lim shakli</p>
                             </div>
-                            <h3 className={cls.info__title}>{item.shift.map((item: { name: string }, index: number, arr: string | any[]) => <span>{item.name}{index !== arr.length - 1 && "\\"}</span>)}</h3>
+                            <h3 className={cls.info__title}>{item.shift.map((item: {
+                                name: string
+                            }, index: number, arr: string | any[]) =>
+                                <span>{item.name}{index !== arr.length - 1 && "\\"}</span>)}</h3>
 
                         </div>
                         <div className={cls.info}>
@@ -115,15 +121,15 @@ export const StudyProfileAnnouncements = () => {
                             {
                                 item.grant === false ? <div className={cls.header__garant}></div>
                                     : item.grant === true ?
-                                    <div className={cls.header__garant}>
-                                        <i
-                                            className={classNames(
-                                                "fas fa-thumbs-up",
-                                                cls.header__like
-                                            )}
-                                        />
-                                        <p className={cls.header__title}>Grant mavjud</p>
-                                    </div> : null
+                                        <div className={cls.header__garant}>
+                                            <i
+                                                className={classNames(
+                                                    "fas fa-thumbs-up",
+                                                    cls.header__like
+                                                )}
+                                            />
+                                            <p className={cls.header__title}>Grant mavjud</p>
+                                        </div> : null
                             }
                             <div className={cls.header__up}>
                                 <i className={"fas fa-arrow-up"}/>
@@ -139,11 +145,13 @@ export const StudyProfileAnnouncements = () => {
                         <br/>
                         <br/>
                         <h2>Talablar</h2>
-                        <div  className={cls.text}>
-                            <div dangerouslySetInnerHTML={{__html: item?.requirements?.toString()?.substring(0,300)}}></div>
+                        <div className={cls.text}>
+                            <div
+                                dangerouslySetInnerHTML={{__html: item?.requirements?.toString()?.substring(0, 300)}}></div>
                             <span>...</span>
                         </div>
-                        <Button onClick={() => onCreate(item.id)} extraClass={cls.profile__btn}>Hujjat topshirish</Button>
+                        <Button onClick={() => onCreate(item.id)} extraClass={cls.profile__btn}>Hujjat
+                            topshirish</Button>
                     </div>
                 </div>
             )
@@ -159,9 +167,9 @@ export const StudyProfileAnnouncements = () => {
         })
             .then(res => {
                 dispatch(alertAction.onAddAlertOptions({
-                    type: "success",
+                    type: res.detail ? "error" : "success",
                     status: true,
-                    msg: res.msg
+                    msg: res.msg || res.detail
                 }))
             })
             .catch(err => {

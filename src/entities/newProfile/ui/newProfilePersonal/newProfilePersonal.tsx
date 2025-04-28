@@ -44,6 +44,11 @@ export const NewProfilePersonal = () => {
                         Viloyat: <span>{data?.region.name}</span>
                     </p>
                     <p className={classNames(cls.list, {
+                        [cls.active]: !!data?.region.name?.length
+                    })}>
+                        Tuman: <span>{data?.district.name}</span>
+                    </p>
+                    <p className={classNames(cls.list, {
                         [cls.active]: !!data?.inn?.length
                     })}>
                          {/*@ts-ignore*/}

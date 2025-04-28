@@ -26,7 +26,7 @@ export const Card = ({region, rating, route, desc, image, name, priceMax, priceM
 
     return (
         <div
-            onClick={() => navigate(`${route}${id}`)}
+            onClick={() => navigate(`${route}${id}/about`)}
             className={cls.card}
         >
             <div className={cls.header}>
