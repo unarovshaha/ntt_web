@@ -44,9 +44,9 @@ export const NewProfilePersonal = () => {
                         Viloyat: <span>{data?.region.name}</span>
                     </p>
                     <p className={classNames(cls.list, {
-                        [cls.active]: !!data?.region.name?.length
+                        [cls.active]: !!data?.district?.name?.length
                     })}>
-                        Tuman: <span>{data?.district.name}</span>
+                        Tuman: <span>{data?.district?.name}</span>
                     </p>
                     <p className={classNames(cls.list, {
                         [cls.active]: !!data?.inn?.length

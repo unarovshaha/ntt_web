@@ -33,10 +33,11 @@ export const Card = ({region, rating, route, desc, image, name, priceMax, priceM
                 <div className={cls.header__container}>
                     <img src={image} alt=""/>
                     <div className={cls.header__rating}>
-                        <div className={cls.header__location}>
-                            <i className="fa-solid fa-location-dot"/>
-                            <p className={cls.header__subTitle}>{region}</p>
-                        </div>
+                        {/*<div className={cls.header__location}>*/}
+                        {/*    <i className="fa-solid fa-location-dot"/>*/}
+
+                        {/*    <p className={cls.header__subTitle} dangerouslySetInnerHTML={{__html: region}}></p>*/}
+                        {/*</div>*/}
                         <StarRating rating={rating}/>
                     </div>
                 </div>

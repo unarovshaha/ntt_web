@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+ import React, { useState, useEffect, useRef } from 'react';
 import cls from './searchInput.module.sass';
 import {fetchFieldsItem, fetchHomeTechnical, fetchSearchOrganizations} from 'entities/home/model/thunk/homeThunk';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
