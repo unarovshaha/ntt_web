@@ -5,25 +5,26 @@ import {useState} from "react";
 import {IHomeNews} from "entities/home/model/schema/homeNewsSchema";
 
 
-
 interface IHomeNewsListProps {
     item?: IHomeNews[]
 }
 
 export const HomeNewsList = ({item}: IHomeNewsListProps) => {
-    console.log(item)
+
     const navigate = useNavigate()
 
     const [activeItem, setActiveItem] = useState(null)
 
-    console.log(activeItem)
+
     const [activeModal, setActiveModal] = useState(false)
 
-    console.log(item , "item")
     const renderData = () => {
 
         return item?.map(item => (
-            <div className={cls.box}>
+            <div
+                onClick={() => navigate(`news/${item.id}`)}
+                className={cls.box}
+            >
 
                 {/*<div className={cls.box__links}>*/}
                 {/*    <a href={item?.shared?.telegram}>*/}
@@ -54,7 +55,7 @@ export const HomeNewsList = ({item}: IHomeNewsListProps) => {
                         </div>
                     </div>
                     <div className={cls.box__info_title}>
-                        {item.name}
+                        {item.title}
                     </div>
                     <div
                         dangerouslySetInnerHTML={{__html: item.desc_json.text}}
@@ -63,7 +64,6 @@ export const HomeNewsList = ({item}: IHomeNewsListProps) => {
                 </div>
 
                 <h3
-                    onClick={() => navigate(`news/${item.id}`)}
                     className={cls.box__link}
                 >
                     Batafsil <i className={"fa fa-arrow-right"}/>

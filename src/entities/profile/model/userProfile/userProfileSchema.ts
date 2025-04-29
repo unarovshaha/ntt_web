@@ -10,7 +10,10 @@ export interface IUserProfile {
     phone_extra: string,
     email: string,
     student_id: number,
-    password: string
+    password: string,
+    certificate: string,
+    passport_pdf1: string
+    passport_pdf2: string
 }
 
 export interface IUserProfileSchema {

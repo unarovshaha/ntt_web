@@ -1,5 +1,9 @@
 .card
-  width: 34.4rem
+  background: rgba(255, 255, 255, 0.95)
+  backdrop-filter: blur(5px)
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1)
+  width: 35rem
+  //width: fit-content
   padding: 1.5rem
   border-radius: 1.5rem
   border: 1px solid #D1D1D6
@@ -13,6 +17,17 @@
     display: flex
     flex-direction: column
     gap: .5rem
+    &__container
+      display: flex
+      align-items: center
+      gap: 1rem
+      img
+        width: 4.5rem
+        height: 4.5rem
+        border-radius: 50%
+    &__rating
+      display: flex
+      flex-direction: column
     &__location
       gap: .7rem
       font-size: 1.5rem
@@ -25,8 +40,22 @@
       font-size: 1.6rem
       color: #2650BB
     &__info
+      width: 100%
       display: flex
-      gap: 7rem
+      justify-content: space-between
+      //flex-direction: column
+      //gap: .7rem
+      font-size: 1.2rem
+      .wrapper
+        color: black
+        display: flex
+        gap: .2rem
+    &__text
+      display: -webkit-box
+      -webkit-line-clamp: 2 /* оставить, например, 2 строки */
+      -webkit-box-orient: vertical
+      overflow: hidden
+      text-overflow: ellipsis
       font-size: 1.2rem
   .footer
     display: flex
@@ -34,5 +63,14 @@
     font-size: 1.2rem
     &__link
       color: #00C371
+
+@media (max-width: 768px)
+  .card
+    width: 30rem
+    .header
+      &__info
+        flex-direction: column
+        gap: .7rem
+        //gap: 5rem
 
 

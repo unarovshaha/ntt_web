@@ -23,7 +23,7 @@ export const fetchNotificationData = createAsyncThunk<
         dispatch(notificationActions.onGetNotification(response))
         return response.results;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -49,7 +49,7 @@ export const fetchNotificationProfile = createAsyncThunk<
         dispatch(notificationActions.onGetNotificationProfile(response))
         return response.results;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })

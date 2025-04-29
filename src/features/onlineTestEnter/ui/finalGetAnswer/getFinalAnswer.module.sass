@@ -1,0 +1,126 @@
+.wrapper
+  display: flex
+  gap: 20px
+
+.container
+  display: flex
+  flex-direction: column
+  width: 25%
+  gap: 2rem
+
+.sidebar
+  width: 100%
+  display: flex
+  flex-direction: column
+
+  box-shadow: 0 0 2px 0
+  height: fit-content
+  padding: 2rem
+  gap: 1rem
+  border-radius: 10px
+
+  &__score
+    font-size: 1.5rem
+    text-transform: capitalize
+
+    font-weight: bold
+    display: flex
+    justify-content: space-between
+
+  &__mandatory
+    font-size: 1.4rem
+    color: #6B7280
+
+  &__btn
+    width: 100%
+
+.subjectButton
+  padding: 12px
+  margin-bottom: 10px
+  background-color: #e2e8f0
+  text-transform: capitalize
+
+  color: #1a202c
+  border: none
+  border-radius: 8px
+  cursor: pointer
+  font-weight: 500
+
+  &:hover
+    background-color: #cbd5e0
+
+  &.active
+    background-color: #3182ce
+    color: #fff
+
+.content
+  width: 75%
+
+  &__box
+    height: calc(100vh - 20rem)
+    overflow: auto
+
+
+.title
+  font-size: 2.3rem
+  text-transform: capitalize
+
+
+  font-weight: 700
+  font-family: "Inter", serif
+  margin-bottom: 16px
+
+.questionBlock
+  margin-bottom: 24px
+
+.questionText
+  margin-bottom: 12px
+  display: flex
+  font-size: 2rem
+  gap: 2rem
+  font-weight: 600
+
+.option
+  padding: 10px
+  border: 1px solid #cbd5e0
+  border-radius: 6px
+  margin-bottom: 8px
+  display: flex
+  align-items: center
+  font-size: 1.2rem
+
+  font-weight: 700
+  gap: 2rem
+
+.correct
+  background-color: #d1fae5
+  border-color: #10b981
+  color: #065f46
+
+.incorrect
+  background-color: #fee2e2
+  border-color: #ef4444
+  color: #991b1b
+
+.correctUnselected
+  border-color: #10b981
+  background-color: #f0fdf4
+  color: #065f46
+
+@media (max-width: 950px)
+  .btns
+    flex-direction: row
+    padding: 0
+    flex-wrap: wrap
+    box-shadow: none
+  .content
+    &__box
+      height: fit-content
+
+
+  .container
+    flex-direction: column-reverse
+  .wrapper
+    flex-direction: column-reverse
+  .container, .content
+    width: 100%

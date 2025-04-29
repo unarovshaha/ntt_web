@@ -1,7 +1,7 @@
 import React from 'react';
 
 import cls from "./newProfileAbout.module.sass";
-import image from "shared/assets/images/Rectangle 6648.png";
+import image from "shared/assets/images/defaultImg.svg";
 import {useSelector} from "react-redux";
 import {getHomeProfileDescription} from "entities/home/model/selector/homeSelector";
 import {API_URL_DOC} from "shared/api/base";
@@ -9,16 +9,19 @@ import {NewProfilePersonal} from "entities/newProfile/ui/newProfilePersonal/newP
 
 export const NewProfileAbout = () => {
     const data = useSelector(getHomeProfileDescription)
-    console.log(data , "dadsa")
+
 
     return (
         <div style={{display: "flex"}}>
-            <div className={cls.info}>
-                <NewProfilePersonal/>
-            </div>
+            {window.innerWidth > 700 &&<div className={cls.info}> <NewProfilePersonal/></div> }
             <div className={cls.about}>
                 {/*// @ts-ignore*/}
-                <img className={cls.about__image} src={data?.img ? `${API_URL_DOC}${data?.img}` : image} alt=""/>
+                {
+                    //@ts-ignore
+                   data?.img ? <img className={cls.about__image} src={data?.img ? `${API_URL_DOC}${data?.img}` : image} alt=""/> :
+                       <h1>Afsuski rasm topilmadi :-(</h1>
+                }
+
                 <h1 className={cls.about__title}>
                     {/*// @ts-ignore*/}
 

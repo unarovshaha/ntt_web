@@ -22,6 +22,12 @@
   gap: 1rem;
   align-items: center;
 }
+.profile__footer_container_box_header > img {
+  width: 5.6rem;
+  height: 5.6rem;
+  object-fit: cover;
+  border-radius: 50%;
+}
 .profile__footer_container_box > ul {
   display: grid;
   list-style: none;
@@ -50,6 +56,11 @@
 }
 .profile__footer_container_box_footer > p {
   font-size: 1.4rem;
+}
+
+.contract {
+  display: flex;
+  gap: 1rem;
 }
 
 .box__link {

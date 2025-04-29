@@ -21,6 +21,7 @@
     color: rgb(0, 74, 173)
 .profile__footer_container_box
   width: 54rem
+  align-self: center
   //margin-top: 10rem
   height: fit-content
   box-shadow: 0 16px 32px -4px rgba(12, 12, 13, 0.1), 0 4px 4px -4px rgba(12, 12, 13, 0.05)
@@ -56,18 +57,36 @@
 
       span
         color: black
-
+  &_middle
+    display: flex
+    flex-direction: column
+    gap: 2rem
   &_footer
     display: flex
     align-items: center
     width: 100%
     justify-content: end
     margin: .5rem 0
+    gap: 2rem
     color: #004AAD
     font-size: 1.3rem
     cursor: pointer
 
+.modal
+  width: 60%
+@media (max-width: 720px)
+  .modal
+    width: 80%
+    height: 40rem
+    overflow: auto
 @media (max-width: 600px)
+
+  .direction
+    padding: 2rem 0
+    &__filter
+      gap: 2rem
+      width: 100%
+      overflow: auto
   .profile__footer_container_box
     width: 100%
     height: fit-content
@@ -112,7 +131,7 @@
       justify-content: end
       margin: .5rem 0
       color: #004AAD
-      font-size: 1.3rem
+      font-size: 1rem
       cursor: pointer
   .info
     display: none

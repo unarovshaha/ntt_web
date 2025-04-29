@@ -37,6 +37,7 @@ export const Header = () => {
     return (
         <div className={cls.header}>
             <Select
+                extraClass={cls.header__select}
                 selectOption={currentYear ?? 1}
                 optionsData={
                     academicYears.map(item => ({

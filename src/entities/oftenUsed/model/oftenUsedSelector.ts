@@ -4,6 +4,8 @@ export const getDirectionsData = (state: StateSchema) =>
     state.oftenUsedSlice.directions
 export const getLocationsData = (state: StateSchema) =>
     state.oftenUsedSlice.locations
+export const getDistrictData = (state: StateSchema) =>
+    state.oftenUsedSlice.district
 export const getStudyTypesData = (state: StateSchema) =>
     state.oftenUsedSlice.studyTypes
 export const getLanguagesData = (state: StateSchema) =>

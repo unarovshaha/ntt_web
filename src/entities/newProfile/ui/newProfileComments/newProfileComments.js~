@@ -1,0 +1,12 @@
+import {getHomePosters} from "entities/home/model/selector/homeSelector";
+import {NewProfilePersonal} from "entities/newProfile/ui/newProfilePersonal/newProfilePersonal";
+import React from "react";
+
+export const NewProfileComments = () => {
+    return (
+        <div>
+            <NewProfilePersonal/>
+        </div>
+    );
+};
+

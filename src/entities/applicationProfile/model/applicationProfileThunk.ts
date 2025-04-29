@@ -21,7 +21,7 @@ export const fetchApplicationProfile = createAsyncThunk<
 
         return response.results;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })

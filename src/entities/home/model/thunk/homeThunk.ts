@@ -1,7 +1,7 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {headers} from "shared/api/base";
 import {ThunkConfig} from "app/providers/storeProvider";
-import {HeaderItem, IHome, Organization} from "../schema/homeSchema"
+import {HeaderItem, IComment, IHome, Organization} from "../schema/homeSchema"
 
 
 export const fetchHomeHeaderItem = createAsyncThunk<
@@ -23,7 +23,7 @@ export const fetchHomeHeaderItem = createAsyncThunk<
 
         return response.results;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -47,7 +47,7 @@ export const fetchOrganizationsPosters = createAsyncThunk<
 
         return response;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -70,15 +70,15 @@ export const fetchSearchOrganizations = createAsyncThunk<
 
         return response.results;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
 export const fetchFieldsItem = createAsyncThunk<
     any[],
-    void,
+    string | number | undefined,
     ThunkConfig<string>
->("homeSlice/fetchFieldsItem", async (_, thunkApi) => {
+>("homeSlice/fetchFieldsItem", async (menuID, thunkApi) => {
     const {extra, dispatch, rejectWithValue} = thunkApi;
     const menuId = localStorage.getItem("menuId");
     try {
@@ -94,7 +94,7 @@ export const fetchFieldsItem = createAsyncThunk<
 
         return response.results;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -119,20 +119,20 @@ export const fetchHomeItem = createAsyncThunk<
 
         return response.results;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
 
 export const fetchHomeTechnical = createAsyncThunk<
     any,
-    { priceMin: number, priceMax: number, stipendiya: boolean, grand: boolean, organizationId: number | string | null, fieldId: string | number | null | undefined, value: string | undefined },
+    { priceMin: number, priceMax: number, stipendiya: boolean, grand: boolean, organizationId: number | string | null, fieldId: string | number | null | undefined, value: string | undefined , region: number | undefined , district: number | undefined},
     ThunkConfig<string>
->("homeSlice/fetchHomeTechnical", async ({priceMax, priceMin, grand, stipendiya, organizationId, fieldId, value}, thunkApi) => {
+>("homeSlice/fetchHomeTechnical", async ({priceMax, priceMin, grand, stipendiya, organizationId, fieldId, value , district , region}, thunkApi) => {
     const {extra, dispatch, rejectWithValue} = thunkApi;
     try {
         const response = await extra.api({
-            url: `organizations/organization/get/home/?organization_type=${organizationId}${value ? `&search=${value}` : ""}&price_min=${priceMin}&price_max=${priceMax}${grand ? `&grant=${grand}` : ""}${stipendiya ? `&stipendiya=${stipendiya}` : ""}${fieldId ? `&field=${fieldId}` : ""}`,
+            url: `organizations/organization/get/home/?organization_type=${organizationId}${value ? `&search=${value}` : ""}${priceMin ? `&price_min=${priceMin}` : ""}${priceMax ? `&price_max=${priceMax}` : ""}${grand ? `&grant=${grand}` : ""}${stipendiya ? `&stipendiya=${stipendiya}` : ""}${fieldId ? `&field=${fieldId}` : ""}${region ? `&region=${region}` : ""}${district ? `&district=${district}` : ""}`,
             method: "GET",
             body: null,
             // headers: headers()
@@ -143,7 +143,7 @@ export const fetchHomeTechnical = createAsyncThunk<
 
         return response.results;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -168,7 +168,7 @@ export const fetchHomeProfile = createAsyncThunk<
 
         return response;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -195,7 +195,7 @@ export const fetchHomeProfileItem = createAsyncThunk<
 
         return response;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -219,7 +219,7 @@ export const fetchHomeProfileItemHeader = createAsyncThunk<
 
         return response;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -244,7 +244,7 @@ export const fetchHomeProfileDegree = createAsyncThunk<
 
         return response.results;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -267,7 +267,7 @@ export const fetchHomeProfileDegreeItem = createAsyncThunk<
 
         return response.results;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -292,7 +292,7 @@ export const fetchStudentAcademicYear = createAsyncThunk<
 
         return response.results;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -300,3 +300,72 @@ export const fetchStudentAcademicYear = createAsyncThunk<
 
 
 
+export const fetchUserComment = createAsyncThunk<
+    IComment[],
+    number,
+    ThunkConfig<string>
+>("homeSlice/fetchUserComment", async (id, thunkApi) => {
+    const {extra, dispatch, rejectWithValue} = thunkApi;
+    try {
+        const response = await extra.api({
+            url: `comments/list/?organization_id=${id}`,
+            method: "GET",
+            body: null,
+            // headers: headers()
+        })
+        if (!response) {
+            throw new Error()
+        }
+
+        return response.results;
+    } catch (e) {
+
+        return rejectWithValue('error')
+    }
+})
+export const fetchRegion = createAsyncThunk<
+    [],
+    void,
+    ThunkConfig<string>
+>("homeSlice/fetchRegion", async (_, thunkApi) => {
+    const {extra, dispatch, rejectWithValue} = thunkApi;
+    try {
+        const response = await extra.api({
+            url: `region/get/`,
+            method: "GET",
+            body: null,
+            // headers: headers()
+        })
+        if (!response) {
+            throw new Error()
+        }
+
+        return response.results;
+    } catch (e) {
+
+        return rejectWithValue('error')
+    }
+})
+export const fetchDistrict = createAsyncThunk<
+    [],
+    number,
+    ThunkConfig<string>
+>("homeSlice/fetchDistrict", async (id, thunkApi) => {
+    const {extra, dispatch, rejectWithValue} = thunkApi;
+    try {
+        const response = await extra.api({
+            url: `region/get/list_district/?region_id=${id}`,
+            method: "GET",
+            body: null,
+            // headers: headers()
+        })
+        if (!response) {
+            throw new Error()
+        }
+
+        return response.results;
+    } catch (e) {
+
+        return rejectWithValue('error')
+    }
+})

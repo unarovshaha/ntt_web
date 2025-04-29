@@ -4,6 +4,8 @@ export const getFilterLocations = (state: StateSchema) =>
     state.filterSlice?.locations
 export const getFilterLanguages = (state: StateSchema) =>
     state.filterSlice?.languages
+export const getFilterDistrict = (state: StateSchema) =>
+    state.filterSlice?.district
 export const getFilterDirection = (state: StateSchema) =>
     state.filterSlice?.direction
 export const getFilterMinSalary = (state: StateSchema) =>

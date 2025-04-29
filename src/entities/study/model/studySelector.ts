@@ -18,3 +18,4 @@ export const getStudyLoading = (state: StateSchema) =>
     state.studySlice?.loading
 export const getStudyError = (state: StateSchema) =>
     state.studySlice?.error
+

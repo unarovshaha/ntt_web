@@ -1,6 +1,7 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {ThunkConfig} from "app/providers/storeProvider";
 import {headers, ParamUrl} from "shared/api/base";
+import {IComment} from "entities/home/model/schema/homeSchema";
 
 export const fetchStudyMttList = createAsyncThunk<
     void,
@@ -21,7 +22,7 @@ export const fetchStudyMttList = createAsyncThunk<
 
         return response.info;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -45,7 +46,7 @@ export const fetchStudyOtmList = createAsyncThunk<
 
         return response.info;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -55,6 +56,7 @@ interface ISchoolListProps {
     region?: number[],
     degree?: number[],
     language?: number[],
+    district?: number[],
     price_min?: string,
     price_max?: string,
     shift?: number,
@@ -68,12 +70,12 @@ export const fetchStudySchoolList = createAsyncThunk<
     ThunkConfig<string>
 >('studySlice/fetchStudySchoolList', async (data, thunkApi) => {
     const {extra, dispatch, rejectWithValue} = thunkApi;
-    const {id, region, degree, language, price_min, price_max, shift, offset, limit} = data
+    const {id, region, degree, language, price_min , district, price_max, shift, offset, limit} = data
     try {
         const response = await extra.api({
             url: `organizations/organization/get/home/?${ParamUrl({
                 organization_type: id,
-                region, degree, language, price_min, price_max, shift, offset, limit
+                region, degree, language, district, price_min, price_max, shift, offset, limit
             })}`,
             method: "GET",
             body: null,
@@ -85,7 +87,7 @@ export const fetchStudySchoolList = createAsyncThunk<
 
         return response.results;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -109,7 +111,6 @@ export const fetchStudyDirectionList = createAsyncThunk<
 
         return response.info;
     } catch (e) {
-        console.log(e);
         return rejectWithValue('error')
     }
 })
@@ -133,7 +134,7 @@ export const fetchStudyGallery = createAsyncThunk<
 
         return response.info;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -157,7 +158,7 @@ export const fetchStudyAdvantages = createAsyncThunk<
 
         return response.info;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -181,8 +182,9 @@ export const fetchStudyGrant = createAsyncThunk<
 
         return response.info;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
+
 

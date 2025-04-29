@@ -3,6 +3,7 @@ export {StudyMttList} from "./ui/studyMttList/studyMttList";
 export {StudyOtmList} from "./ui/studyOtmList/studyOtmList";
 export {StudySchoolList} from "./ui/studySchoolList/studySchoolList";
 export {StudyDirectionList} from "./ui/studyDirectionList/studyDirectionList";
+export {StudyComments} from "./ui/studyComments/studyComments";
 
 export type {IStudySchema, IMttList} from "./model/studySchema";
 

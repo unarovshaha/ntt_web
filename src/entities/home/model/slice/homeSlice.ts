@@ -1,5 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {
+    fetchDistrict,
     fetchFieldsItem,
     fetchHomeHeaderItem,
     fetchHomeItem,
@@ -8,7 +9,12 @@ import {
     fetchHomeProfileDegreeItem,
     fetchHomeProfileItem,
     fetchHomeProfileItemHeader,
-    fetchHomeTechnical, fetchOrganizationsPosters, fetchSearchOrganizations, fetchStudentAcademicYear
+    fetchHomeTechnical,
+    fetchOrganizationsPosters,
+    fetchRegion,
+    fetchSearchOrganizations,
+    fetchStudentAcademicYear,
+    fetchUserComment
 } from "entities/home/model/thunk/homeThunk";
 import {IHomeSchema} from "../schema/homeSchema";
 
@@ -37,14 +43,22 @@ const initialState: IHomeSchema = {
     years: [],
     fields: [],
     posters: [],
-    searchResult: []
+    searchResult: [],
+    comments: [],
+    district: [],
+    region: [],
 }
 
 
 const homeSlice = createSlice({
     name: "homeSlice",
     initialState,
-    reducers: {},
+    reducers: {
+        onAddComment: (state, action) => {
+            state.comments = [...state.comments, action.payload]
+        }
+
+    },
     extraReducers: builder =>
         builder
             .addCase(fetchHomeHeaderItem.pending, state => {
@@ -83,7 +97,7 @@ const homeSlice = createSlice({
                 state.loading = false
                 //@ts-ignore
                 state.posters = action.payload.landing
-                console.log(state.posters, 'dadada')
+
                 state.error = false
             })
             .addCase(fetchOrganizationsPosters.rejected, state => {
@@ -242,6 +256,50 @@ const homeSlice = createSlice({
                 state.error = true
                 state.loading = false
             })
+
+            .addCase(fetchUserComment.pending, (state) => {
+                state.error = true
+                state.loading = false
+            })
+            .addCase(fetchUserComment.fulfilled, (state, action) => {
+                state.comments = action.payload
+                state.loading = false
+                state.error = false
+            })
+            .addCase(fetchUserComment.rejected, (state) => {
+                state.error = true
+                state.loading = false
+            })
+
+
+            .addCase(fetchRegion.pending, (state) => {
+                state.error = true
+                state.loading = false
+            })
+            .addCase(fetchRegion.fulfilled, (state, action) => {
+                state.region = action.payload
+                state.loading = false
+                state.error = false
+            })
+            .addCase(fetchRegion.rejected, (state) => {
+                state.error = true
+                state.loading = false
+            })
+
+            .addCase(fetchDistrict.pending, (state) => {
+                state.error = true
+                state.loading = false
+            })
+            .addCase(fetchDistrict.fulfilled, (state, action) => {
+                state.district = action.payload
+                state.loading = false
+                state.error = false
+            })
+            .addCase(fetchDistrict.rejected, (state) => {
+                state.error = true
+                state.loading = false
+            })
+
 
 })
 

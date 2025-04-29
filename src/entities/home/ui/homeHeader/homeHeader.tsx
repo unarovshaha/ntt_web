@@ -4,32 +4,40 @@ import earth from "shared/assets/icons/language.png";
 import { Button } from "shared/ui/button/button";
 import { useEffect, useState } from "react";
 import classNames from "classnames";
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { useSelector } from "react-redux";
-import { getHomeHeaderItem } from "entities/home/model/selector/homeSelector";
+import {getHomeHeaderItem, getHomeLoading} from "entities/home/model/selector/homeSelector";
 import { fetchHomeHeaderItem } from "entities/home/model/thunk/homeThunk";
 import { HeaderItem } from "entities/home/model/schema/homeSchema";
+import {Loader} from "shared/ui/loader";
 
 const menuList = [
-    { name: "/", label: "Bosh sahifa" },
+    {name: "/", label: "Bosh sahifa"},
 ];
 
 const menuList1 = [
-    { name: "/onlineTest", label: "Online test" }
+    {name: "/onlineTest", label: "Online test"}
 ];
 
-export const HomeHeader = ({ setItem }: { setItem: (item: HeaderItem) => void }) => {
+export const HomeHeader = ({setItem}: { setItem: (item: HeaderItem) => void }) => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
-
+    const location = useLocation()
+    const [loading, setLoading] = useState(true);
     const initialMenu = localStorage.getItem("activeMenu") || menuList[0].name;
+    const getLoading = useSelector(getHomeLoading)
     const [activeMenu, setActiveMenu] = useState(initialMenu);
     const [activeSubMenu, setActiveSubMenu] = useState(false);
 
     useEffect(() => {
         dispatch(fetchHomeHeaderItem());
     }, [dispatch]);
+
+    useEffect(() => {
+        if (!activeMenu || !decodeURIComponent(location?.pathname)?.includes(activeMenu) || activeMenu === "/")
+            setActiveMenu(decodeURIComponent(location?.pathname))
+    }, [location?.pathname])
 
     const data = useSelector(getHomeHeaderItem);
 
@@ -47,11 +55,20 @@ export const HomeHeader = ({ setItem }: { setItem: (item: HeaderItem) => void })
     }, [data, activeMenu, setItem]);
 
 
+    useEffect(() => {
+        // Sahifa yuklanayotganda loading true bo'ladi
+        const timer = setTimeout(() => {
+            setLoading(false); // 1-2 sekunddan keyin sahifa tayyor bo'ladi
+        }, 1500);
+
+        return () => clearTimeout(timer); // Komponent unmount bo'lsa clear qilish
+    }, []);
+
+
     const handleMenuClick = (name: string, id?: any) => {
         setActiveMenu(name);
         setActiveSubMenu(false);
         navigate(name);
-        localStorage.setItem("menuId", id)
     };
 
     const renderMenu = (menuArray: { name: string; label: string }[]) => {
@@ -69,73 +86,69 @@ export const HomeHeader = ({ setItem }: { setItem: (item: HeaderItem) => void })
     };
 
     return (
+
         <div className={cls.header}>
-            <div onClick={() => setActiveSubMenu(!activeSubMenu)} className={cls.header__hamburger}>
-                <i className={activeSubMenu ? "fa fa-times" : "fa fa-bars"} />
-            </div>
 
-            <div className={cls.header__logo}>
-                <img src={logo} alt="" />
-            </div>
+                        <div onClick={() => setActiveSubMenu(!activeSubMenu)} className={cls.header__hamburger}>
+                            <i className={activeSubMenu ? "fa fa-times" : "fa fa-bars"} />
+                        </div>
 
-            <ul className={cls.header__menu}>
-                {renderMenu(menuList)}
-                {data?.map((item) => (
-                    <li
-                        key={item.name}
-                        onClick={() => {
-                            handleMenuClick(`/${item.name}`);
-                            setItem(item);
-                        }}
-                        className={classNames({
-                            [activeSubMenu ? cls.activeSubmenu : cls.active]: activeMenu === `/${item.name}`,
-                        })}
-                    >
-                        {item.name}
-                    </li>
-                ))}
-                {renderMenu(menuList1)}
-            </ul>
+                        <div className={cls.header__logo}>
+                            <img src={logo} alt="" />
+                        </div>
 
-            <div className={`${cls.header__subMenu} ${activeSubMenu ? cls.header__activeMenu : ""}`}>
-                <ul>
-                    {renderMenu(menuList)}
-                    {data?.map((item) => (
-                        <li
-                            key={item.name}
-                            onClick={() => {
-                                handleMenuClick(`/${item.name}`);
-                                setItem(item);
+                        <ul className={cls.header__menu}>
+                            {renderMenu(menuList)}
+                            {data?.map((item) => (
+                                <li
+                                    key={item.name}
+                                    onClick={() => {
+                                        handleMenuClick(`/${item.name}`);
+                                        setItem(item);
+                                    }}
+                                    className={classNames({
+                                        [activeSubMenu ? cls.activeSubmenu : cls.active]: activeMenu === `/${item.name}`,
+                                    })}
+                                >
+                                    {item.name}
+                                </li>
+                            ))}
+                            {renderMenu(menuList1)}
+                        </ul>
+
+                        <div className={`${cls.header__subMenu} ${activeSubMenu ? cls.header__activeMenu : ""}`}>
+                            <ul>
+                                {renderMenu(menuList)}
+                                {data?.map((item) => (
+                                    <li
+                                        key={item.name}
+                                        onClick={() => {
+                                            handleMenuClick(`/${item.name}`);
+                                            setItem(item);
 
 
-                            }}
-                            className={classNames({
-                                [activeSubMenu ? cls.activeSubmenu : cls.active]: activeMenu === `/${item.name}`,
-                            })}
-                        >
-                            {item.name}
-                        </li>
-                    ))}
-                    {renderMenu(menuList1)}
-                </ul>
-            </div>
+                                        }}
+                                        className={classNames({
+                                            [activeSubMenu ? cls.activeSubmenu : cls.active]: activeMenu === `/${item.name}`,
+                                        })}
+                                    >
+                                        {item.name}
+                                    </li>
+                                ))}
+                                {renderMenu(menuList1)}
+                            </ul>
+                        </div>
 
-            <div className={cls.header__end}>
-                {/*<div className={cls.header__end_language}>*/}
-                {/*    <div className={cls.header__end_language_img}>*/}
-                {/*        <img src={earth} alt="" />*/}
-                {/*    </div>*/}
-                {/*    <div className={cls.header__end_language_text}>*/}
-                {/*        O'zbek <i className={"fa fa-caret-down"} />*/}
-                {/*    </div>*/}
-                {/*</div>*/}
-                <Button onClick={() => navigate("/login")} extraClass={cls.header__end_btn}>
-                    Login
-                </Button>
-                <Button onClick={() => navigate("/register")} extraClass={cls.header__end_btn}>
-                    Register
-                </Button>
-            </div>
+                        <div className={cls.header__end}>
+
+                            <Button onClick={() => navigate("/login")} extraClass={cls.header__end_btn}>
+                                Login
+                            </Button>
+                            <Button onClick={() => navigate("/register")} extraClass={cls.header__end_btn}>
+                                Register
+                            </Button>
+                        </div>
+
         </div>
     );
 };

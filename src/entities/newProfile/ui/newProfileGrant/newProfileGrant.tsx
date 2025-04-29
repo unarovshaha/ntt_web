@@ -56,7 +56,7 @@ export const NewProfileGrant = () => {
             {/*        </div>*/}
             {/*    </div>*/}
             {/*</div>*/}
-            <NewProfilePersonal/>
+            {window.innerWidth > 700 && <NewProfilePersonal/> }
             <div className={cls.grant__container}>
                 {/*<img className={cls.image} src={image} alt=""/>*/}
                 {data ?    <p className={cls.text} dangerouslySetInnerHTML={{__html: data[0]?.desc}}/> : ""}

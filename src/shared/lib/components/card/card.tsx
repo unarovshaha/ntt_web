@@ -1,45 +1,56 @@
 import React from 'react';
+import {useNavigate} from "react-router-dom";
+
+import {StarRating} from "shared/ui/stars";
 
 import cls from "./card.module.sass";
-import {useNavigate} from "react-router-dom";
 
 interface iCardProps {
     region?: string,
+    route?: string,
     name?: string,
-    price?: number,
+    priceMax?: number,
+    priceMin?: number,
     startDate?: string,
     id?: number,
+    image?: string,
+    desc?: string,
+    rating: number
 }
 
-export const Card = ({region, name, price, startDate, id} : iCardProps) => {
+export const Card = ({region, rating, route, desc, image, name, priceMax, priceMin, startDate, id}: iCardProps) => {
 
     const navigate = useNavigate()
 
+    const organizationType = localStorage.getItem("organizationType")
+
     return (
         <div
-            onClick={() => navigate(`/platform/study/profile/${id}`)}
+            onClick={() => navigate(`${route}${id}/about`)}
             className={cls.card}
         >
             <div className={cls.header}>
-                <div className={cls.header__location}>
-                    <i className="fa-solid fa-location-dot"/>
-                    <p className={cls.header__subTitle}>{region}</p>
+                <div className={cls.header__container}>
+                    <img src={image} alt=""/>
+                    <div className={cls.header__rating}>
+                        {/*<div className={cls.header__location}>*/}
+                        {/*    <i className="fa-solid fa-location-dot"/>*/}
+
+                        {/*    <p className={cls.header__subTitle} dangerouslySetInnerHTML={{__html: region}}></p>*/}
+                        {/*</div>*/}
+                        <StarRating rating={rating}/>
+                    </div>
                 </div>
-                <h2 className={cls.header__title}>{name}</h2>
+                <h2 className={cls.header__title}>
+                    {name && name?.length > 16 ? `${name?.slice(0, 16)}...` : name}
+                </h2>
                 <div className={cls.header__info}>
-                    <p>Kontrakt to’lovi</p>
-                    <div>
-
-                        <p>{price} UZS</p>
-                        <h4>dan</h4>
+                    <p>{organizationType === "Universitet" ? "Kontrakt to’lovi" : 'To’lovi summasi:'}</p>
+                    <div className={cls.wrapper}>
+                        <p>{priceMin} - {priceMax} UZS</p>
                     </div>
-                    <div>
-
-                        <p>{price} UZS</p>
-                        <h4>gacha</h4>
-                    </div>
-
                 </div>
+                <p className={cls.header__text} dangerouslySetInnerHTML={desc ? {__html: desc} : undefined}/>
             </div>
             <div className={cls.card__line}/>
             <div className={cls.footer}>

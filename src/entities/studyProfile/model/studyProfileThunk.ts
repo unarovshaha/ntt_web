@@ -3,6 +3,7 @@ import {ThunkConfig} from "app/providers/storeProvider";
 import {headers} from "shared/api/base";
 import {IStudyProfile} from "./studyProfileSchema";
 import {IList, IYearList} from "entities/oftenUsed/model/oftenUsedSchema";
+import {IComment} from "entities/home/model/schema/homeSchema";
 
 export const fetchStudyProfileLandingData = createAsyncThunk<
     IStudyProfile,
@@ -23,7 +24,7 @@ export const fetchStudyProfileLandingData = createAsyncThunk<
 
         return response;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -47,7 +48,7 @@ export const fetchStudyProfileData = createAsyncThunk<
 
         return response;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -71,7 +72,7 @@ export const fetchStudyProfileGallery = createAsyncThunk<
 
         return response.results;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -96,7 +97,7 @@ export const fetchStudyProfileAnnouncements = createAsyncThunk<
 
         return response.results;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -120,7 +121,7 @@ export const fetchStudyProfileAdmin = createAsyncThunk<
 
         return response;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
@@ -146,8 +147,31 @@ export const fetchStudyProfileDegree = createAsyncThunk<
 
         return response.results;
     } catch (e) {
-        console.log(e);
+
         return rejectWithValue('error')
     }
 })
 
+export const fetchUserComments = createAsyncThunk<
+    IComment[],
+    string,
+    ThunkConfig<string>
+>("studySlice/fetchUserComments", async (id, thunkApi) => {
+    const {extra, dispatch, rejectWithValue} = thunkApi;
+    try {
+        const response = await extra.api({
+            url: `comments/list/?organization_id=${id}`,
+            method: "GET",
+            body: null,
+            // headers: headers()
+        })
+        if (!response) {
+            throw new Error()
+        }
+
+        return response.results;
+    } catch (e) {
+
+        return rejectWithValue('error')
+    }
+})

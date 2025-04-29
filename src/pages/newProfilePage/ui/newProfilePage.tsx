@@ -7,7 +7,6 @@ import cls from "./newProfilePage.module.sass";
 export const NewProfilePage = () => {
     return (
         <div>
-            asdfasdf
             <NewProfileHeader/>
         </div>
     );

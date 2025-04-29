@@ -5,6 +5,7 @@ const initialState: IFilterSchema = {
     direction: undefined,
     locations: [],
     languages: [],
+    district: [],
     minSalary: undefined,
     maxSalary: undefined,
     loading: false,
@@ -35,6 +36,12 @@ const filterSlice = createSlice({
         },
         fetchDirection: (state, action) => {
             state.direction = action.payload
+        },
+        fetchDistrict: (state, action) => {
+            state.district = action.payload
+        },
+        clearDistrict: (state, action) => {
+            state.district = state.district.filter(item => item !== action.payload)
         },
         clearFilter: (state) => {
             state.direction = undefined

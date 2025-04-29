@@ -12,6 +12,7 @@ import {
 import cls from "./studyProfileInfo.module.sass";
 import {fetchStudyProfileAdmin} from "entities/studyProfile/model/studyProfileThunk";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
+import classNames from "classnames";
 
 export const StudyProfileInfo = () => {
 
@@ -26,7 +27,7 @@ export const StudyProfileInfo = () => {
             dispatch(fetchStudyProfileAdmin({id}))
     }, [id])
 
-    console.log(data, "data")
+
 
     return (
         <div className={cls.info}>
@@ -77,6 +78,106 @@ export const StudyProfileInfo = () => {
                         placeholder={"Region"}
                         disabled
                     />
+                    <Input
+                        name={"district"}
+                        value={data?.district?.name}
+                        extraClass={cls.info__input}
+                        placeholder={"Region"}
+                        disabled
+                    />
+                    <Input
+                        name={"phone"}
+                        value={data?.phone}
+                        extraClass={cls.info__input}
+                        placeholder={"Telefon raqam"}
+                        disabled
+                    />
+                    <Input
+                        name={"address"}
+                        value={data?.address}
+                        extraClass={cls.info__input}
+                        placeholder={"Addres"}
+                        disabled
+                    />
+                    <Input
+                        name={"email"}
+                        value={data?.email}
+                        extraClass={cls.info__input}
+                        placeholder={"Email"}
+                        disabled
+                    />
+                    <div className={cls.links}>
+                        <a
+                            href={data?.telegram_link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <i
+                                className={classNames(
+                                    "fa-brands fa-telegram",
+                                    cls.links__item, {
+                                        [cls.notActive]: !data?.telegram_link
+                                    }
+                                )}
+                            />
+                        </a>
+                        <a
+                            href={data?.instagram_link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <i
+                                className={classNames(
+                                    "fa-brands fa-instagram",
+                                    cls.links__item, {
+                                        [cls.notActive]: !data?.instagram_link
+                                    }
+                                )}
+                            />
+                        </a>
+                        <a
+                            href={data?.facebook_link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <i
+                                className={classNames(
+                                    "fa-brands fa-facebook",
+                                    cls.links__item, {
+                                        [cls.notActive]: !data?.facebook_link
+                                    }
+                                )}
+                            />
+                        </a>
+                        <a
+                            href={data?.youtube_link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <i
+                                className={classNames(
+                                    "fa-brands fa-youtube",
+                                    cls.links__item, {
+                                        [cls.notActive]: !data?.youtube_link
+                                    }
+                                )}
+                            />
+                        </a>
+                        <a
+                            href={data?.website_link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <i
+                                className={classNames(
+                                    "fa-solid fa-globe",
+                                    cls.links__item, {
+                                        [cls.notActive]: !data?.website_link
+                                    }
+                                )}
+                            />
+                        </a>
+                    </div>
                     {/*<Input*/}
                     {/*    value={data?.locations}*/}
                     {/*    extraClass={cls.info__input}*/}

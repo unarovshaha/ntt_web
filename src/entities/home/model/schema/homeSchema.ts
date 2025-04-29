@@ -1,3 +1,5 @@
+import {IOrganization} from "../../../study/model/studySchema";
+
 export interface HeaderItem {
     id: number,
     name: string,
@@ -22,13 +24,13 @@ interface Landing {
     price_min: number
 }
 
-interface IHomeTechnical {
-    id: number;
-    name: string;
-    locations: string;
-    img: string;
+interface IHomeTechnical extends IOrganization{
+    // id: number;
+    // name: string;
+    // locations: string;
+    // img: string;
     organization_type: number;
-    landing: Landing;
+    // landing: Landing;
 }
 
 
@@ -71,11 +73,22 @@ export interface Organization {
         id: number;
         name: string;
     };
+    district: {
+        id: number;
+        name: string;
+    };
     desc_json: any;
     grand_text: string;
     grand_json: any;
     inn: string | null;
     request_count: number;
+    address: string;
+    email: string;
+    telegram_link: string;
+    instagram_link: string;
+    facebook_link: string;
+    youtube_link: string;
+    website_link: string;
 }
 
 interface OrganizationHeader{
@@ -172,7 +185,7 @@ interface JsonContent {
     };
 }
 
-interface EducationRecord {
+export interface EducationRecord {
     id: number;
     organization: OrganizationLanding;
     year: Year;
@@ -243,6 +256,15 @@ interface IPosterLanding {
 interface IPoster {
     landing: IPosterLanding[]
 }
+
+export interface IComment{
+    user: string
+    rating: string
+    name: string
+    surname: string
+    comment: string
+    organization: string | number
+}
 export interface IHomeSchema {
     headerItem: HeaderItem[]
     data: IHome[],
@@ -261,5 +283,8 @@ export interface IHomeSchema {
     fields: any[],
     posters: any[],
     searchResult: any[],
+    comments: IComment[],
+    region: any[],
+    district: any[]
 
 }

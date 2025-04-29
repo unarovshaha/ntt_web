@@ -2,6 +2,7 @@ import {createSlice} from "@reduxjs/toolkit";
 import {IStudySchema} from "./studySchema";
 import {fetchStudyMttList, fetchStudySchoolList} from "entities/study/model/studyThunk";
 
+
 const initialState: IStudySchema = {
     mttList: [],
     otmList: [],
@@ -11,13 +12,17 @@ const initialState: IStudySchema = {
     advantages: undefined,
     grant: undefined,
     loading: false,
-    error: undefined
+    error: undefined,
+
 }
 
 const studySlice = createSlice({
     name: "studySlice",
     initialState,
-    reducers: {},
+    reducers: {
+
+
+    },
     extraReducers: builder =>
         builder
             .addCase(fetchStudyMttList.pending, (state) => {
@@ -46,6 +51,8 @@ const studySlice = createSlice({
                 state.loading = false
                 state.error = "error"
             })
+
+
 })
 
 export const {reducer: studyReducer} = studySlice

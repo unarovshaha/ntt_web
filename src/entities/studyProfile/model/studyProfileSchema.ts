@@ -1,3 +1,4 @@
+import {IComment} from "entities/home/model/schema/homeSchema";
 
 export interface IStudyProfile {
     id?: number,
@@ -7,6 +8,7 @@ export interface IStudyProfile {
     shift?: string,
     region?: string,
     name?: string
+    district?: string
 }
 
 export interface IStudyProfileSchema extends IStudyProfile{
@@ -17,5 +19,6 @@ export interface IStudyProfileSchema extends IStudyProfile{
     userData: any,
     userDataImage: any,
     loading: boolean,
-    error?: "error"
+    error?: "error",
+    comments: IComment[]
 }

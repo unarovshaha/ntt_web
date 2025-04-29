@@ -28,3 +28,5 @@ export const getStudyProfileLoading = (state:StateSchema) =>
     state.studyProfileSlice?.loading
 export const getStudyProfileGrand = (state: StateSchema) =>
     state.studyProfileSlice?.grand
+export const getStudyProfileComment= (state: StateSchema) =>
+    state.studyProfileSlice?.comments

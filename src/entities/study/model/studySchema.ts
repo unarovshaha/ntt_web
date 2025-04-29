@@ -1,3 +1,4 @@
+import {IComment} from "entities/home/model/schema/homeSchema";
 
 export interface IMttList {
     id:number,
@@ -6,13 +7,17 @@ export interface IMttList {
 
 export interface IOrganization {
     id: number,
+    rating: number,
     name: string,
     landing: {
-        price: number,
+        price_max: number,
+        price_min: number,
         start_date: string,
         id: number,
     },
-    region: string,
+    locations: string,
+    img: string,
+    desc?: string,
 }
 
 export interface IStudySchema {
@@ -24,5 +29,6 @@ export interface IStudySchema {
     grant?: {},
     advantages?: {},
     loading: boolean,
-    error?: "error"
+    error?: "error",
+
 }
