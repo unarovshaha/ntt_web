@@ -1,6 +1,7 @@
 
 export interface IHomeNews {
     id: number,
+    title: string,
     desc_json: { text: string },
     name: string,
     views_display: string,
@@ -28,11 +29,15 @@ export interface IProfileItem {
 export interface IProfileItemSchema {
     landing: IProfileItem[],
     desc_json: { text: string }
+    title: string,
+    img: string,
+    date: string,
+    views_display: string,
 }
 
 export interface IHomeNewsSchema {
     loading: boolean,
     error: boolean,
     data: IHomeNews[],
-    profileItem: { landing: IProfileItem[], desc_json: { text: string } }
+    profileItem: { landing: IProfileItem[], desc_json: { text: string }, title: string, img: string, date: string, views_display: string },
 }

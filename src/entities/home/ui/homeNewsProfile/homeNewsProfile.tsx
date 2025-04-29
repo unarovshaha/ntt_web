@@ -1,19 +1,18 @@
 import cls from "./homeNewsProfile.module.sass"
-import {getHomeNewsProfileItem} from "entities/home/model/selector/homeNewsSelector";
+import {getHomeNewsProfileItem, getHomeNews, getHomeNewsLoading} from "entities/home/model/selector/homeNewsSelector";
 import {useSelector} from "react-redux";
-import profileImg from "shared/assets/images/profileImg.svg"
-import {Button} from "shared/ui/button/button";
-import {useNavigate, useParams} from "react-router";
-import univerImg from "shared/assets/images/Ellipse 118.png"
-import {useEffect, useState} from "react";
+import {useParams, useNavigate} from "react-router";
+
+import {useEffect} from "react";
 import {fetchProfileItem} from "entities/home/model/thunk/newsThunk";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
-import {DynamicModuleLoader, ReducersList} from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
+import { ReducersList} from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
 import {homeNewsReducer} from "entities/home/model/slice/homeNewsSlice";
-import {fetchOrganizationsPosters} from "entities/home/model/thunk/homeThunk";
 import {getHomePosters} from "entities/home/model/selector/homeSelector";
 import {homeReducer} from "entities/home/model/slice/homeSlice";
 import {JsonContents} from "entities/home/model/schema/homeSchema";
+import {fetchNews} from "entities/home/model/thunk/newsThunk";
+import {Loader} from "shared/ui/loader";
 
 const reducers: ReducersList = {
     homeNewsSlice: homeNewsReducer,
@@ -30,82 +29,81 @@ const extractTextFromJsonContent = (descJson: JsonContents | undefined): string 
             paragraph.children.map(textNode => textNode.text).join(' ')
         )
         .join('\n');
+
 };
 
 export const HomeNewsProfile = () => {
     const data = useSelector(getHomeNewsProfileItem)
     const list = useSelector(getHomePosters)
-
+    const navigate = useNavigate();
     const {id} = useParams()
-    const navigate = useNavigate()
-
     const dispatch = useAppDispatch()
-
+    const homeNewsData = useSelector(getHomeNews);
+    const isLoading = useSelector(getHomeNewsLoading)
+    console.log(homeNewsData)
 
     useEffect(() => {
             dispatch(fetchProfileItem({id}))
-            dispatch(fetchOrganizationsPosters(id))
+            dispatch(fetchNews());
 
     }, [id])
+
     const renderData = () => {
 
            //@ts-ignore
-        return list?.map((item) => (
-                <div className={cls.profile__footer_container_box} key={item.id}>
-                    <div className={cls.profile__footer_container_box_header}>
-                        <img src={univerImg} alt="" />
-                        <h2>{item.name}</h2>
+        return homeNewsData?.map((item) => (
+                <div onClick={() => navigate(`/news/${item.id}`)} className={cls.listsBox}>
+                    <img className={cls.listsBox__img} src={item?.img} alt=""/>
+                    <div className={cls.listsBox__box}>
+                        <h1 className={cls.listsBox__box__title}>{item?.title}</h1>
+                        <p className={cls.listsBox__box__date}>
+                            <i className="fa-solid fa-calendar-days"></i>
+                            {item?.date}
+                        </p>
                     </div>
-                    <ul>
-                        <li>Ta'lim tili <span>{item?.education_language}</span></li>
-                        <li>Ta’lim shakli <span>{item?.shift}</span></li>
-                        <li>Talablar <span>ee</span></li>
-                        <li>Kontrakt to’lovi <span>{item.price}</span></li>
-                    </ul>
-                    <div className={cls.profile__footer_container_box_footer}>
-                        <h2>Yo'nalish haqida</h2>
-                        {/*<p dangerouslySetInnerHTML={{ __html: item.desc_json || '' }}></p>*/}
-                    </div>
+
                 </div>
             ))
     };
     return (
         // <DynamicModuleLoader reducers={reducers}>
             <div className={cls.profile}>
-                <Button onClick={() => navigate(-1)}>Back</Button>
-                <div className={cls.profile__container}>
-                    <div className={cls.profile__container_left}>
-                        <div className={cls.profile__container_left_img}>
-                            <img src={profileImg} alt=""/>
-                        </div>
-                        <div className={cls.profile__container_left_info}>
-                            O’zbekistonda Oliy Ta’limni 3 tilda olish mumkin.
-                        </div>
-                    </div>
-                    <div className={cls.profile__container_right}>
-                        {/*<div className={cls.profile__container_right_header}>*/}
-                        {/*    Ma’lumotlar*/}
-                        {/*</div>*/}
-                        <div
-                            className={cls.profile__container_right_info}
-                            dangerouslySetInnerHTML={{__html: data ? data?.desc_json?.text : ""}}
-                        >
+                {
+                    isLoading ? <Loader/> :
+                        (
+                            <>
+                                <div className={cls.profile__container}>
+                                    <div className={cls.date}>
+                                        <p>
+                                            <i className="fa-solid fa-calendar-days"></i>
+                                            <span>{data?.date}</span>
+                                        </p>
+                                        <p>
+                                            <i className={"fa fa-eye"}/>
+                                            <span>{data?.views_display}</span>
+                                        </p>
+                                    </div>
+                                    <h1 className={cls.title}>{data?.title}</h1>
+                                    <img className={cls.newsImg} src={data?.img} alt=""/>
+                                    <div
+                                        className={cls.content}
+                                        dangerouslySetInnerHTML={{__html: data ? data?.desc_json?.text : ""}}
+                                    >
+                                    </div>
+                                </div>
+                                <div className={cls.profile__listBox}>
+                                    <h1 className={cls.profile__listBox__title}>So'nggi yangiliklar</h1>
+                                    <div className={cls.profile__listBox__arounder}>
+                                        {
+                                            renderData()
+                                        }
+                                    </div>
 
-                        </div>
-                    </div>
-                </div>
+                                </div>
+                            </>
+                        )
+                }
 
-                <div className={cls.profile__footer}>
-
-                    {/*<div className={cls.profile__footer_title}>*/}
-                    {/*    E’lonlar*/}
-                    {/*</div>*/}
-                    {/*<div className={cls.profile__footer_container}>*/}
-                    {/*    {renderData()}*/}
-                    {/*    /!*<h2>vihurhufhuf</h2>*!/*/}
-                    {/*</div>*/}
-
-                </div>
             </div>
         // </DynamicModuleLoader>
 
