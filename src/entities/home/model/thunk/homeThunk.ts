@@ -126,7 +126,7 @@ export const fetchHomeItem = createAsyncThunk<
 
 export const fetchHomeTechnical = createAsyncThunk<
     any,
-    { priceMin: number, priceMax: number, stipendiya: boolean, grand: boolean, organizationId: number | string | null, fieldId: string | number | null | undefined, value: string | undefined , region: number | undefined , district: number | undefined},
+    { priceMin: number, priceMax: number, stipendiya: boolean, grand: boolean, organizationId: number | string | null, fieldId: string[] | number[], value: string | undefined , region: number[] , district: number[]},
     ThunkConfig<string>
 >("homeSlice/fetchHomeTechnical", async ({priceMax, priceMin, grand, stipendiya, organizationId, fieldId, value , district , region}, thunkApi) => {
     const {extra, dispatch, rejectWithValue} = thunkApi;
@@ -348,7 +348,7 @@ export const fetchRegion = createAsyncThunk<
 })
 export const fetchDistrict = createAsyncThunk<
     [],
-    number,
+    number[],
     ThunkConfig<string>
 >("homeSlice/fetchDistrict", async (id, thunkApi) => {
     const {extra, dispatch, rejectWithValue} = thunkApi;
