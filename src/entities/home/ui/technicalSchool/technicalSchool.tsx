@@ -7,7 +7,7 @@ import {useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {getHomeTechnical} from "entities/home/model/selector/homeSelector";
 import {HeaderItem} from "entities/home/model/schema/homeSchema";
-import {Card} from "../../../../shared/lib/components/card/card";
+import {Card} from "shared/lib/components/card/card";
 
 
 export const TechnicalSchool = ({item}: { item: HeaderItem }) => {

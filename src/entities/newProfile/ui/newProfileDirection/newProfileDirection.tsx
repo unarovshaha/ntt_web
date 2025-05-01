@@ -18,6 +18,8 @@ import {useAppDispatch} from "../../../../shared/lib/hooks/useAppDispatch/useApp
 import {fetchHomeProfileDegree, fetchHomeProfileDegreeItem} from "../../../home/model/thunk/homeThunk";
 import {useParams} from "react-router";
 import {Select} from "../../../../shared/ui/select";
+import {Modal} from "shared/ui/modal";
+import {EducationRecord} from "entities/home/model/schema/homeSchema";
 
 export const NewProfileDirection = () => {
 
@@ -26,6 +28,9 @@ export const NewProfileDirection = () => {
     const degreeList = useSelector(getHomeProfileDegreeList)
     const {id} = useParams()
     const dataItem = useSelector(getHomeProfileItem)
+
+    const [activeModal, setActiveModal] = useState(false)
+    const [activeItem, setActiveItem] = useState<EducationRecord>()
 
     const navigate = useNavigate()
 
@@ -50,6 +55,8 @@ export const NewProfileDirection = () => {
     }, [activeYear, active])
 
 
+    console.log(activeItem , 'log ')
+
     const renderData = () => {
         return data?.map(item => (
             <div
@@ -59,7 +66,7 @@ export const NewProfileDirection = () => {
 
                 <div className={cls.profile__footer_container_box_header}>
                     <img src={`${dataItem?.img}`} alt=""/>
-                    <h2>{item?.organization?.name}</h2>
+                    <h2>{item?.field?.name}</h2>
                 </div>
                 <ul>
                     <li>Ta'lim tili <span>{item?.education_language?.map((item, index, arr) => <span>
@@ -76,7 +83,8 @@ export const NewProfileDirection = () => {
                                     ))}
                                 </span>
                     </li>
-                    <li>{activeMenu === "/Universitet" ? "Kontrakt summasi " : "To'lov summasi "} <span>{item?.price.toLocaleString()}</span></li>
+                    <li>{activeMenu === "/Universitet" ? "Kontrakt summasi " : "To'lov summasi "}
+                        <span>{item?.price.toLocaleString()}</span></li>
                     <li>Ta’lim turi <span>{item?.degree?.organization_type?.name}</span></li>
                     <li>Boshlanish vaqti <span>{item?.start_date.replace(/-/g, ".")}</span></li>
                     <li>Tugash vaqti <span>{item?.expire_date.replace(/-/g, ".")}</span></li>
@@ -88,14 +96,26 @@ export const NewProfileDirection = () => {
                     {/*        <p dangerouslySetInnerHTML={{__html: item?.desc || ''}}></p>*/}
                     {/*    </div>*/}
                     {/*</div>*/}
-                    <div>
-                        <h2>Talablar</h2>
-                        <div>
-                            <p dangerouslySetInnerHTML={{__html: item?.requirements || ''}}></p>
-                        </div>
-                    </div>
+                    {/*<div>*/}
+                    {/*    <h2>Talablar</h2>*/}
+                    {/*    <div>*/}
+                    {/*        <p dangerouslySetInnerHTML={{__html: item?.requirements || ''}}></p>*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
                 </div>
                 <div className={cls.profile__footer_container_box_footer}>
+                    <h3
+                        onClick={() => {
+                            setActiveModal(true)
+                            setActiveItem(item)
+                            // console.log()
+                        }}
+                        className={cls.box__link}
+                    >
+                        Batafsil
+                    </h3>
+
+
                     <h3
                         onClick={() => {
                             localStorage.setItem("landingId", String(item.id))
@@ -121,8 +141,7 @@ export const NewProfileDirection = () => {
     }));
     return (
         <div style={{display: "flex", gap: "2rem"}}>
-            {window.innerWidth > 700 &&  <div className={cls.info}><NewProfilePersonal/></div> }
-
+            {window.innerWidth > 700 && <div className={cls.info}><NewProfilePersonal/></div>}
 
 
             <div className={cls.direction}>
@@ -144,6 +163,22 @@ export const NewProfileDirection = () => {
                 </div>
                 {render}
             </div>
+
+            <Modal extraClass={cls.modal} title={"Qo'shimcha ma'lumot"} active={activeModal} setActive={setActiveModal}>
+                <div>
+                    <h1>Ma'lumotlar</h1>
+
+                    <h2 dangerouslySetInnerHTML={{__html: activeItem?.desc || ''}}/>
+
+                </div>
+                <div>
+                    <h1>Talablar</h1>
+
+                    <h2 dangerouslySetInnerHTML={{__html: activeItem?.requirements || ''}}/>
+
+                </div>
+
+            </Modal>
 
         </div>
     );
