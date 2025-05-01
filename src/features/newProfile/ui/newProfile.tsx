@@ -19,8 +19,6 @@ import {
 } from "entities/home/model/thunk/homeThunk";
 
 
-
-
 export const NewProfile = () => {
     const dispatch = useAppDispatch()
 
@@ -39,11 +37,10 @@ export const NewProfile = () => {
         }
 
 
-
-    }, [id , ])
-    useEffect(() =>{
+    }, [id,])
+    useEffect(() => {
         if (dataItem) dispatch(fetchHomeProfileDegree(Number(dataItem)))
-    } , [dataItem , id])
+    }, [dataItem, id])
 
 
     // useEffect(() => {
@@ -55,7 +52,7 @@ export const NewProfile = () => {
             <NewProfileHeader/>
             <Routes>
                 <Route path={"about"} element={<NewProfileAbout/>}/>
-             <Route path={"direction"} element={<NewProfileDirection/>}/>
+                <Route path={"direction"} element={<NewProfileDirection/>}/>
                 <Route path={"gallery"} element={<NewProfileGallery/>}/>
                 <Route path={"grant"} element={<NewProfileGrant/>}/>
                 <Route path={"personal"} element={<NewProfilePersonal/>}/>

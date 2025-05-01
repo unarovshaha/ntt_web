@@ -1,7 +1,7 @@
 import React from 'react';
 import {useNavigate} from "react-router-dom";
 
-import {StarRating} from "shared/ui/stars";
+import {StarRating} from "../stars/stars";
 
 import cls from "./card.module.sass";
 

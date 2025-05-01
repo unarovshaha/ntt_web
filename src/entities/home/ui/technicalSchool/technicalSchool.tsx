@@ -8,16 +8,21 @@ import {useSelector} from "react-redux";
 import {getHomeTechnical} from "entities/home/model/selector/homeSelector";
 import {HeaderItem} from "entities/home/model/schema/homeSchema";
 import {Card} from "../../../../shared/lib/components/card/card";
+import {UniversityCard} from "../../../../shared/lib/components/UniversityCard/UniversityCard";
+import {useLocation} from "react-router";
 
 
 export const TechnicalSchool = ({item}: { item: HeaderItem }) => {
 
     const navigate = useNavigate()
+    const location = useLocation()
+    console.log(location, "location")
 
 
     const data = useSelector(getHomeTechnical)
 
     const menuName = localStorage.getItem("activeMenu")
+    const organizationType = localStorage.getItem("organizationType")
 
 
     const formatSalary = (salary: string | number) => {
@@ -29,6 +34,19 @@ export const TechnicalSchool = ({item}: { item: HeaderItem }) => {
 
             <TechnicalSchoolFilter item={item}/>
             {data?.map((item, index) => (
+                location.pathname.includes("Universitet") ?
+                    <UniversityCard
+                        name={item.name}
+                        rating={item.rating}
+                        grant={item.landing?.grant}
+                        priceMax={item.landing?.price_max}
+                        priceMin={item.landing?.price_min}
+                        img={item.img}
+                        route={`profile/`}
+                        id={item.id}
+                    />
+                    // <></>
+                    :
                 <Card
                     rating={item.rating}
                     route={`profile/`}
