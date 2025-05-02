@@ -34,19 +34,19 @@ export const TechnicalSchool = ({item}: { item: HeaderItem }) => {
 
             <TechnicalSchoolFilter item={item}/>
             {data?.map((item, index) => (
-                location.pathname.includes("Universitet") ?
-                    <UniversityCard
-                        name={item.name}
-                        rating={item.rating}
-                        grant={item.landing?.grant}
-                        priceMax={item.landing?.price_max}
-                        priceMin={item.landing?.price_min}
-                        img={item.img}
-                        route={`profile/`}
-                        id={item.id}
-                    />
-                    // <></>
-                    :
+                // location.pathname.includes("Universitet") ?
+                //     <UniversityCard
+                //         name={item.name}
+                //         rating={item.rating}
+                //         grant={item.landing?.grant}
+                //         priceMax={item.landing?.price_max}
+                //         priceMin={item.landing?.price_min}
+                //         img={item.img}
+                //         route={`profile/`}
+                //         id={item.id}
+                //     />
+                //     // <></>
+                //     :
                 <Card
                     rating={item.rating}
                     route={`profile/`}
