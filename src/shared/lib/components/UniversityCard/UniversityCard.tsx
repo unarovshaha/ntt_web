@@ -27,7 +27,8 @@ export const UniversityCard: React.FC<University> = (props) => {
         rating,
         city,
         route,
-        id
+        id,
+        deadline
     } = props
 
     const navigate = useNavigate()
@@ -45,7 +46,7 @@ export const UniversityCard: React.FC<University> = (props) => {
                     <p className={styles.subtitle}>
                         <StarRating rating={rating}/>
                         <span className={styles.subtitle__inner}>{rating.toFixed(1)}</span>
-                        <span className={styles.subtitle__inner}>· {city} Toshkent</span>
+                        <span className={styles.subtitle__inner}>· {city}</span>
                         {/*/{" "}*/}
                         {/*Xususiy universitet */}
                     </p>
@@ -57,11 +58,11 @@ export const UniversityCard: React.FC<University> = (props) => {
             <div className={styles.card__container}>
                 <p className={styles.info}>
                     💰 Qabul muddati:{" "}
-                    <span className={styles.info__inner}></span>
+                    <span className={styles.info__inner}>{deadline}</span>
                 </p>
                 <p className={styles.info}>
                     🎓 Kontrakt to’lovi:{" "}
-                    <span className={styles.info__inner}>{priceMin} - {priceMax} UZS</span>
+                    <span className={styles.info__inner}>{priceMax} - {priceMin} UZS</span>
                     {grant ? <span style={{color: "#4ade80"}} className={styles.info__inner}>Grant Mavjud</span> : null}
                 </p>
                 <p className={styles.button}>Batafsil →</p>
