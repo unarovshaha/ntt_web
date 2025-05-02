@@ -44,8 +44,9 @@ export const TechnicalSchool = ({item}: { item: HeaderItem }) => {
                         img={item.img}
                         route={`profile/`}
                         id={item.id}
+                        city={item.region}
+                        deadline={item.access_date}
                     />
-                    // <></>
                     :
                 <Card
                     rating={item.rating}

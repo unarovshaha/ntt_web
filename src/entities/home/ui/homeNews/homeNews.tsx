@@ -58,7 +58,7 @@ export const HomeNewsList = ({item}: IHomeNewsListProps) => {
                         {item.title}
                     </div>
                     <div
-                        dangerouslySetInnerHTML={{__html: item.desc_json.text}}
+                        dangerouslySetInnerHTML={{__html: item.desc_json?.text}}
                         className={cls.box__info_text}
                     />
                 </div>
