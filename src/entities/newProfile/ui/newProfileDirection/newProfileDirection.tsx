@@ -14,10 +14,10 @@ import {API_URL_DOC,} from "shared/api/base";
 import {useNavigate} from "react-router-dom";
 import {NewProfilePersonal} from '../newProfilePersonal/newProfilePersonal';
 import classNames from "classnames";
-import {useAppDispatch} from "../../../../shared/lib/hooks/useAppDispatch/useAppDispatch";
+import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import {fetchHomeProfileDegree, fetchHomeProfileDegreeItem} from "../../../home/model/thunk/homeThunk";
 import {useParams} from "react-router";
-import {Select} from "../../../../shared/ui/select";
+import {Select} from "shared/ui/select";
 import {Modal} from "shared/ui/modal";
 import {EducationRecord} from "entities/home/model/schema/homeSchema";
 
@@ -68,68 +68,42 @@ export const NewProfileDirection = () => {
                     <img src={`${dataItem?.img}`} alt=""/>
                     <h2>{item?.field?.name}</h2>
                 </div>
-                <ul>
-                    <li>Ta'lim tili <span>{item?.education_language?.map((item, index, arr) => <span>
+                   <ul>
+                       <li>Ta'lim tili <span>{item?.education_language?.map((item, index, arr) => <span>
                         {item.name} {index !== arr.length - 1 && "\\"}
                     </span>)}</span></li>
-                    <li>
-                        Ta'lim shakli{" "}
-                        <span>
+                       <li>
+                           Ta'lim shakli{" "}
+                           <span>
                                     {item?.shift?.map((shiftItem, index, arr) => (
                                         <span key={index}>
                                         {shiftItem.name}
                                             {index !== arr.length - 1 && "\\"}
                                         </span>
-                                    ))}
+                                    ))}~
                                 </span>
-                    </li>
-                    <li>{activeMenu === "/Universitet" ? "Kontrakt summasi " : "To'lov summasi "}
-                        <span>{item?.price.toLocaleString()}</span></li>
-                    <li>Ta’lim turi <span>{item?.degree?.organization_type?.name}</span></li>
-                    <li>Boshlanish vaqti <span>{item?.start_date.replace(/-/g, ".")}</span></li>
-                    <li>Tugash vaqti <span>{item?.expire_date.replace(/-/g, ".")}</span></li>
-                </ul>
-                <div className={cls.profile__footer_container_box_middle}>
-                    {/*<div>*/}
-                    {/*    <h2>Ma'lumotlar</h2>*/}
-                    {/*    <div>*/}
-                    {/*        <p dangerouslySetInnerHTML={{__html: item?.desc || ''}}></p>*/}
-                    {/*    </div>*/}
-                    {/*</div>*/}
-                    {/*<div>*/}
-                    {/*    <h2>Talablar</h2>*/}
-                    {/*    <div>*/}
-                    {/*        <p dangerouslySetInnerHTML={{__html: item?.requirements || ''}}></p>*/}
-                    {/*    </div>*/}
-                    {/*</div>*/}
+                       </li>
+                       <li>{activeMenu === "/Universitet" ? "Kontrakt summasi " : "To'lov summasi "}
+                           <span>{item?.price.toLocaleString()}</span></li>
+                       <li>Boshlanish vaqti <span>{item?.start_date.replace(/-/g, ".")}</span></li>
+                       <h3
+                           onClick={() => {
+                               localStorage.setItem("landingId", String(item.id))
+                               navigate(`/register`)
+                               // console.log()
+                           }}
+                           className={cls.box__link}
+                       >
+                           Hujjat topshirish
+                       </h3>
+                   </ul>
+
+                <div className={cls.profile__footer_container_box_right}>
+                    <i onClick={() => {
+                        setActiveModal(true)
+                        setActiveItem(item)
+                    }} className={`fa-solid fa-chevron-right ${cls.profile__footer_container_box_right_icon}`}/>
                 </div>
-                <div className={cls.profile__footer_container_box_footer}>
-                    <h3
-                        onClick={() => {
-                            setActiveModal(true)
-                            setActiveItem(item)
-                            // console.log()
-                        }}
-                        className={cls.box__link}
-                    >
-                        Batafsil
-                    </h3>
-
-
-                    <h3
-                        onClick={() => {
-                            localStorage.setItem("landingId", String(item.id))
-                            navigate(`/register`)
-                            // console.log()
-                        }}
-                        className={cls.box__link}
-                    >
-                        Hujjat topshirish
-                    </h3>
-
-                </div>
-
-
             </div>
         ))
     }
@@ -161,7 +135,9 @@ export const NewProfileDirection = () => {
 
 
                 </div>
-                {render}
+                <div className={cls.direction__main}>
+                    {render}
+                </div>
             </div>
 
             <Modal extraClass={cls.modal} title={"Qo'shimcha ma'lumot"} active={activeModal} setActive={setActiveModal}>

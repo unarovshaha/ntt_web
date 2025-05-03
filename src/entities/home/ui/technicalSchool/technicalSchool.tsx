@@ -59,6 +59,8 @@ export const TechnicalSchool = ({item}: { item: HeaderItem }) => {
                     key={index}
                     priceMax={item.landing?.price_max}
                     priceMin={item.landing?.price_min}
+                    language={item.landing?.language}
+                    shift={item.landing?.shift}
                 />
                 // <div
                 //     onClick={() => {
