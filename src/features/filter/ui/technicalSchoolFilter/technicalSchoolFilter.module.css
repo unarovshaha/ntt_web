@@ -3,32 +3,30 @@
   height: fit-content;
   display: flex;
   gap: 2rem;
+  flex-wrap: wrap;
 }
 .main__header {
   width: 100%;
   display: flex;
   align-items: center;
   gap: 3rem;
-  order: 2;
 }
 .main__headers {
-  width: 30%;
   display: flex;
-  height: 10rem;
-  order: 1;
+  flex-wrap: wrap;
+  gap: 1rem;
   padding-top: 3rem;
   align-items: center;
 }
 .main__headers__select {
-  width: 100%;
+  min-width: 20rem;
   padding: 1.2rem;
 }
 .main__section {
   width: 80%;
   display: flex;
-  order: 3;
   align-items: center;
-  justify-content: space-between;
+  gap: 2rem;
   padding-top: 2rem;
 }
 

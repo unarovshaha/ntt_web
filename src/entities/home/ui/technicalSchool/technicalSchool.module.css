@@ -1,6 +1,7 @@
 .main {
   width: 100%;
   display: flex;
+  justify-content: center;
   gap: 3rem;
   flex-wrap: wrap;
   padding: 10rem 0;
