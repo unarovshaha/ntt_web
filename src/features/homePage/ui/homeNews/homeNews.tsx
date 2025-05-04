@@ -19,7 +19,7 @@ export const HomeNews = () => {
 
     useEffect(() => {
         dispatch(fetchNews());
-    }, [dispatch]);
+    }, []);
     const homeNewsData = useSelector(getHomeNews);
 
     useEffect(() => {
