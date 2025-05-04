@@ -51,17 +51,16 @@ export const HomeNewsList = ({item}: IHomeNewsListProps) => {
                         <h1>{item.date}</h1>
                         <div className={cls.box__info_header_views}>
                             <i className={"fa fa-eye"}/>
-                            {item.views_display}
+                   \         {item.views_display}
                         </div>
                     </div>
                     <div className={cls.box__info_title}>
                         {item.title}
                     </div>
-                    <h1>{item?.title}</h1>
-                    {/*<div*/}
-                    {/*    dangerouslySetInnerHTML={{__html: item.desc_json.text}}*/}
-                    {/*    className={cls.box__info_text}*/}
-                    {/*/>*/}
+                    <div
+                        dangerouslySetInnerHTML={{__html: item.desc_json?.text}}
+                        className={cls.box__info_text}
+                    />
                 </div>
 
                 <h3
