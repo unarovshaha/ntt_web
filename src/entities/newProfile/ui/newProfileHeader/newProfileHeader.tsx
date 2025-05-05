@@ -12,6 +12,7 @@ const list = [
     {label: "Grantlar", to: "grant"},
     {label: "Profil", to: "personal"},
     {label: "Reyting", to: "comments"},
+    // {to: "readonly"},
 ]
 
 export const NewProfileHeader = () => {

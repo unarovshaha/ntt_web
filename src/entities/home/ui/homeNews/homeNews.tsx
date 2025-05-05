@@ -62,12 +62,6 @@ export const HomeNewsList = ({item}: IHomeNewsListProps) => {
                         className={cls.box__info_text}
                     />
                 </div>
-
-                <h3
-                    className={cls.box__link}
-                >
-                    Batafsil <i className={"fa fa-arrow-right"}/>
-                </h3>
             </div>
         ))
     }
