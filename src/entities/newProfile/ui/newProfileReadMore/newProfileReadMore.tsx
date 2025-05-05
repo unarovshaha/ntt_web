@@ -22,7 +22,7 @@ export const NewProfileReadMore = ({item}: IProps) => {
     const location = useLocation();
 
 
-    const onCreate = (id: number) => {
+    const onCreate = (id: number | undefined) => {
         request({
             url: `students/student_requests/create/`,
             method: "POST",
@@ -62,8 +62,8 @@ export const NewProfileReadMore = ({item}: IProps) => {
             <Button
                 onClick={() => {
                     if (location.pathname.startsWith("/platform")) {
-                        //@ts-ignore
-                        onCreate(item.id);
+
+                        onCreate(item?.id);
                     } else {
                         navigate("/login");
                     }
