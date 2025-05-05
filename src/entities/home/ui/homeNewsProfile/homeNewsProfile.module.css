@@ -6,6 +6,7 @@
   justify-content: space-between;
 }
 .profile__container {
+  width: 100%;
   display: flex;
   gap: 4rem;
   padding-left: 2rem;
@@ -44,6 +45,17 @@
   padding-left: 1rem;
   color: rgba(0, 0, 0, 0.53);
   font-family: Montserrat, sans-serif;
+}
+.profile__container .block {
+  width: 100%;
+  margin: 1.5rem 0;
+}
+.profile__container .block img {
+  width: 100%;
+  object-fit: cover;
+}
+.profile__container .block p {
+  font-size: 16px;
 }
 .profile__listBox {
   width: 50rem;

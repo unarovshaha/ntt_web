@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {memo, useEffect, useState} from 'react';
 
 
 import cls from "./newProfileDirection.module.sass";
@@ -14,18 +14,26 @@ import {API_URL_DOC,} from "shared/api/base";
 import {useNavigate} from "react-router-dom";
 import {NewProfilePersonal} from '../newProfilePersonal/newProfilePersonal';
 import classNames from "classnames";
-import {useAppDispatch} from "../../../../shared/lib/hooks/useAppDispatch/useAppDispatch";
+import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import {fetchHomeProfileDegree, fetchHomeProfileDegreeItem} from "../../../home/model/thunk/homeThunk";
-import {useParams} from "react-router";
-import {Select} from "../../../../shared/ui/select";
+import {Route, Routes, useParams} from "react-router";
+import {Select} from "shared/ui/select";
+import {Modal} from "shared/ui/modal";
+import {EducationRecord} from "entities/home/model/schema/homeSchema";
+import {NewProfileReadMore} from "entities/newProfile/ui/newProfileReadMore/newProfileReadMore";
+interface IDirection {
+    setItems: (arg: EducationRecord) => void;
+}
+export const NewProfileDirection: React.FC<IDirection> = memo((props) => {
 
-export const NewProfileDirection = () => {
+    const {setItems} = props
 
     const data = useSelector(getHomeProfileLanding)
     const years = useSelector(getHomeProfileYears)
     const degreeList = useSelector(getHomeProfileDegreeList)
     const {id} = useParams()
     const dataItem = useSelector(getHomeProfileItem)
+    const [activeItem, setActiveItem] = useState<EducationRecord>()
 
     const navigate = useNavigate()
 
@@ -50,6 +58,8 @@ export const NewProfileDirection = () => {
     }, [activeYear, active])
 
 
+    console.log(activeItem , 'log ')
+
     const renderData = () => {
         return data?.map(item => (
             <div
@@ -59,56 +69,44 @@ export const NewProfileDirection = () => {
 
                 <div className={cls.profile__footer_container_box_header}>
                     <img src={`${dataItem?.img}`} alt=""/>
-                    <h2>{item?.organization?.name}</h2>
+                    <h2>{item?.field?.name}</h2>
                 </div>
-                <ul>
-                    <li>Ta'lim tili <span>{item?.education_language?.map((item, index, arr) => <span>
+                   <ul>
+                       <li>Ta'lim tili <span>{item?.education_language?.map((item, index, arr) => <span>
                         {item.name} {index !== arr.length - 1 && "\\"}
                     </span>)}</span></li>
-                    <li>
-                        Ta'lim shakli{" "}
-                        <span>
+                       <li>
+                           Ta'lim shakli{" "}
+                           <span>
                                     {item?.shift?.map((shiftItem, index, arr) => (
                                         <span key={index}>
                                         {shiftItem.name}
                                             {index !== arr.length - 1 && "\\"}
                                         </span>
-                                    ))}
+                                    ))}~
                                 </span>
-                    </li>
-                    <li>{activeMenu === "/Universitet" ? "Kontrakt summasi " : "To'lov summasi "} <span>{item?.price.toLocaleString()}</span></li>
-                    <li>Ta’lim turi <span>{item?.degree?.organization_type?.name}</span></li>
-                    <li>Boshlanish vaqti <span>{item?.start_date.replace(/-/g, ".")}</span></li>
-                    <li>Tugash vaqti <span>{item?.expire_date.replace(/-/g, ".")}</span></li>
-                </ul>
-                <div className={cls.profile__footer_container_box_middle}>
-                    {/*<div>*/}
-                    {/*    <h2>Ma'lumotlar</h2>*/}
-                    {/*    <div>*/}
-                    {/*        <p dangerouslySetInnerHTML={{__html: item?.desc || ''}}></p>*/}
-                    {/*    </div>*/}
-                    {/*</div>*/}
-                    <div>
-                        <h2>Talablar</h2>
-                        <div>
-                            <p dangerouslySetInnerHTML={{__html: item?.requirements || ''}}></p>
-                        </div>
-                    </div>
-                </div>
-                <div className={cls.profile__footer_container_box_footer}>
-                    <h3
-                        onClick={() => {
-                            localStorage.setItem("landingId", String(item.id))
-                            navigate(`/register`)
-                            // console.log()
-                        }}
-                        className={cls.box__link}
-                    >
-                        Hujjat topshirish
-                    </h3>
+                       </li>
+                       <li>{activeMenu === "/Universitet" ? "Kontrakt summasi " : "To'lov summasi "}
+                           <span>{item?.price.toLocaleString()}</span></li>
+                       <li>Boshlanish vaqti <span>{item?.start_date.replace(/-/g, ".")}</span></li>
+                       <h3
+                           onClick={() => {
+                               localStorage.setItem("landingId", String(item.id))
+                               navigate(`/register`)
+                               // console.log()
+                           }}
+                           className={cls.box__link}
+                       >
+                           Hujjat topshirish
+                       </h3>
+                   </ul>
 
+                <div className={cls.profile__footer_container_box_right}>
+                    <i onClick={() => {
+                        navigate("readonly")
+                        setItems(item)
+                    }} className={`fa-solid fa-chevron-right ${cls.profile__footer_container_box_right_icon}`}/>
                 </div>
-
 
             </div>
         ))
@@ -121,8 +119,7 @@ export const NewProfileDirection = () => {
     }));
     return (
         <div style={{display: "flex", gap: "2rem"}}>
-            {window.innerWidth > 700 &&  <div className={cls.info}><NewProfilePersonal/></div> }
-
+            {window.innerWidth > 700 && <div className={cls.info}><NewProfilePersonal/></div>}
 
 
             <div className={cls.direction}>
@@ -142,9 +139,12 @@ export const NewProfileDirection = () => {
 
 
                 </div>
-                {render}
+                <div className={cls.direction__main}>
+                    {render}
+                </div>
             </div>
+
 
         </div>
     );
-}
+})

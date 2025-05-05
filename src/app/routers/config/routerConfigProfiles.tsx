@@ -170,6 +170,6 @@ export const routerConfigProfiles: IRouterConfigProfiles[] = [
         name: "answers",
         element: <FinalGetAnswer/>,
         path: "onlineTest/answer/:id"
-    }
+    },
 ]
 

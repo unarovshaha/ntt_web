@@ -22,6 +22,7 @@
 }
 .sidebar__score {
   font-size: 1.5rem;
+  text-transform: capitalize;
   font-weight: bold;
   display: flex;
   justify-content: space-between;
@@ -38,6 +39,7 @@
   padding: 12px;
   margin-bottom: 10px;
   background-color: #e2e8f0;
+  text-transform: capitalize;
   color: #1a202c;
   border: none;
   border-radius: 8px;
@@ -62,6 +64,7 @@
 
 .title {
   font-size: 2.3rem;
+  text-transform: capitalize;
   font-weight: 700;
   font-family: "Inter", serif;
   margin-bottom: 16px;
@@ -107,6 +110,27 @@
   border-color: #10b981;
   background-color: #f0fdf4;
   color: #065f46;
+}
+
+@media (max-width: 950px) {
+  .btns {
+    flex-direction: row;
+    padding: 0;
+    flex-wrap: wrap;
+    box-shadow: none;
+  }
+  .content__box {
+    height: fit-content;
+  }
+  .container {
+    flex-direction: column-reverse;
+  }
+  .wrapper {
+    flex-direction: column-reverse;
+  }
+  .container, .content {
+    width: 100%;
+  }
 }
 
 /*# sourceMappingURL=getFinalAnswer.module.css.map */

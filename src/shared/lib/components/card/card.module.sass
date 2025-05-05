@@ -1,76 +1,86 @@
 .card
-  background: rgba(255, 255, 255, 0.95)
-  backdrop-filter: blur(5px)
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1)
-  width: 35rem
-  //width: fit-content
-  padding: 1.5rem
-  border-radius: 1.5rem
-  border: 1px solid #D1D1D6
+  width: 70rem
+  box-shadow:  0 0 5px 0
+  padding: 2rem 2rem 2rem 5rem
   display: flex
   flex-direction: column
-  gap: 1.5rem
-
-  &__line
-    border: 0.75px solid #0000001A
-  .header
+  gap: 2rem
+  cursor: pointer
+  border-radius: 0 20px 20px 0
+  position: relative
+  transition: .5s ease
+  &:hover
+    transform: translateY(-1rem)
+  &__header
     display: flex
-    flex-direction: column
-    gap: .5rem
-    &__container
+    align-items: center
+    gap: 1rem
+
+  &__img
+    border-radius: 50%
+    width: 6rem
+    height: 6rem
+    object-fit: cover
+  &:before
+    content: ""
+    display: block
+    background: #0f40d8
+    width: 3rem
+    border-radius: 0 25px 25px 0
+    height: 100%
+    position: absolute
+    top: 0
+    left: 0
+  &__container
+    display: flex
+    & > ul
+      list-style: none
+      display: flex
+      width: 70%
+      flex-wrap: wrap
+      gap: 2rem 3rem
+      & > li
+        color: #6B7280
+        display: flex
+        flex-direction: column
+        gap: .2rem
+
+        font-size: 1.4rem
+        &  >span , .contract
+          color: black
+          font-size: 1.6rem
+    &_btn
+      width: 50%
       display: flex
       align-items: center
       gap: 1rem
-      img
-        width: 4.5rem
-        height: 4.5rem
-        border-radius: 50%
-    &__rating
-      display: flex
-      flex-direction: column
-    &__location
-      gap: .7rem
-      font-size: 1.5rem
-      display: flex
-      align-items: flex-end
-      color: #EF8E38
-    &__subTitle
-      font-size: 1.2rem
-    &__title
-      font-size: 1.6rem
-      color: #2650BB
-    &__info
-      width: 100%
-      display: flex
-      justify-content: space-between
-      //flex-direction: column
-      //gap: .7rem
-      font-size: 1.2rem
-      .wrapper
+      justify-content: flex-end
+      align-self: flex-end
+      &_about
+        background: none!important
         color: black
-        display: flex
-        gap: .2rem
-    &__text
-      display: -webkit-box
-      -webkit-line-clamp: 2 /* оставить, например, 2 строки */
-      -webkit-box-orient: vertical
-      overflow: hidden
-      text-overflow: ellipsis
-      font-size: 1.2rem
-  .footer
-    display: flex
-    justify-content: space-between
-    font-size: 1.2rem
-    &__link
-      color: #00C371
 
-@media (max-width: 768px)
+        border-radius: 10px
+        box-shadow:  0 10px 15px 0 rgba(128, 128, 128, 0.4)
+      //justify-content: center
+
+@media (max-width: 1500px)
   .card
-    width: 30rem
-    .header
-      &__info
-        flex-direction: column
-        gap: .7rem
-        //gap: 5rem
+    width: 60rem
+@media (max-width: 1310px)
+  .card
+    width: 50rem
+@media (max-width: 1111px)
+  .card
+    width: 45rem
+    &__container
+      & > ul
+        width: 90%
+@media (max-width: 1010px)
 
-
+  .card
+    width: 100%
+@media (max-width: 700px)
+  .card
+    &__container
+      flex-direction: column

@@ -4,6 +4,8 @@ import {useNavigate} from "react-router-dom";
 import {StarRating} from "../stars/stars";
 
 import cls from "./card.module.sass";
+import {time} from "framer-motion";
+import {Button} from "shared/ui/button";
 
 interface iCardProps {
     region?: string,
@@ -15,52 +17,68 @@ interface iCardProps {
     id?: number,
     image?: string,
     desc?: string,
-    rating: number
+    rating: number,
+    language?: [],
+    shift?: []
 }
 
-export const Card = ({region, rating, route, desc, image, name, priceMax, priceMin, startDate, id}: iCardProps) => {
+export const Card = ({region, rating, route, desc, image, name, priceMax, priceMin, startDate, id , language , shift}: iCardProps) => {
 
     const navigate = useNavigate()
 
     const organizationType = localStorage.getItem("organizationType")
+    const menuName = localStorage.getItem("activeMenu")
+    const formatSalary = (salary: string | number | undefined) => {
+        return salary?.toLocaleString();
+    };
 
     return (
         <div
             onClick={() => navigate(`${route}${id}/about`)}
             className={cls.card}
         >
-            <div className={cls.header}>
-                <div className={cls.header__container}>
-                    <img src={image} alt=""/>
-                    <div className={cls.header__rating}>
-                        {/*<div className={cls.header__location}>*/}
-                        {/*    <i className="fa-solid fa-location-dot"/>*/}
 
-                        {/*    <p className={cls.header__subTitle} dangerouslySetInnerHTML={{__html: region}}></p>*/}
-                        {/*</div>*/}
-                        <StarRating rating={rating}/>
-                    </div>
-                </div>
-                <h2 className={cls.header__title}>
-                    {name && name?.length > 16 ? `${name?.slice(0, 16)}...` : name}
+            <div className={cls.card__header}>
+                <img className={cls.card__img} src={image} alt=""/>
+                <h2 className={cls.card__title}>
+                    {name}
                 </h2>
-                <div className={cls.header__info}>
-                    <p>{organizationType === "Universitet" ? "Kontrakt to’lovi" : 'To’lovi summasi:'}</p>
-                    <div className={cls.wrapper}>
-                        <p>{priceMin} - {priceMax} UZS</p>
-                    </div>
+            </div>
+            <div className={cls.card__container}>
+                <ul>
+                    {/*<li>*/}
+                    {/*    Ta'lim tili*/}
+                    {/*    <span> {language?.map((shiftItem, index, arr) => (*/}
+                    {/*        <span key={index}>*/}
+                    {/*            {shiftItem}*/}
+                    {/*            {index !== arr.length - 1 && "\\"}*/}
+                    {/*            {window.innerWidth < 700 && <br/>}*/}
+                    {/*        </span>*/}
+                    {/*        ))}*/}
+                    {/*    </span>*/}
+                    {/*</li>*/}
+                    {/*<li>*/}
+                    {/*    Ta'lim shakli*/}
+                    {/*    <span> {shift?.map((shiftItem, index, arr) => (*/}
+                    {/*        <span key={index}>*/}
+                    {/*            {shiftItem}*/}
+                    {/*            {index !== arr.length - 1 && "\\"}*/}
+                    {/*            {window.innerWidth < 700 && <br/>}*/}
+                    {/*        </span>*/}
+                    {/*    ))}*/}
+                    {/*    </span>*/}
+                    {/*</li>*/}
+                    <li>{menuName === '/Universitet' ? "Kontrakt to’lovi" : "To'lov summasi"}<div  className={cls.contract}><span>{formatSalary(priceMin)}</span>-<span>{formatSalary(priceMax)}</span></div> </li>
+                    <li>
+                        Qabul muddati
+                        <span> {startDate}</span>
+                    </li>
+                </ul>
+                <div className={cls.card__container_btn}>
+                    <Button extraClass={cls.card__container_btn_about}>Batafsil</Button>
                 </div>
-                <p className={cls.header__text} dangerouslySetInnerHTML={desc ? {__html: desc} : undefined}/>
             </div>
-            <div className={cls.card__line}/>
-            <div className={cls.footer}>
-                <p>{startDate}</p>
-                <p
-                    className={cls.footer__link}
-                >
-                    Batafsil
-                </p>
-            </div>
+
         </div>
     );
 }
