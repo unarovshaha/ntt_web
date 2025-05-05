@@ -13,14 +13,15 @@
 }
 .main__headers {
   display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+  gap: 2rem;
   padding-top: 3rem;
-  align-items: center;
 }
 .main__headers__select {
   min-width: 20rem;
   padding: 1.2rem;
+}
+.main__headers__accordion {
+  min-width: 20rem;
 }
 .main__section {
   width: 80%;
@@ -46,6 +47,8 @@
   }
   .main__headers {
     width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
   }
   .main__headers__select {
     width: 100% !important;
