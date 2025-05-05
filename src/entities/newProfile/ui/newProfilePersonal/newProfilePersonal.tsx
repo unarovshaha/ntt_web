@@ -1,17 +1,29 @@
 import React from 'react';
 
 import cls from "./newProfilePersonal.module.sass";
-import image from "shared/assets/images/Rectangle 640.png";
+import image from "shared/assets/icons/noImage.png";
 import {useSelector} from "react-redux";
 import {getHomeProfileItem, getHomeProfileItemHeader} from "../../../home/model/selector/homeSelector";
 import {Organization} from "../../../home/model/schema/homeSchema";
 import classNames from "classnames";
 
 export const NewProfilePersonal = () => {
-    const data  = useSelector(getHomeProfileItem)
-    const dataHeader  = useSelector(getHomeProfileItemHeader)
+    const data = useSelector(getHomeProfileItem)
+    const dataHeader = useSelector(getHomeProfileItemHeader)
 
-    localStorage.setItem("orgId" , String(data?.organization_type.id))
+    localStorage.setItem("orgId", String(data?.organization_type.id))
+
+    const getInitials = (name?: string) => {
+        if (!name || typeof name !== "string") return "??";
+
+        const parts = name.split(/[\s\-]+/).filter(Boolean); // разбиваем по пробелам и тире
+        const first = parts[0] ?? "";
+        const second = parts[1]?.[0]?.toUpperCase() ?? "";
+
+        return `${first}-${second}`;
+    };
+
+
     return (
         <div className={cls.info}>
             {/*<div*/}
@@ -28,6 +40,13 @@ export const NewProfilePersonal = () => {
             {/*    </div>*/}
             {/*</div>*/}
             <div className={cls.info__container}>
+                {/*{*/}
+                {/*    data?.img*/}
+                {/*        ? <img className={cls.info__image} src={data.img} alt=""/>*/}
+                {/*        : <div className={cls.info__placeholder}>*/}
+                {/*            {getInitials(data?.name)}*/}
+                {/*        </div>*/}
+                {/*}*/}
                 <img className={cls.info__image} src={`${data?.img ? data.img : image}`} alt=""/>
                 <div className={cls.info__form}>
                     <p className={cls.list} style={{justifyContent: "center"}}>
@@ -51,7 +70,7 @@ export const NewProfilePersonal = () => {
                     <p className={classNames(cls.list, {
                         [cls.active]: !!data?.inn?.length
                     })}>
-                         {/*@ts-ignore*/}
+                        {/*@ts-ignore*/}
                         INN: <span dangerouslySetInnerHTML={{__html: data?.inn}}/>
                     </p>
                     <p className={classNames(cls.list, {
@@ -143,7 +162,7 @@ export const NewProfilePersonal = () => {
                     </div>
                     {/*@ts-ignore*/}
 
-                    <div className={cls.map} dangerouslySetInnerHTML={{__html : data?.locations}}>
+                    <div className={cls.map} dangerouslySetInnerHTML={{__html: data?.locations}}>
 
                     </div>
                 </div>

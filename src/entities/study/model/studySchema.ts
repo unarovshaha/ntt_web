@@ -14,6 +14,7 @@ export interface IOrganization {
         price_min: number,
         start_date: string,
         id: number,
+        grant: boolean
     },
     locations: string,
     img: string,

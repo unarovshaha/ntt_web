@@ -9,14 +9,15 @@ import {Input} from "shared/ui/input";
 import {useSelector} from "react-redux";
 import {getDistrict, getFieldsItem, getHomeHeaderItem, getRegion} from "entities/home/model/selector/homeSelector";
 import {Select} from "shared/ui/select";
+import {Accordion} from "../../../../shared/ui/accordion";
 
 export const TechnicalSchoolFilter = ({item}: { item: HeaderItem }) => {
     const [active, setActive] = useState<boolean>(false);
     const [handle, setHandle] = useState<boolean>(false);
     const [query, setQuery] = useState<string>('')
-    const [select, setSelect] = useState()
-    const [selectRegion, setSelectRegion] = useState()
-    const [selectDistrict, setSelectDistrict] = useState()
+    const [select, setSelect] = useState<number[]>([])
+    const [selectRegion, setSelectRegion] = useState<number[]>([])
+    const [selectDistrict, setSelectDistrict] = useState<number[]>([])
     const dispatch = useAppDispatch();
     const [priceMin, setPriceMin] = useState(0);
     const [priceMax, setPriceMax] = useState(100000000000);
@@ -24,13 +25,34 @@ export const TechnicalSchoolFilter = ({item}: { item: HeaderItem }) => {
     const region = useSelector(getRegion)
     const district = useSelector(getDistrict)
 
-    useEffect(() => {
-        if (region) setSelectRegion(region[0]?.id)
+    const onSetSelect = (data: number[]) => setSelect(data)
+    const onClearSelect = (data:number) => {
+        setSelect(prevState =>
+            prevState.filter(item => item !== data)
+        )
+    }
 
-    } , [region])
-    useEffect(() => {
-        if (district) setSelectDistrict(district[0]?.id)
-    } , [district])
+    const onSetRegion = (data: number[]) => setSelectRegion(data)
+    const onClearRegion = (data:number) => {
+        setSelectRegion(prevState =>
+            prevState.filter(item => item !== data)
+        )
+    }
+
+    const onSetDistrict = (data: number[]) => setSelectDistrict(data)
+    const onClearDistrict = (data:number) => {
+        setSelectDistrict(prevState =>
+            prevState.filter(item => item !== data)
+        )
+    }
+
+    // useEffect(() => {
+    //     if (region) setSelectRegion(region[0]?.id)
+    //
+    // } , [region])
+    // useEffect(() => {
+    //     if (district) setSelectDistrict(district[0]?.id)
+    // } , [district])
 
     console.log(selectDistrict , 'log')
 
@@ -88,10 +110,34 @@ export const TechnicalSchoolFilter = ({item}: { item: HeaderItem }) => {
     return (
         <div className={cls.main}>
             <div className={cls.main__headers}>
-                <Select extraClass={cls.main__headers__select} setSelectOption={setSelect} optionsData={data}/>
-                <Select extraClass={cls.main__headers__select} setSelectOption={setSelectRegion} optionsData={region}/>
-                <Select extraClass={cls.main__headers__select} setSelectOption={setSelectDistrict}
-                        optionsData={district}/>
+                <Accordion
+                    onDisActive={onClearSelect}
+                    extraClass={cls.main__headers__accordion}
+                    // defaultChecked={isLocation}
+                    title={"Ta'lim yo'nalishi"}
+                    items={data?.length ? data : []}
+                    onClick={onSetSelect}
+                />
+                <Accordion
+                    onDisActive={onClearRegion}
+                    extraClass={cls.main__headers__accordion}
+                    // defaultChecked={isDistrict}
+                    title={"Region"}
+                    items={region?.length ? region : []}
+                    onClick={onSetRegion}
+                />
+                <Accordion
+                    onDisActive={onClearDistrict}
+                    extraClass={cls.main__headers__accordion}
+                    // defaultChecked={isLanguages}
+                    title={"Tuman"}
+                    items={district?.length ? district : []}
+                    onClick={onSetDistrict}
+                />
+                {/*<Select extraClass={cls.main__headers__select} setSelectOption={setSelect} optionsData={data}/>*/}
+                {/*<Select extraClass={cls.main__headers__select} setSelectOption={setSelectRegion} optionsData={region}/>*/}
+                {/*<Select extraClass={cls.main__headers__select} setSelectOption={setSelectDistrict}*/}
+                {/*        optionsData={district}/>*/}
             </div>
 
             <div className={cls.main__header}>
