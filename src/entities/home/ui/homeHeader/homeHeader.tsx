@@ -142,10 +142,10 @@ export const HomeHeader = ({setItem}: { setItem: (item: HeaderItem) => void }) =
                         <div className={cls.header__end}>
 
                             <Button onClick={() => navigate("/login")} extraClass={cls.header__end_btn}>
-                                Login
+                                Tizim kirish
                             </Button>
                             <Button onClick={() => navigate("/register")} extraClass={cls.header__end_btn}>
-                                Register
+                                Ro'yxatdan o'tish
                             </Button>
                         </div>
 

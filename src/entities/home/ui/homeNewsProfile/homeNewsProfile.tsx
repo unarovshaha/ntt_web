@@ -13,6 +13,7 @@ import {homeReducer} from "entities/home/model/slice/homeSlice";
 import {JsonContents} from "entities/home/model/schema/homeSchema";
 import {fetchNews} from "entities/home/model/thunk/newsThunk";
 import {Loader} from "shared/ui/loader";
+import {API_URL_DOC} from "shared/api/base";
 
 const reducers: ReducersList = {
     homeNewsSlice: homeNewsReducer,
@@ -65,6 +66,25 @@ export const HomeNewsProfile = () => {
                 </div>
             ))
     };
+
+
+    const renderBlocks = () => {
+        if (!data?.blocks) return
+
+        return data.blocks.map((item) => (
+            <div className={cls.block}>
+                {
+                    item.type_block === "text" ?
+                        <div dangerouslySetInnerHTML={{__html: item.desc_json.text}}>
+
+                        </div>
+                        :
+                        <img src={API_URL_DOC+ item.img_url} alt="img_url"/>
+
+                }
+            </div>
+        ))
+    };
     return (
         // <DynamicModuleLoader reducers={reducers}>
             <div className={cls.profile}>
@@ -85,10 +105,8 @@ export const HomeNewsProfile = () => {
                                     </div>
                                     <h1 className={cls.title}>{data?.title}</h1>
                                     <img className={cls.newsImg} src={data?.img} alt=""/>
-                                    <div
-                                        className={cls.content}
-                                        dangerouslySetInnerHTML={{__html: data ? data?.desc_json?.text : ""}}
-                                    >
+                                    <div className={cls.blocks}>
+                                        {renderBlocks()}
                                     </div>
                                 </div>
                                 <div className={cls.profile__listBox}>
