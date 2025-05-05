@@ -30,6 +30,8 @@ interface IHomeTechnical extends IOrganization{
     // locations: string;
     // img: string;
     organization_type: number;
+    region: string;
+    access_date: string;
     // landing: Landing;
 }
 
