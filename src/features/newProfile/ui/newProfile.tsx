@@ -24,6 +24,7 @@ export const NewProfile = () => {
 
     const {id} = useParams()
 
+
     const dataItem = localStorage.getItem("orgId")
 
     useEffect(() => {

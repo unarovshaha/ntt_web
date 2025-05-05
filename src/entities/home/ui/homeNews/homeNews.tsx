@@ -51,7 +51,7 @@ export const HomeNewsList = ({item}: IHomeNewsListProps) => {
                         <h1>{item.date}</h1>
                         <div className={cls.box__info_header_views}>
                             <i className={"fa fa-eye"}/>
-                            {item.views_display}
+                   \         {item.views_display}
                         </div>
                     </div>
                     <div className={cls.box__info_title}>

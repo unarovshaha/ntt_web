@@ -7,7 +7,7 @@ const initialState: IHomeNewsSchema = {
     loading: false,
     error: false,
     data: [],
-    profileItem: {desc_json: {text: ""}, landing: [], title: "", img: "", date: "", views_display: ""}
+    profileItem: {blocks: [],desc_json: {text: ""}, landing: [], title: "", img: "", date: "", views_display: ""}
 }
 
 
