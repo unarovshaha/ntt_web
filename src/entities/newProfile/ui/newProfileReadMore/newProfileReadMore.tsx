@@ -19,15 +19,8 @@ export const NewProfileReadMore = ({item}: IProps) => {
     const dispatch = useAppDispatch()
     const {request} = useHttp()
     const userId = useSelector(getUserId)
-    const location = useLocation(); // Bu hook URL haqidagi info beradi
+    const location = useLocation();
 
-    useEffect(() => {
-        if (location.pathname.startsWith("/platform")) {
-            console.log("platform");
-        } else {
-            console.log("boshqa");
-        }
-    }, [location.pathname]);
 
     const onCreate = (id: number) => {
         request({
