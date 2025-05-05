@@ -16,7 +16,7 @@ import {
 import cls from "./studyProfileAnnouncements.module.sass";
 import {fetchAcademicYear, getAcademicYear, getCurrentAcademicYear} from "entities/oftenUsed";
 import classNames from "classnames";
-import {headers, useHttp} from "shared/api/base";
+import {API_URL_DOC, headers, useHttp} from "shared/api/base";
 import {alertAction} from "entities/alert";
 import {getUserId} from "entities/user";
 import {Button} from "shared/ui/button";
@@ -62,7 +62,7 @@ export const StudyProfileAnnouncements: React.FC<IDirection> = memo((props) => {
             return (
                 <div className={cls.announcementsItem}>
                     <div className={cls.announcementsItem__header}>
-                        <img className={cls.announcementsItem__ava} src={''} alt=""/>
+                        <img className={cls.announcementsItem__ava} src={`${API_URL_DOC}${item.img}`} alt=""/>
                         <h2 className={cls.announcementsItem__title}>
                             {item.field.name}
                         </h2>
