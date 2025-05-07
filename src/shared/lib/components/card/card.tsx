@@ -19,10 +19,11 @@ interface iCardProps {
     desc?: string,
     rating: number,
     language?: [],
-    shift?: []
+    shift?: [],
+    grant?: boolean
 }
 
-export const Card = ({region, rating, route, desc, image, name, priceMax, priceMin, startDate, id , language , shift}: iCardProps) => {
+export const Card = ({region, rating, route, desc, image, name, priceMax, priceMin, startDate, id , language , shift, grant}: iCardProps) => {
 
     const navigate = useNavigate()
 
@@ -46,28 +47,6 @@ export const Card = ({region, rating, route, desc, image, name, priceMax, priceM
             </div>
             <div className={cls.card__container}>
                 <ul>
-                    {/*<li>*/}
-                    {/*    Ta'lim tili*/}
-                    {/*    <span> {language?.map((shiftItem, index, arr) => (*/}
-                    {/*        <span key={index}>*/}
-                    {/*            {shiftItem}*/}
-                    {/*            {index !== arr.length - 1 && "\\"}*/}
-                    {/*            {window.innerWidth < 700 && <br/>}*/}
-                    {/*        </span>*/}
-                    {/*        ))}*/}
-                    {/*    </span>*/}
-                    {/*</li>*/}
-                    {/*<li>*/}
-                    {/*    Ta'lim shakli*/}
-                    {/*    <span> {shift?.map((shiftItem, index, arr) => (*/}
-                    {/*        <span key={index}>*/}
-                    {/*            {shiftItem}*/}
-                    {/*            {index !== arr.length - 1 && "\\"}*/}
-                    {/*            {window.innerWidth < 700 && <br/>}*/}
-                    {/*        </span>*/}
-                    {/*    ))}*/}
-                    {/*    </span>*/}
-                    {/*</li>*/}
                     <li>{menuName === '/Universitet' ? "Kontrakt to’lovi" : "To'lov summasi"}<div  className={cls.contract}><span>{formatSalary(priceMin)}</span>-<span>{formatSalary(priceMax)}</span></div> </li>
                     <li>
                         Qabul muddati

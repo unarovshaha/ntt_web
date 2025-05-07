@@ -99,6 +99,15 @@ export const NewProfileDirection: React.FC<IDirection> = memo((props) => {
                        >
                            Hujjat topshirish
                        </h3>
+                       {
+                           !item.grant ?
+                               <div></div>
+                               : item.grant ?
+                                   <div
+                                       className={cls.grant}>
+                                       <p className={cls.header__title}>Grant mavjud</p>
+                                   </div> : null
+                       }
                    </ul>
 
                 <div className={cls.profile__footer_container_box_right}>

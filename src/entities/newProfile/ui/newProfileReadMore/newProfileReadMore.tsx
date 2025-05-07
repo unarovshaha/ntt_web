@@ -59,19 +59,25 @@ export const NewProfileReadMore = ({item}: IProps) => {
                 <h2 dangerouslySetInnerHTML={{__html: item?.requirements || ''}}/>
 
             </div>
-            <Button
-                onClick={() => {
-                    if (location.pathname.startsWith("/platform")) {
+            <div className={cls.arounder}>
+                <Button
+                    onClick={() => {
+                        if (location.pathname.startsWith("/platform")) {
 
-                        onCreate(item?.id);
-                    } else {
-                        navigate("/login");
-                    }
-                }}
-                extraClass={cls.profile__btn}
-            >
-                Hujjat topshirish
-            </Button>
+                            onCreate(item?.id);
+                        } else {
+                            navigate("/login");
+                        }
+                    }}
+                    extraClass={cls.btn}
+                >
+                    Hujjat topshirish
+                </Button>
+                <div className={cls.grant}>
+                    {!item?.grant ? "" : item.grant ? "grant mavjud" : null}
+                </div>
+            </div>
+
 
 
         </div>

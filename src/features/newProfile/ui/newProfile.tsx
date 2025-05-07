@@ -44,9 +44,6 @@ export const NewProfile = () => {
     }, [dataItem, id])
 
 
-    // useEffect(() => {
-    //     if (dataItem?.id)  dispatch(fetchHomeProfileDegree(Number(dataItem?.organization_type.id)))
-    // }, [dataItem])
 
     return (
         <div className={cls.profile}>
@@ -55,8 +52,6 @@ export const NewProfile = () => {
                 <Route path={"about"} element={<NewProfileAbout/>}/>
                 <Route path={"direction"} element={<NewProfileDirection setItems={setItems}/>}/>
                 <Route path={"direction/readonly"} element={<NewProfileReadMore item={items}/>}/>
-                <Route path={"gallery"} element={<NewProfileGallery/>}/>
-                <Route path={"grant"} element={<NewProfileGrant/>}/>
                 <Route path={"personal"} element={<NewProfilePersonal/>}/>
                 <Route path={"comments"} element={<NewProfileComments/>}/>
             </Routes>
