@@ -61,6 +61,7 @@ export const TechnicalSchool = ({item}: { item: HeaderItem }) => {
                     priceMin={item.landing?.price_min}
                     language={item.landing?.language}
                     shift={item.landing?.shift}
+                    grant={item.landing?.grant}
                 />
                 // <div
                 //     onClick={() => {

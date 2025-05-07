@@ -35,7 +35,6 @@ export interface IBlockItem {
     news: number,
     type_block: string
 }
-
 export interface IProfileItemSchema {
     blocks: IBlockItem[],
     landing: IProfileItem[],
@@ -46,18 +45,10 @@ export interface IProfileItemSchema {
     views_display: string,
 }
 
+
 export interface IHomeNewsSchema {
     loading: boolean,
     error: boolean,
     data: IHomeNews[],
-    profileItem: {
-        blocks: IBlockItem[],
-        landing: IProfileItem[],
-        desc_json: { text: string },
-        title: string,
-        img: string,
-        date: string,
-        views_display: string },
+    profileItem: { blocks: IBlockItem[], landing: IProfileItem[], desc_json: { text: string }, title: string, img: string, date: string, views_display: string },
 }
-
-

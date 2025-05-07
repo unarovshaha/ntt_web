@@ -1,0 +1,101 @@
+.card {
+  color: #fff;
+  border-radius: 1rem;
+  padding: 2rem 2.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid #D1D1D6;
+  transition: 0.3s ease;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.card__header {
+  display: flex;
+  gap: 2rem;
+}
+.card__header .image {
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 50%;
+}
+.card__header .inner {
+  display: flex;
+  flex-direction: column;
+}
+.card__container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  color: black;
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.subtitle {
+  display: flex;
+  align-items: end;
+  gap: 0.5rem;
+  font-size: 1.4rem;
+  color: #aaa;
+}
+.subtitle__inner {
+  margin-bottom: 0.3rem;
+}
+
+.info {
+  width: 45%;
+  font-size: 1.4rem;
+  color: #a8a6a6;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.info__inner {
+  margin-left: 2.5rem;
+  color: black;
+}
+
+.highlight {
+  color: #fff;
+}
+
+.button {
+  width: max-content;
+  font-size: 1.6rem;
+  cursor: pointer;
+  align-self: end;
+  color: #3b82f6;
+  font-weight: 500;
+  transition: 0.3s ease;
+  border: none;
+}
+
+@media (max-width: 768px) {
+  .card__container {
+    flex-wrap: wrap;
+  }
+  .button {
+    margin-top: 1rem;
+  }
+}
+@media (max-width: 430px) {
+  .title {
+    font-size: 1.4rem;
+  }
+  .subtitle {
+    font-size: 1.2rem;
+  }
+  .info {
+    font-size: 1.2rem;
+  }
+  .button {
+    font-size: 1.4rem;
+  }
+}
+
+/*# sourceMappingURL=UniversityCard.module.css.map */

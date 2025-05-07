@@ -6,7 +6,7 @@ import {useParams, useNavigate} from "react-router";
 import {useEffect} from "react";
 import {fetchProfileItem} from "entities/home/model/thunk/newsThunk";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
-import {ReducersList} from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
+import { ReducersList} from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
 import {homeNewsReducer} from "entities/home/model/slice/homeNewsSlice";
 import {getHomePosters} from "entities/home/model/selector/homeSelector";
 import {homeReducer} from "entities/home/model/slice/homeSlice";
@@ -44,27 +44,29 @@ export const HomeNewsProfile = () => {
     console.log(homeNewsData)
 
     useEffect(() => {
-        dispatch(fetchProfileItem({id}))
-        dispatch(fetchNews());
+            dispatch(fetchProfileItem({id}))
+            dispatch(fetchNews());
 
     }, [id])
 
     const renderData = () => {
 
+           //@ts-ignore
         return homeNewsData?.map((item) => (
-            <div onClick={() => navigate(`/news/${item.id}`)} className={cls.listsBox}>
-                <img className={cls.listsBox__img} src={item?.img} alt=""/>
-                <div className={cls.listsBox__box}>
-                    <h1 className={cls.listsBox__box__title}>{item?.title}</h1>
-                    <p className={cls.listsBox__box__date}>
-                        <i className="fa-solid fa-calendar-days"></i>
-                        {item?.date}
-                    </p>
-                </div>
+                <div onClick={() => navigate(`/news/${item.id}`)} className={cls.listsBox}>
+                    <img className={cls.listsBox__img} src={item?.img} alt=""/>
+                    <div className={cls.listsBox__box}>
+                        <h1 className={cls.listsBox__box__title}>{item?.title}</h1>
+                        <p className={cls.listsBox__box__date}>
+                            <i className="fa-solid fa-calendar-days"></i>
+                            {item?.date}
+                        </p>
+                    </div>
 
-            </div>
-        ))
+                </div>
+            ))
     };
+
 
     const renderBlocks = () => {
         if (!data?.blocks) return
@@ -83,47 +85,46 @@ export const HomeNewsProfile = () => {
             </div>
         ))
     };
-
-
     return (
         // <DynamicModuleLoader reducers={reducers}>
-        <div className={cls.profile}>
-            {
-                isLoading ? <Loader/> :
-                    (
-                        <>
-                            <div className={cls.profile__container}>
-                                <div className={cls.date}>
-                                    <p>
-                                        <i className="fa-solid fa-calendar-days"></i>
-                                        <span>{data?.date}</span>
-                                    </p>
-                                    <p>
-                                        <i className={"fa fa-eye"}/>
-                                        <span>{data?.views_display}</span>
-                                    </p>
+            <div className={cls.profile}>
+                {
+                    isLoading ? <Loader/> :
+                        (
+                            <>
+                                <div className={cls.profile__container}>
+                                    <div className={cls.date}>
+                                        <p>
+                                            <i className="fa-solid fa-calendar-days"></i>
+                                            <span>{data?.date}</span>
+                                        </p>
+                                        <p>
+                                            <i className={"fa fa-eye"}/>
+                                            <span>{data?.views_display}</span>
+                                        </p>
+                                    </div>
+                                    <h1 className={cls.title}>{data?.title}</h1>
+                                    <img className={cls.newsImg} src={data?.img} alt=""/>
+                                    <div className={cls.blocks}>
+                                        {renderBlocks()}
+                                    </div>
                                 </div>
-                                <h1 className={cls.title}>{data?.title}</h1>
-                                <div className={cls.blocks}>
-                                    {renderBlocks()}
+                                <div className={cls.profile__listBox}>
+                                    <h1 className={cls.profile__listBox__title}>So'nggi yangiliklar</h1>
+                                    <div className={cls.profile__listBox__arounder}>
+                                        {
+                                            renderData()
+                                        }
+                                    </div>
+
                                 </div>
+                            </>
+                        )
+                }
 
-                            </div>
-                            <div className={cls.profile__listBox}>
-                                <h1 className={cls.profile__listBox__title}>So'nggi yangiliklar</h1>
-                                <div className={cls.profile__listBox__arounder}>
-                                    {
-                                        renderData()
-                                    }
-                                </div>
-
-                            </div>
-                        </>
-                    )
-            }
-
-        </div>
+            </div>
         // </DynamicModuleLoader>
+
 
 
     );

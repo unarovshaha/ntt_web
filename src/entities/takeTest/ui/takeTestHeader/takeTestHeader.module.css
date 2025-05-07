@@ -112,7 +112,7 @@
     gap: 1rem;
   }
   .header__container_optional_option_item, .header__container_mandatory_option_item {
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-family: "Funnel Sans", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {memo, useEffect, useState} from 'react';
 
 
 import cls from "./newProfileDirection.module.sass";
@@ -16,20 +16,23 @@ import {NewProfilePersonal} from '../newProfilePersonal/newProfilePersonal';
 import classNames from "classnames";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import {fetchHomeProfileDegree, fetchHomeProfileDegreeItem} from "../../../home/model/thunk/homeThunk";
-import {useParams} from "react-router";
+import {Route, Routes, useParams} from "react-router";
 import {Select} from "shared/ui/select";
 import {Modal} from "shared/ui/modal";
 import {EducationRecord} from "entities/home/model/schema/homeSchema";
+import {NewProfileReadMore} from "entities/newProfile/ui/newProfileReadMore/newProfileReadMore";
+interface IDirection {
+    setItems: (arg: EducationRecord) => void;
+}
+export const NewProfileDirection: React.FC<IDirection> = memo((props) => {
 
-export const NewProfileDirection = () => {
+    const {setItems} = props
 
     const data = useSelector(getHomeProfileLanding)
     const years = useSelector(getHomeProfileYears)
     const degreeList = useSelector(getHomeProfileDegreeList)
     const {id} = useParams()
     const dataItem = useSelector(getHomeProfileItem)
-
-    const [activeModal, setActiveModal] = useState(false)
     const [activeItem, setActiveItem] = useState<EducationRecord>()
 
     const navigate = useNavigate()
@@ -96,14 +99,24 @@ export const NewProfileDirection = () => {
                        >
                            Hujjat topshirish
                        </h3>
+                       {
+                           !item.grant ?
+                               <div></div>
+                               : item.grant ?
+                                   <div
+                                       className={cls.grant}>
+                                       <p className={cls.header__title}>Grant mavjud</p>
+                                   </div> : null
+                       }
                    </ul>
 
                 <div className={cls.profile__footer_container_box_right}>
                     <i onClick={() => {
-                        setActiveModal(true)
-                        setActiveItem(item)
+                        navigate("readonly")
+                        setItems(item)
                     }} className={`fa-solid fa-chevron-right ${cls.profile__footer_container_box_right_icon}`}/>
                 </div>
+
             </div>
         ))
     }
@@ -140,22 +153,7 @@ export const NewProfileDirection = () => {
                 </div>
             </div>
 
-            <Modal extraClass={cls.modal} title={"Qo'shimcha ma'lumot"} active={activeModal} setActive={setActiveModal}>
-                <div>
-                    <h1>Ma'lumotlar</h1>
-
-                    <h2 dangerouslySetInnerHTML={{__html: activeItem?.desc || ''}}/>
-
-                </div>
-                <div>
-                    <h1>Talablar</h1>
-
-                    <h2 dangerouslySetInnerHTML={{__html: activeItem?.requirements || ''}}/>
-
-                </div>
-
-            </Modal>
 
         </div>
     );
-}
+})

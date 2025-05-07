@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {memo, useEffect, useState} from 'react';
 import {useParams} from "react-router";
 import {useSelector} from "react-redux";
 
@@ -16,12 +16,19 @@ import {
 import cls from "./studyProfileAnnouncements.module.sass";
 import {fetchAcademicYear, getAcademicYear, getCurrentAcademicYear} from "entities/oftenUsed";
 import classNames from "classnames";
-import {headers, useHttp} from "shared/api/base";
+import {API_URL_DOC, headers, useHttp} from "shared/api/base";
 import {alertAction} from "entities/alert";
 import {getUserId} from "entities/user";
 import {Button} from "shared/ui/button";
+import {EducationRecord} from "entities/home/model/schema/homeSchema";
+import {useNavigate} from "react-router-dom";
 
-export const StudyProfileAnnouncements = () => {
+interface IDirection {
+    setItems: (arg: EducationRecord) => void;
+}
+
+export const StudyProfileAnnouncements: React.FC<IDirection> = memo((props) => {
+    const {setItems} = props
 
     const userId = useSelector(getUserId)
     const listAnn = useSelector(getStudyProfileAnnouncements)
@@ -29,6 +36,7 @@ export const StudyProfileAnnouncements = () => {
     const degrees = useSelector(getStudyProfileDegree)
     const data = useSelector(getStudyProfileData)
     const [selectedDegree, setSelectedDegree] = useState()
+    const navigate = useNavigate()
 
     const {request} = useHttp()
     const {id} = useParams()
@@ -54,7 +62,7 @@ export const StudyProfileAnnouncements = () => {
             return (
                 <div className={cls.announcementsItem}>
                     <div className={cls.announcementsItem__header}>
-                        <img className={cls.announcementsItem__ava} src={''} alt=""/>
+                        <img className={cls.announcementsItem__ava} src={`${API_URL_DOC}${item.img}`} alt=""/>
                         <h2 className={cls.announcementsItem__title}>
                             {item.field.name}
                         </h2>
@@ -132,7 +140,11 @@ export const StudyProfileAnnouncements = () => {
                                         </div> : null
                             }
                             <div className={cls.header__up}>
-                                <i className={"fas fa-arrow-up"}/>
+                                <i onClick={() => {
+                                    navigate("readonly")
+                                    setItems(item)
+                                }} className={`fa-solid fa-chevron-right ${cls.header__up__icon}`}/>
+
                             </div>
                         </div>
 
@@ -222,4 +234,4 @@ export const StudyProfileAnnouncements = () => {
             </div>
         </div>
     );
-}
+})
