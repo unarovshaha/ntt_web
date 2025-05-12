@@ -40,6 +40,7 @@ import {StudyProfileNewPage, StudyProfilePage} from "pages/studyProfilePage";
 import {NotificationPage} from "pages/notificationPage";
 import {OnlineTestEnter} from "entities/home";
 import {OnlineTestEnterFeature , TakeTest , FinalGetAnswer} from "features/onlineTestEnter";
+import {TestResultPage} from "pages/testResultPage";
 
 
 
@@ -170,6 +171,11 @@ export const routerConfigProfiles: IRouterConfigProfiles[] = [
         name: "answers",
         element: <FinalGetAnswer/>,
         path: "onlineTest/answer/:id"
+    },
+    {
+        name: "testResults",
+        element: <TestResultPage/>,
+        path: "personal/testResults"
     }
 ]
 

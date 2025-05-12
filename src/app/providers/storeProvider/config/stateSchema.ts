@@ -14,6 +14,7 @@ import {IOnlineTestEnter} from "features/onlineTestEnter/model/onlineTestEnter/o
 import {ITakeTestInterface} from "features/onlineTestEnter/model/takeTest/takeTestSchema";
 import {finalAnswerSlice} from "features/onlineTestEnter/model/getFinalAnswer/getFinalAnswerSlice";
 import {GetFinalAnswerSchema} from "features/onlineTestEnter/model/getFinalAnswer/getFinalAnswerSchema";
+import {ITestResultSchema} from "entities/testResult";
 
 export interface StateSchema {
 
@@ -31,7 +32,8 @@ export interface StateSchema {
     homeNewsSlice?: IHomeNewsSchema;
     onlineTestEnterSlice?: IOnlineTestEnter
     takeTestSlice?: ITakeTestInterface
-    finalAnswerSlice?: GetFinalAnswerSchema
+    finalAnswerSlice?: GetFinalAnswerSchema,
+    testResultSlice?: ITestResultSchema
 }
 
 export type StateSchemaKey = keyof StateSchema;
