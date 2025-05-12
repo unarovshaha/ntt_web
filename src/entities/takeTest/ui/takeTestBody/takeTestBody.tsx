@@ -156,88 +156,88 @@ export const TakeTestBody = () => {
 
     const radius = 90;
     const circumference = 2 * Math.PI * radius;
-    const totalTime =  10;
+    const totalTime = 180 * 60;
 
     const [timeLeft, setTimeLeft] = useState(totalTime);
 
-    useEffect(() => {
-        if (timeLeft <= 0) {
-            const result = {
-                mandatory: [] as {
-                    subject_id: number;
-                    answers: { question_block_id: number; answer_id: number }[];
-                }[],
-                optional: [] as {
-                    subject_id: number;
-                    answers: { question_block_id: number; answer_id: number }[];
-                }[],
-            };
-
-            // Mandatory
-            data?.questions.mandatory.forEach((subject) => {
-                const subjectAnswers = answers[subject.id];
-                if (!subjectAnswers) return;
-
-                const answerList: { question_block_id: number; answer_id: number }[] = [];
-
-                subject.blocks.forEach((block) => {
-                    const answerId = subjectAnswers[block.id];
-                    if (answerId !== undefined) {
-                        answerList.push({
-                            question_block_id: block.id,
-                            answer_id: answerId,
-                        });
-                    }
-                });
-
-                result.mandatory.push({
-                    subject_id: subject.id,
-                    answers: answerList,
-                });
-            });
-
-            // Optional
-            data?.questions.optional.forEach((subject) => {
-                const subjectAnswers = answers[subject.id];
-                if (!subjectAnswers) return;
-
-                const answerList: { question_block_id: number; answer_id: number }[] = [];
-
-                subject.blocks.forEach((block) => {
-                    const answerId = subjectAnswers[block.id];
-                    if (answerId !== undefined) {
-                        answerList.push({
-                            question_block_id: block.id,
-                            answer_id: answerId,
-                        });
-                    }
-                });
-
-                result.optional.push({
-                    subject_id: subject.id,
-                    answers: answerList,
-                });
-            });
-
-            const res = {
-                ...result,
-                id
-            }
-
-            request({
-                url: `test/test/crud/check/`,
-                method: "POST",
-                body: JSON.stringify(res)
-            })
-                .then(res => {
-                    navigate(`../onlineTest/answer/${res.id}`)
-                })
-                .catch(err => console.log(err))
-
-
-        }
-
-    } , [timeLeft])
+    // useEffect(() => {
+    //     if (timeLeft <= 0) {
+    //         const result = {
+    //             mandatory: [] as {
+    //                 subject_id: number;
+    //                 answers: { question_block_id: number; answer_id: number }[];
+    //             }[],
+    //             optional: [] as {
+    //                 subject_id: number;
+    //                 answers: { question_block_id: number; answer_id: number }[];
+    //             }[],
+    //         };
+    //
+    //         // Mandatory
+    //         data?.questions.mandatory.forEach((subject) => {
+    //             const subjectAnswers = answers[subject.id];
+    //             if (!subjectAnswers) return;
+    //
+    //             const answerList: { question_block_id: number; answer_id: number }[] = [];
+    //
+    //             subject.blocks.forEach((block) => {
+    //                 const answerId = subjectAnswers[block.id];
+    //                 if (answerId !== undefined) {
+    //                     answerList.push({
+    //                         question_block_id: block.id,
+    //                         answer_id: answerId,
+    //                     });
+    //                 }
+    //             });
+    //
+    //             result.mandatory.push({
+    //                 subject_id: subject.id,
+    //                 answers: answerList,
+    //             });
+    //         });
+    //
+    //         // Optional
+    //         data?.questions.optional.forEach((subject) => {
+    //             const subjectAnswers = answers[subject.id];
+    //             if (!subjectAnswers) return;
+    //
+    //             const answerList: { question_block_id: number; answer_id: number }[] = [];
+    //
+    //             subject.blocks.forEach((block) => {
+    //                 const answerId = subjectAnswers[block.id];
+    //                 if (answerId !== undefined) {
+    //                     answerList.push({
+    //                         question_block_id: block.id,
+    //                         answer_id: answerId,
+    //                     });
+    //                 }
+    //             });
+    //
+    //             result.optional.push({
+    //                 subject_id: subject.id,
+    //                 answers: answerList,
+    //             });
+    //         });
+    //
+    //         const res = {
+    //             ...result,
+    //             id
+    //         }
+    //
+    //         request({
+    //             url: `test/test/crud/check/`,
+    //             method: "POST",
+    //             body: JSON.stringify(res)
+    //         })
+    //             .then(res => {
+    //                 navigate(`../onlineTest/answer/${res.id}`)
+    //             })
+    //             .catch(err => console.log(err))
+    //
+    //
+    //     }
+    //
+    // } , [timeLeft])
 
     useEffect(() => {
         if (timeLeft <= 0) return;

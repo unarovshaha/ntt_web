@@ -23,7 +23,7 @@ export const DropDown = ({ title = "", subtitle = "", html }: Props) => {
     return (
         <div className={cls.wrapper}>
             {title && <h3 className={cls.title}>{title} haqida</h3>}
-            {subtitle && <strong className={cls.subtitle}>📌 {subtitle}</strong>}
+            {/*{subtitle && <strong className={cls.subtitle}>📌 {subtitle}</strong>}*/}
             <div
                 className={cls.content}
                 style={{ maxHeight: height }}

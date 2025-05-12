@@ -15,7 +15,7 @@ export const API_URL_DOC = `https://api.xususiytalim.uz`
 //
 export const API_URL: string = `${API_URL_DOC}/api/`
 
-
+ 
 
 
 
