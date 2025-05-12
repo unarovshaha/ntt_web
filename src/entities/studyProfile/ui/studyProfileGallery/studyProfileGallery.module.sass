@@ -1,23 +1,46 @@
-@import "app/styles/abstracts/mixins"
 
-.images
-  padding: 1rem
-  height: fit-content
+.carousel
   display: flex
-  //justify-content: center
-  flex-wrap: wrap
-  gap: 3rem 2rem
-  background: #fff
+  align-items: center
+  justify-content: center
+  gap: 1rem
+  width: 100%
+  max-width: 100%
+  margin: 2rem auto
   position: relative
-  &.notActive
-    padding: 0
-  &__item
-    min-width: 28rem
-    max-width: 28rem
-    min-height: 27rem
-    max-height: 27rem
-    position: relative
-    img
-      width: 100%
-      height: 100%
-      object-fit: cover
+
+.arrow
+  background: none
+  border: none
+  font-size: 3rem
+  cursor: pointer
+  color: #444
+  transition: 0.2s
+  z-index: 1
+  &:hover
+    color: black
+
+.imageWrapper
+  width: 100%
+  height: 500px
+  position: relative
+  overflow: hidden
+  border-radius: 12px
+
+.image
+  width: 100%
+  height: 100%
+  object-fit: cover
+  position: absolute
+  top: 0
+  left: 0
+  opacity: 0
+  transform: scale(1.05)
+  transition: all 0.5s ease-in-out
+  &.active
+    opacity: 1
+    transform: scale(1)
+
+@media (max-width: 900px)
+  .imageWrapper
+    height: 250px!important

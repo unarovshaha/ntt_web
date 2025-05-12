@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Outlet, Route, Routes, useParams} from "react-router";
 
 import {
@@ -18,6 +18,7 @@ import {DynamicModuleLoader, ReducersList} from "shared/lib/components/DynamicMo
 import {useSelector} from "react-redux";
 import {StudyComments} from "entities/study";
 import {fetchUserComments} from "entities/studyProfile/model/studyProfileThunk";
+import {NewProfileReadMore} from "entities/newProfile/ui/newProfileReadMore/newProfileReadMore";
 
 
 const reducers: ReducersList = {
@@ -28,6 +29,9 @@ export const StudyProfileNewPage = () => {
 
     const {id} = useParams()
     const dispatch = useAppDispatch()
+    const [items, setItems] = useState<any>()
+
+    console.log(items, 'edede')
 
     useEffect(() => {
         if (id){
@@ -45,9 +49,8 @@ export const StudyProfileNewPage = () => {
                     <Outlet/>
                     <Routes>
                         <Route path={"about"} element={<StudyProfileAbout/>}/>
-                        <Route path={"grant"} element={<StudyProfileGrant/>}/>
-                        <Route path={"gallery"} element={<StudyProfileGallery/>}/>
-                        <Route path={"directions"} element={<StudyProfileAnnouncements/>}/>
+                        <Route path={"directions"} element={<StudyProfileAnnouncements setItems={setItems}/>}/>
+                        <Route path={"directions/readonly"} element={<NewProfileReadMore item={items}/>}/>
                         <Route path={"comments"} element={<StudyComments/>}/>
                     </Routes>
                 </div>

@@ -1,49 +1,50 @@
-import React, {useEffect} from 'react';
-import classNames from "classnames";
-import {useSelector} from "react-redux";
-
-import {getStudyProfileGallery} from "../../model/studyProfileSelector";
-
+import React, {useState} from 'react';
 import cls from "./studyProfileGallery.module.sass";
-import image from "shared/assets/images/Rectangle 640.png";
-import {useParams} from "react-router";
-import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
-import {fetchStudyProfileGallery} from "entities/studyProfile/model/studyProfileThunk";
+interface IUrl {
+    url: string;
+    id: number;
+    type: string;
+}
+interface ImageItem {
+    id: number;
+    file: IUrl;
+}
 
-export const StudyProfileGallery = () => {
+interface GalleryCarouselProps {
+    images: ImageItem[];
 
-    const {id} = useParams()
-    const dispatch = useAppDispatch()
-    const data = useSelector(getStudyProfileGallery)
+}
 
-    useEffect(() => {
-        if (id)
-            dispatch(fetchStudyProfileGallery({id}))
-    }, [id])
+export const StudyProfileGallery = ({ images }: GalleryCarouselProps) => {
+    const [current, setCurrent] = useState(0);
 
-    const renderImages = () => {
-        return data?.map((item, index) => {
-            return (
-                <div
-                    key={index}
-                    className={cls.images__item}
-                >
-                    <img src={item?.file?.url ?? image} alt=""/>
-                </div>
-            )
-        })
-    }
+    const nextSlide = () => {
+        setCurrent((prev) => (prev + 1) % images.length);
+    };
+
+    const prevSlide = () => {
+        setCurrent((prev) => (prev - 1 + images.length) % images.length);
+    };
+
+
 
     return (
-        <div
-            className={classNames(
-                cls.images, {
-                    [cls.notActive]: !data?.length
-                }
-            )}
-        >
-            {renderImages()}
 
+        <div className={cls.carousel}>
+            <button onClick={prevSlide} className={cls.arrow}>‹</button>
+
+            <div className={cls.imageWrapper}>
+                {images.map((img, index) => (
+                    <img
+                        key={img.id}
+                        src={`${img.file?.url}`}
+                        alt={`image-${img.id}`}
+                        className={`${cls.image} ${index === current ? cls.active : ''}`}
+                    />
+                ))}
+            </div>
+
+            <button onClick={nextSlide} className={cls.arrow}>›</button>
         </div>
     );
 }

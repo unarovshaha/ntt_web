@@ -97,9 +97,9 @@ const OnlineTestLeft = () => {
                 <li>36 <span>Ishtirokchilar</span></li>
                 <li>11 <span>Fanlar soni</span></li>
                 <li>21.7% <span>O'rtacha natija</span></li>
-                <li>72.2% <span>Maksimum natija</span></li>
+                <li>72.2% <span>Maksimal natija</span></li>
             </ul>
-            <Button extraClass={cls.main__container_left_btn}>Natijalari ko'rish</Button>
+            <Button extraClass={cls.main__container_left_btn}>Natijalarni ko'rish</Button>
         </div>
     )
 }

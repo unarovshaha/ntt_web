@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Route, Routes, useParams} from "react-router";
 
 import {
@@ -17,12 +17,13 @@ import {
     fetchHomeProfileItem,
     fetchHomeProfileItemHeader, fetchStudentAcademicYear, fetchUserComment
 } from "entities/home/model/thunk/homeThunk";
+import {NewProfileReadMore} from "entities/newProfile/ui/newProfileReadMore/newProfileReadMore";
 
 
 export const NewProfile = () => {
     const dispatch = useAppDispatch()
-
     const {id} = useParams()
+    const [items, setItems] = useState<any>()
 
     const dataItem = localStorage.getItem("orgId")
 
@@ -43,18 +44,14 @@ export const NewProfile = () => {
     }, [dataItem, id])
 
 
-    // useEffect(() => {
-    //     if (dataItem?.id)  dispatch(fetchHomeProfileDegree(Number(dataItem?.organization_type.id)))
-    // }, [dataItem])
 
     return (
         <div className={cls.profile}>
             <NewProfileHeader/>
             <Routes>
                 <Route path={"about"} element={<NewProfileAbout/>}/>
-                <Route path={"direction"} element={<NewProfileDirection/>}/>
-                <Route path={"gallery"} element={<NewProfileGallery/>}/>
-                <Route path={"grant"} element={<NewProfileGrant/>}/>
+                <Route path={"direction"} element={<NewProfileDirection setItems={setItems}/>}/>
+                <Route path={"direction/readonly"} element={<NewProfileReadMore item={items}/>}/>
                 <Route path={"personal"} element={<NewProfilePersonal/>}/>
                 <Route path={"comments"} element={<NewProfileComments/>}/>
             </Routes>

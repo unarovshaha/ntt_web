@@ -91,7 +91,7 @@ export const HomePage = () => {
                 <div className={cls.main__container_infos}>
                     <div className={cls.main__container_infos_title}>
                         <h2>Nodavlat Ta’lim</h2>
-                        <h1>Orzuyingizdagi OTMni {!isMobile ? <br/> : ""} toping.</h1>
+                        <h1>O‘zingizga mos bilim{!isMobile ? <br/> : ""} maskanini tanlang.</h1>
                     </div>
 
                     <ul className={cls.main__container_infos_list}>

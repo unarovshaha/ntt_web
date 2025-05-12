@@ -34,20 +34,19 @@ export const TechnicalSchool = ({item}: { item: HeaderItem }) => {
 
             <TechnicalSchoolFilter item={item}/>
             {data?.map((item, index) => (
-                location.pathname.includes("Universitet") ?
-                    <UniversityCard
-                        name={item.name}
-                        rating={item.rating}
-                        grant={item.landing?.grant}
-                        priceMax={item.landing?.price_max}
-                        priceMin={item.landing?.price_min}
-                        img={item.img}
-                        route={`profile/`}
-                        id={item.id}
-                        city={item.region}
-                        deadline={item.access_date}
-                    />
-                    :
+                // location.pathname.includes("Universitet") ?
+                //     <UniversityCard
+                //         name={item.name}
+                //         rating={item.rating}
+                //         grant={item.landing?.grant}
+                //         priceMax={item.landing?.price_max}
+                //         priceMin={item.landing?.price_min}
+                //         img={item.img}
+                //         route={`profile/`}
+                //         id={item.id}
+                //     />
+                //     // <></>
+                //     :
                 <Card
                     rating={item.rating}
                     route={`profile/`}
@@ -60,6 +59,9 @@ export const TechnicalSchool = ({item}: { item: HeaderItem }) => {
                     key={index}
                     priceMax={item.landing?.price_max}
                     priceMin={item.landing?.price_min}
+                    language={item.landing?.language}
+                    shift={item.landing?.shift}
+                    grant={item.landing?.grant}
                 />
                 // <div
                 //     onClick={() => {

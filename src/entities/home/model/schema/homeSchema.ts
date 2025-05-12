@@ -40,7 +40,7 @@ interface Description {
     id: number;
     desc: string;
     type: string;
-    img: string
+    img: string;
 }
 
 interface GalleryItem {

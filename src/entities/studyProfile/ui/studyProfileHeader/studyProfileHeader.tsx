@@ -7,8 +7,6 @@ import {useParams} from "react-router";
 
 const menuList = [
     {name: "about", label: "Haqida"},
-    {name: "grant", label: "Grantlar"},
-    {name: "gallery", label: "Galereya"},
     {name: "directions", label: "Talim yo’nalishi"},
     {name: "comments", label: "Reyting"},
 ]
