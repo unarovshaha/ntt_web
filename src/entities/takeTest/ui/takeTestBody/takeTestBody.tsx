@@ -339,11 +339,6 @@ export const TakeTestBody = () => {
                             ))}
                         </div>
                     ))}
-
-
-                    <div className={cls.footer}>
-                        <button onClick={onPostAnswer} className={cls.endBtn}>Tugatish</button>
-                    </div>
                 </div>
 
 
@@ -453,8 +448,11 @@ export const TakeTestBody = () => {
                             </div>
                         );
                     })}
-
+                    <div className={cls.footer}>
+                        <button onClick={onPostAnswer} className={cls.endBtn}>Tugatish</button>
+                    </div>
                 </div>
+
             </div>
         </div>
     );
