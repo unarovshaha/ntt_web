@@ -9,6 +9,8 @@ import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import {fetchStudyProfileGallery} from "entities/studyProfile/model/studyProfileThunk";
 import {StudyProfileGallery} from "entities/studyProfile/ui/studyProfileGallery/studyProfileGallery";
 import {DropDown} from "shared/ui/dropdown";
+import {NewProfileGallery} from "../../../newProfile";
+import {API_URL_DOC} from "../../../../shared/api/base";
 
 export const StudyProfileAbout = () => {
 
@@ -31,9 +33,13 @@ export const StudyProfileAbout = () => {
         <div className={cls.info}>
             <div className={cls.container}>
                 {/*@ts-ignore*/}
-                <StudyProfileGallery images={gallery}/>
-                <DropDown title={data?.name} subtitle={data?.name} html={data?.desc}/>
-                <DropDown title={"Grand"} subtitle={data?.name} html={data?.grand_text}/>
+                {gallery.length > 0 ? (
+                    <NewProfileGallery images={gallery} apiUrl={API_URL_DOC}/>
+                ) : (
+                    <p className={cls.about__null}>Gallereya topilmadi.</p>
+                )}
+                <DropDown title={"Universitet haqida"} subtitle={data?.name} html={data?.desc}/>
+                <DropDown title={"Grandlar"} subtitle={data?.name} html={data?.grand_text}/>
             </div>
         </div>
     );
