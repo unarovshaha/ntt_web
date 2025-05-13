@@ -22,14 +22,14 @@ export const NewProfileAbout = () => {
                 {gallery.length > 0 ? (
                     <NewProfileGallery images={gallery} apiUrl={API_URL_DOC}/>
                 ) : (
-                    <p>Gallereya topilmadi.</p>
+                    <p className={cls.about__null}>Gallereya topilmadi.</p>
                 )}
                 {/*@ts-ignore*/}
-                <DropDown title={data?.name} subtitle={data?.name}
+                <DropDown title={"Universitet haqida"} subtitle={data?.name}
                           //@ts-ignore
                           html={data?.desc}/>
                 {/*@ts-ignore*/}
-                <DropDown title={"Grand"} subtitle={data?.name}
+                <DropDown title={"Grandlar"} subtitle={data?.name}
                           //@ts-ignore
                           html={data?.grand_text}/>
             </div>
