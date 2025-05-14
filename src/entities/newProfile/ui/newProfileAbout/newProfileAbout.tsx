@@ -29,7 +29,7 @@ export const NewProfileAbout = () => {
                           //@ts-ignore
                           html={data?.desc}/>
                 {/*@ts-ignore*/}
-                <DropDown title={"Grandlar"} subtitle={data?.name}
+                < DropDown title={"Grandlar"} subtitle={data?.name}
                           //@ts-ignore
                           html={data?.grand_text}/>
             </div>
