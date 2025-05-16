@@ -33,7 +33,7 @@ interface IData  {
 }
 
 
-const filterSide = [{name: "Test Topshirish"}, {name: "Natijalarni kurish"}]
+const filterSide = [ {name: "Natijalarni kurish"} , {name: "Test Topshirish"}]
 
 const reducer = {
     onlineTestEnterSlice: onlineTestEnterReducer
@@ -68,7 +68,7 @@ export const OnlineTestEnterFeature = () => {
                     </div>}
 
 
-                    {isMobile ? active === "Test Topshirish" ? <OnlineTestLeft/> :
+                    {isMobile ? active === "Natijalarni kurish" ? <OnlineTestLeft/> :
                         <OnlineTestRight token={token}/> : <> <OnlineTestLeft/> <OnlineTestRight token={token}/></>}
 
                 </div>
