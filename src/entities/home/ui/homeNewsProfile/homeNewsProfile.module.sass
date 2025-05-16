@@ -42,12 +42,13 @@
         color: rgba(0, 0, 0, 0.53)
         font-family: Montserrat, sans-serif
     .block
-      width: 100%
+      //width: 100%
       display: flex
       //padding: 1rem
       flex-wrap: wrap
       text-align: start
       margin: 1.5rem 0
+      //width: 100%
       img
         width: 100%
 
@@ -112,6 +113,20 @@
     &__container
       padding-left: 0
       width: 100%
+      .block
+        &__inner
+          max-width: 100%
+          overflow-x: hidden
+          a
+            display: inline-block
+            max-width: 100%
+            overflow-wrap: anywhere
+            word-break: break-word
+          p
+            word-wrap: break-word /* Перенос длинных слов */
+            overflow-wrap: break-word
+            word-break: break-word /* Принудительный перенос, если нужно */
+            max-width: 100%
       .title
         font-size: 3rem
     &__listBox
