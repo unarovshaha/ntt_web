@@ -14,6 +14,7 @@ interface iCardProps {
     priceMax?: number,
     priceMin?: number,
     startDate?: string,
+    endDate?: string,
     id?: number,
     image?: string,
     desc?: string,
@@ -23,7 +24,7 @@ interface iCardProps {
     grant?: boolean
 }
 
-export const Card = ({region, rating, route, desc, image, name, priceMax, priceMin, startDate, id , language , shift, grant}: iCardProps) => {
+export const Card = ({region, rating, route, desc, image, name, priceMax, priceMin, startDate, endDate, id , language , shift, grant}: iCardProps) => {
 
     const navigate = useNavigate()
 
@@ -50,7 +51,7 @@ export const Card = ({region, rating, route, desc, image, name, priceMax, priceM
                     <li>{menuName === '/Universitet' ? "Kontrakt to’lovi" : "To'lov summasi"}<div  className={cls.contract}><span>{formatSalary(priceMin)}</span>-<span>{formatSalary(priceMax)}</span></div> </li>
                     <li>
                         Qabul muddati
-                        <span> {startDate}</span>
+                        <span>{startDate} - {endDate}</span>
                     </li>
                 </ul>
                 <div className={cls.card__container_btn}>
