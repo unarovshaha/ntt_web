@@ -30,7 +30,7 @@ export const NewProfileHeader = () => {
                     }}
                     className={({isActive}) =>
                         classNames(cls.header__item, {
-                            [cls.active]: active === item.to
+                            [cls.active]: isActive
                         })
                     }
                     to={`${pathname}/profile/${id}/${item.to}`}
