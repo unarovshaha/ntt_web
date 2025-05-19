@@ -9,10 +9,11 @@ export interface IOrganization {
     id: number,
     rating: number,
     name: string,
+    start_date: string,
+    expire_date: string,
     landing: {
         price_max: number,
         price_min: number,
-        start_date: string,
         id: number,
         grant: boolean,
         language: [],
