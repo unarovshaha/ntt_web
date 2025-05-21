@@ -31,7 +31,6 @@ interface IHomeTechnical extends IOrganization{
     // img: string;
     organization_type: number;
     region: string;
-    access_date: string;
     // landing: Landing;
 }
 
@@ -40,7 +39,7 @@ interface Description {
     id: number;
     desc: string;
     type: string;
-    img: string
+    img: string;
 }
 
 interface GalleryItem {

@@ -83,12 +83,19 @@ export const NewProfileDirection: React.FC<IDirection> = memo((props) => {
                                         {shiftItem.name}
                                             {index !== arr.length - 1 && "\\"}
                                         </span>
-                                    ))}~
+                                    ))}
                                 </span>
                        </li>
                        <li>{activeMenu === "/Universitet" ? "Kontrakt summasi " : "To'lov summasi "}
                            <span>{item?.price.toLocaleString()}</span></li>
-                       <li>Boshlanish vaqti <span>{item?.start_date.replace(/-/g, ".")}</span></li>
+                       <li>
+                           Qabul muddati
+                           <span>
+                               {item?.start_date.replace(/-/g, ".")}
+                               -
+                               {item?.expire_date.replace(/-/g, ".")}
+                           </span>
+                       </li>
                        <h3
                            onClick={() => {
                                localStorage.setItem("landingId", String(item.id))
@@ -99,6 +106,15 @@ export const NewProfileDirection: React.FC<IDirection> = memo((props) => {
                        >
                            Hujjat topshirish
                        </h3>
+                       {
+                           !item.grant ?
+                               <div></div>
+                               : item.grant ?
+                                   <div
+                                       className={cls.grant}>
+                                       <p className={cls.header__title}>Grant mavjud</p>
+                                   </div> : null
+                       }
                    </ul>
 
                 <div className={cls.profile__footer_container_box_right}>

@@ -40,7 +40,8 @@ export const StudySchoolList = ({setActive, active}: ISchoolList) => {
                     priceMin={item.landing?.price_min}
                     region={item.locations}
                     image={item.img}
-                    startDate={item.landing?.start_date}
+                    startDate={item?.start_date}
+                    endDate={item?.expire_date}
                     desc={item?.desc}
                     rating={item?.rating}
                     key={index}

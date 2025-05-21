@@ -8,8 +8,6 @@ import {useParams} from "react-router";
 const list = [
     {label: "Haqida", to: "about"},
     {label: "Talim yo’nalishi", to: "direction"},
-    {label: "Galereya", to: "gallery"},
-    {label: "Grantlar", to: "grant"},
     {label: "Profil", to: "personal"},
     {label: "Reyting", to: "comments"},
     // {to: "readonly"},
@@ -32,7 +30,7 @@ export const NewProfileHeader = () => {
                     }}
                     className={({isActive}) =>
                         classNames(cls.header__item, {
-                            [cls.active]: active === item.to
+                            [cls.active]: isActive
                         })
                     }
                     to={`${pathname}/profile/${id}/${item.to}`}

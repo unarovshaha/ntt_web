@@ -74,7 +74,7 @@ export const HomeNewsProfile = () => {
             <div className={cls.block}>
                 {
                     item.type_block === "text" ?
-                        <div dangerouslySetInnerHTML={{__html: item.desc_json.text}}>
+                        <div className={cls.block__inner} dangerouslySetInnerHTML={{__html: item.desc_json.text}}>
 
                         </div>
                         :

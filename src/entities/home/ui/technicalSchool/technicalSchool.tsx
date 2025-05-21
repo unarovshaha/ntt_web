@@ -53,7 +53,8 @@ export const TechnicalSchool = ({item}: { item: HeaderItem }) => {
                     name={item.name}
                     id={item.id}
                     image={item.img}
-                    startDate={item.landing?.start_date}
+                    startDate={item?.start_date}
+                    endDate={item?.expire_date}
                     desc={item.desc}
                     region={item.locations}
                     key={index}
@@ -61,6 +62,7 @@ export const TechnicalSchool = ({item}: { item: HeaderItem }) => {
                     priceMin={item.landing?.price_min}
                     language={item.landing?.language}
                     shift={item.landing?.shift}
+                    grant={item.landing?.grant}
                 />
                 // <div
                 //     onClick={() => {

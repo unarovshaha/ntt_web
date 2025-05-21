@@ -8,6 +8,26 @@
 }
 .mainBox .btn {
   cursor: pointer;
+  box-shadow: 0 10px 15px 0 rgba(128, 128, 128, 0.4);
+}
+
+.arounder {
+  display: flex;
+  gap: 2rem;
+}
+
+.grant {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  padding: 1rem;
+  font-size: 1.4rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px 0 rgba(128, 128, 128, 0.4);
+  background: #34C759;
+  color: white;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 /*# sourceMappingURL=newProfileReadMore.module.css.map */

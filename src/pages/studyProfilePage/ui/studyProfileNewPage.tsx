@@ -49,8 +49,6 @@ export const StudyProfileNewPage = () => {
                     <Outlet/>
                     <Routes>
                         <Route path={"about"} element={<StudyProfileAbout/>}/>
-                        <Route path={"grant"} element={<StudyProfileGrant/>}/>
-                        <Route path={"gallery"} element={<StudyProfileGallery/>}/>
                         <Route path={"directions"} element={<StudyProfileAnnouncements setItems={setItems}/>}/>
                         <Route path={"directions/readonly"} element={<NewProfileReadMore item={items}/>}/>
                         <Route path={"comments"} element={<StudyComments/>}/>
