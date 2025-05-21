@@ -184,6 +184,7 @@ const OnlineTestRight = ({token}: { token: string | null }) => {
             ])
     }
 
+    console.log(true)
 
 
 
@@ -206,11 +207,13 @@ const OnlineTestRight = ({token}: { token: string | null }) => {
             {/*</div>*/}
             {!token && <div className={cls.main__container_right_form}>
                 <Input
+                    required
                     register={register}
                     extraClass={cls.main__container_right_form_input}
                     name={"name"}
                     placeholder={"Ismingiz"}/>
                 <Input
+                    required
                     register={register}
                     extraClass={cls.main__container_right_form_input}
                     name={"surname"}
