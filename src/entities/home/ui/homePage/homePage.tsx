@@ -95,8 +95,8 @@ export const HomePage = () => {
                     </div>
 
                     <ul className={cls.main__container_infos_list}>
-                        <li><img src={checkIcon} alt=""/>OTM — bu oliy ta’lim beruvchi muassasa.</li>
-                        <li><img src={checkIcon} alt=""/>OTM — bu kasbiy bilim va malaka beruvchi o‘quv maskani.</li>
+                        <li><img src={checkIcon} alt=""/>Xususiy taʼlim — bu sifatli taʼlimni tanlaydiganlar uchun yagona makon</li>
+                        <li><img src={checkIcon} alt=""/>Xususiy taʼlim — bu maktab, litsey, OTM va o‘quv markazlarining yagona jamlanmasi..</li>
                     </ul>
                     <div className={cls.main__container_infos_contact}>
                         <Button onClick={handleClick} extraClass={cls.main__container_infos_contact_btn}><i
