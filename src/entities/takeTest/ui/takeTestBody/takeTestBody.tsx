@@ -2,17 +2,22 @@ import React, {useState, useMemo, useEffect} from "react";
 import cls from "./takeTestBody.module.sass";
 import {useSelector} from "react-redux";
 import {getTakeTestItem} from "features/onlineTestEnter/model/takeTest/takeTestSelector";
-import {QuestionItem} from "features/onlineTestEnter/model/takeTest/takeTestSchema";
+import {QuestionBlock, QuestionItem} from "features/onlineTestEnter/model/takeTest/takeTestSchema";
 import {API_URL, API_URL_DOC, useHttp} from "shared/api/base";
 import {useParams} from "react-router";
 import {useNavigate} from "react-router-dom";
 import {Button} from "shared/ui/button";
+import {Modal} from "shared/ui/modal";
 
 export const TakeTestBody = () => {
     const data = useSelector(getTakeTestItem);
 
     const [selectedSubjectId, setSelectedSubjectId] = useState<number | undefined | any>(data?.questions.optional[0].id);
     const [answers, setAnswers] = useState<Record<number, Record<number, number>>>({});
+
+    const [activeModal , setActiveModal] = useState(false)
+
+    const [activeModalItem , setActiveItem] = useState<QuestionBlock>()
 
     const {request} = useHttp()
 
@@ -285,7 +290,10 @@ export const TakeTestBody = () => {
                                 <div key={block.id} className={cls.block}>
                                     <p className={cls.question}>
                                         {i + 1}. {block.text ? block.text :
-                                        <img style={{width: "30rem", height: "10rem", objectFit: "cover"}}
+                                        <img onClick={() => {
+                                            setActiveModal(true)
+                                            setActiveItem(block)
+                                        }} style={{width: "30rem", height: "10rem", objectFit: "cover"}}
                                              src={API_URL_DOC + block.image} alt=""/>}
                                     </p>
                                     <div className={cls.answers}>
@@ -315,7 +323,11 @@ export const TakeTestBody = () => {
                             {question.blocks.map((block, i) => (
                                 <div key={block.id} className={cls.block}>
                                     <p className={cls.question}>
-                                        {i + 1}. {block.text ?? "Savol matni yo‘q"}
+                                        {i + 1}. {block.text ? block.text :
+                                        <img onClick={() => {
+                                            setActiveModal(true)
+                                        }} style={{width: "30rem", height: "10rem", objectFit: "cover"}}
+                                             src={API_URL_DOC + block.image} alt=""/>}
                                     </p>
                                     <div className={cls.answers}>
                                         {block.questions.map((option, i) => {
@@ -339,12 +351,11 @@ export const TakeTestBody = () => {
                             ))}
                         </div>
                     ))}
-
-
-                    <div className={cls.footer}>
-                        <button onClick={onPostAnswer} className={cls.endBtn}>Tugatish</button>
-                    </div>
                 </div>
+
+
+
+
 
 
                 <div className={cls.sidebar}>
@@ -453,9 +464,16 @@ export const TakeTestBody = () => {
                             </div>
                         );
                     })}
-
+                    <div className={cls.footer}>
+                        <button onClick={onPostAnswer} className={cls.endBtn}>Tugatish</button>
+                    </div>
                 </div>
             </div>
+            <Modal extraClass={cls.modal} title={"Savol rasmi"} active={activeModal} setActive={setActiveModal}>
+                <img className={cls.modal__img}
+                     src={API_URL_DOC + activeModalItem?.image} alt=""/>
+            </Modal>
+
         </div>
     );
 };

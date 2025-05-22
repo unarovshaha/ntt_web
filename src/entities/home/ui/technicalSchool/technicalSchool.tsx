@@ -7,8 +7,7 @@ import {useNavigate} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {getHomeTechnical} from "entities/home/model/selector/homeSelector";
 import {HeaderItem} from "entities/home/model/schema/homeSchema";
-import {Card} from "../../../../shared/lib/components/card/card";
-import {UniversityCard} from "../../../../shared/lib/components/UniversityCard/UniversityCard";
+import {Card} from "shared/lib/components/card/card";
 import {useLocation} from "react-router";
 
 

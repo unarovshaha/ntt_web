@@ -124,7 +124,9 @@
   width: 20%
   display: flex
   flex-direction: column
-  gap: 2rem
+  gap: .5rem
+  height: 35rem
+  overflow: auto
   //border-radius: 12px
   //padding: 1rem
   //box-shadow: 0 0 10px rgba(0, 0, 0, 0.08)
@@ -150,7 +152,7 @@
     text-transform: capitalize
     font-size: 1.8rem
     font-weight: 700
-    //padding: 0.75rem 1rem
+    padding: 0.75rem 1rem
     //border-radius: 8px
     //background-color: #f0f0f0
     //cursor: pointer
@@ -166,7 +168,12 @@
       background-color: #0056d6
       color: white
       font-weight: bold
-@media (max-width: 950px)
+.modal
+  &__img
+    width: 100%
+    height: 40rem
+    object-fit: cover
+@media (max-width: 1054px)
   .main
     display: flex
     flex-direction: column
@@ -183,6 +190,7 @@
     border: none
     padding: 1rem 0
     border-radius: 0
+    box-shadow: none
 
 
 
@@ -202,6 +210,7 @@
   .sidebar
     flex-direction: row
     gap: 0
+    height: fit-content
 
     width: 100%
     &__timer
@@ -225,6 +234,12 @@
 
   .footer
     display: none
+@media (max-width: 782px)
+  .modal
+    width: 90%
+    & > img
+      height: 100%
+      padding: 0 0 2rem  0
 @media (max-width: 500px)
   .subjectItem
     font-size: 1rem !important
@@ -235,3 +250,7 @@
     font-size: 1.4rem
   .answer
     font-size: 1.2rem
+
+@media (max-width: 430px)
+  .modal
+    height: 40rem

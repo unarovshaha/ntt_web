@@ -20,7 +20,7 @@ export interface QuestionItem {
     blocks: QuestionBlock[];
 }
 
-interface QuestionBlock {
+export interface QuestionBlock {
     id: number;
     text: string | null;
     to_json: BlockType;
