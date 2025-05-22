@@ -4,7 +4,7 @@ import {
     fetchAcademicYear,
     fetchDirectionsData, fetchDistrictThunk,
     fetchLanguagesData,
-    fetchLocationsData, fetchOrganizationTypesData,
+    fetchLocationsData, fetchOftenUsedFieldsItem, fetchOrganizationTypesData,
     fetchStudyTypesData
 } from "./oftenUsedThunk";
 
@@ -32,6 +32,7 @@ const initialState: IOftenUsedSchema = {
     district: [],
     organizationTypes: [],
     academicYear: [],
+    fields: [],
     currentYear: undefined,
     loading: false,
     error: undefined
@@ -135,6 +136,21 @@ const oftenUsedSlice = createSlice({
                 state.error = undefined
             })
             .addCase(fetchDistrictThunk.rejected, (state) => {
+                state.loading = false
+                state.error = "error"
+            })
+
+
+            .addCase(fetchOftenUsedFieldsItem.pending, (state) => {
+                state.loading = true
+                state.error = undefined
+            })
+            .addCase(fetchOftenUsedFieldsItem.fulfilled, (state, action) => {
+                state.fields = action.payload
+                state.loading = false
+                state.error = undefined
+            })
+            .addCase(fetchOftenUsedFieldsItem.rejected, (state) => {
                 state.loading = false
                 state.error = "error"
             })
