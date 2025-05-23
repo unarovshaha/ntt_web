@@ -21,6 +21,7 @@ import {Select} from "shared/ui/select";
 import {Modal} from "shared/ui/modal";
 import {EducationRecord} from "entities/home/model/schema/homeSchema";
 import {NewProfileReadMore} from "entities/newProfile/ui/newProfileReadMore/newProfileReadMore";
+import {HomeNews} from "entities/newProfile/ui/homeNews/homeNews";
 interface IDirection {
     setItems: (arg: EducationRecord) => void;
 }
@@ -134,32 +135,31 @@ export const NewProfileDirection: React.FC<IDirection> = memo((props) => {
         name: years?.date,
     }));
     return (
-        <div style={{display: "flex", gap: "2rem"}}>
-            {window.innerWidth > 700 && <div className={cls.info}><NewProfilePersonal/></div>}
+        <div className={cls.basic}>
+            <div className={cls.info}><NewProfilePersonal/></div>
 
 
-            <div className={cls.direction}>
+          <div className={cls.main}>
+              <div className={cls.direction}>
+                  <div className={cls.direction__filter}>
+                      <div className={cls.direction__list}>
+                          {degreeList?.map(item => (
+                              <h2 onClick={() => {
+                                  setActive(item.id)
+                              }} className={classNames({
+                                  [cls.active]: item.id === active
+                              })}>{item.name}</h2>
+                          ))}
+                      </div>
+                      <Select extraClass={cls.select} setSelectOption={setActiveYear} optionsData={yearOptions}/>
+                  </div>
+                  <div className={cls.direction__main}>
+                      {render}
+                  </div>
+              </div>
+              <HomeNews/>
 
-                <div className={cls.direction__filter}>
-                    <div className={cls.direction__list}>
-                        {degreeList?.map(item => (
-                            <h2 onClick={() => {
-                                setActive(item.id)
-                            }} className={classNames({
-                                [cls.active]: item.id === active
-                            })}>{item.name}</h2>
-                        ))}
-                    </div>
-
-                    <Select setSelectOption={setActiveYear} optionsData={yearOptions}/>
-
-
-                </div>
-                <div className={cls.direction__main}>
-                    {render}
-                </div>
-            </div>
-
+          </div>
 
         </div>
     );

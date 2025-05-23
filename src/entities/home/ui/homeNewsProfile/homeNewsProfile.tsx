@@ -50,8 +50,6 @@ export const HomeNewsProfile = () => {
     }, [id])
 
     const renderData = () => {
-
-           //@ts-ignore
         return homeNewsData?.map((item) => (
                 <div onClick={() => navigate(`/news/${item.id}`)} className={cls.listsBox}>
                     <img className={cls.listsBox__img} src={item?.img} alt=""/>
@@ -70,7 +68,6 @@ export const HomeNewsProfile = () => {
 
     const renderBlocks = () => {
         if (!data?.blocks) return
-
         return data.blocks.map((item) => (
             <div className={cls.block}>
                 {

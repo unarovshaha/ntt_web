@@ -8,7 +8,7 @@ import {useParams} from "react-router";
 const list = [
     {label: "Haqida", to: "about"},
     {label: "Talim yo’nalishi", to: "direction"},
-    {label: "Profil", to: "personal"},
+    // {label: "Profil", to: "personal"},
     {label: "Reyting", to: "comments"},
     // {to: "readonly"},
 ]
@@ -22,7 +22,7 @@ export const NewProfileHeader = () => {
 
     const renderLinks = () => {
         return list?.map(item => {
-            if (item.to === "personal" && window.innerWidth > 630) return null
+            // if (item.to === "personal" && window.innerWidth > 630) return null
             return (
                 <NavLink
                     onClick={() => {
