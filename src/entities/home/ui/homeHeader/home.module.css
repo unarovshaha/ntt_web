@@ -112,6 +112,20 @@
   padding: 1.4rem;
 }
 
+.btnPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 8rem;
+}
+
+.enterBtn {
+  width: 90%;
+  border-radius: 1rem;
+  background: linear-gradient(90deg, #0052CC 0%, #003F99 100%);
+  font-size: 2rem;
+}
+
 @media (max-width: 1100px) {
   .header {
     justify-content: center;
@@ -155,8 +169,7 @@
   }
   .header .header__end_btn {
     width: 6rem;
-    letter-spacing: 0.2rem;
-    font-size: 1.4rem;
+    font-size: 0.7rem;
     padding: 1rem 0;
   }
 }
