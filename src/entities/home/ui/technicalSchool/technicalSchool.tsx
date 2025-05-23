@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import cls from './technicalSchool.module.sass'
 import univerImg from "shared/assets/images/Ellipse 118.png"
 import {Switch} from "shared/ui/switch";
@@ -9,6 +9,7 @@ import {getHomeTechnical} from "entities/home/model/selector/homeSelector";
 import {HeaderItem} from "entities/home/model/schema/homeSchema";
 import {Card} from "shared/lib/components/card/card";
 import {useLocation} from "react-router";
+import {Pagination} from "features/pagination";
 
 
 export const TechnicalSchool = ({item}: { item: HeaderItem }) => {
@@ -16,36 +17,22 @@ export const TechnicalSchool = ({item}: { item: HeaderItem }) => {
     const navigate = useNavigate()
     const location = useLocation()
     console.log(location, "location")
-
-
+    const pageSize = useMemo(() => 10, [])
+    const [currentPage, setCurrentPage] = useState<number>(1)
     const data = useSelector(getHomeTechnical)
 
-    const menuName = localStorage.getItem("activeMenu")
-    const organizationType = localStorage.getItem("organizationType")
-
-
-    const formatSalary = (salary: string | number) => {
-        return salary?.toLocaleString();
-    };
-
+    const currentTableData = useMemo(() => {
+        const firstPageIndex = (currentPage - 1) * pageSize;
+        const lastPageIndex = firstPageIndex + pageSize;
+        return data?.slice(firstPageIndex, lastPageIndex);
+    }, [currentPage, data, pageSize]);
     return (
         <div className={cls.main}>
 
             <TechnicalSchoolFilter item={item}/>
-            {data?.map((item, index) => (
-                // location.pathname.includes("Universitet") ?
-                //     <UniversityCard
-                //         name={item.name}
-                //         rating={item.rating}
-                //         grant={item.landing?.grant}
-                //         priceMax={item.landing?.price_max}
-                //         priceMin={item.landing?.price_min}
-                //         img={item.img}
-                //         route={`profile/`}
-                //         id={item.id}
-                //     />
-                //     // <></>
-                //     :
+
+            {currentTableData?.map((item, index) => (
+
                 <Card
                     rating={item.rating}
                     route={`profile/`}
@@ -63,58 +50,14 @@ export const TechnicalSchool = ({item}: { item: HeaderItem }) => {
                     shift={item.landing?.shift}
                     grant={item.landing?.grant}
                 />
-                // <div
-                //     onClick={() => {
-                //         navigate(`${item.id}/about`)
-                //         localStorage.setItem("organizationID", String(item.id))
-                //     }}
-                //     className={cls.profile__footer_container_box}
-                // >
-                //
-                //     <div className={cls.profile__footer_container_box_header}>
-                //         <img src={item.img ? item.img : univerImg} alt=""/>
-                //         <h2>{item.name}</h2>
-                //     </div>
-                //     <ul>
-                //         <li>Ta'lim tili
-                //             <span>
-                //                     {item?.landing?.language?.map((shiftItem, index, arr) => (
-                //                         <span key={index}>
-                //                         {shiftItem}
-                //                             {index !== arr.length - 1 && "\\"}
-                //                             {window.innerWidth < 700 && <br/>}
-                //                         </span>
-                //                     ))}
-                //                 </span>
-                //         </li>
-                //         <li>
-                //             Ta'lim shakli{" "}
-                //                 <span>
-                //                     {item?.landing?.shift?.map((shiftItem, index, arr) => (
-                //                         <span key={index}>
-                //                         {shiftItem}
-                //                         {index !== arr.length - 1 && "\\"}
-                //                             {window.innerWidth < 700 && <br/>}
-                //                         </span>
-                //                     ))}
-                //                 </span>
-                //         </li>
-                //         <li>Talablar <span style={{height: "2rem" , overflow: "hidden "}} dangerouslySetInnerHTML={{__html: item.landing?.requirements}}></span></li>
-                //         <li>{menuName === '/Universitet' ? "Kontrakt to’lovi" : "To'lov summasi"}<div  className={cls.contract}><span>{formatSalary(item.landing?.price_min)}</span>-<span>{formatSalary(item.landing?.price_max)}</span></div> </li>
-                //     </ul>
-                //
-                //     <div className={cls.profile__footer_container_box_footer}>
-                //         <h3
-                //             className={cls.box__link}
-                //         >
-                //             Batafsil <i className={"fa fa-arrow-right"}/>
-                //         </h3>
-                //
-                //     </div>
-                //
-                //
-                // </div>
+
             ))}
+            <Pagination
+                totalCount={data?.length || 0}
+                onPageChange={setCurrentPage}
+                currentPage={currentPage}
+                pageSize={pageSize}
+            />
 
         </div>
     );

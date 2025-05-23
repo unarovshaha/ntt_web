@@ -1,4 +1,4 @@
-import React, {memo, useEffect, useState} from 'react';
+import React, {memo, useEffect, useMemo, useState} from 'react';
 import {useParams} from "react-router";
 import {useSelector} from "react-redux";
 
@@ -22,6 +22,7 @@ import {getUserId} from "entities/user";
 import {Button} from "shared/ui/button";
 import {EducationRecord} from "entities/home/model/schema/homeSchema";
 import {useNavigate} from "react-router-dom";
+import {Pagination} from "features/pagination";
 
 interface IDirection {
     setItems: (arg: EducationRecord) => void;
@@ -37,6 +38,17 @@ export const StudyProfileAnnouncements: React.FC<IDirection> = memo((props) => {
     const data = useSelector(getStudyProfileData)
     const [selectedDegree, setSelectedDegree] = useState()
     const navigate = useNavigate()
+    const pageSize = useMemo(() => 10, [])
+    const [currentPage, setCurrentPage] = useState<number>(1)
+
+    const currentTableData = useMemo(() => {
+        const firstPageIndex = (currentPage - 1) * pageSize;
+        const lastPageIndex = firstPageIndex + pageSize;
+        return listAnn?.slice(firstPageIndex, lastPageIndex);
+    }, [currentPage, listAnn, pageSize]);
+
+
+    console.log(listAnn, 'efef')
 
     const {request} = useHttp()
     const {id} = useParams()
@@ -58,7 +70,7 @@ export const StudyProfileAnnouncements: React.FC<IDirection> = memo((props) => {
     }, [id, currentYear, selectedDegree])
 
     const renderDirections = () => {
-        return listAnn?.map(item => {
+        return currentTableData?.map(item => {
             return (
                 <div className={cls.announcementsItem}>
                     <div className={cls.announcementsItem__header}>
@@ -230,7 +242,12 @@ export const StudyProfileAnnouncements: React.FC<IDirection> = memo((props) => {
             <div className={cls.announcements}>
 
                 {renderDirections()}
-
+                <Pagination
+                    totalCount={listAnn?.length || 0}
+                    onPageChange={setCurrentPage}
+                    currentPage={currentPage}
+                    pageSize={pageSize}
+                />
             </div>
         </div>
     );

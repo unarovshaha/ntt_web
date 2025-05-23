@@ -1,0 +1,10 @@
+.testResult {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.testResult__title {
+  font-size: 2.4rem;
+}
+
+/*# sourceMappingURL=testResultPage.module.css.map */

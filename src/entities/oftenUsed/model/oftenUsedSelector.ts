@@ -20,3 +20,6 @@ export const getOftenUsedLoading = (state: StateSchema) =>
     state.oftenUsedSlice.loading
 export const getOftenUsedError = (state: StateSchema) =>
     state.oftenUsedSlice.error
+
+export const getOftenFields= (state: StateSchema) =>
+    state.oftenUsedSlice.fields

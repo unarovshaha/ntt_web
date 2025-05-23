@@ -41,7 +41,6 @@ export const HomeNewsProfile = () => {
     const dispatch = useAppDispatch()
     const homeNewsData = useSelector(getHomeNews);
     const isLoading = useSelector(getHomeNewsLoading)
-    console.log(homeNewsData)
 
     useEffect(() => {
             dispatch(fetchProfileItem({id}))

@@ -49,7 +49,7 @@ export const OnlineTestEnter = () => {
                         mavzularning ketma-ketligi va savollarning qiyinchilik darajasi kirish imtihonlaridagi testlar
                         kabi tanlab olinadi.
                     </div>
-                    <Button onClick={() => navigate(`onlineTestEnter`)}>Diagnostik test</Button>
+                    <Button onClick={() => navigate(`onlineTestEnter`)}>DiagnostiFk test</Button>
                 </div>
             </div>
         </div>

@@ -29,6 +29,21 @@ export const HomeHeader = ({setItem}: { setItem: (item: HeaderItem) => void }) =
     const getLoading = useSelector(getHomeLoading)
     const [activeMenu, setActiveMenu] = useState(initialMenu);
     const [activeSubMenu, setActiveSubMenu] = useState(false);
+    const [windowSize, setWindowSize] = useState({
+        width: window.innerWidth,})
+
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowSize({
+                width: window.innerWidth,
+            });
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
 
     useEffect(() => {
         dispatch(fetchHomeHeaderItem());
@@ -136,17 +151,37 @@ export const HomeHeader = ({setItem}: { setItem: (item: HeaderItem) => void }) =
                                     </li>
                                 ))}
                                 {renderMenu(menuList1)}
+                                {/*<div className={cls.btnPanel}>*/}
+                                {/*    <Button onClick={() => navigate("/login")} extraClass={cls.enterBtn}>*/}
+                                {/*        Tizimga kirish*/}
+                                {/*    </Button>*/}
+                                {/*    <Button onClick={() => navigate("/register")} extraClass={cls.enterBtn}>*/}
+                                {/*        Ro'yxatdan o'tish*/}
+                                {/*    </Button>*/}
+                                {/*</div>*/}
+
                             </ul>
                         </div>
 
                         <div className={cls.header__end}>
+                            {
+                                window.innerWidth <= 768 ?
+                                    <Button onClick={() => navigate("/login")} extraClass={cls.enterBtn}>
+                                        Tizimga kirish
+                                    </Button> :
+                                    <>
+                                        <Button onClick={() => navigate("/login")} extraClass={cls.header__end_btn}>
+                                            Tizimga kirish
+                                        </Button>
+                                        <Button onClick={() => navigate("/register")} extraClass={cls.header__end_btn}>
+                                            Ro'yxatdan o'tish
+                                        </Button>
+                                    </>
 
-                            <Button onClick={() => navigate("/login")} extraClass={cls.header__end_btn}>
-                                Tizimga kirish
-                            </Button>
-                            <Button onClick={() => navigate("/register")} extraClass={cls.header__end_btn}>
-                                Ro'yxatdan o'tish
-                            </Button>
+                            }
+
+
+
                         </div>
 
         </div>

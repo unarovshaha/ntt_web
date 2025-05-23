@@ -83,7 +83,7 @@ export const fetchFieldsItem = createAsyncThunk<
     const menuId = localStorage.getItem("menuId");
     try {
         const response = await extra.api({
-            url: `organization_fields/get/organization-fields/${menuId}/`,
+            url: `organization_fields/get/organization-fields2/${menuId}/`,
             method: "GET",
             body: null,
             // headers: headers()
@@ -92,7 +92,7 @@ export const fetchFieldsItem = createAsyncThunk<
             throw new Error()
         }
 
-        return response.results;
+        return response;
     } catch (e) {
 
         return rejectWithValue('error')

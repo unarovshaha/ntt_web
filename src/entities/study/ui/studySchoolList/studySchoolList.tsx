@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 
 import {Card} from "shared/lib/components/card/card";
 
@@ -10,6 +10,7 @@ import {useSelector} from "react-redux";
 import {getStudyLoading, getStudySchoolList} from "entities/study/model/studySelector";
 import {useParams} from "react-router";
 import {Loader} from "shared/ui/loader";
+import {Pagination} from "features/pagination";
 
 interface ISchoolList {
     setActive: (arg: boolean) => void,
@@ -22,6 +23,16 @@ export const StudySchoolList = ({setActive, active}: ISchoolList) => {
     const dispatch = useAppDispatch()
     const schoolList = useSelector(getStudySchoolList)
     const loading = useSelector(getStudyLoading)
+    const pageSize = useMemo(() => 10, [])
+    const [currentPage, setCurrentPage] = useState<number>(1)
+
+    const currentTableData = useMemo(() => {
+        const firstPageIndex = (currentPage - 1) * pageSize;
+        const lastPageIndex = firstPageIndex + pageSize;
+        return schoolList?.slice(firstPageIndex, lastPageIndex);
+    }, [currentPage, schoolList, pageSize]);
+
+
 
     useEffect(() => {
         if (id) {
@@ -30,7 +41,7 @@ export const StudySchoolList = ({setActive, active}: ISchoolList) => {
     }, [id])
 
     const renderList = () => {
-        return schoolList?.map((item, index) => {
+        return currentTableData?.map((item, index) => {
             return (
                 <Card
                     route={`/platform/study/profile/`}
@@ -61,6 +72,12 @@ export const StudySchoolList = ({setActive, active}: ISchoolList) => {
                     ? <Loader/>
                     : renderList()
             }
+            <Pagination
+                totalCount={schoolList?.length || 0}
+                onPageChange={setCurrentPage}
+                currentPage={currentPage}
+                pageSize={pageSize}
+            />
             <div
                 className={classNames(cls.schoolList__filter, {
                     [cls.active]: active

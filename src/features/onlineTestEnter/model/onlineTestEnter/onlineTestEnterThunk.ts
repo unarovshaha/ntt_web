@@ -75,3 +75,4 @@ export const fetchRequiredSubject = createAsyncThunk<
         return rejectWithValue('error')
     }
 })
+

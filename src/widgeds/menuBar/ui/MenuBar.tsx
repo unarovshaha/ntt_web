@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import classNames from "classnames";
 import {NavLink, useNavigate} from "react-router-dom";
 import {createPortal} from "react-dom";
@@ -13,6 +13,8 @@ export const MenuBar = () => {
     const navigate = useNavigate()
     const [activeMultiLink, setActiveMultiLink] = useState(false)
     const [activeMenu, setActiveMenu] = useState(false)
+
+
 
     const renderMenuList = useCallback(() => {
         return menuConfig?.map(item => {

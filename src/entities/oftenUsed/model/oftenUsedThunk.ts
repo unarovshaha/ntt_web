@@ -107,7 +107,7 @@ export const fetchOrganizationTypesData = createAsyncThunk<
             url: `organizations/organization_type/get/list/`,
             method: "GET",
             body: null,
-            headers: headers()
+            // headers: headers()
         })
         if (!response) {
             throw new Error()
@@ -164,3 +164,26 @@ export const fetchDistrictThunk = createAsyncThunk<
     }
 })
 
+export const fetchOftenUsedFieldsItem = createAsyncThunk<
+    any[],
+    string | number | undefined,
+    ThunkConfig<string>
+>("oftenUsedSlice/fetchOftenUsedFieldsItem", async (menuID, thunkApi) => {
+    const {extra, dispatch, rejectWithValue} = thunkApi;
+    try {
+        const response = await extra.api({
+            url: `organization_fields/get/organization-fields2/${menuID}/`,
+            method: "GET",
+            body: null,
+            // headers: headers()
+        })
+        if (!response) {
+            throw new Error()
+        }
+
+        return response;
+    } catch (e) {
+
+        return rejectWithValue('error')
+    }
+})

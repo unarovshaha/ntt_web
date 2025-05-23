@@ -17,7 +17,7 @@ import {
     getOnlineTestSubject
 } from "features/onlineTestEnter/model/onlineTestEnter/onlineTestEnterSelector";
 import {c} from "framer-motion/dist/types.d-6pKw1mTI";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import classNames from "classnames";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import {
@@ -26,8 +26,13 @@ import {
     fetchSecondSubject
 } from "features/onlineTestEnter/model/onlineTestEnter/onlineTestEnterThunk";
 import {useNavigate} from "react-router-dom";
-import {useHttp} from "shared/api/base";
+import {ParamUrl, useHttp} from "shared/api/base";
 import {IOnlineTestSubject} from "features/onlineTestEnter/model/onlineTestEnter/onlineTestEnterSchema";
+import {Accordion} from "shared/ui/accordion";
+import {fetchOrganizationTypesData, getOrganizationTypes} from "entities/oftenUsed";
+import {fetchOftenUsedFieldsItem} from "entities/oftenUsed/model/oftenUsedThunk";
+import {getOftenFields} from "entities/oftenUsed/model/oftenUsedSelector";
+import {alertAction} from "entities/alert";
 interface IData  {
     name: string , surname: string
 }
@@ -110,20 +115,22 @@ const OnlineTestRight = ({token}: { token: string | null }) => {
 
     const navigate = useNavigate()
 
-
+    const organizationTypes = useSelector(getOrganizationTypes)
+    const fields = useSelector(getOftenFields)
     const subject = useSelector(getOnlineTestSubject)
-    const [firstSubjectSelect, setFirstSubjectSelect] = useState<number>()
-
-
-
-
-
     const secondSubject = useSelector(getOnlineTestSecondSubject)
-    const [secondSubjectSelect, setSecondSubjectSelect] = useState<number>()
+
+
+    const [orgType, setOrgType] = useState<number>()
+    const [field, setField] = useState<number| null>()
+    // const [firstSubjectSelect, setFirstSubjectSelect] = useState<number>()
+    // const [secondSubjectSelect, setSecondSubjectSelect] = useState<number>()
+    const [name, setName] = useState("")
+    const [surname, setSurname] = useState("")
+    const [error,setError] = useState<string>("")
 
 
     const {request} = useHttp()
-    const {register, handleSubmit} = useForm<IData>()
     const requireSub = useSelector(getOnlineTestList)
     const dispatch = useAppDispatch()
 
@@ -133,55 +140,93 @@ const OnlineTestRight = ({token}: { token: string | null }) => {
 
     useEffect(() => {
         dispatch(fetchFirstSubject())
+        dispatch(fetchOrganizationTypesData())
     }, [])
 
+    useEffect(() => {
+
+        if (orgType) {
+            setField(undefined)
+            dispatch(fetchOftenUsedFieldsItem(orgType))
+        }
+    },[orgType])
+
+    useEffect(() => {
+        if (organizationTypes.length > 0)
+            setOrgType(organizationTypes[0]?.id)
+    },[organizationTypes])
+
+    useEffect(() => {
+        if (fields.length > 0)
+            setField(fields[0]?.id)
+    },[fields])
+
+
+    // useEffect(() => {
+    //     if (subject)
+    //         setFirstSubjectSelect(subject[0]?.id)
+    // }, [subject])
+    //
+    // useEffect(() => {
+    //     if (secondSubject)
+    //         setSecondSubjectSelect(secondSubject[0]?.id)
+    // }, [secondSubject])
+    //
+    //
+    // useEffect(() => {
+    //     if (firstSubjectSelect)
+    //         dispatch(fetchSecondSubject(firstSubjectSelect))
+    // }, [firstSubjectSelect])
+    //
+    //
+    //
+    // useEffect(() => {
+    //     if (firstSubjectSelect && secondSubjectSelect)
+    //         dispatch(fetchRequiredSubject({main_id: firstSubjectSelect , second_id: secondSubjectSelect}))
+    // }, [firstSubjectSelect && secondSubjectSelect])
 
 
     useEffect(() => {
-        if (subject)
-            setFirstSubjectSelect(subject[0]?.id)
-    }, [subject])
+        if (!name || !surname) {
+            setError("Ism yoki Familiya kiritilmagan")
 
-    useEffect(() => {
-        if (secondSubject)
-            setSecondSubjectSelect(secondSubject[0]?.id)
-    }, [secondSubject])
+        }
+        else {
+            setError("")
+        }
+    },[name,surname])
+
+    const onPostData  = () => {
+
+        if ( field && orgType ) {
+            request({
+                url: `test/test/get/get_test/?${ParamUrl({
+                    name,
+                    surname,
+                    student: user_id || "",
+                    // subject1: firstSubjectSelect,
+                    // subject2: secondSubjectSelect,
+                    field: field,
+                    organization_type: orgType
+                })}`,
+                method: "GET",
+                // body: JSON.stringify(res),
+            })
+                .then(res => {
+                    if (res.status === false) {
+                        alert(res.msg)
+
+                    } else {
+                        navigate(`../onlineTest/takeTest/${res.main_test.student_test_id}`)
+                    }
 
 
-    useEffect(() => {
-        if (firstSubjectSelect)
-            dispatch(fetchSecondSubject(firstSubjectSelect))
-    }, [firstSubjectSelect])
-
-
-
-    useEffect(() => {
-        if (firstSubjectSelect && secondSubjectSelect)
-            dispatch(fetchRequiredSubject({main_id: firstSubjectSelect , second_id: secondSubjectSelect}))
-    }, [firstSubjectSelect && secondSubjectSelect])
-
-
-    const onPostData  : SubmitHandler<IData>   = (data) => {
-
-
-
-        const res = {
-            ...data ,
-            student: user_id,
-
-            test1: firstSubjectSelect,
-            test2: secondSubjectSelect,
+                })
         }
 
-        request({
-            url: `test/test/crud/student-tests/`,
-            method: "POST",
-            body: JSON.stringify(res),
 
-        })
-            .then(res => [
-                navigate(`../onlineTest/takeTest/${res.id}`)
-            ])
+
+
     }
 
 
@@ -206,30 +251,53 @@ const OnlineTestRight = ({token}: { token: string | null }) => {
             {/*</div>*/}
             {!token && <div className={cls.main__container_right_form}>
                 <Input
-                    register={register}
+                    required
+                    value={name}
+                    onChange={setName}
                     extraClass={cls.main__container_right_form_input}
                     name={"name"}
                     placeholder={"Ismingiz"}/>
                 <Input
-                    register={register}
+                    required
+                    value={surname}
+                    onChange={setSurname}
                     extraClass={cls.main__container_right_form_input}
                     name={"surname"}
                     placeholder={"Familyangiz"}/>
             </div>}
 
             <div className={cls.main__container_right_subject}>
-                <h2 className={cls.main__container_right_subject_title}>Brinchi fanni tanlang</h2>
+
+                <h2 className={cls.main__container_right_subject_title}>Organizatsiya turini tanlang</h2>
                 <Select
-                    optionsData={subject}
+                    optionsData={organizationTypes}
                     extraClass={cls.main__container_right_subject_select}
-                    setSelectOption={setFirstSubjectSelect}
+                    setSelectOption={setOrgType}
                 />
-                <h2 className={cls.main__container_right_subject_title}>Ikkinchi fanni tanlang</h2>
-                <Select
-                    optionsData={secondSubject}
-                    extraClass={cls.main__container_right_subject_select}
-                    setSelectOption={setSecondSubjectSelect}
-                />
+                {
+                    (orgType && fields.length > 0) && <>
+                        <h2 className={cls.main__container_right_subject_title}>Yo'nalish turini tanlang</h2>
+                        <Select
+                            optionsData={fields}
+                            extraClass={cls.main__container_right_subject_select}
+                            setSelectOption={setField}
+                        />
+                    </>
+                }
+
+                {/*<h2 className={cls.main__container_right_subject_title}>Brinchi fanni tanlang</h2>*/}
+
+                {/*<Select*/}
+                {/*    optionsData={subject}*/}
+                {/*    extraClass={cls.main__container_right_subject_select}*/}
+                {/*    setSelectOption={setFirstSubjectSelect}*/}
+                {/*/>*/}
+                {/*<h2 className={cls.main__container_right_subject_title}>Ikkinchi fanni tanlang</h2>*/}
+                {/*<Select*/}
+                {/*    optionsData={secondSubject}*/}
+                {/*    extraClass={cls.main__container_right_subject_select}*/}
+                {/*    setSelectOption={setSecondSubjectSelect}*/}
+                {/*/>*/}
             </div>
             <div className={cls.main__container_right_requireSubject}>
                 <h1>Majburiy fanlar</h1>
@@ -253,9 +321,15 @@ const OnlineTestRight = ({token}: { token: string | null }) => {
                 {/*    <h1>19000 UZS</h1>*/}
                 {/*</div>*/}
             </div>
-
-            <Button onClick={handleSubmit(onPostData)} extraClass={cls.main__container_right_btn}>Testni
-                boshlash</Button>
+            <h1 style={{color: "red"}}>{error}</h1>
+            <Button
+                disabled={!orgType || !field || !name || !surname}
+                onClick={onPostData}
+                extraClass={cls.main__container_right_btn}
+            >
+                Testni
+                boshlash
+            </Button>
         </div>
     )
 }

@@ -21,6 +21,8 @@ const onlineTestEnterSlice = createSlice({
     reducers: {},
     extraReducers: builder =>
         builder
+
+
             .addCase(fetchFirstSubject.pending , (state) => {
                 state.loading = true
                 state.error = false
