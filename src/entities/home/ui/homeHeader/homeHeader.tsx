@@ -151,14 +151,14 @@ export const HomeHeader = ({setItem}: { setItem: (item: HeaderItem) => void }) =
                                     </li>
                                 ))}
                                 {renderMenu(menuList1)}
-                                <div className={cls.btnPanel}>
-                                    <Button onClick={() => navigate("/login")} extraClass={cls.enterBtn}>
-                                        Tizimga kirish
-                                    </Button>
-                                    <Button onClick={() => navigate("/register")} extraClass={cls.enterBtn}>
-                                        Ro'yxatdan o'tish
-                                    </Button>
-                                </div>
+                                {/*<div className={cls.btnPanel}>*/}
+                                {/*    <Button onClick={() => navigate("/login")} extraClass={cls.enterBtn}>*/}
+                                {/*        Tizimga kirish*/}
+                                {/*    </Button>*/}
+                                {/*    <Button onClick={() => navigate("/register")} extraClass={cls.enterBtn}>*/}
+                                {/*        Ro'yxatdan o'tish*/}
+                                {/*    </Button>*/}
+                                {/*</div>*/}
 
                             </ul>
                         </div>
@@ -166,7 +166,9 @@ export const HomeHeader = ({setItem}: { setItem: (item: HeaderItem) => void }) =
                         <div className={cls.header__end}>
                             {
                                 window.innerWidth <= 768 ?
-                                    "" :
+                                    <Button onClick={() => navigate("/login")} extraClass={cls.enterBtn}>
+                                        Tizimga kirish
+                                    </Button> :
                                     <>
                                         <Button onClick={() => navigate("/login")} extraClass={cls.header__end_btn}>
                                             Tizimga kirish

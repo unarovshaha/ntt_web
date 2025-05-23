@@ -172,7 +172,7 @@ export const fetchOftenUsedFieldsItem = createAsyncThunk<
     const {extra, dispatch, rejectWithValue} = thunkApi;
     try {
         const response = await extra.api({
-            url: `organization_fields/get/organization-fields/${menuID}/`,
+            url: `organization_fields/get/organization-fields2/${menuID}/`,
             method: "GET",
             body: null,
             // headers: headers()
@@ -181,7 +181,7 @@ export const fetchOftenUsedFieldsItem = createAsyncThunk<
             throw new Error()
         }
 
-        return response.results;
+        return response;
     } catch (e) {
 
         return rejectWithValue('error')
