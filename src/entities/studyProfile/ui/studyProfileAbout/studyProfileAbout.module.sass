@@ -3,6 +3,7 @@
 .info
   width: 100%
   min-height: 100%
+  display: flex
   padding: 3rem
   .header
     width: 100%
@@ -30,6 +31,12 @@
     display: flex
     flex-direction: column
     gap: 2rem
+    width: 100%
     //p
       margin-top: 2rem
       font-size: 1.6rem
+
+
+@media (max-width: 1462px)
+  .info
+    flex-direction: column

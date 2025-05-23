@@ -39,13 +39,16 @@
       cursor: pointer
       &.active
         color: $color-main
-
+.main
+  display: flex
 .announcements
-  //height: 50vh
+  //height: 50rem
   //overflow-y: auto
+
   display: flex
   flex-direction: column
   gap: 1rem
+  width: 100%
   .announcementsItem
     padding: 2rem
     display: flex
@@ -53,7 +56,9 @@
     position: relative
     gap: 1rem
     overflow: hidden
+    height: 40rem!important
     border: 1px solid var(--Grays-Gray-4, #D1D1D6)
+
     box-shadow: 0 4px 4px -4px #0C0C0D0D, 0 16px 16px -8px #0C0C0D1A
     &__icon
       align-self: flex-end
@@ -76,7 +81,10 @@
       font-size: 1.6rem
     &__infoMenu
       display: flex
-      gap: 14rem
+      gap: 1rem 4rem
+      //width: 100%
+      flex-wrap: wrap
+
       .info
         display: flex
         flex-direction: column
@@ -124,12 +132,12 @@
         &__up
           width: 8rem
           top: 0
-          right: 0
-          transform: rotate(187deg) translate(-14px, 5px)
+          right: -10px
+          transform: rotate(184deg) translate(-14px, 5px)
           background: #0f40d8
           //background: #CBDAFF
           border-radius: .2rem
-          height: 122%
+          height: 132%
           display: flex
           align-items: center
           justify-content: center
@@ -152,3 +160,11 @@
         font-size: 1.4rem
         &>div
           display: inline-block
+
+@media (max-width: 1778px)
+  .announcements
+    width: 90%
+
+@media (max-width: 1462px)
+  .main
+    flex-direction: column

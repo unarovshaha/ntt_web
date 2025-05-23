@@ -1,4 +1,4 @@
-import React, {memo, useEffect, useState} from 'react';
+import React, {memo, useEffect, useMemo, useState} from 'react';
 
 
 import cls from "./newProfileDirection.module.sass";
@@ -22,6 +22,7 @@ import {Modal} from "shared/ui/modal";
 import {EducationRecord} from "entities/home/model/schema/homeSchema";
 import {NewProfileReadMore} from "entities/newProfile/ui/newProfileReadMore/newProfileReadMore";
 import {HomeNews} from "entities/newProfile/ui/homeNews/homeNews";
+import {Pagination} from "features/pagination";
 interface IDirection {
     setItems: (arg: EducationRecord) => void;
 }
@@ -40,6 +41,16 @@ export const NewProfileDirection: React.FC<IDirection> = memo((props) => {
 
     const [active, setActive] = useState()
     const [activeYear, setActiveYear] = useState()
+    const pageSize = useMemo(() => 10, [])
+    const [currentPage, setCurrentPage] = useState<number>(1)
+
+
+    const currentTableData = useMemo(() => {
+        const firstPageIndex = (currentPage - 1) * pageSize;
+        const lastPageIndex = firstPageIndex + pageSize;
+        return data?.slice(firstPageIndex, lastPageIndex);
+    }, [currentPage, data, pageSize]);
+
 
     const activeMenu = localStorage.getItem("activeMenu")
     useEffect(() => {
@@ -62,7 +73,7 @@ export const NewProfileDirection: React.FC<IDirection> = memo((props) => {
     console.log(activeItem , 'log ')
 
     const renderData = () => {
-        return data?.map(item => (
+        return currentTableData?.map(item => (
             <div
                 // onClick={() => navigate(`profile/${item.id}/about`)}
                 className={cls.profile__footer_container_box}
@@ -156,10 +167,18 @@ export const NewProfileDirection: React.FC<IDirection> = memo((props) => {
                   <div className={cls.direction__main}>
                       {render}
                   </div>
+                  <Pagination
+                      totalCount={data?.length || 0}
+                      onPageChange={setCurrentPage}
+                      currentPage={currentPage}
+                      pageSize={pageSize}
+                  />
+
               </div>
               <HomeNews/>
-
           </div>
+
+
 
         </div>
     );

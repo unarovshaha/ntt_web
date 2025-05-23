@@ -23,6 +23,7 @@ import {Button} from "shared/ui/button";
 import {EducationRecord} from "entities/home/model/schema/homeSchema";
 import {useNavigate} from "react-router-dom";
 import {Pagination} from "features/pagination";
+import {HomeNews} from "entities/newProfile/ui/homeNews/homeNews";
 
 interface IDirection {
     setItems: (arg: EducationRecord) => void;
@@ -72,7 +73,7 @@ export const StudyProfileAnnouncements: React.FC<IDirection> = memo((props) => {
     const renderDirections = () => {
         return currentTableData?.map(item => {
             return (
-                <div className={cls.announcementsItem}>
+                <div className={cls.announcementsItem} >
                     <div className={cls.announcementsItem__header}>
                         <img className={cls.announcementsItem__ava} src={`${API_URL_DOC}${item.img}`} alt=""/>
                         <h2 className={cls.announcementsItem__title}>
@@ -239,15 +240,18 @@ export const StudyProfileAnnouncements: React.FC<IDirection> = memo((props) => {
             </div>
 
 
-            <div className={cls.announcements}>
+            <div className={cls.main}>
+                <div className={cls.announcements}>
 
-                {renderDirections()}
-                <Pagination
-                    totalCount={listAnn?.length || 0}
-                    onPageChange={setCurrentPage}
-                    currentPage={currentPage}
-                    pageSize={pageSize}
-                />
+                    {renderDirections()}
+                    <Pagination
+                        totalCount={listAnn?.length || 0}
+                        onPageChange={setCurrentPage}
+                        currentPage={currentPage}
+                        pageSize={pageSize}
+                    />
+                </div>
+                <HomeNews/>
             </div>
         </div>
     );

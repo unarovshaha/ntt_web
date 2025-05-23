@@ -11,6 +11,7 @@ import {StudyProfileGallery} from "entities/studyProfile/ui/studyProfileGallery/
 import {DropDown} from "shared/ui/dropdown";
 import {NewProfileGallery} from "../../../newProfile";
 import {API_URL_DOC} from "../../../../shared/api/base";
+import {HomeNews} from "entities/studyProfile/ui/studyProfile/homeNews";
 
 export const StudyProfileAbout = () => {
 
@@ -41,6 +42,7 @@ export const StudyProfileAbout = () => {
                 <DropDown title={"Universitet haqida"} subtitle={data?.name} html={data?.desc}/>
                 <DropDown title={"Grandlar"} subtitle={data?.name} html={data?.grand_text}/>
             </div>
+            <HomeNews/>
         </div>
     );
 }

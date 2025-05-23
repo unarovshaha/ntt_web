@@ -19,10 +19,12 @@ import {useSelector} from "react-redux";
 import {StudyComments} from "entities/study";
 import {fetchUserComments} from "entities/studyProfile/model/studyProfileThunk";
 import {NewProfileReadMore} from "entities/newProfile/ui/newProfileReadMore/newProfileReadMore";
+import {homeNewsReducer, homeReducer} from "entities/home";
 
 
 const reducers: ReducersList = {
-    studyProfileSlice: studyProfileReducer
+    studyProfileSlice: studyProfileReducer,
+    homeNewsSlice: homeNewsReducer,
 }
 
 export const StudyProfileNewPage = () => {

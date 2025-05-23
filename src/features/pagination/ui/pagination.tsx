@@ -199,7 +199,7 @@ export const Pagination: React.FC<IPaginationProps> = ({
                         className={classNames(cls.pagination_item, cls.arrow)}
                         onClick={onNext}
                     >
-                        <i className="fa-solid fa.arrow-right"></i>
+                        <i className="fa-solid fa-arrow-right"></i>
                     </li>
                 )}
             </ul>
