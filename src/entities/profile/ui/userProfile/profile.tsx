@@ -50,8 +50,7 @@ export const Profile = () => {
         const files = e.target.files;
         if (files && files[0]) {
             setState(files[0]);
-            console.log('Selected file:', files[0]); // Tanlangan faylni logga chiqarish
-            console.log('Selected file:', files[0]);
+
         }
     };
 
