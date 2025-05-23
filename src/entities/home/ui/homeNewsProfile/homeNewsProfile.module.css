@@ -46,7 +46,6 @@
   font-family: Montserrat, sans-serif;
 }
 .profile__container .block {
-  width: 100%;
   display: flex;
   flex-wrap: wrap;
   text-align: start;
@@ -123,6 +122,23 @@
   }
   .profile__container {
     padding-left: 0;
+    width: 100%;
+  }
+  .profile__container .block__inner {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  .profile__container .block__inner a {
+    display: inline-block;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+  .profile__container .block__inner p {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    max-width: 100%;
   }
   .profile__container .title {
     font-size: 3rem;
