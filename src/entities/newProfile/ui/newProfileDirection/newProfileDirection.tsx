@@ -70,7 +70,6 @@ export const NewProfileDirection: React.FC<IDirection> = memo((props) => {
     }, [activeYear, active])
 
 
-    console.log(activeItem , 'log ')
 
     const renderData = () => {
         return currentTableData?.map(item => (

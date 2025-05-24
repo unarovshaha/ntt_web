@@ -56,7 +56,6 @@ export const HomeHeader = ({setItem}: { setItem: (item: HeaderItem) => void }) =
 
     const data = useSelector(getHomeHeaderItem);
 
-    console.log(data, "data")
 
     useEffect(() => {
         localStorage.setItem("activeMenu", activeMenu);
@@ -64,11 +63,8 @@ export const HomeHeader = ({setItem}: { setItem: (item: HeaderItem) => void }) =
 
     useEffect(() => {
         if (data && data.length > 0) {
-            console.log(data, "data")
             const foundItem = data.find((item) => `/${item.name}` === activeMenu);
-            console.log(foundItem, "foundItem")
             if (foundItem) {
-                console.log(foundItem, "foundItem")
                 setItem(foundItem);
             }
         }

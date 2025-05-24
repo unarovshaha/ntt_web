@@ -49,7 +49,6 @@ export const StudyProfileAnnouncements: React.FC<IDirection> = memo((props) => {
     }, [currentPage, listAnn, pageSize]);
 
 
-    console.log(listAnn, 'efef')
 
     const {request} = useHttp()
     const {id} = useParams()

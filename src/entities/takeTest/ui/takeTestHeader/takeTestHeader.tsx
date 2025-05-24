@@ -19,7 +19,6 @@ const data2 = [
 export const TakeTestHeader = () => {
     const data = useSelector(getTakeTestItem)
 
-    console.log(data)
 
     return (
         <div className={cls.header}>

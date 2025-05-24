@@ -16,7 +16,6 @@ export const TechnicalSchool = ({item}: { item: HeaderItem }) => {
 
     const navigate = useNavigate()
     const location = useLocation()
-    console.log(location, "location")
     const pageSize = useMemo(() => 10, [])
     const [currentPage, setCurrentPage] = useState<number>(1)
     const data = useSelector(getHomeTechnical)

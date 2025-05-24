@@ -20,7 +20,6 @@ export const StudyProfileAbout = () => {
     const dispatch = useAppDispatch()
     const gallery = useSelector(getStudyProfileGallery)
 
-    console.log(data, 'study')
     useEffect(() => {
         if (id)
             dispatch(fetchStudyProfileGallery({id}))

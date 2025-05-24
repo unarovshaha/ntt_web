@@ -33,7 +33,6 @@ export const StudyProfileNewPage = () => {
     const dispatch = useAppDispatch()
     const [items, setItems] = useState<any>()
 
-    console.log(items, 'edede')
 
     useEffect(() => {
         if (id){

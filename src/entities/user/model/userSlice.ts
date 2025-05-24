@@ -34,7 +34,6 @@ const userSlice = createSlice({
     reducers: {
 
         setAuthData: (state, action: PayloadAction<IUserProfile>) => {
-            console.log(action.payload, "action.payload")
             state.id = action.payload.id
             state.sex = action.payload.sex
             state.name = action.payload.name
