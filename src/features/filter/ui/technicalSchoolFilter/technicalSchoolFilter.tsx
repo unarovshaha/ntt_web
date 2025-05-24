@@ -10,7 +10,7 @@ import {useSelector} from "react-redux";
 import {getDistrict, getFieldsItem, getHomeHeaderItem, getRegion} from "entities/home/model/selector/homeSelector";
 import {Select} from "shared/ui/select";
 import {Accordion} from "../../../../shared/ui/accordion";
-import {DynamicModuleLoader, ReducersList} from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
+// import {DynamicModuleLoader, ReducersList} from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
 import {homeReducer} from "entities/home";
 
 export const TechnicalSchoolFilter = ({item}: { item: HeaderItem }) => {
@@ -110,11 +110,11 @@ export const TechnicalSchoolFilter = ({item}: { item: HeaderItem }) => {
         }
     }, [priceMin, priceMax, active, handle, item.id, select, query , selectRegion , selectDistrict]);
 
-    const reducers: ReducersList = {
-        homeSlice: homeReducer,
-    }
+    // const reducers: ReducersList = {
+    //     homeSlice: homeReducer,
+    // }
     return (
-        <DynamicModuleLoader reducers={reducers}>
+        // <DynamicModuleLoader reducers={reducers}>
         <div className={cls.main}>
             <div className={cls.main__headers}>
                 <Accordion
@@ -181,6 +181,6 @@ export const TechnicalSchoolFilter = ({item}: { item: HeaderItem }) => {
             </div>
 
         </div>
-        </DynamicModuleLoader>
+        // </DynamicModuleLoader>
     );
 };

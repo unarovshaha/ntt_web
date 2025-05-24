@@ -9,7 +9,7 @@ import {Input} from "shared/ui/input";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {Select} from "shared/ui/select";
 import {onlineTestEnterReducer} from "features/onlineTestEnter/model/onlineTestEnter/onlineTestEnterSlice";
-import {DynamicModuleLoader} from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
+import {DynamicModuleLoader, ReducersList} from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
 import {useSelector} from "react-redux";
 import {
     getOnlineTestList,
@@ -40,7 +40,7 @@ interface IData  {
 
 const filterSide = [ {name: "Natijalarni kurish"} , {name: "Test Topshirish"}]
 
-const reducer = {
+const reducer: ReducersList = {
     onlineTestEnterSlice: onlineTestEnterReducer
 }
 
